@@ -6,10 +6,22 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+
+import * as domino from 'domino';
+import 'localstorage-polyfill';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
+  const template = readFileSync(
+    join('dist/phevoy/browser', 'index.html'),
+  ).toString();
+  const win = domino.createWindow(template);
+
+  global['window'] = win;
+  global['document'] = win.document;
+  global['localStorage'] = localStorage;
+
   const server = express();
   const distFolder = join(process.cwd(), 'dist/phevoy/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -19,6 +31,7 @@ export function app() {
     bootstrap: AppServerModule,
   }));
 
+  // Middleware
   server.set('view engine', 'html');
   server.set('views', distFolder);
 
