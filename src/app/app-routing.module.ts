@@ -9,7 +9,7 @@ import { ContactComponent } from './contact';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
