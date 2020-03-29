@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login';
-import { HomeComponent } from './home/home.component';
 import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helpers/interceptors';
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard';
+import { LoginComponent } from './login';
+import { HomeComponent } from './home';
+import { PageNotFoundComponent } from './page-not-found';
+import { ContactComponent } from './contact';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { ErrorInterceptor, fakeBackendProvider, JwtInterceptor } from './_helper
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent,
+    ContactComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
