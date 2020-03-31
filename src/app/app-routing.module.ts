@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found';
 import { ContactComponent } from './contact';
 import { SignupComponent } from './signup';
 import { PasswordRecoveryComponent } from './password-recovery';
+import {FeaturesComponent} from './features';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'password-recovery', component: PasswordRecoveryComponent },
+  { path: 'features', component: FeaturesComponent },
   { path: 'contact', component: ContactComponent },
 
   // otherwise redirect to home
