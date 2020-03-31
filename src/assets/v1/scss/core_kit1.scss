@@ -1,0 +1,45 @@
+/*! core_kit1.scss | Bulkit | CSS Ninja */
+
+/* ==========================================================================
+Landing kit 1 core
+========================================================================== */
+
+/***
+TABLE OF CONTENTS
+=============================================================================
+0. CSS Imports
+=============================================================================
+***/
+
+/* ==========================================================================
+0. CSS Imports
+========================================================================== */
+
+@import 'abstracts/layout-colors';
+@import 'abstracts/themes-kit1';
+@import 'layout/layout-navbar';
+@import 'layout/layout-sections';
+@import 'layout/layout-hero';
+@import 'layout/layout-footer';
+@import 'layout/layout-animations';
+@import 'layout/layout-navigation';
+@import 'layout/layout-pageloader';
+@import 'components/components-buttons';
+@import 'components/components-cards';
+@import 'components/components-boxes';
+@import 'components/components-testimonials';
+@import 'components/components-dialogs';
+@import 'components/components-forms';
+@import 'components/components-labels';
+@import 'components/components-dropdowns';
+@import 'components/components-pricing';
+@import 'pages/pages-landing-kit1';
+@import 'layout/layout-utils';
+@import 'layout/layout-helpers';
+@import 'layout/layout-responsive';
+
+//$slick-font-path: "/assets/v1/fonts/";
+//$slick-loader-path: "/assets/v1/fonts/";
+
+//@import "../../../node_modules/slick-carousel/slick/slick.scss";
+//@import "../../../node_modules/slick-carousel/slick/slick-theme.scss";
