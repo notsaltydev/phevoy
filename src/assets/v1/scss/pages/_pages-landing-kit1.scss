@@ -27,7 +27,7 @@ TABLE OF CONTENTS
 0. Animated Hero
 ========================================================================== */
 #landing-hero {
-    background: $secondary url(../img/bg/shapes/icon-bg.png) repeat 0 0;
+    background: $secondary url(/assets/v1/img/bg/shapes/icon-bg.png) repeat 0 0;
     -webkit-animation: 18s linear 0s normal none infinite animate;
     -moz-animation: 18s linear 0s normal none infinite animate;
     -ms-animation: 18s linear 0s normal none infinite animate;
@@ -91,7 +91,7 @@ TABLE OF CONTENTS
 ========================================================================== */
 
 .hero.hero-waves:before {
-    background: transparent url(../img/bg/shapes/wavy.png) no-repeat scroll 0 (bottom / 100%) auto;
+    background: transparent url(/assets/v1/img/bg/shapes/wavy.png) no-repeat scroll 0 (bottom / 100%) auto;
     content: "";
     height: 321px;
     width: 100%;
@@ -257,19 +257,19 @@ TABLE OF CONTENTS
     padding: 800px 30px 30px 30px;
 
     &.is-first {
-        background-image: url(../img/illustrations/interface/phone-slide-1.png);
+        background-image: url(/assets/v1/img/illustrations/interface/phone-slide-1.png);
     }
 
     &.is-second {
-        background-image: url(../img/illustrations/interface/phone-slide-2.png);
+        background-image: url(/assets/v1/img/illustrations/interface/phone-slide-2.png);
     }
 
     &.is-third {
-        background-image: url(../img/illustrations/interface/phone-slide-3.png);
+        background-image: url(/assets/v1/img/illustrations/interface/phone-slide-3.png);
     }
 
     &.is-fourth {
-        background-image: url(../img/illustrations/interface/phone-slide-4.png);
+        background-image: url(/assets/v1/img/illustrations/interface/phone-slide-4.png);
     }
 }
 
@@ -465,7 +465,7 @@ TABLE OF CONTENTS
 ========================================================================== */
 
 .section.footer-waves:after {
-    background: transparent url(../img/bg/shapes/wavy-dark.png) no-repeat scroll 0 (bottom / 100%) auto;
+    background: transparent url(/assets/v1/img/bg/shapes/wavy-dark.png) no-repeat scroll 0 (bottom / 100%) auto;
     content: "";
     height: 321px;
     width: 100%;
@@ -482,7 +482,7 @@ TABLE OF CONTENTS
 .hero {
     &.hero-waves-dark {
         &:before {
-            background: transparent url(../img/bg/shapes/wavy-dark.png) no-repeat scroll 0 (bottom / 100%) auto;
+            background: transparent url(/assets/v1/img/bg/shapes/wavy-dark.png) no-repeat scroll 0 (bottom / 100%) auto;
             content: "";
             height: 321px;
             width: 100%;

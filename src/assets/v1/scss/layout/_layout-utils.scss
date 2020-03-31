@@ -39,13 +39,13 @@ section:focus {
 
 @font-face {
     font-family: 'Nexa Light';
-    src: url("../fonts/text/nexa/NexaLight.woff") format("woff"), url("../fonts/text/nexa/NexaLight.ttf")  format("truetype");
+    src: url("/assets/v1/fonts/text/nexa/NexaLight.woff") format("woff"), url("/assets/v1/fonts/text/nexa/NexaLight.ttf")  format("truetype");
 }
 
 @font-face {
     font-family: 'Nexa Bold';
     font-weight: bold;
-    src: url("../fonts/text/nexa/NexaBold.woff") format("woff"), url("../fonts/text/nexa/NexaBold.ttf")  format("truetype");
+    src: url("/assets/v1/fonts/text/nexa/NexaBold.woff") format("woff"), url("/assets/v1/fonts/text/nexa/NexaBold.ttf")  format("truetype");
 }
 
 
