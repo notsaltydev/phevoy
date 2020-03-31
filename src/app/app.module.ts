@@ -12,6 +12,7 @@ import { HomeComponent } from './home';
 import { PageNotFoundComponent } from './page-not-found';
 import { ContactComponent } from './contact';
 import { SignupComponent } from './signup';
+import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { SignupComponent } from './signup';
     HomeComponent,
     PageNotFoundComponent,
     ContactComponent,
-    SignupComponent
+    SignupComponent,
+    PasswordRecoveryComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
