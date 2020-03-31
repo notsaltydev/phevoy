@@ -1,44 +1,50 @@
-<section class="hero is-fullheight">
-  <div class="hero-body">
+<!-- Hero and nav -->
+<div class="hero hero-waves-dark is-fullheight is-relative is-light-grey">
+<!--  {{> navbar-fade-dark}}-->
+  <!-- Hero -->
+  <div id="main-hero" class="hero-body">
     <div class="container has-text-centered">
-      <div class="column is-4 is-offset-4">
-        <h3 class="title has-text-black">Login</h3>
-        <hr class="login-hr">
-        <p class="subtitle has-text-black">Please login to proceed.</p>
-        <div class="box">
-          <figure class="avatar">
-            <img src="https://placehold.it/128x128">
-          </figure>
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="field">
-              <div class="control">
-                <input class="input is-large" type="email" name="username" placeholder="Your Email" autofocus="" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-              </div>
-              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required">Username is required</div>
-              </div>
-            </div>
+      <div class="columns is-vcentered">
+        <div class="column is-6 is-offset-3 z-index-2">
+          <div id="login-card" class="animated preFadeInLeft fadeInLeft">
+            <div class="flex-card wavy-login-card">
+              <h2 class="text-bold dark-text no-margin-bottom pt-20 pb-20">Log in</h2>
+              <form class="pt-10 pb-10" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="control-material is-primary">
+                  <input class="material-input" type="text" required formControlName="username">
+                  <span class="material-highlight"></span>
+                  <span class="bar"></span>
+                  <label>Username</label>
+                </div>
+                <div class="control-material is-primary">
+                  <input class="material-input" type="password" required formControlName="password">
+                  <span class="material-highlight"></span>
+                  <span class="bar"></span>
+                  <label>Password</label>
+                </div>
 
-            <div class="field">
-              <div class="control">
-                <input class="input is-large" type="password" name="password" placeholder="Your Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-              </div>
-              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-              </div>
+                <div class="field pt-20">
+                  <div class="control">
+                    <label class="checkbox-wrap is-medium">
+                      <input id="check2" type="checkbox" class="d-checkbox">
+                      <span></span>
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+
+                <div class="pt-20 pb-20">
+                  <button
+                    class="button button-cta btn-align primary-btn is-fullwidth rounded raised no-lh">Login</button>
+                </div>
+              </form>
             </div>
-            <button [disabled]="loading" class="button is-block is-info is-large is-fullwidth" [ngClass]="{'is-loading': loading}">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
-            <div class="field">
-                <p *ngIf="error" class="notification is-danger">{{error}}</p>
-            </div>
-          </form>
+            <p class="has-text-centered mt-30">
+              <a id="show-recover" class="no-account" routerLink="/password-recovery">Lost your password?</a>
+            </p>
+          </div>
         </div>
-        <p class="has-text-grey">
-          <a href="../">Sign Up</a> &nbsp;·&nbsp;
-          <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-          <a href="../">Need Help?</a>
-        </p>
       </div>
     </div>
   </div>
-</section>
+</div>
