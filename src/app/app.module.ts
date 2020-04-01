@@ -15,6 +15,7 @@ import { SignupComponent } from './signup';
 import { PasswordRecoveryComponent } from './password-recovery';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
+import { HeaderComponent } from './header';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { PricingComponent } from './pricing';
     SignupComponent,
     PasswordRecoveryComponent,
     FeaturesComponent,
-    PricingComponent
+    PricingComponent,
+    HeaderComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

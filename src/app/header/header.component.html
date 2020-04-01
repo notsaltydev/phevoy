@@ -1,0 +1,45 @@
+<nav class="navbar navbar-wrapper navbar-fade is-transparent" [ngClass]="'navbar-' + type">
+  <div class="container">
+    <!-- Brand -->
+    <div class="navbar-brand">
+      <a class="navbar-item" routerLink="/">
+        <strong>Phevoy</strong>
+      </a>
+    </div>
+
+    <!-- Navbar menu -->
+    <div class="navbar-menu">
+      <!-- Navbar Start -->
+      <div class="navbar-start">
+        <!-- Navbar item -->
+        <a class="navbar-item is-slide" routerLink="/features">
+          Features
+        </a>
+        <!-- Navbar item -->
+        <a class="navbar-item is-slide" routerLink="/pricing">
+          Pricing
+        </a>
+        <!-- Navbar item -->
+        <a class="navbar-item is-slide" routerLink="/contact">
+          Contact Us
+        </a>
+        <!-- Navbar item -->
+        <a class="navbar-item is-slide" routerLink="/login">
+          Login
+        </a>
+      </div>
+
+      <!-- Navbar end -->
+      <div class="navbar-end">
+        <!-- Signup button -->
+        <div class="navbar-item">
+          <a id="#signup-btn"
+             class="button button-signup btn-outlined is-bold btn-align light-btn rounded raised"
+          routerLink="/signup">
+            Sign up
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
