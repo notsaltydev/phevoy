@@ -3,26 +3,4 @@
 0. CSS Imports
 ========================================================================== */
 @import "assets/v1/scss/core_kit1.scss";
-
-//@import 'assets/v1/scss/abstracts/layout-colors';
-//@import 'assets/v1/scss/abstracts/themes-kit1';
-//@import 'assets/v1/scss/layout/layout-navbar';
-//@import 'assets/v1/scss/layout/layout-sections';
-//@import 'assets/v1/scss/layout/layout-hero';
-//@import 'assets/v1/scss/layout/layout-footer';
-//@import 'assets/v1/scss/layout/layout-animations';
-//@import 'assets/v1/scss/layout/layout-navigation';
-//@import 'assets/v1/scss/layout/layout-pageloader';
-//@import 'assets/v1/scss/components/components-buttons';
-//@import 'assets/v1/scss/components/components-cards';
-//@import 'assets/v1/scss/components/components-boxes';
-//@import 'assets/v1/scss/components/components-testimonials';
-//@import 'assets/v1/scss/components/components-dialogs';
-//@import 'assets/v1/scss/components/components-forms';
-//@import 'assets/v1/scss/components/components-labels';
-//@import 'assets/v1/scss/components/components-dropdowns';
-//@import 'assets/v1/scss/components/components-pricing';
-//@import 'assets/v1/scss/pages/pages-landing-kit1';
-//@import 'assets/v1/scss/layout/layout-utils';
-//@import 'assets/v1/scss/layout/layout-helpers';
-//@import 'assets/v1/scss/layout/layout-responsive';
+@import "assets/v1-error/scss/core_error1.scss";
