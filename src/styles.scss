@@ -4,3 +4,37 @@
 ========================================================================== */
 @import "assets/v1/scss/core_kit1.scss";
 @import "assets/v1-error/scss/core_error1.scss";
+
+.wavy {
+  &:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transform-origin: bottom;
+    animation: animateWave 1000ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  &.wavy-first:before {
+    background: transparent url(/assets/default/img/bg/shapes/wavy.svg) no-repeat scroll 0 bottom/100% auto;
+  }
+
+  &.wavy-second:before {
+    background: transparent url(/assets/default/img/bg/shapes/wavy-second.svg) no-repeat scroll 0 bottom/100% auto;
+  }
+
+  &.wavy-third:before {
+    background: transparent url(/assets/default/img/bg/shapes/wavy-third.svg) no-repeat scroll 0 bottom/100% auto;
+  }
+}
+
+@keyframes animateWave {
+  0% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
