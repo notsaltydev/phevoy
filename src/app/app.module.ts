@@ -16,13 +16,15 @@ import { PasswordRecoveryComponent } from './password-recovery';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { HeaderComponent } from './header';
+import { WindowModule } from './window';
 
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    WindowModule
   ],
   declarations: [
     AppComponent,

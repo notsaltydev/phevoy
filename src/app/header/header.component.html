@@ -1,4 +1,9 @@
-<nav class="navbar navbar-wrapper navbar-fade is-transparent" [ngClass]="'navbar-' + type">
+<nav class="navbar navbar-wrapper navbar-fade"
+     [ngClass]="{
+     'navbar-faded': navIsFixed,
+     'is-transparent': !navIsFixed,
+     'navbar-light': !navIsFixed
+     }">
   <div class="container">
     <!-- Brand -->
     <div class="navbar-brand">
