@@ -8,7 +8,7 @@ import { WindowRef } from '../window/src/services';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-    @Input() type: 'light' | 'dark' = 'light';
+    @Input() type: 'navbar-light' | 'navbar-dark' = 'navbar-light';
     navIsFixed: boolean = false;
 
     constructor(private windowRef: WindowRef) {

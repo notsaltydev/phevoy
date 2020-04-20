@@ -1,0 +1,50 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: fixed;
+  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, .1);
+  background-color: #fff;
+  height: 80px;
+  width: 100%;
+}
+
+.layout-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: #edf1f7;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.menu-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, .1);
+
+  .menu-content {
+    padding: 24px;
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  .main-content {
+    padding: 24px;
+
+    .columns {
+      //overflow: auto;
+      //max-height: 500px;
+    }
+  }
+}
+
+
