@@ -20,10 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription.add(this.authenticationService.currentUser.subscribe(user => this.currentUser = user));
   }
 
-  logout() {
+  logout(): void {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }

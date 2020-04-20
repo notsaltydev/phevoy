@@ -10,15 +10,15 @@ import { first } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
   loading = false;
-  users: User[];
+  user: User;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe(users => {
+    this.userService.getUserMe().subscribe(user => {
       this.loading = false;
-      this.users = users;
+      this.user = user;
     });
   }
 }
