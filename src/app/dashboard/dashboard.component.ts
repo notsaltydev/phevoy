@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../_models';
 import { UserService } from '../_services';
 import { ScheduleService } from "../schedule/src/services/schedule";
-import { ScheduleDto } from "../schedule/src/services/models/schedule.dto";
+import { ScheduleDto } from "../schedule/src/models";
 
 @Component({
     selector: 'app-dashboard',
@@ -35,5 +35,14 @@ export class DashboardComponent implements OnInit {
 
     getDateFormatted(date: Date): string {
         return new Date(date).toDateString();
+    }
+
+    getStartDate(startDate: Date): string {
+        const date: Date = new Date(startDate);
+        return `${date.getHours()}:${date.getMinutes()}`;
+    }
+
+    getEndDate(endDate: Date): string {
+        return '15m';
     }
 }

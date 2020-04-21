@@ -23,11 +23,14 @@
         <div class="main-content">
             <div *ngFor="let schedule of schedules" class="columns is-multiline">
                 <div class="column is-full schedule-header">{{getDateFormatted(schedule.date)}}</div>
-                <div *ngFor="let conference of schedules[3].conferences" class="column is-half conference-container">
-                    {{ conference.name }}
-                </div>
-                <div *ngFor="let conference of schedules[3].conferences" class="column is-half conference-container">
-                    {{ conference.name }}
+                <div *ngFor="let conference of schedules[3].conferences" class="column is-half">
+                    <div class="conference-container">
+                        <span class="date-wrapper">
+                            <span class="start-date">{{ getStartDate(conference.startDate)}}</span>
+                            <span class="end-date">{{ getEndDate(conference.endDate)}}</span>
+                        </span>
+                        <span class="title">{{ conference.name }}</span>
+                    </div>
                 </div>
             </div>
         </div>
