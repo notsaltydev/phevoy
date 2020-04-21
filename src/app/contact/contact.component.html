@@ -1,43 +1,44 @@
 <!-- Hero and nav -->
 <div class="hero is-relative">
-  <!--  {{> navbar-fade-dark}}-->
-  <app-header type="dark"></app-header>
-  <!-- Hero -->
-  <div id="main-hero" class="hero-body">
-    <div class="container has-text-centered">
-      <div class="columns is-vcentered">
-        <div class="column is-4 is-offset-4">
-          <div class="has-text-centered pb-20">
-            <h3 class="title is-4 is-styled">Contact Us</h3>
-          </div>
-          <form class="padding-20" [formGroup]="form">
-            <div class="field">
-              <label class="form-label">Full name</label>
-              <div class="control">
-                <input type="text" class="input is-medium" formControlName="username">
-              </div>
+    <!--  {{> navbar-fade-dark}}-->
+    <app-header type="navbar-dark"></app-header>
+    <!-- Hero -->
+    <div class="hero-body" id="main-hero">
+        <div class="container has-text-centered">
+            <div class="columns is-vcentered">
+                <div class="column is-4 is-offset-4">
+                    <div class="has-text-centered pb-20">
+                        <h3 class="title is-4 is-styled">Contact Us</h3>
+                    </div>
+                    <form [formGroup]="form" class="padding-20">
+                        <div class="field">
+                            <label class="form-label">Full name</label>
+                            <div class="control">
+                                <input class="input is-medium" formControlName="username" type="text">
+                            </div>
+                        </div>
+                        <div class="field mt-20">
+                            <label class="form-label">Email</label>
+                            <div class="control">
+                                <input class="input is-medium" formControlName="email" type="email">
+                            </div>
+                        </div>
+                        <div class="field mt-20">
+                            <label class="form-label">Message</label>
+                            <div class="control">
+                <textarea class="textarea" formControlName="message" placeholder="Type your message ..."
+                          rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-20 has-text-right">
+                            <button class="button btn-align button-cta no-lh is-bold secondary-btn raised"
+                                    type="submit">Send
+                                Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="field mt-20">
-              <label class="form-label">Email</label>
-              <div class="control">
-                <input type="email" class="input is-medium" formControlName="email">
-              </div>
-            </div>
-            <div class="field mt-20">
-              <label class="form-label">Message</label>
-              <div class="control">
-                <textarea class="textarea" rows="5" placeholder="Type your message ..."
-                          formControlName="message"></textarea>
-              </div>
-            </div>
-            <div class="mt-20 has-text-right">
-              <button type="submit" class="button btn-align button-cta no-lh is-bold secondary-btn raised">Send
-                Message
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
 </div>

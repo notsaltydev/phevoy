@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class AuthenticationService {
         return this.http.post<any>(`http://localhost:3000/auth/login`, {username, password})
             .pipe(tap(payload => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                this.tokenSubject.next(payload.accessToken);
+                this.setToken(payload.accessToken);
                 localStorage.setItem('accessToken', payload.accessToken);
             }));
     }
@@ -26,8 +26,13 @@ export class AuthenticationService {
         return this.tokenSubject.value;
     }
 
+    setToken(token: string): void {
+        this.tokenSubject.next(token);
+    }
+
     logout(): void {
         // remove user from local storage to log user out
+        this.setToken(null);
         localStorage.removeItem('accessToken');
     }
 }
