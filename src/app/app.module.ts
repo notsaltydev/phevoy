@@ -18,6 +18,7 @@ import { PricingComponent } from './pricing';
 import { HeaderComponent } from './header';
 import { WindowModule } from './window';
 import { ScheduleModule } from "./schedule";
+import { DialogModule } from "./dialog";
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { ScheduleModule } from "./schedule";
         HttpClientModule,
         AppRoutingModule,
         WindowModule,
-        ScheduleModule
+        ScheduleModule,
+        DialogModule
     ],
     declarations: [
         AppComponent,

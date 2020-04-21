@@ -1,0 +1,48 @@
+.modal {
+  transition: all 0.5s;
+  transform: scale(0);
+  z-index: 1000;
+
+  a {
+    border-radius: 6px;
+  }
+}
+
+.modal.is-active {
+  transform: scale(1);
+
+  .modal-background {
+    background: rgba(138, 148, 153, 0.8);
+  }
+
+  .modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .modal-card {
+    .modal-card-head, .modal-card-foot {
+      padding: 15px;
+    }
+
+    .modal-card-head {
+      background-color: #FFFFFF;
+      border-bottom: none;
+    }
+
+    .modal-card-body::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .modal-card-body::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-card-foot {
+      background-color: #FFFFFF;
+      justify-content: flex-end;
+      border-top: none;
+    }
+  }
+}
