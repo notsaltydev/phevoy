@@ -1,12 +1,13 @@
 :host {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .header {
   position: fixed;
-  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, .1);
   background-color: #fff;
+  border-bottom: 1px solid #e4e9f2;
   height: 80px;
   width: 100%;
 }
@@ -16,7 +17,7 @@
   flex: 1;
   flex-direction: row;
   background-color: #edf1f7;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   padding-top: 80px;
 }
 
@@ -37,14 +38,47 @@
   flex: 1;
   flex-direction: column;
 
+
+  .action-menu {
+    display: block;
+    width: 100%;
+    background-color: #ECECEC;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e4e9f2;
+  }
+
+  .action-content {
+    display: flex;
+  }
+
   .main-content {
     padding: 24px;
-
-    .columns {
-      //overflow: auto;
-      //max-height: 500px;
-    }
+    overflow: auto;
   }
+}
+
+.action-box {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #e4e9f2;
+  border-radius: 10px;
+  padding: 24px;
+  width: 140px;
+  height: 100px;
+  margin-right: 16px;
+
+  .text {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.boxer {
+  background-color: #fff;
+  border: 1px solid #e4e9f2;
+  border-radius: 20px;
 }
 
 
