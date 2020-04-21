@@ -52,9 +52,22 @@
   }
 
   .main-content {
-    padding: 24px;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
   }
+}
+
+.columns, .column {
+  margin: 0;
+}
+
+.schedule-header {
+  position: sticky;
+  position: -webkit-sticky;
+  background-color: #7F00FF;
+  color: #FFFFFF;
+  top: 0;
 }
 
 .action-box {
