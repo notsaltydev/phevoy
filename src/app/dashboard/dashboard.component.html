@@ -1,5 +1,9 @@
 <div class="header">
     <nav class="main-navbar">
+        <div class="user-container" *ngIf="user" (click)="logout()">
+            <span class="user-avatar" [ngStyle]="{'background-image': getAvatarUr()}"></span>
+            <span class="name">{{ user.username }}</span>
+        </div>
     </nav>
 </div>
 <div class="layout-container">

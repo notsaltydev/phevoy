@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models';
-import { UserService } from '../_services';
+import { AuthenticationService, UserService } from '../_services';
 import { ScheduleService } from "../schedule/src/services/schedule";
 import { ScheduleDto } from "../schedule/src/models";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-dashboard',
@@ -11,12 +11,16 @@ import { ScheduleDto } from "../schedule/src/models";
 })
 export class DashboardComponent implements OnInit {
     loading = false;
-    user: User;
+    user: any;
     schedules: ScheduleDto[];
 
     constructor(
         private userService: UserService,
-        private scheduleService: ScheduleService
+        private scheduleService: ScheduleService,
+        // FIXME remove Auth Service.
+        private authenticationService: AuthenticationService,
+        // FIXME remove Router.
+        private router: Router
     ) {
     }
 
@@ -28,7 +32,6 @@ export class DashboardComponent implements OnInit {
         });
         this.scheduleService.getSchedules()
             .subscribe((schedules: ScheduleDto[]) => {
-                console.log('schedules', schedules);
                 this.schedules = schedules.sort((a: ScheduleDto, b: ScheduleDto) => new Date(a.date).getTime() - new Date(b.date).getTime());
             });
     }
@@ -44,5 +47,14 @@ export class DashboardComponent implements OnInit {
 
     getEndDate(endDate: Date): string {
         return '15m';
+    }
+
+    getAvatarUr() {
+        return 'url("https://via.placeholder.com/150")';
+    }
+
+    logout(): void {
+        this.authenticationService.logout()
+        this.router.navigate(['/']);
     }
 }
