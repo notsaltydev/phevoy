@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers/interceptors';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard';
 import { LoginComponent } from './login';
 import { HomeComponent } from './home';
 import { PageNotFoundComponent } from './page-not-found';
@@ -32,7 +31,6 @@ import { DialogModule } from "./dialog";
     ],
     declarations: [
         AppComponent,
-        DashboardComponent,
         LoginComponent,
         HomeComponent,
         PageNotFoundComponent,

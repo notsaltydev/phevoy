@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, UserService } from '../_services';
-import { ScheduleService } from "../schedule/src/services/schedule";
-import { ScheduleDto } from "../schedule/src/models";
 import { Router } from "@angular/router";
+import { ScheduleDto } from "../../../../schedule/src/models";
+import { AuthenticationService, UserService } from "../../../../_services";
+import { ScheduleService } from "../../../../schedule/src/services/schedule";
+import { faEdit } from "@fortawesome/free-regular-svg-icons";
+
 
 @Component({
     selector: 'app-dashboard',
@@ -13,6 +15,7 @@ export class DashboardComponent implements OnInit {
     loading = false;
     user: any;
     schedules: ScheduleDto[];
+    faEdit: any = faEdit
 
     constructor(
         private userService: UserService,

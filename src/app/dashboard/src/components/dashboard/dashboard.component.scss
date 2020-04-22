@@ -113,6 +113,17 @@
     font-weight: 500;
     line-height: 21px;
   }
+
+  .icon-edit {
+    display: flex;
+    cursor: pointer;
+    color: #7F00FF;
+    margin: 0 0 0 auto;
+
+    &:hover {
+      color: #6400cd;
+    }
+  }
 }
 
 .schedule-header {
