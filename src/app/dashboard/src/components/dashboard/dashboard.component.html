@@ -34,10 +34,14 @@
                             <span class="end-date">{{ getEndDate(conference.endDate)}}</span>
                         </span>
                         <span class="title">{{ conference.name }}</span>
-                        <fa-icon class="icon-edit" [icon]="faEdit"></fa-icon>
+                        <fa-icon class="icon-edit" [icon]="faEdit" (click)="editConference(conference)"></fa-icon>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<app-conference-dialog
+        *ngIf="isOpenedConferenceDialog"
+        (closeDialog)="closeConferenceDialog()">
+</app-conference-dialog>

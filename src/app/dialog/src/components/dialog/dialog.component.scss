@@ -26,6 +26,8 @@
     }
 
     .modal-card-head {
+      display: flex;
+      justify-content: space-between;
       background-color: #FFFFFF;
       border-bottom: none;
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { ScheduleDto } from "../../../../schedule/src/models";
+import { ConferenceDto, ScheduleDto } from "../../../../schedule/src/models";
 import { AuthenticationService, UserService } from "../../../../_services";
 import { ScheduleService } from "../../../../schedule/src/services/schedule";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
     user: any;
     schedules: ScheduleDto[];
     faEdit: any = faEdit
+    isOpenedConferenceDialog: boolean = true;
 
     constructor(
         private userService: UserService,
@@ -52,12 +53,26 @@ export class DashboardComponent implements OnInit {
         return '15m';
     }
 
-    getAvatarUr() {
+    getAvatarUr(): string {
         return 'url("https://via.placeholder.com/150")';
     }
 
     logout(): void {
         this.authenticationService.logout()
         this.router.navigate(['/']);
+    }
+
+    addConference(conference: ConferenceDto) {
+        console.log('edit conference', conference);
+        this.isOpenedConferenceDialog = true;
+    }
+
+    editConference(conference: ConferenceDto) {
+        console.log('edit conference', conference);
+        this.isOpenedConferenceDialog = true;
+    }
+
+    closeConferenceDialog(): void {
+        this.isOpenedConferenceDialog = false;
     }
 }
