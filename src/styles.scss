@@ -1,9 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
-/* ==========================================================================
-0. CSS Imports
-========================================================================== */
-@import "assets/v1/scss/core_kit1.scss";
-@import "assets/v1-error/scss/core_error1.scss";
+//@import "assets/v1/scss/core_kit1.scss";
+//@import "assets/v1-error/scss/core_error1.scss";
+//@import '~bulma';
+
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+}
+
+//.nb-theme-corporate nb-layout .layout .layout-container .content .columns nb-layout-column {
+//  padding: 0;
+//}
 
 .wavy {
   &:before {

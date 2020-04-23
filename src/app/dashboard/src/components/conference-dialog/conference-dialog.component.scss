@@ -1,0 +1,20 @@
+.content-body {
+  display: flex;
+}
+
+.fieldset-datepicker {
+  display: flex;
+  align-items: center;
+
+  .control {
+    width: 50%;
+  }
+
+  .start-date {
+    padding-right: 8px;
+  }
+
+  .end-date {
+    padding-left: 8px;
+  }
+}

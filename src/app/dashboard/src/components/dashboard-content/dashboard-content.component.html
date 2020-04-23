@@ -1,0 +1,25 @@
+<div class="action-menu">
+    <div class="action-content">
+        <div class="action-box"><span class="text">Schedule</span></div>
+        <div class="action-box"><span class="text">Join</span></div>
+        <div class="action-box"><span class="text">Create</span></div>
+        <div class="action-box"><span class="text">Share</span></div>
+    </div>
+</div>
+<div class="content">
+    <div class="main-content">
+        <div *ngFor="let schedule of schedules" class="columns is-multiline">
+            <div class="column is-full schedule-header">{{getDateFormatted(schedule.date)}}</div>
+            <div *ngFor="let conference of schedules[3].conferences" class="column is-half">
+                <div class="conference-container">
+                        <span class="date-wrapper">
+                            <span class="start-date">{{ getStartDate(conference.startDate)}}</span>
+                            <span class="end-date">{{ getEndDate(conference.endDate)}}</span>
+                        </span>
+                    <span class="title">{{ conference.name }}</span>
+                    <fa-icon (click)="editConference(conference)" [icon]="faEdit" class="icon-edit"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

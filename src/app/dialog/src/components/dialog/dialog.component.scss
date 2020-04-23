@@ -1,50 +1,73 @@
-.modal {
-  transition: all 0.5s;
-  transform: scale(0);
-  z-index: 1000;
-
-  a {
-    border-radius: 6px;
-  }
+.dialog {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.modal.is-active {
-  transform: scale(1);
-
-  .modal-background {
-    background: rgba(138, 148, 153, 0.8);
-  }
-
-  .modal-content {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .modal-card {
-    .modal-card-head, .modal-card-foot {
-      padding: 15px;
-    }
-
-    .modal-card-head {
-      display: flex;
-      justify-content: space-between;
-      background-color: #FFFFFF;
-      border-bottom: none;
-    }
-
-    .modal-card-body::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .modal-card-body::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .modal-card-foot {
-      background-color: #FFFFFF;
-      justify-content: flex-end;
-      border-top: none;
-    }
-  }
+.dialog-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: rgba(138, 148, 153, 0.8);
 }
+
+.dialog-card {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+  margin: 0 auto;
+  width: 640px;
+  overflow: auto;
+  position: relative;
+}
+
+
+.dialog-card-head,
+.dialog-card-foot {
+  align-items: center;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  padding: 16px;
+  position: relative;
+}
+
+.dialog-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dialog-card-title {
+  color: black;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 21px;
+  line-height: 1
+}
+
+.dialog-card-foot {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.dialog-card-body {
+  background-color: #FFFFFF;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 16px;
+}
+

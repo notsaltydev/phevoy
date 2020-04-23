@@ -7,5 +7,5 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConferenceDialogComponent {
-  @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
+    @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
 }

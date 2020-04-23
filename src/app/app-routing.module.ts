@@ -14,7 +14,7 @@ import { PricingComponent } from './pricing';
 const routes: Routes = [
     {path: '', component: HomeComponent},
     {
-        path: 'dashboard',
+        path: 'app',
         loadChildren: () => import('./dashboard/src/dashboard.module').then(m => m.DashboardModule),
         canActivate: [AuthGuard]
     },

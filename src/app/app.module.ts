@@ -16,8 +16,8 @@ import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { HeaderComponent } from './header';
 import { WindowModule } from './window';
-import { ScheduleModule } from "./schedule";
-import { DialogModule } from "./dialog";
+import { ScheduleModule } from './schedule';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
@@ -27,7 +27,7 @@ import { DialogModule } from "./dialog";
         AppRoutingModule,
         WindowModule,
         ScheduleModule,
-        DialogModule
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
