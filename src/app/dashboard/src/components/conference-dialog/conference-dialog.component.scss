@@ -1,20 +1,7 @@
-.content-body {
-  display: flex;
-}
+@import '~@nebular/theme/styles/component';
 
-.fieldset-datepicker {
-  display: flex;
-  align-items: center;
-
-  .control {
-    width: 50%;
-  }
-
-  .start-date {
-    padding-right: 8px;
-  }
-
-  .end-date {
-    padding-left: 8px;
+@include nb-install-component() {
+  nb-card {
+    max-width: 600px;
   }
 }

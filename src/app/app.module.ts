@@ -18,6 +18,7 @@ import { HeaderComponent } from './header';
 import { WindowModule } from './window';
 import { ScheduleModule } from './schedule';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbDialogModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 
 @NgModule({
     imports: [
@@ -27,7 +28,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AppRoutingModule,
         WindowModule,
         ScheduleModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({name: 'corporate'}),
+        NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
+        NbDialogModule.forRoot(),
     ],
     declarations: [
         AppComponent,

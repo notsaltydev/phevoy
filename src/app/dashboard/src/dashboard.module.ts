@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ConferenceDialogComponent } from './components/conference-dialog';
 import { DialogModule } from '../../dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDialogModule, NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardContentComponent } from './components/dashboard-content';
 
@@ -19,11 +19,13 @@ import { DashboardContentComponent } from './components/dashboard-content';
         DashboardRoutingModule,
         FontAwesomeModule,
         DialogModule,
-        NbThemeModule.forRoot({name: 'corporate'}),
+        NbThemeModule,
         NbLayoutModule,
         NbEvaIconsModule,
-        NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
+        NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
         NbButtonModule,
+        NbDialogModule.forChild(),
+        NbCardModule
     ],
     declarations: [DashboardComponent, ConferenceDialogComponent, DashboardContentComponent]
 })

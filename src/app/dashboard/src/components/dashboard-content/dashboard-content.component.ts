@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ConferenceDto, ScheduleDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { NbDialogService } from '@nebular/theme';
+import { ConferenceDialogComponent } from '../conference-dialog';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -15,7 +17,8 @@ export class DashboardContentComponent implements OnInit {
 
     constructor(
         private scheduleService: ScheduleService,
-        private changeDetectorRef: ChangeDetectorRef
+        private changeDetectorRef: ChangeDetectorRef,
+        private dialogService: NbDialogService
     ) {
     }
 
@@ -40,6 +43,14 @@ export class DashboardContentComponent implements OnInit {
 
     getEndDate(endDate: Date): string {
         return '15m';
+    }
+
+    open(conference: ConferenceDto) {
+        this.dialogService.open(ConferenceDialogComponent, {
+            context: {
+                title: `This is a title passed to the dialog component ${conference.name}`,
+            },
+        });
     }
 
     editConference(conference: ConferenceDto) {

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
     selector: 'app-conference-dialog',
@@ -7,5 +8,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConferenceDialogComponent {
-    @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
+    @Input() title: string;
+
+    constructor(protected ref: NbDialogRef<ConferenceDialogComponent>) {
+    }
+
+    dismiss() {
+        this.ref.close();
+    }
 }
