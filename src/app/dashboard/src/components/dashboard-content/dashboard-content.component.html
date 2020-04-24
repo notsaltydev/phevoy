@@ -8,17 +8,17 @@
 </div>
 <div class="content">
     <div class="main-content">
-        <div *ngFor="let schedule of schedules" class="columns is-multiline">
-            <div class="column is-full schedule-header">{{getDateFormatted(schedule.date)}}</div>
-            <div *ngFor="let conference of schedules[3].conferences" class="column is-half">
-                <div class="conference-container">
+        <div *ngFor="let schedule of schedules" class="schedule">
+            <div class="schedule-header">{{getDateFormatted(schedule.date)}}</div>
+            <div class="conference-container">
+                <span *ngFor="let conference of schedules[3].conferences" class="conference-content">
                         <span class="date-wrapper">
                             <span class="start-date">{{ getStartDate(conference.startDate)}}</span>
                             <span class="end-date">{{ getEndDate(conference.endDate)}}</span>
                         </span>
                     <span class="title">{{ conference.name }}</span>
                     <fa-icon (click)="editConference(conference)" [icon]="faEdit" class="icon-edit"></fa-icon>
-                </div>
+                </span>
             </div>
         </div>
     </div>
