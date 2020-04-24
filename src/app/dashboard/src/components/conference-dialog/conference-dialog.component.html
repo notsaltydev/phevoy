@@ -1,43 +1,34 @@
 <nb-card>
     <nb-card-header>{{ title }}</nb-card-header>
     <nb-card-body>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis tincidunt tincidunt.
-        Vestibulum vulputate maximus massa vel tristique. Suspendisse potenti. Duis aliquet purus sed dictum dictum.
-        Donec fringilla, purus at fermentum imperdiet, velit enim malesuada turpis, quis luctus arcu arcu nec orci.
-        Duis eu mattis felis. Quisque sollicitudin elementum nunc vel tincidunt. Vestibulum egestas mi nec
-        iaculis varius. Morbi in risus sed sapien ultricies feugiat. Quisque pulvinar mattis purus,
-        in aliquet massa aliquet et.
+        <form [formGroup]="form">
+            <input class="field" type="text" nbInput fullWidth placeholder="Title" formControlName="title">
+            <div class="field date">
+                <input class="datepicker"
+                       nbInput
+                       placeholder="Date"
+                       formControlName="date"
+                       [nbDatepicker]="formpicker">
+                <nb-datepicker #formpicker></nb-datepicker>
+                <nb-select
+                        class="time"
+                        placeholder="Time"
+                        formControlName="time">
+                    <nb-option *ngFor="let time of times" [value]="time">{{time}}</nb-option>
+                </nb-select>
+            </div>
+            <textarea
+                    class="description"
+                    rows="4"
+                    nbInput
+                    fullWidth
+                    placeholder="Description"
+                    formControlName="description">
+            </textarea>
+        </form>
     </nb-card-body>
-    <nb-card-footer>
-        <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button>
+    <nb-card-footer class="footer">
+        <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
+        <button nbButton hero status="danger" (click)="dismiss()">Cancel</button>
     </nb-card-footer>
 </nb-card>
-
-<!--<app-dialog (closeDialog)="closeDialog.emit()">-->
-<!--    <div class="header-body">-->
-<!--        <p class="modal-card-title">Schedule Conference</p>-->
-<!--    </div>-->
-<!--    <div class="content-body">-->
-<!--        <form>-->
-<!--            <div class="field">-->
-<!--                <label class="label">Title</label>-->
-<!--                <div class="control">-->
-<!--                    <input class="input" placeholder="Text input" type="text">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="field fieldset-datepicker">-->
-
-<!--            </div>-->
-<!--            <div class="field">-->
-<!--                <label class="label">Description</label>-->
-<!--                <div class="control">-->
-<!--                    <textarea class="textarea" placeholder="Textarea"></textarea>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--    <div class="footer-body">-->
-<!--        <button class="button is-success">Save changes</button>-->
-<!--        <button class="button">Cancel</button>-->
-<!--    </div>-->
-<!--</app-dialog>-->

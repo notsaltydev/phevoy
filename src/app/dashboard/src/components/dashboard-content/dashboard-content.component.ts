@@ -4,6 +4,7 @@ import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -48,8 +49,13 @@ export class DashboardContentComponent implements OnInit {
     open(conference: ConferenceDto) {
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
-                title: `This is a title passed to the dialog component ${conference.name}`,
+                title: conference.name
             },
+        }).onClose
+            .pipe(
+                filter((data: any | null) => data)
+            ).subscribe((res) => {
+            console.log('res', res);
         });
     }
 

@@ -6,7 +6,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ConferenceDialogComponent } from './components/conference-dialog';
 import { DialogModule } from '../../dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbDialogModule, NbLayoutModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import {
+    NbButtonModule,
+    NbCardModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbInputModule,
+    NbLayoutModule, NbSelectModule,
+    NbSidebarModule,
+    NbThemeModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardContentComponent } from './components/dashboard-content';
 
@@ -25,7 +34,10 @@ import { DashboardContentComponent } from './components/dashboard-content';
         NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
         NbButtonModule,
         NbDialogModule.forChild(),
-        NbCardModule
+        NbCardModule,
+        NbInputModule,
+        NbDatepickerModule,
+        NbSelectModule
     ],
     declarations: [DashboardComponent, ConferenceDialogComponent, DashboardContentComponent]
 })

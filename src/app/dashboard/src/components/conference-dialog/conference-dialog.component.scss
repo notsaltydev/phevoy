@@ -5,3 +5,30 @@
     max-width: 600px;
   }
 }
+
+.field {
+  margin-bottom: 16px;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  padding-left: 8px;
+}
+
+.description {
+  resize: vertical;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.save {
+  margin-right: 8px;
+}
