@@ -2,7 +2,7 @@
 
 @include nb-install-component() {
   nb-card {
-    max-width: 600px;
+    //max-width: 600px;
   }
 }
 
@@ -17,6 +17,11 @@
 
 .time {
   padding-left: 8px;
+}
+
+.time-label {
+  padding: 0 8px;
+  font-weight: bold;
 }
 
 .description {

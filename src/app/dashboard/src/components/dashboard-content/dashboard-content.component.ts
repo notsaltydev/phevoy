@@ -49,7 +49,11 @@ export class DashboardContentComponent implements OnInit {
     open(conference: ConferenceDto) {
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
-                title: conference.name
+                title: `Schedule conference`,
+                name: conference.name,
+                startDate: conference.startDate,
+                endDate: conference.endDate,
+                description: conference.description
             },
         }).onClose
             .pipe(
