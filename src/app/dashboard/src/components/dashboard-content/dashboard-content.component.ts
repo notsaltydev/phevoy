@@ -46,21 +46,43 @@ export class DashboardContentComponent implements OnInit {
         return '15m';
     }
 
-    open(conference: ConferenceDto) {
+    open() {
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
                 title: `Schedule conference`,
-                name: conference.name,
-                startDate: conference.startDate,
-                endDate: conference.endDate,
-                description: conference.description
+                name: null,
+                startDate: null,
+                endDate: null,
+                description: null
             },
         }).onClose
             .pipe(
                 filter((data: any | null) => data)
-            ).subscribe((res) => {
-            console.log('res', res);
+            ).subscribe((conference: ConferenceDto) => {
+            this.createSchedule(conference);
         });
+    }
+
+    createSchedule(conference: ConferenceDto): void {
+        const date: Date = new Date(conference.startDate);
+        const selectedSchedule: ScheduleDto | null = this.schedules.find((schedule: ScheduleDto) => {
+            const scheduleDate: Date = new Date(schedule.date);
+
+            return scheduleDate.getDate() === date.getDate() &&
+                scheduleDate.getMonth() === date.getMonth() &&
+                scheduleDate.getFullYear() === date.getFullYear();
+        });
+
+        console.log('selectedSchedule', selectedSchedule);
+
+        if (selectedSchedule) {
+            this.scheduleService.createConference(selectedSchedule.id, {
+                ...conference
+            }).subscribe((newConference) => {
+                console.log('newConference', newConference);
+                selectedSchedule.conferences.push(newConference);
+            });
+        }
     }
 
     editConference(conference: ConferenceDto) {

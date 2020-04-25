@@ -29,8 +29,10 @@ export class ConferenceDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const initialStartTime: string = this.getTimeByDate(new Date());
-        const initialEndTime: string = this.getTimeByDate(new Date());
+        const initialStartTime: string = this.startDate ? this.getTimeByDate(this.startDate) : this.getTimeByDate(new Date());
+        const initialEndTime: string = this.endDate ?
+            this.getTimeByDate(this.endDate) :
+            this.getTimeWithGap(this.times.indexOf(initialStartTime));
 
         this.setEndTimeRange(this.times.indexOf(initialStartTime));
 
@@ -43,10 +45,10 @@ export class ConferenceDialogComponent implements OnInit {
         });
 
         this.form.get('startTime').valueChanges.subscribe((time: string) => {
-            console.log('startTime', time);
             const selectedStartDateIndex: number = this.times.indexOf(time);
 
             this.setEndTimeRange(selectedStartDateIndex);
+            this.maybeSetEndTime();
         });
     }
 
@@ -63,14 +65,19 @@ export class ConferenceDialogComponent implements OnInit {
 
     save(): void {
         if (this.form.valid) {
-            const {date, description, name, time} = this.form.value;
-            const timeEntries: string[] = time.split(':');
+            const {date, description, endTime, name, startTime} = this.form.value;
+            const startTimeEntries: string[] = startTime.split(':');
+            const endTimeEntries: string[] = endTime.split(':');
+            const startDate: Date = new Date(date);
+            const endDate: Date = new Date(date);
 
-            date.setHours(+timeEntries[0], +timeEntries[1], 0, 0);
+            startDate.setHours(+startTimeEntries[0], +startTimeEntries[1], 0, 0);
+            endDate.setHours(+endTimeEntries[0], +endTimeEntries[1], 0, 0);
 
             this.ref.close({
                 name,
-                date,
+                startDate,
+                endDate,
                 description
             });
         }
@@ -78,5 +85,27 @@ export class ConferenceDialogComponent implements OnInit {
 
     dismiss(): void {
         this.ref.close();
+    }
+
+    private maybeSetEndTime(): void {
+        const startTime: string[] = this.form.get('startTime').value.split(':');
+        const endTimeEntries: string[] = this.form.get('endTime').value.split(':');
+
+        if (
+            Math.floor(+startTime[0]) > Math.floor(+endTimeEntries[0]) ||
+            (
+                Math.floor(+startTime[0]) === Math.floor(+endTimeEntries[0]) &&
+                Math.floor(+startTime[1]) > Math.floor(+endTimeEntries[1])
+            )
+        ) {
+            const startTimeIndex: number = this.times.indexOf(this.form.get('startTime').value);
+            const newEndTime: string = this.getTimeWithGap(startTimeIndex);
+
+            this.form.get('endTime').setValue(newEndTime);
+        }
+    }
+
+    private getTimeWithGap(index): string {
+        return this.times[index + 2];
     }
 }
