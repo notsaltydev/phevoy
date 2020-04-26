@@ -1,8 +1,8 @@
-import { ConferenceDto } from "./conference.dto";
+import { ConferenceDto } from './conference.dto';
 
 export interface ScheduleDto {
     id: string;
-    date: Date;
+    date: string;
     createdOn: Date;
     updatedOn: Date;
     owner: any;

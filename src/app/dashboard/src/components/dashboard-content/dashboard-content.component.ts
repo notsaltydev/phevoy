@@ -4,7 +4,7 @@ import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
-import { filter } from 'rxjs/operators';
+import { filter, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -64,23 +64,26 @@ export class DashboardContentComponent implements OnInit {
     }
 
     createSchedule(conference: ConferenceDto): void {
-        const date: Date = new Date(conference.startDate);
+        const conferenceDate: string = new Date(conference.startDate).toISOString().split('T')[0];
         const selectedSchedule: ScheduleDto | null = this.schedules.find((schedule: ScheduleDto) => {
-            const scheduleDate: Date = new Date(schedule.date);
+            const scheduleDate: string = schedule.date;
 
-            return scheduleDate.getDate() === date.getDate() &&
-                scheduleDate.getMonth() === date.getMonth() &&
-                scheduleDate.getFullYear() === date.getFullYear();
+            return scheduleDate === conferenceDate;
         });
-
-        console.log('selectedSchedule', selectedSchedule);
 
         if (selectedSchedule) {
             this.scheduleService.createConference(selectedSchedule.id, {
                 ...conference
-            }).subscribe((newConference) => {
+            }).subscribe((newConference: ConferenceDto) => {
                 console.log('newConference', newConference);
-                selectedSchedule.conferences.push(newConference);
+            });
+        } else {
+            this.scheduleService.createSchedule({date: conferenceDate}).pipe(
+                switchMap((schedule: ScheduleDto) => this.scheduleService.createConference(schedule.id, {
+                    ...conference
+                }))
+            ).subscribe((newConference: ConferenceDto) => {
+                console.log('newConference', newConference);
             });
         }
     }
