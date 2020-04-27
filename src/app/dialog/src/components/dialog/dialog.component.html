@@ -1,0 +1,15 @@
+<div class="dialog is-active">
+    <div class="dialog-background" (click)="closeDialog.emit()"></div>
+    <div class="dialog-card">
+        <header class="dialog-card-head">
+            <ng-content select=".header-body"></ng-content>
+            <button aria-label="close" class="delete" (click)="closeDialog.emit()"></button>
+        </header>
+        <section class="dialog-card-body">
+            <ng-content select=".content-body"></ng-content>
+        </section>
+        <footer class="dialog-card-foot">
+            <ng-content select=".footer-body"></ng-content>
+        </footer>
+    </div>
+</div>

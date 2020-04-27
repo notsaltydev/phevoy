@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers/interceptors';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard';
 import { LoginComponent } from './login';
 import { HomeComponent } from './home';
 import { PageNotFoundComponent } from './page-not-found';
@@ -17,7 +16,9 @@ import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { HeaderComponent } from './header';
 import { WindowModule } from './window';
-import { ScheduleModule } from "./schedule";
+import { ScheduleModule } from './schedule';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbDatepickerModule, NbDialogModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 
 @NgModule({
     imports: [
@@ -26,11 +27,15 @@ import { ScheduleModule } from "./schedule";
         HttpClientModule,
         AppRoutingModule,
         WindowModule,
-        ScheduleModule
+        ScheduleModule,
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({name: 'corporate'}),
+        NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
+        NbDialogModule.forRoot(),
+        NbDatepickerModule.forRoot()
     ],
     declarations: [
         AppComponent,
-        DashboardComponent,
         LoginComponent,
         HomeComponent,
         PageNotFoundComponent,

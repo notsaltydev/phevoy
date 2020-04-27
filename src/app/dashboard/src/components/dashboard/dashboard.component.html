@@ -1,0 +1,20 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <span>Company Name</span>
+        <div (click)="logout()" *ngIf="user" class="user-container">
+            <span [ngStyle]="{'background-image': getAvatarUr()}" class="user-avatar"></span>
+            <span class="name">{{ user.username }}</span>
+        </div>
+    </nb-layout-header>
+
+    <nb-sidebar>
+        <ul>
+            <li>Dashboard</li>
+            <li>Calendar</li>
+        </ul>
+    </nb-sidebar>
+
+    <nb-layout-column class="layout-column-test">
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+</nb-layout>

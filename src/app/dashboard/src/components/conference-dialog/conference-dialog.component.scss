@@ -1,0 +1,39 @@
+@import '~@nebular/theme/styles/component';
+
+@include nb-install-component() {
+  nb-card {
+    border-radius: 10px;
+  }
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  padding-left: 8px;
+}
+
+.time-label {
+  padding: 0 8px;
+  font-weight: bold;
+}
+
+.description {
+  resize: vertical;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.save {
+  margin-right: 8px;
+}

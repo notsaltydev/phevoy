@@ -1,0 +1,119 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: -2.25rem -2.25rem -0.75rem;
+}
+
+.action-menu {
+  display: block;
+  width: 100%;
+  background-color: #ECECEC;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e4e9f2;
+  overflow-y: auto;
+  position: fixed;
+  top: 4.75rem;
+  z-index: 1;
+
+  .action-content {
+    display: flex;
+  }
+
+  .action-box {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #e4e9f2;
+    border-radius: 10px;
+    padding: 24px;
+    width: 140px;
+    height: 100px;
+    margin-right: 16px;
+    cursor: pointer;
+
+    .text {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.content {
+  padding-top: 133px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: calc(4.75rem + 133px);
+  background-color: #8779AE;
+  border-bottom: 1px solid #746895;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 16px;
+}
+
+.conference-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.conference-content {
+  display: flex;
+  background-color: #FFFFFF;
+  border: 1px solid #e4e9f2;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 8px;
+  max-width: 800px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .date-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-right: 16px;
+
+    .start-date {
+      font-size: 16px;
+    }
+
+    .end-date {
+      font-size: 14px;
+    }
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+
+  .icon-edit {
+    display: flex;
+    cursor: pointer;
+    color: #8779AE;
+    margin: 0 0 0 auto;
+
+    &:hover {
+      color: #746895;
+    }
+  }
+}
+
+

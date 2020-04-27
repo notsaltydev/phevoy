@@ -1,0 +1,43 @@
+<nb-card>
+    <nb-card-header>{{ title }}</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <input class="field" type="text" nbInput fullWidth placeholder="Title" formControlName="name">
+            <div class="field date">
+                <nb-datepicker #formpicker></nb-datepicker>
+                <input class="datepicker"
+                       nbInput
+                       placeholder="Date"
+                       formControlName="date"
+                       [nbDatepicker]="formpicker">
+                <div class="time">
+                    <nb-select
+                            class="time-picker"
+                            placeholder="Time"
+                            formControlName="startTime">
+                        <nb-option *ngFor="let time of times" [value]="time">{{time}}</nb-option>
+                    </nb-select>
+                    <label class="time-label">to</label>
+                    <nb-select
+                            class="time-picker"
+                            placeholder="Time"
+                            formControlName="endTime">
+                        <nb-option *ngFor="let time of availableEndTimes" [value]="time">{{time}}</nb-option>
+                    </nb-select>
+                </div>
+            </div>
+            <textarea
+                    class="description"
+                    rows="4"
+                    nbInput
+                    fullWidth
+                    placeholder="Description"
+                    formControlName="description">
+            </textarea>
+        </form>
+    </nb-card-body>
+    <nb-card-footer class="footer">
+        <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
+        <button nbButton hero status="danger" (click)="dismiss()">Cancel</button>
+    </nb-card-footer>
+</nb-card>

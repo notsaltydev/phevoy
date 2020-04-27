@@ -1,1 +1,2 @@
-export * from './dashboard.component';
+export {DashboardModule } from './src/dashboard.module';
+export * from './src/components';
