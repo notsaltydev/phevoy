@@ -37,11 +37,11 @@ export class ConferenceDialogComponent implements OnInit {
         this.setEndTimeRange(this.times.indexOf(initialStartTime));
 
         this.form = this.formBuilder.group({
-            name: new FormControl('', [Validators.required]),
+            name: new FormControl(this.name || '', [Validators.required]),
             date: new FormControl(new Date(), [Validators.required]),
             startTime: new FormControl(initialStartTime, [Validators.required]),
             endTime: new FormControl(initialEndTime, [Validators.required]),
-            description: new FormControl('')
+            description: new FormControl(this.description || '')
         });
 
         this.form.get('startTime').valueChanges.subscribe((time: string) => {

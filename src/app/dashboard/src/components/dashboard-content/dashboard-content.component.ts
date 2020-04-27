@@ -46,24 +46,36 @@ export class DashboardContentComponent implements OnInit {
         return '15m';
     }
 
-    open() {
+    open(type: 'create' | 'update', conference?: ConferenceDto) {
+        let editedConference: any;
+
+        if (editedConference) {
+            editedConference = {
+                name: conference.name || null,
+                startDate: new Date(conference.startDate) || null,
+                endDate: new Date(conference.endDate) || null,
+                description: conference.description || null,
+            };
+        }
+
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
-                title: `Schedule conference`,
-                name: null,
-                startDate: null,
-                endDate: null,
-                description: null
+                title: `${type} Schedule conference`,
+                ...editedConference
             },
         }).onClose
             .pipe(
                 filter((data: any | null) => data)
-            ).subscribe((conference: ConferenceDto) => {
-            this.createSchedule(conference);
+            ).subscribe((payload: ConferenceDto) => {
+            if (type === 'create') {
+                this.createSchedule(payload);
+            } else if (type === 'update') {
+                this.updateSchedule(conference.id, payload);
+            }
         });
     }
 
-    createSchedule(conference: ConferenceDto): void {
+    private createSchedule(conference: ConferenceDto): void {
         const conferenceDate: string = new Date(conference.startDate).toISOString().split('T')[0];
         const selectedSchedule: ScheduleDto | null = this.schedules.find((schedule: ScheduleDto) => {
             const scheduleDate: string = schedule.date;
@@ -88,9 +100,12 @@ export class DashboardContentComponent implements OnInit {
         }
     }
 
-    editConference(conference: ConferenceDto) {
-        console.log('edit conference', conference);
-        this.isOpenedConferenceDialog = true;
-        this.changeDetectorRef.markForCheck();
+    private updateSchedule(id: string, conference: ConferenceDto) {
+        this.scheduleService.updateConference(id, {
+            ...conference,
+            id
+        }).subscribe((newConference: ConferenceDto) => {
+            console.log('newConference', newConference);
+        });
     }
 }

@@ -35,7 +35,7 @@ export class ScheduleService {
         });
     }
 
-    updateConference(conferenceId: string, dto: CreateConferenceDto): Observable<ConferenceDto> {
+    updateConference(conferenceId: string, dto: ConferenceDto): Observable<ConferenceDto> {
         return this.httpClient.put<ConferenceDto>(`http://localhost:3000/conference/${conferenceId}`, {
             ...dto
         });

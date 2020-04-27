@@ -1,6 +1,6 @@
 <div class="action-menu">
     <div class="action-content">
-        <div class="action-box" (click)="open()"><span class="text">Schedule</span></div>
+        <div class="action-box" (click)="open('create')"><span class="text">Schedule</span></div>
         <div class="action-box"><span class="text">Join</span></div>
         <div class="action-box"><span class="text">Create</span></div>
         <div class="action-box"><span class="text">Share</span></div>
@@ -17,7 +17,7 @@
                             <span class="end-date">{{ getEndDate(conference.endDate)}}</span>
                         </span>
                     <span class="title">{{ conference.name }}</span>
-<!--                    <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>-->
+                    <fa-icon [icon]="faEdit" class="icon-edit" (click)="open('update', conference)"></fa-icon>
                 </span>
             </div>
         </div>
