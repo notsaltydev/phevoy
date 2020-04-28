@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ConferenceDto, ScheduleDto } from '../../../../schedule/src/models';
+import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { conferenceDtoToConferenceList } from '../../mappers';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -12,9 +13,9 @@ import { filter, switchMap } from 'rxjs/operators';
     styleUrls: ['./dashboard-content.component.scss']
 })
 export class DashboardContentComponent implements OnInit {
-    schedules: ScheduleDto[];
+    conferenceList: { [id: string]: ConferenceDto[] };
+    dates: string[];
     faEdit: any = faEdit;
-    isOpenedConferenceDialog: boolean = true;
 
     constructor(
         private scheduleService: ScheduleService,
@@ -24,32 +25,19 @@ export class DashboardContentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.scheduleService.getSchedules()
-            .subscribe((schedules: ScheduleDto[]) => {
-                this.schedules = schedules.sort((a: ScheduleDto, b: ScheduleDto) =>
-                    new Date(a.date).getTime() - new Date(b.date).getTime()
-                );
+        this.scheduleService.getConferences()
+            .pipe(map(conferenceDtoToConferenceList))
+            .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
+                this.conferenceList = conferences;
+                this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
                 this.changeDetectorRef.markForCheck();
             });
-    }
-
-    getDateFormatted(date: Date): string {
-        return new Date(date).toDateString();
-    }
-
-    getStartDate(startDate: Date): string {
-        const date: Date = new Date(startDate);
-        return `${date.getHours()}:${date.getMinutes()}`;
-    }
-
-    getEndDate(endDate: Date): string {
-        return '15m';
     }
 
     open(type: 'create' | 'update', conference?: ConferenceDto) {
         let editedConference: any;
 
-        if (editedConference) {
+        if (type === 'update' && conference) {
             editedConference = {
                 name: conference.name || null,
                 startDate: new Date(conference.startDate) || null,
@@ -76,28 +64,17 @@ export class DashboardContentComponent implements OnInit {
     }
 
     private createSchedule(conference: ConferenceDto): void {
-        const conferenceDate: string = new Date(conference.startDate).toISOString().split('T')[0];
-        const selectedSchedule: ScheduleDto | null = this.schedules.find((schedule: ScheduleDto) => {
-            const scheduleDate: string = schedule.date;
+        this.scheduleService.createConference({
+            ...conference
+        }).subscribe((newConference: ConferenceDto) => {
+            const date: string = new Date(newConference.startDate).toISOString().split('T')[0];
 
-            return scheduleDate === conferenceDate;
+            if (!this.conferenceList[date]) {
+                this.conferenceList[date] = [];
+            }
+
+            this.conferenceList[date].push(newConference);
         });
-
-        if (selectedSchedule) {
-            this.scheduleService.createConference(selectedSchedule.id, {
-                ...conference
-            }).subscribe((newConference: ConferenceDto) => {
-                console.log('newConference', newConference);
-            });
-        } else {
-            this.scheduleService.createSchedule({date: conferenceDate}).pipe(
-                switchMap((schedule: ScheduleDto) => this.scheduleService.createConference(schedule.id, {
-                    ...conference
-                }))
-            ).subscribe((newConference: ConferenceDto) => {
-                console.log('newConference', newConference);
-            });
-        }
     }
 
     private updateSchedule(id: string, conference: ConferenceDto) {

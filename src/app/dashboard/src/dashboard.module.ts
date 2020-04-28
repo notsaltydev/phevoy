@@ -12,12 +12,14 @@ import {
     NbDatepickerModule,
     NbDialogModule,
     NbInputModule,
-    NbLayoutModule, NbSelectModule,
+    NbLayoutModule,
+    NbSelectModule,
     NbSidebarModule,
     NbThemeModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardContentComponent } from './components/dashboard-content';
+import { OrderByPipe } from './pipes/order-by';
 
 
 @NgModule({
@@ -39,7 +41,12 @@ import { DashboardContentComponent } from './components/dashboard-content';
         NbDatepickerModule,
         NbSelectModule
     ],
-    declarations: [DashboardComponent, ConferenceDialogComponent, DashboardContentComponent]
+    declarations: [
+        DashboardComponent,
+        ConferenceDialogComponent,
+        DashboardContentComponent,
+        OrderByPipe
+    ]
 })
 export class DashboardModule {
 }
