@@ -1,6 +1,6 @@
 <div class="action-menu">
     <div class="action-content">
-        <div class="action-box" (click)="open('create')"><span class="text">Schedule</span></div>
+        <div (click)="open('create')" class="action-box"><span class="text">Schedule</span></div>
         <div class="action-box"><span class="text">Join</span></div>
         <div class="action-box"><span class="text">Create</span></div>
         <div class="action-box"><span class="text">Share</span></div>
@@ -8,16 +8,16 @@
 </div>
 <div class="content">
     <div class="main-content">
-        <div *ngFor="let schedule of schedules" class="schedule">
-            <div class="schedule-header">{{getDateFormatted(schedule.date)}}</div>
+        <div *ngFor="let date of dates" class="schedule">
+            <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
-                <span *ngFor="let conference of schedule.conferences" class="conference-content">
+                <span *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'" class="conference-content">
                         <span class="date-wrapper">
-                            <span class="start-date">{{ getStartDate(conference.startDate)}}</span>
-                            <span class="end-date">{{ getEndDate(conference.endDate)}}</span>
+                            <span class="start-date">{{ conference.startDate | date: 'hh:mm'}}</span>
+                            <span class="end-date">{{ conference.endDate | date: 'hh:mm'}}</span>
                         </span>
                     <span class="title">{{ conference.name }}</span>
-                    <fa-icon [icon]="faEdit" class="icon-edit" (click)="open('update', conference)"></fa-icon>
+                    <fa-icon (click)="open('update', conference)" [icon]="faEdit" class="icon-edit"></fa-icon>
                 </span>
             </div>
         </div>
