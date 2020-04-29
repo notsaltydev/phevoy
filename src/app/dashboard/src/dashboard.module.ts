@@ -20,6 +20,8 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardContentComponent } from './components/dashboard-content';
 import { OrderByPipe } from './pipes/order-by';
+import { SchedulerComponent } from './components/scheduler/scheduler.component';
+import { CalendarModule } from 'angular-calendar';
 
 
 @NgModule({
@@ -39,13 +41,15 @@ import { OrderByPipe } from './pipes/order-by';
         NbCardModule,
         NbInputModule,
         NbDatepickerModule,
-        NbSelectModule
+        NbSelectModule,
+        CalendarModule
     ],
     declarations: [
         DashboardComponent,
         ConferenceDialogComponent,
         DashboardContentComponent,
-        OrderByPipe
+        OrderByPipe,
+        SchedulerComponent
     ]
 })
 export class DashboardModule {

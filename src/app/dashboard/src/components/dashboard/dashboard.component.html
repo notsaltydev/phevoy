@@ -1,16 +1,16 @@
 <nb-layout>
     <nb-layout-header fixed>
-        <span>Company Name</span>
+        <span (click)="toggle()">Company Name</span>
         <div (click)="logout()" *ngIf="user" class="user-container">
             <span [ngStyle]="{'background-image': getAvatarUr()}" class="user-avatar"></span>
             <span class="name">{{ user.username }}</span>
         </div>
     </nb-layout-header>
 
-    <nb-sidebar>
+    <nb-sidebar tag="left">
         <ul>
-            <li>Dashboard</li>
-            <li>Calendar</li>
+            <li routerLink="dashboard" routerLinkActive="active">Dashboard</li>
+            <li routerLink="calendar" routerLinkActive="active">Calendar</li>
         </ul>
     </nb-sidebar>
 

@@ -1,0 +1,16 @@
+.cal-days {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 126px);
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.cal-cell-row {
+  display: flex;
+  flex-grow: 1;
+}

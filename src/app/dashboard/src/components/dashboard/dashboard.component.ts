@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Router } from '@angular/router';
 import { AuthenticationService, UserService } from '../../../../_services';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
+import { NbSidebarService } from '@nebular/theme';
 
 
 @Component({
@@ -21,8 +22,13 @@ export class DashboardComponent implements OnInit {
         // FIXME remove Auth Service.
         private authenticationService: AuthenticationService,
         // FIXME remove Router.
-        private router: Router
+        private router: Router,
+        private sidebarService: NbSidebarService
     ) {
+    }
+
+    toggle(): void {
+        this.sidebarService.toggle(false, 'left');
     }
 
     ngOnInit() {
