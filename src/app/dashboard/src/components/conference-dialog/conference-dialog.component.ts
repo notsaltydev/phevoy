@@ -48,7 +48,7 @@ export class ConferenceDialogComponent implements OnInit {
             const selectedStartDateIndex: number = this.times.indexOf(time);
 
             this.setEndTimeRange(selectedStartDateIndex);
-            this.maybeSetEndTime();
+            // this.maybeSetEndTime();
         });
     }
 

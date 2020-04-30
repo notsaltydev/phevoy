@@ -118,11 +118,31 @@
   .icon-edit {
     display: flex;
     cursor: pointer;
-    color: #8779AE;
+    margin: 0 0 0 auto;
+  }
+
+  .icon-action-container {
+    display: flex;
+    flex-direction: column;
     margin: 0 0 0 auto;
 
-    &:hover {
-      color: #746895;
+    .icon {
+      display: flex;
+      margin-bottom: 8px;
+      cursor: pointer;
+      opacity: 0.8;
+
+      &.edit {
+        color: #8779AE;
+      }
+
+      &.remove {
+        color: #ae7979;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

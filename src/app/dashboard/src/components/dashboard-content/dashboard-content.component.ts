@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -15,7 +16,8 @@ import { conferenceDtoToConferenceList } from '../../mappers';
 export class DashboardContentComponent implements OnInit {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
-    faEdit: any = faEdit;
+    faEdit: IconDefinition = faEdit;
+    faTrashAlt: IconDefinition = faTrashAlt;
 
     constructor(
         private scheduleService: ScheduleService,
@@ -83,6 +85,12 @@ export class DashboardContentComponent implements OnInit {
             id
         }).subscribe((newConference: ConferenceDto) => {
             console.log('newConference', newConference);
+        });
+    }
+
+    delete(id: string): void {
+        this.scheduleService.deleteConference(id).subscribe(() => {
+            console.log('deleteConference');
         });
     }
 }

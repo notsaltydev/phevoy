@@ -17,7 +17,10 @@
                             <span class="end-date">{{ conference.endDate | date: 'hh:mm'}}</span>
                         </span>
                     <span class="title">{{ conference.name }}</span>
-                    <fa-icon (click)="open('update', conference)" [icon]="faEdit" class="icon-edit"></fa-icon>
+                    <span class="icon-action-container">
+                        <fa-icon (click)="open('update', conference)" [icon]="faEdit" class="icon edit"></fa-icon>
+                        <fa-icon (click)="delete(conference.id)" [icon]="faTrashAlt" class="icon remove"></fa-icon>
+                    </span>
                 </span>
             </div>
         </div>
