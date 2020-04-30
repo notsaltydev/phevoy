@@ -26,6 +26,10 @@ const colors: any = {
     },
 };
 
+export interface CalendarMetaData extends ConferenceDto{
+    metaTitle?: string;
+}
+
 @Component({
     selector: 'app-scheduler',
     templateUrl: './scheduler.component.html',
@@ -58,7 +62,7 @@ export class SchedulerComponent implements OnInit {
             },
         },
     ];
-    events: CalendarEvent[];
+    events: CalendarEvent<CalendarMetaData[]>[];
     private mockEvents: CalendarEvent[] = [
         {
             start: subDays(startOfDay(new Date()), 1),
@@ -124,8 +128,9 @@ export class SchedulerComponent implements OnInit {
                             afterEnd: true,
                         },
                         draggable: true,
+                        meta: this.mapCalendarMetaData(conference, conferences)
                     })),
-                    ...this.mockEvents
+                    // ...this.mockEvents
                 ];
 
                 console.log('events', this.events);
@@ -134,7 +139,7 @@ export class SchedulerComponent implements OnInit {
             });
     }
 
-    openDialog({date, events}: { date: Date; events: CalendarEvent[] }) {
+    openDialog({date, events}: { date: Date; events: CalendarEvent<CalendarMetaData>[] }) {
         this.dialogService.open(ScheduleDialogComponent, {
             context: {
                 title: 'ScheduleDialogComponent',
@@ -219,5 +224,15 @@ export class SchedulerComponent implements OnInit {
 
     closeOpenMonthViewDay() {
         this.activeDayIsOpen = false;
+    }
+
+    hourSegmentClicked(date: Date, sourceEvent?: MouseEvent) {
+        console.log('hourSegmentClicked', {date, sourceEvent: sourceEvent || null});
+    }
+
+    private mapCalendarMetaData(conference: ConferenceDto, conferences: ConferenceDto[]): CalendarMetaData[] {
+        return conferences.filter(
+            (conf: ConferenceDto) => conf.startDate.isSameDay()
+        )
     }
 }
