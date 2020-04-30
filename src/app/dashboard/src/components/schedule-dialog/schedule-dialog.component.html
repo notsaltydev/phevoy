@@ -1,0 +1,19 @@
+<nb-card>
+    <nb-card-header>{{title}}</nb-card-header>
+    <nb-card-body>
+        <nb-card-body>
+            <div>
+                Date:
+                <pre>{{ date }}</pre>
+            </div>
+            <div>
+                Event:
+                <pre>{{ events | json }}</pre>
+            </div>
+        </nb-card-body>
+    </nb-card-body>
+    <nb-card-footer class="footer">
+        <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
+        <button nbButton hero status="danger" (click)="dismiss()">Cancel</button>
+    </nb-card-footer>
+</nb-card>

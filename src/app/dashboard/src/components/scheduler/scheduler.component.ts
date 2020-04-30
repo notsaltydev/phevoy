@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { addDays, addHours, endOfDay, endOfMonth, isSameDay, isSameMonth, startOfDay, subDays } from 'date-fns';
 import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
+import { NbDialogService } from '@nebular/theme';
+import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 
 const colors: any = {
     red: {
@@ -31,7 +33,6 @@ const colors: any = {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SchedulerComponent implements OnInit {
-    @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
     view: CalendarView = CalendarView.Month;
     CalendarView = CalendarView;
     viewDate: Date = new Date();
@@ -102,7 +103,8 @@ export class SchedulerComponent implements OnInit {
 
     constructor(
         private scheduleService: ScheduleService,
-        private changeDetector: ChangeDetectorRef
+        private changeDetector: ChangeDetectorRef,
+        private dialogService: NbDialogService
     ) {
     }
 
@@ -132,7 +134,20 @@ export class SchedulerComponent implements OnInit {
             });
     }
 
+    openDialog({date, events}: { date: Date; events: CalendarEvent[] }) {
+        this.dialogService.open(ScheduleDialogComponent, {
+            context: {
+                title: 'ScheduleDialogComponent',
+                date,
+                events
+            }
+        });
+    }
+
     dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
+        console.log('dayClicked', {date, events});
+
+        this.openDialog({date, events});
         if (isSameMonth(date, this.viewDate)) {
             if (
                 (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -152,6 +167,12 @@ export class SchedulerComponent implements OnInit {
                           newStart,
                           newEnd,
                       }: CalendarEventTimesChangedEvent): void {
+        console.log('eventTimesChanged', {
+            event,
+            newStart,
+            newEnd,
+        });
+
         this.events = this.events.map((iEvent) => {
             if (iEvent === event) {
                 return {
@@ -166,6 +187,7 @@ export class SchedulerComponent implements OnInit {
     }
 
     handleEvent(action: string, event: CalendarEvent): void {
+        console.log('handleEvent', {event, action});
         this.modalData = {event, action};
         // this.modal.open(this.modalContent, {size: 'lg'});
     }

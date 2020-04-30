@@ -22,6 +22,7 @@ import { DashboardContentComponent } from './components/dashboard-content';
 import { OrderByPipe } from './pipes/order-by';
 import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { CalendarModule } from 'angular-calendar';
+import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-dialog.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CalendarModule } from 'angular-calendar';
         ConferenceDialogComponent,
         DashboardContentComponent,
         OrderByPipe,
-        SchedulerComponent
+        SchedulerComponent,
+        ScheduleDialogComponent
     ]
 })
 export class DashboardModule {
