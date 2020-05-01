@@ -4,11 +4,18 @@
         <nb-card-body>
             <div>
                 Date:
-                <pre>{{ date }}</pre>
+                <pre>{{ date | date: 'longDate'}}</pre>
             </div>
             <div>
-                Event:
-                <pre>{{ events | json }}</pre>
+                <ng-container *ngIf="events && events.length">
+                    <div class="events" *ngFor="let event of events">
+                        <span class="date-wrapper">
+                            <span class="start-date">{{ event.start | date: 'hh:mm'}}</span>
+                            <span class="end-date">{{ event.end | date: 'hh:mm'}}</span>
+                        </span>
+                        <span class="title">{{ event.meta.name }}</span>
+                    </div>
+                </ng-container>
             </div>
         </nb-card-body>
     </nb-card-body>

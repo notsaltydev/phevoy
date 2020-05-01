@@ -26,7 +26,7 @@ const colors: any = {
     },
 };
 
-export interface CalendarMetaData extends ConferenceDto{
+export interface CalendarMetaData extends ConferenceDto {
     metaTitle?: string;
 }
 
@@ -62,7 +62,7 @@ export class SchedulerComponent implements OnInit {
             },
         },
     ];
-    events: CalendarEvent<CalendarMetaData[]>[];
+    events: CalendarEvent<CalendarMetaData>[];
     private mockEvents: CalendarEvent[] = [
         {
             start: subDays(startOfDay(new Date()), 1),
@@ -128,9 +128,8 @@ export class SchedulerComponent implements OnInit {
                             afterEnd: true,
                         },
                         draggable: true,
-                        meta: this.mapCalendarMetaData(conference, conferences)
-                    })),
-                    // ...this.mockEvents
+                        meta: conference
+                    }))
                 ];
 
                 console.log('events', this.events);
@@ -139,7 +138,7 @@ export class SchedulerComponent implements OnInit {
             });
     }
 
-    openDialog({date, events}: { date: Date; events: CalendarEvent<CalendarMetaData>[] }) {
+    openDialog({date, events}: { date: Date; events: any }) {
         this.dialogService.open(ScheduleDialogComponent, {
             context: {
                 title: 'ScheduleDialogComponent',
@@ -232,7 +231,7 @@ export class SchedulerComponent implements OnInit {
 
     private mapCalendarMetaData(conference: ConferenceDto, conferences: ConferenceDto[]): CalendarMetaData[] {
         return conferences.filter(
-            (conf: ConferenceDto) => conf.startDate.isSameDay()
-        )
+            (conf: ConferenceDto) => isSameDay(conf.startDate, conference.startDate)
+        );
     }
 }

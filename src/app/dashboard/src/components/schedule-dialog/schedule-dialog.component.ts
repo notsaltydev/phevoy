@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { NbDialogRef } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { CalendarEvent } from 'angular-calendar';
+import { CalendarMetaData } from '../scheduler/scheduler.component';
 
 @Component({
     selector: 'app-schedule-dialog',
@@ -12,7 +13,7 @@ import { CalendarEvent } from 'angular-calendar';
 export class ScheduleDialogComponent implements OnInit {
     @Input() title: string;
     @Input() date: Date;
-    @Input() events: CalendarEvent[];
+    @Input() events: CalendarEvent<CalendarMetaData>[];
 
     constructor(
         protected ref: NbDialogRef<ConferenceDialogComponent>,

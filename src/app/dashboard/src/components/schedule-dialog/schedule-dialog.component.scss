@@ -1,0 +1,12 @@
+@import '~@nebular/theme/styles/component';
+
+@include nb-install-component() {
+  nb-card {
+    border-radius: 10px;
+  }
+
+  nb-card-body {
+    max-height: 600px;
+    overflow: auto;
+  }
+}

@@ -7,6 +7,7 @@ import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import { isSameDay } from 'date-fns';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -28,7 +29,10 @@ export class DashboardContentComponent implements OnInit {
 
     ngOnInit() {
         this.scheduleService.getConferences()
-            .pipe(map(conferenceDtoToConferenceList))
+            .pipe(
+                map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isSameDay(conf.startDate, new Date()))),
+                map(conferenceDtoToConferenceList)
+            )
             .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
                 this.conferenceList = conferences;
                 this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));

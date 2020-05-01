@@ -48,19 +48,19 @@ export class ConferenceDialogComponent implements OnInit {
             const selectedStartDateIndex: number = this.times.indexOf(time);
 
             this.setEndTimeRange(selectedStartDateIndex);
-            // this.maybeSetEndTime();
+            this.maybeSetEndTime();
         });
     }
 
     getTimeByDate(date: Date): string {
-        const minutes: number = 15 * Math.floor(date.getMinutes() / 15);
-        const hours: number = date.getHours();
+        const minutes: string = ('0' + date.getMinutes()).replace(/\d(\d\d)/g, '$1');
+        const hours: string = ('0' + date.getHours()).replace(/\d(\d\d)/g, '$1');
 
-        return `${hours === 0 ? '00' : hours}:${minutes === 0 ? '00' : minutes}`;
+        return `${hours}:${minutes}`;
     }
 
     setEndTimeRange(startIndex: number): void {
-        this.availableEndTimes = this.times.slice(startIndex, this.times.length - 1);
+        this.availableEndTimes = this.times.slice(startIndex, this.times.length);
     }
 
     save(): void {
@@ -106,6 +106,18 @@ export class ConferenceDialogComponent implements OnInit {
     }
 
     private getTimeWithGap(index): string {
-        return this.times[index + 2];
+        let timeGap: string;
+
+        if (index === this.times.length - 1) {
+            console.log('-1');
+            timeGap = this.times[this.times.length - 1];
+        } else if (index === this.times.length - 2) {
+            console.log('-2');
+            timeGap = this.times[this.times.length - 2];
+        } else {
+            timeGap = this.times[index + 2];
+        }
+
+        return timeGap;
     }
 }

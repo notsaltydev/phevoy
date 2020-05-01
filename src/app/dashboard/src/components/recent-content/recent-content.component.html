@@ -1,0 +1,16 @@
+<div class="content">
+    <div class="main-content">
+        <div *ngFor="let date of dates" class="schedule">
+            <div class="schedule-header">{{date | date:'fullDate'}}</div>
+            <div class="conference-container">
+                <span *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'" class="conference-content">
+                        <span class="date-wrapper">
+                            <span class="start-date">{{ conference.startDate | date: 'hh:mm'}}</span>
+                            <span class="end-date">{{ conference.endDate | date: 'hh:mm'}}</span>
+                        </span>
+                    <span class="title">{{ conference.name }}</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

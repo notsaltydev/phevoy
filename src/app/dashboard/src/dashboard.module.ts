@@ -23,6 +23,7 @@ import { OrderByPipe } from './pipes/order-by';
 import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { CalendarModule } from 'angular-calendar';
 import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-dialog.component';
+import { RecentContentComponent } from './components/recent-content/recent-content.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-d
         DashboardContentComponent,
         OrderByPipe,
         SchedulerComponent,
-        ScheduleDialogComponent
+        ScheduleDialogComponent,
+        RecentContentComponent
     ]
 })
 export class DashboardModule {
