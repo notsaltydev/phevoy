@@ -24,6 +24,7 @@ import { SchedulerComponent } from './components/scheduler/scheduler.component';
 import { CalendarModule } from 'angular-calendar';
 import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-dialog.component';
 import { RecentContentComponent } from './components/recent-content/recent-content.component';
+import { ConferenceItemComponent } from './components/conference-item/conference-item.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { RecentContentComponent } from './components/recent-content/recent-conte
         OrderByPipe,
         SchedulerComponent,
         ScheduleDialogComponent,
-        RecentContentComponent
+        RecentContentComponent,
+        ConferenceItemComponent
     ]
 })
 export class DashboardModule {
