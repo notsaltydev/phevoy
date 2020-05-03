@@ -2,20 +2,12 @@
     <nb-card-header>{{title}}</nb-card-header>
     <nb-card-body>
         <nb-card-body>
-            <div>
-                Date:
-                <pre>{{ date | date: 'longDate'}}</pre>
-            </div>
-            <div>
-                <ng-container *ngIf="events && events.length">
-                    <div class="events" *ngFor="let event of events">
-                        <span class="date-wrapper">
-                            <span class="start-date">{{ event.start | date: 'hh:mm'}}</span>
-                            <span class="end-date">{{ event.end | date: 'hh:mm'}}</span>
-                        </span>
-                        <span class="title">{{ event.meta.name }}</span>
-                    </div>
-                </ng-container>
+            <div class="conference-container" *ngIf="events && events.length">
+                <app-conference-item
+                        class="conference-item"
+                        *ngFor="let event of events | orderBy: 'startDate'"
+                        [conference]="event.meta">
+                </app-conference-item>
             </div>
         </nb-card-body>
     </nb-card-body>

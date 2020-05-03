@@ -12,6 +12,7 @@
             <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
                 <app-conference-item
+                        class="conference-item"
                         *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'"
                         [conference]="conference"
                         [showActionsButton]="true"

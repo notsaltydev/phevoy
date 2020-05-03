@@ -79,9 +79,12 @@
 .conference-container {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 16px 16px 0;
 }
 
+.conference-item {
+  padding-bottom: 16px;
+}
 
 
 

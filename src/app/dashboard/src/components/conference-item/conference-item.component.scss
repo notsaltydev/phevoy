@@ -1,9 +1,10 @@
 :host {
-
+  display: flex;
 }
 
 .conference-content {
   display: flex;
+  flex: 1;
   background-color: #ffffff;
   border: 1px solid #e4e9f2;
   border-radius: 10px;

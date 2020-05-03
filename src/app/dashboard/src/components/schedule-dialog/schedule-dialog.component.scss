@@ -6,7 +6,12 @@
   }
 
   nb-card-body {
-    max-height: 600px;
+    max-height: 650px;
+    min-width: 650px;
     overflow: auto;
   }
+}
+
+.conference-item {
+  padding-bottom: 16px;
 }

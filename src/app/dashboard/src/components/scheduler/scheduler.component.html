@@ -1,44 +1,70 @@
 <div class="calendar-header">
     <div class="btn-group">
-        <div class="btn btn-primary"
-             (viewDateChange)="closeOpenMonthViewDay()"
-             [(viewDate)]="viewDate"
-             [view]="view"
-             mwlCalendarPreviousView>
+        <button
+                nbButton
+                outline
+                shape="round"
+                status="primary"
+                (viewDateChange)="closeOpenMonthViewDay()"
+                [(viewDate)]="viewDate"
+                [view]="view"
+                mwlCalendarPreviousView>
             Previous
-        </div>
-        <div class="btn btn-outline-secondary"
-             [(viewDate)]="viewDate"
-             mwlCalendarToday>
+        </button>
+        <button
+                class="center-button"
+                nbButton
+                outline
+                shape="round"
+                status="primary"
+                [(viewDate)]="viewDate"
+                mwlCalendarToday>
             Today
-        </div>
-        <div class="btn btn-primary"
-             (viewDateChange)="closeOpenMonthViewDay()"
-             [(viewDate)]="viewDate"
-             [view]="view"
-             mwlCalendarNextView>
+        </button>
+        <button
+                nbButton
+                outline
+                shape="round"
+                status="primary"
+                (viewDateChange)="closeOpenMonthViewDay()"
+                [(viewDate)]="viewDate"
+                [view]="view"
+                mwlCalendarNextView>
             Next
-        </div>
+        </button>
     </div>
     <div class="btn-group">
         <span>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
     </div>
     <div class="btn-group">
-        <div class="btn btn-primary"
-             (click)="setView(CalendarView.Month)"
-             [class.active]="view === CalendarView.Month">
+        <button
+                nbButton
+                outline
+                shape="round"
+                status="primary"
+                (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month">
             Month
-        </div>
-        <div class="btn btn-primary"
-             (click)="setView(CalendarView.Week)"
-             [class.active]="view === CalendarView.Week">
+        </button>
+        <button
+                class="center-button"
+                nbButton
+                outline
+                shape="round"
+                status="primary"
+                (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week">
             Week
-        </div>
-        <div class="btn btn-primary"
-             (click)="setView(CalendarView.Day)"
-             [class.active]="view === CalendarView.Day">
+        </button>
+        <button
+                nbButton
+                outline
+                shape="round"
+                status="primary"
+                (click)="setView(CalendarView.Day)"
+                [class.active]="view === CalendarView.Day">
             Day
-        </div>
+        </button>
     </div>
 </div>
 

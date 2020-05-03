@@ -44,41 +44,10 @@
 .conference-container {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 16px 16px 0;
 }
 
-.conference-content {
-  display: flex;
-  background-color: #FFFFFF;
-  border: 1px solid #e4e9f2;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 8px;
-  max-width: 800px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  .date-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding-right: 16px;
-
-    .start-date {
-      font-size: 16px;
-    }
-
-    .end-date {
-      font-size: 14px;
-    }
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21px;
-  }
+.conference-item {
+  padding-bottom: 16px;
 }
-
 

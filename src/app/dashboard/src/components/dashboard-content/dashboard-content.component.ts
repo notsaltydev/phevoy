@@ -57,6 +57,7 @@ export class DashboardContentComponent implements OnInit {
             .pipe(
                 filter((data: any | null) => data)
             ).subscribe((payload: ConferenceDto) => {
+            console.log('payload', payload);
             if (type === 'create') {
                 this.createSchedule(payload);
             } else if (type === 'update') {

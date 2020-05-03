@@ -29,7 +29,8 @@ export class ConferenceDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const initialStartTime: string = this.startDate ? this.getTimeByDate(this.startDate) : this.getTimeByDate(new Date());
+        const startDate: Date = this.startDate || new Date();
+        const initialStartTime: string = this.startDate ? this.getTimeByDate(this.startDate) : this.getTimeByDate(this.getRoundedDate(15));
         const initialEndTime: string = this.endDate ?
             this.getTimeByDate(this.endDate) :
             this.getTimeWithGap(this.times.indexOf(initialStartTime));
@@ -38,7 +39,7 @@ export class ConferenceDialogComponent implements OnInit {
 
         this.form = this.formBuilder.group({
             name: new FormControl(this.name || '', [Validators.required]),
-            date: new FormControl(new Date(), [Validators.required]),
+            date: new FormControl(startDate, [Validators.required]),
             startTime: new FormControl(initialStartTime, [Validators.required]),
             endTime: new FormControl(initialEndTime, [Validators.required]),
             description: new FormControl(this.description || '')
@@ -120,4 +121,12 @@ export class ConferenceDialogComponent implements OnInit {
 
         return timeGap;
     }
+
+    getRoundedDate(minutes, date = new Date()): Date {
+        const ms: number = 1000 * 60 * minutes;
+        const roundedDate: Date = new Date(Math.round(date.getTime() / ms) * ms);
+
+        return roundedDate;
+    }
+
 }
