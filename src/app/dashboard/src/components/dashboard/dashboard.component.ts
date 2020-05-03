@@ -2,8 +2,26 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Router } from '@angular/router';
 import { AuthenticationService, UserService } from '../../../../_services';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { NbSidebarService } from '@nebular/theme';
+import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 
+export const MENU_ITEMS: NbMenuItem[] = [
+    {
+        title: 'Dashboard',
+        icon: 'home-outline',
+        link: '/app/dashboard',
+        home: true
+    },
+    {
+        title: 'Calendar',
+        icon: 'calendar-outline',
+        link: '/app/calendar',
+    },
+    {
+        title: 'Recent',
+        icon: 'clock-outline',
+        link: '/app/recent',
+    },
+];
 
 @Component({
     selector: 'app-dashboard',
@@ -14,6 +32,7 @@ import { NbSidebarService } from '@nebular/theme';
 export class DashboardComponent implements OnInit {
     loading = false;
     user: any;
+    menu: NbMenuItem[] = MENU_ITEMS;
 
     constructor(
         private userService: UserService,

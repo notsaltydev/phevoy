@@ -8,11 +8,7 @@
     </nb-layout-header>
 
     <nb-sidebar tag="left">
-        <ul>
-            <li routerLink="dashboard" routerLinkActive="active">Dashboard</li>
-            <li routerLink="calendar" routerLinkActive="active">Calendar</li>
-            <li routerLink="recent" routerLinkActive="active">Recent</li>
-        </ul>
+        <nb-menu [items]="menu"></nb-menu>
     </nb-sidebar>
 
     <nb-layout-column class="layout-column-test">

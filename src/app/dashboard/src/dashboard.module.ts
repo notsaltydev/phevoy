@@ -12,7 +12,7 @@ import {
     NbDatepickerModule,
     NbDialogModule,
     NbInputModule,
-    NbLayoutModule,
+    NbLayoutModule, NbMenuModule,
     NbSelectModule,
     NbSidebarModule,
     NbThemeModule
@@ -45,7 +45,8 @@ import { ConferenceItemComponent } from './components/conference-item/conference
         NbInputModule,
         NbDatepickerModule,
         NbSelectModule,
-        CalendarModule
+        CalendarModule,
+        NbMenuModule
     ],
     declarations: [
         DashboardComponent,
