@@ -3,24 +3,23 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin: -1rem -1rem 0;
+  //margin: -1rem -1rem 0;
 
   @include breakpoint(medium) {
-    margin: -1.5rem -1.5rem -0.5rem;
+    //margin: -1.5rem -1.5rem -0.5rem;
   }
 
   @include breakpoint(large) {
-    margin: -2.25rem -2.25rem -0.75rem;
+    //margin: -2.25rem -2.25rem -0.75rem;
   }
 
 }
 
 .action-menu {
-  display: block;
+  padding: 16px 0;
+  background-color: #edf1f7;
   width: 100%;
-  background-color: #ECECEC;
-  padding: 16px 24px;
-  border-bottom: 1px solid #e4e9f2;
+  border-bottom: 1px solid #edf1f7;
   overflow-y: auto;
   position: fixed;
   top: 4.75rem;
@@ -65,7 +64,7 @@
 }
 
 .content {
-  padding-top: 133px;
+  padding-top: calc(133px - 2.25rem);
 }
 
 .main-content {
@@ -84,16 +83,18 @@
   top: calc(4.75rem + 133px);
   background-color: #8779AE;
   border-bottom: 1px solid #746895;
+  border-radius: 10px;
   color: #FFFFFF;
   font-size: 18px;
   font-weight: 500;
   padding: 16px;
+  margin-bottom: 8px;
 }
 
 .conference-container {
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 0;
+  padding: 8px 16px 0;
 }
 
 .conference-item {
