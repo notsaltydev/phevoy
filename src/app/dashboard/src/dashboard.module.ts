@@ -11,8 +11,11 @@ import {
     NbCardModule,
     NbDatepickerModule,
     NbDialogModule,
+    NbIconModule,
     NbInputModule,
     NbLayoutModule,
+    NbMenuModule,
+    NbPopoverModule,
     NbSelectModule,
     NbSidebarModule,
     NbThemeModule
@@ -20,6 +23,12 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardContentComponent } from './components/dashboard-content';
 import { OrderByPipe } from './pipes/order-by';
+import { SchedulerComponent } from './components/scheduler/scheduler.component';
+import { CalendarModule } from 'angular-calendar';
+import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-dialog.component';
+import { RecentContentComponent } from './components/recent-content/recent-content.component';
+import { ConferenceItemComponent } from './components/conference-item/conference-item.component';
+import { EmptyStateConferenceComponent } from './components/empty-state-conference/empty-state-conference.component';
 
 
 @NgModule({
@@ -39,13 +48,22 @@ import { OrderByPipe } from './pipes/order-by';
         NbCardModule,
         NbInputModule,
         NbDatepickerModule,
-        NbSelectModule
+        NbSelectModule,
+        CalendarModule,
+        NbMenuModule,
+        NbPopoverModule,
+        NbIconModule
     ],
     declarations: [
         DashboardComponent,
         ConferenceDialogComponent,
         DashboardContentComponent,
-        OrderByPipe
+        OrderByPipe,
+        SchedulerComponent,
+        ScheduleDialogComponent,
+        RecentContentComponent,
+        ConferenceItemComponent,
+        EmptyStateConferenceComponent
     ]
 })
 export class DashboardModule {

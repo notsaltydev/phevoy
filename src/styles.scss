@@ -10,6 +10,9 @@
   @include nb-theme-global();
 }
 
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "./angular-calendar";
+
 .columns, .column {
   margin: 0;
 }

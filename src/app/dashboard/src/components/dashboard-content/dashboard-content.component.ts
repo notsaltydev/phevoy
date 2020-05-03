@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
+import { isSameDay } from 'date-fns';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -15,7 +15,7 @@ import { conferenceDtoToConferenceList } from '../../mappers';
 export class DashboardContentComponent implements OnInit {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
-    faEdit: any = faEdit;
+    today: Date = new Date();
 
     constructor(
         private scheduleService: ScheduleService,
@@ -26,7 +26,10 @@ export class DashboardContentComponent implements OnInit {
 
     ngOnInit() {
         this.scheduleService.getConferences()
-            .pipe(map(conferenceDtoToConferenceList))
+            .pipe(
+                map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isSameDay(conf.startDate, new Date()))),
+                map(conferenceDtoToConferenceList)
+            )
             .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
                 this.conferenceList = conferences;
                 this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
@@ -55,6 +58,7 @@ export class DashboardContentComponent implements OnInit {
             .pipe(
                 filter((data: any | null) => data)
             ).subscribe((payload: ConferenceDto) => {
+            console.log('payload', payload);
             if (type === 'create') {
                 this.createSchedule(payload);
             } else if (type === 'update') {
@@ -83,6 +87,12 @@ export class DashboardContentComponent implements OnInit {
             id
         }).subscribe((newConference: ConferenceDto) => {
             console.log('newConference', newConference);
+        });
+    }
+
+    delete(id: string): void {
+        this.scheduleService.deleteConference(id).subscribe(() => {
+            console.log('deleteConference');
         });
     }
 }

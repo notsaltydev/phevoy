@@ -18,7 +18,9 @@ import { HeaderComponent } from './header';
 import { WindowModule } from './window';
 import { ScheduleModule } from './schedule';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbDatepickerModule, NbDialogModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
     imports: [
@@ -32,7 +34,9 @@ import { NbDatepickerModule, NbDialogModule, NbSidebarModule, NbThemeModule } fr
         NbThemeModule.forRoot({name: 'corporate'}),
         NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
         NbDialogModule.forRoot(),
-        NbDatepickerModule.forRoot()
+        NbDatepickerModule.forRoot(),
+        CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
+        NbMenuModule.forRoot()
     ],
     declarations: [
         AppComponent,

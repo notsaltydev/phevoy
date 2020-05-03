@@ -1,0 +1,17 @@
+@import '~@nebular/theme/styles/component';
+
+@include nb-install-component() {
+  nb-card {
+    border-radius: 10px;
+  }
+
+  nb-card-body {
+    max-height: 650px;
+    min-width: 650px;
+    overflow: auto;
+  }
+}
+
+.conference-item {
+  padding-bottom: 16px;
+}

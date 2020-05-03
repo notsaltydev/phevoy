@@ -29,7 +29,8 @@ export class ConferenceDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const initialStartTime: string = this.startDate ? this.getTimeByDate(this.startDate) : this.getTimeByDate(new Date());
+        const startDate: Date = this.startDate || new Date();
+        const initialStartTime: string = this.startDate ? this.getTimeByDate(this.startDate) : this.getTimeByDate(this.getRoundedDate(15));
         const initialEndTime: string = this.endDate ?
             this.getTimeByDate(this.endDate) :
             this.getTimeWithGap(this.times.indexOf(initialStartTime));
@@ -38,7 +39,7 @@ export class ConferenceDialogComponent implements OnInit {
 
         this.form = this.formBuilder.group({
             name: new FormControl(this.name || '', [Validators.required]),
-            date: new FormControl(new Date(), [Validators.required]),
+            date: new FormControl(startDate, [Validators.required]),
             startTime: new FormControl(initialStartTime, [Validators.required]),
             endTime: new FormControl(initialEndTime, [Validators.required]),
             description: new FormControl(this.description || '')
@@ -53,14 +54,14 @@ export class ConferenceDialogComponent implements OnInit {
     }
 
     getTimeByDate(date: Date): string {
-        const minutes: number = 15 * Math.floor(date.getMinutes() / 15);
-        const hours: number = date.getHours();
+        const minutes: string = ('0' + date.getMinutes()).replace(/\d(\d\d)/g, '$1');
+        const hours: string = ('0' + date.getHours()).replace(/\d(\d\d)/g, '$1');
 
-        return `${hours === 0 ? '00' : hours}:${minutes === 0 ? '00' : minutes}`;
+        return `${hours}:${minutes}`;
     }
 
     setEndTimeRange(startIndex: number): void {
-        this.availableEndTimes = this.times.slice(startIndex, this.times.length - 1);
+        this.availableEndTimes = this.times.slice(startIndex, this.times.length);
     }
 
     save(): void {
@@ -106,6 +107,26 @@ export class ConferenceDialogComponent implements OnInit {
     }
 
     private getTimeWithGap(index): string {
-        return this.times[index + 2];
+        let timeGap: string;
+
+        if (index === this.times.length - 1) {
+            console.log('-1');
+            timeGap = this.times[this.times.length - 1];
+        } else if (index === this.times.length - 2) {
+            console.log('-2');
+            timeGap = this.times[this.times.length - 2];
+        } else {
+            timeGap = this.times[index + 2];
+        }
+
+        return timeGap;
     }
+
+    getRoundedDate(minutes, date = new Date()): Date {
+        const ms: number = 1000 * 60 * minutes;
+        const roundedDate: Date = new Date(Math.round(date.getTime() / ms) * ms);
+
+        return roundedDate;
+    }
+
 }

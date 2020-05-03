@@ -1,15 +1,25 @@
+@import "src/mixins";
+
 :host {
   display: flex;
   flex-direction: column;
-  margin: -2.25rem -2.25rem -0.75rem;
+  //margin: -1rem -1rem 0;
+
+  @include breakpoint(medium) {
+    //margin: -1.5rem -1.5rem -0.5rem;
+  }
+
+  @include breakpoint(large) {
+    //margin: -2.25rem -2.25rem -0.75rem;
+  }
+
 }
 
 .action-menu {
-  display: block;
+  padding: 16px 0;
+  background-color: #edf1f7;
   width: 100%;
-  background-color: #ECECEC;
-  padding: 16px 24px;
-  border-bottom: 1px solid #e4e9f2;
+  border-bottom: 1px solid #edf1f7;
   overflow-y: auto;
   position: fixed;
   top: 4.75rem;
@@ -20,6 +30,7 @@
   }
 
   .action-box {
+    position: relative;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -35,12 +46,25 @@
     .text {
       display: flex;
       align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 10;
     }
+  }
+
+  .icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 80px;
+    overflow: hidden;
+    color: #edf1f7;
+    opacity: 0.4;
   }
 }
 
 .content {
-  padding-top: 133px;
+  padding-top: calc(133px - 2.25rem);
 }
 
 .main-content {
@@ -59,61 +83,23 @@
   top: calc(4.75rem + 133px);
   background-color: #8779AE;
   border-bottom: 1px solid #746895;
+  border-radius: 10px;
   color: #FFFFFF;
   font-size: 18px;
   font-weight: 500;
   padding: 16px;
+  margin-bottom: 8px;
 }
 
 .conference-container {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 8px 16px 0;
 }
 
-.conference-content {
-  display: flex;
-  background-color: #FFFFFF;
-  border: 1px solid #e4e9f2;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 8px;
-  max-width: 800px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  .date-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding-right: 16px;
-
-    .start-date {
-      font-size: 16px;
-    }
-
-    .end-date {
-      font-size: 14px;
-    }
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21px;
-  }
-
-  .icon-edit {
-    display: flex;
-    cursor: pointer;
-    color: #8779AE;
-    margin: 0 0 0 auto;
-
-    &:hover {
-      color: #746895;
-    }
-  }
+.conference-item {
+  padding-bottom: 16px;
 }
+
 
 

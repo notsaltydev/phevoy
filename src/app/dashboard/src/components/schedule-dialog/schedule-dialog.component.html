@@ -1,0 +1,19 @@
+<nb-card>
+    <nb-card-header>{{title}}</nb-card-header>
+    <nb-card-body>
+        <nb-card-body>
+            <div class="conference-container" *ngIf="events && events.length">
+                <app-conference-item
+                        class="conference-item"
+                        *ngFor="let event of events | orderBy: 'startDate'"
+                        [conference]="event.meta">
+                </app-conference-item>
+            </div>
+            <app-empty-state-conference *ngIf="events.length === 0"></app-empty-state-conference>
+        </nb-card-body>
+    </nb-card-body>
+    <nb-card-footer class="footer">
+        <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
+        <button nbButton hero status="danger" (click)="dismiss()">Cancel</button>
+    </nb-card-footer>
+</nb-card>

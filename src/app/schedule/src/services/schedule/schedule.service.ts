@@ -32,6 +32,10 @@ export class ScheduleService {
         }).pipe(map((conference: ConferenceDto) => this.conferenceDtoToConference(conference)));
     }
 
+    deleteConference(conferenceId: string): Observable<ConferenceDto> {
+        return this.httpClient.delete<ConferenceDto>(`http://localhost:3000/conference/${conferenceId}`);
+    }
+
     private conferenceDtoToConference(conference: ConferenceDto): ConferenceDto {
         return ({
             ...conference,
