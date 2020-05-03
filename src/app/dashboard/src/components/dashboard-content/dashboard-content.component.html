@@ -33,5 +33,11 @@
                 </app-conference-item>
             </div>
         </div>
+        <div class="schedule" *ngIf="dates.length === 0">
+            <div class="schedule-header">{{ today | date:'fullDate' }}</div>
+            <app-empty-state-conference
+                    (iconClicked)="open('create')">
+            </app-empty-state-conference>
+        </div>
     </div>
 </div>

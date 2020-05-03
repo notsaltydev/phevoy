@@ -15,6 +15,7 @@ import { isSameDay } from 'date-fns';
 export class DashboardContentComponent implements OnInit {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
+    today: Date = new Date();
 
     constructor(
         private scheduleService: ScheduleService,

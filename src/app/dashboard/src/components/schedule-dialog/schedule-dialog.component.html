@@ -9,6 +9,7 @@
                         [conference]="event.meta">
                 </app-conference-item>
             </div>
+            <app-empty-state-conference *ngIf="events.length === 0"></app-empty-state-conference>
         </nb-card-body>
     </nb-card-body>
     <nb-card-footer class="footer">

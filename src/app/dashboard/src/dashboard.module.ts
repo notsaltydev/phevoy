@@ -28,6 +28,7 @@ import { CalendarModule } from 'angular-calendar';
 import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-dialog.component';
 import { RecentContentComponent } from './components/recent-content/recent-content.component';
 import { ConferenceItemComponent } from './components/conference-item/conference-item.component';
+import { EmptyStateConferenceComponent } from './components/empty-state-conference/empty-state-conference.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { ConferenceItemComponent } from './components/conference-item/conference
         SchedulerComponent,
         ScheduleDialogComponent,
         RecentContentComponent,
-        ConferenceItemComponent
+        ConferenceItemComponent,
+        EmptyStateConferenceComponent
     ]
 })
 export class DashboardModule {

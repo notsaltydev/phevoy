@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  color: #222b45;
+  opacity: 0.4;
+}
+
+.text-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.text {
+  font-size: 16px;
+}
+
+.icon {
+  margin-top: 16px;
+  font-size: 40px;
+  cursor: pointer;
+
+  &:hover {
+    color: #8779AE;
+  }
+}
