@@ -11,17 +11,13 @@
         <div *ngFor="let date of dates" class="schedule">
             <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
-                <span *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'" class="conference-content">
-                        <span class="date-wrapper">
-                            <span class="start-date">{{ conference.startDate | date: 'hh:mm'}}</span>
-                            <span class="end-date">{{ conference.endDate | date: 'hh:mm'}}</span>
-                        </span>
-                    <span class="title">{{ conference.name }}</span>
-                    <span class="icon-action-container">
-                        <fa-icon (click)="open('update', conference)" [icon]="faEdit" class="icon edit"></fa-icon>
-                        <fa-icon (click)="delete(conference.id)" [icon]="faTrashAlt" class="icon remove"></fa-icon>
-                    </span>
-                </span>
+                <app-conference-item
+                        *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'"
+                        [conference]="conference"
+                        [showActionsButton]="true"
+                        (editConference)="open('update', $event)"
+                        (deleteConference)="delete($event)">
+                </app-conference-item>
             </div>
         </div>
     </div>

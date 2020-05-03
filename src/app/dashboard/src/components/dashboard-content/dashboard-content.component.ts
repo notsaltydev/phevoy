@@ -1,12 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
-import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { isSameDay } from 'date-fns';
 
 @Component({
@@ -17,8 +15,6 @@ import { isSameDay } from 'date-fns';
 export class DashboardContentComponent implements OnInit {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
-    faEdit: IconDefinition = faEdit;
-    faTrashAlt: IconDefinition = faTrashAlt;
 
     constructor(
         private scheduleService: ScheduleService,

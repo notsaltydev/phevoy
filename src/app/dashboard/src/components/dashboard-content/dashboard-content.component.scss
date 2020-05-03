@@ -82,69 +82,6 @@
   padding: 16px;
 }
 
-.conference-content {
-  display: flex;
-  background-color: #FFFFFF;
-  border: 1px solid #e4e9f2;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 8px;
-  max-width: 800px;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  .date-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding-right: 16px;
-
-    .start-date {
-      font-size: 16px;
-    }
-
-    .end-date {
-      font-size: 14px;
-    }
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21px;
-  }
-
-  .icon-edit {
-    display: flex;
-    cursor: pointer;
-    margin: 0 0 0 auto;
-  }
-
-  .icon-action-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 0 auto;
-
-    .icon {
-      display: flex;
-      margin-bottom: 8px;
-      cursor: pointer;
-      opacity: 0.8;
-
-      &.edit {
-        color: #8779AE;
-      }
-
-      &.remove {
-        color: #ae7979;
-      }
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
-}
 
 
