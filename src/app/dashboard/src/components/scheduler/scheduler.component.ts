@@ -113,6 +113,7 @@ export class SchedulerComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log(this.mockEvents);
         this.scheduleService.getConferences()
             .subscribe((conferences: ConferenceDto[]) => {
                 this.events = [
@@ -122,7 +123,7 @@ export class SchedulerComponent implements OnInit {
                         title: conference.name,
                         color: colors.purple,
                         actions: this.actions,
-                        allDay: true,
+                        // allDay: true,
                         resizable: {
                             beforeStart: true,
                             afterEnd: true,

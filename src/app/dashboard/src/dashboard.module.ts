@@ -29,6 +29,7 @@ import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-d
 import { RecentContentComponent } from './components/recent-content/recent-content.component';
 import { ConferenceItemComponent } from './components/conference-item/conference-item.component';
 import { EmptyStateConferenceComponent } from './components/empty-state-conference/empty-state-conference.component';
+import { ConferenceFormComponent } from './components/conference-form/conference-form.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { EmptyStateConferenceComponent } from './components/empty-state-conferen
         ScheduleDialogComponent,
         RecentContentComponent,
         ConferenceItemComponent,
-        EmptyStateConferenceComponent
+        EmptyStateConferenceComponent,
+        ConferenceFormComponent
     ]
 })
 export class DashboardModule {

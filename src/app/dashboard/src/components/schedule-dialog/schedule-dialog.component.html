@@ -1,16 +1,27 @@
 <nb-card>
     <nb-card-header>{{title}}</nb-card-header>
     <nb-card-body>
-        <nb-card-body>
-            <div class="conference-container" *ngIf="events && events.length">
-                <app-conference-item
-                        class="conference-item"
-                        *ngFor="let event of events | orderBy: 'startDate'"
-                        [conference]="event.meta">
-                </app-conference-item>
+        <div [ngSwitch]="view">
+            <div class="conference-container" *ngSwitchCase="ScheduleDialogView.LIST">
+                <ng-container *ngIf="events && events.length">
+                    <app-conference-item
+                            class="conference-item"
+                            *ngFor="let event of events | orderBy: 'startDate'"
+                            [conference]="event.meta"
+                            (click)="edit(event.meta)">
+                    </app-conference-item>
+                </ng-container>
+                <app-empty-state-conference *ngIf="events.length === 0"></app-empty-state-conference>
             </div>
-            <app-empty-state-conference *ngIf="events.length === 0"></app-empty-state-conference>
-        </nb-card-body>
+            <div class="conference-container" *ngSwitchCase="ScheduleDialogView.EDIT">
+                <app-conference-form
+                        [startDate]="selectedConference.startDate"
+                        [endDate]="selectedConference.endDate"
+                        [name]="selectedConference.name"
+                        [description]="selectedConference.description">
+                </app-conference-form>
+            </div>
+        </div>
     </nb-card-body>
     <nb-card-footer class="footer">
         <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
