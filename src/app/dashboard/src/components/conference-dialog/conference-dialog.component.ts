@@ -21,6 +21,10 @@ export class ConferenceDialogComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    conferenceFormChanged($event: any): void {
+
+    }
+
     save(): void {
         // if (this.form.valid) {
         //     const {date, description, endTime, name, startTime} = this.form.value;

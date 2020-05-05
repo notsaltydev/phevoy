@@ -13,5 +13,6 @@ $nb-themes: nb-register-theme((
   // color-primary-800: #102694,
   // color-primary-900: #091c7a,
         select-min-width: 6rem,
-        input-medium-max-width: 100%
+        input-medium-max-width: 100%,
+        popover-border-radius: 10px
 ), corporate, corporate);

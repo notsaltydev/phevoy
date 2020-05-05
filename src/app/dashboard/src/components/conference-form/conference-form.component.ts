@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Conference } from '../../models';
 
 const times: string[] = Array(24 * 4).fill(0).map((_, i) => {
     return ('0' + Math.floor(i / 4) + ':0' + 60 * (i / 4 % 1)).replace(/\d(\d\d)/g, '$1');
@@ -11,14 +13,16 @@ const times: string[] = Array(24 * 4).fill(0).map((_, i) => {
     styleUrls: ['./conference-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConferenceFormComponent implements OnInit, ControlValueAccessor {
+export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() name: string;
     @Input() startDate: Date;
     @Input() endDate: Date;
     @Input() description: string;
+    @Output() valueChanged: EventEmitter<Conference> = new EventEmitter<Conference>();
     form: FormGroup;
     times: string[] = times;
     availableEndTimes: string[];
+    private subscription: Subscription = new Subscription();
 
     constructor(
         private formBuilder: FormBuilder
@@ -48,6 +52,10 @@ export class ConferenceFormComponent implements OnInit, ControlValueAccessor {
             this.setEndTimeRange(selectedStartDateIndex);
             this.maybeSetEndTime();
         });
+
+        this.subscription.add(this.form.valueChanges.subscribe((changes: Conference) => {
+            this.valueChanged.emit(changes);
+        }));
     }
 
     registerOnChange(fn: any): void {
@@ -71,6 +79,15 @@ export class ConferenceFormComponent implements OnInit, ControlValueAccessor {
 
     setEndTimeRange(startIndex: number): void {
         this.availableEndTimes = this.times.slice(startIndex, this.times.length);
+    }
+
+    getRoundedDate(minutes, date = new Date()): Date {
+        const ms: number = 1000 * 60 * minutes;
+        return new Date(Math.round(date.getTime() / ms) * ms);
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     private maybeSetEndTime(): void {
@@ -103,11 +120,6 @@ export class ConferenceFormComponent implements OnInit, ControlValueAccessor {
         }
 
         return timeGap;
-    }
-
-    getRoundedDate(minutes, date = new Date()): Date {
-        const ms: number = 1000 * 60 * minutes;
-        return new Date(Math.round(date.getTime() / ms) * ms);
     }
 
 }

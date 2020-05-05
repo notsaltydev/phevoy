@@ -5,11 +5,12 @@
                 [description]="description"
                 [endDate]="endDate"
                 [name]="name"
-                [startDate]="startDate">
+                [startDate]="startDate"
+                (valueChanged)="conferenceFormChanged($event)">
         </app-conference-form>
     </nb-card-body>
     <nb-card-footer class="footer">
-        <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
-        <button nbButton hero status="danger" (click)="dismiss()">Cancel</button>
+        <button class="save" type="submit" nbButton shape="semi-round" status="success" (click)="save()">Save</button>
+        <button nbButton shape="semi-round" status="basic" (click)="dismiss()">Cancel</button>
     </nb-card-footer>
 </nb-card>

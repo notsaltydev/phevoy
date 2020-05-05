@@ -4,11 +4,7 @@ import { ConferenceDialogComponent } from '../conference-dialog';
 import { CalendarEvent } from 'angular-calendar';
 import { CalendarMetaData } from '../scheduler/scheduler.component';
 import { ConferenceDto } from '../../../../schedule/src/models';
-
-export enum ScheduleDialogView {
-    EDIT = 'edit',
-    LIST = 'list',
-}
+import { Conference, ScheduleDialogView } from '../../models';
 
 @Component({
     selector: 'app-schedule-dialog',
@@ -42,9 +38,31 @@ export class ScheduleDialogComponent implements OnInit {
     }
 
     edit(conference: ConferenceDto): void {
-        console.log('edit conference: ', conference);
-        this.view = ScheduleDialogView.EDIT;
+        this.view = ScheduleDialogView.FORM;
         this.selectedConference = conference;
         this.changeDetector.markForCheck();
+    }
+
+    back(): void {
+        this.view = ScheduleDialogView.LIST;
+        this.selectedConference = null;
+        this.changeDetector.markForCheck();
+    }
+
+    conferenceFormChanged(conference: Conference): void {
+        this.selectedConference = {
+            ...this.selectedConference,
+            ...conference
+        };
+
+        console.log('conferenceFormChanged', this.selectedConference);
+    }
+
+    createConference(): void {
+        console.log('createConference: ');
+    }
+
+    delete(id: string): void {
+        console.log('Delete: ', id);
     }
 }

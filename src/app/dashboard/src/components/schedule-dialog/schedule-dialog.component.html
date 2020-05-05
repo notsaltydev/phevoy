@@ -1,30 +1,65 @@
 <nb-card>
-    <nb-card-header>{{title}}</nb-card-header>
+    <nb-card-header class="card-header">
+        <div class="header-content">
+            <nb-icon
+                    class="icon"
+                    *ngIf="view === ScheduleDialogView.FORM"
+                    (click)="back()"
+                    icon="arrow-ios-back-outline">
+            </nb-icon>
+            <span class="header-title">{{title}}</span>
+            <nb-icon
+                    class="icon"
+                    *ngIf="view === ScheduleDialogView.FORM"
+                    [nbPopover]="moreOptionPopover"
+                    nbPopoverPlacement="bottom"
+                    icon="more-vertical-outline">
+            </nb-icon>
+            <ng-template #moreOptionPopover>
+                <div class="more-option-popover">
+                    <span class="option" (click)="delete(selectedConference.id)">
+                        <nb-icon
+                                class="icon"
+                                icon="trash-outline">
+                        </nb-icon>
+                        <span class="text">Delete</span>
+                    </span>
+                </div>
+            </ng-template>
+        </div>
+    </nb-card-header>
     <nb-card-body>
         <div [ngSwitch]="view">
             <div class="conference-container" *ngSwitchCase="ScheduleDialogView.LIST">
                 <ng-container *ngIf="events && events.length">
                     <app-conference-item
-                            class="conference-item"
+                            class="conference-item with-hover"
                             *ngFor="let event of events | orderBy: 'startDate'"
                             [conference]="event.meta"
                             (click)="edit(event.meta)">
                     </app-conference-item>
                 </ng-container>
-                <app-empty-state-conference *ngIf="events.length === 0"></app-empty-state-conference>
+                <app-empty-state-conference
+                        *ngIf="events.length === 0"
+                        (iconClicked)="createConference()">
+                </app-empty-state-conference>
             </div>
-            <div class="conference-container" *ngSwitchCase="ScheduleDialogView.EDIT">
+            <div class="conference-container" *ngSwitchCase="ScheduleDialogView.FORM">
                 <app-conference-form
                         [startDate]="selectedConference.startDate"
                         [endDate]="selectedConference.endDate"
                         [name]="selectedConference.name"
-                        [description]="selectedConference.description">
+                        [description]="selectedConference.description"
+                        (valueChanged)="conferenceFormChanged($event)">
                 </app-conference-form>
             </div>
         </div>
     </nb-card-body>
     <nb-card-footer class="footer">
-        <button class="save" type="submit" nbButton hero status="success" (click)="save()">Save</button>
-        <button nbButton hero status="danger" (click)="dismiss()">Cancel</button>
+        <div class="footer-container" *ngIf="view === ScheduleDialogView.FORM">
+            <button class="save" type="submit" nbButton shape="semi-round" status="success" (click)="save()">Save
+            </button>
+            <button nbButton shape="semi-round" status="basic" (click)="dismiss()">Cancel</button>
+        </div>
     </nb-card-footer>
 </nb-card>
