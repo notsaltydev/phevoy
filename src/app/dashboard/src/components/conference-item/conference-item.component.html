@@ -5,7 +5,6 @@
         </span>
     <span class="title">{{ conference.name }}</span>
     <span class="icon-action-container" *ngIf="showActionsButton">
-        <fa-icon (click)="edit(conference)" [icon]="faEdit" class="icon edit"></fa-icon>
-        <fa-icon (click)="delete(conference.id)" [icon]="faTrashAlt" class="icon remove"></fa-icon>
+         <ng-content select=".action-body"></ng-content>
     </span>
 </span>

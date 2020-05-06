@@ -1,0 +1,31 @@
+@import '~@nebular/theme/styles/component';
+
+@include nb-install-component() {
+
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.date {
+  display: flex;
+}
+
+.datepicker {
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.time {
+  padding-left: 8px;
+}
+
+.time-label {
+  padding: 0 8px;
+  font-weight: bold;
+}
+
+.description {
+  resize: vertical;
+}

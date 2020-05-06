@@ -5,13 +5,115 @@
     border-radius: 10px;
   }
 
+  nb-card-header {
+    border: none;
+    box-shadow: none;
+  }
+
   nb-card-body {
     max-height: 650px;
     min-width: 650px;
     overflow: auto;
   }
+
+  nb-card-footer {
+    min-height: 72px;
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+}
+
+.card-header {
+  display: flex;
+  flex-grow: 1;
+
+  .header-content {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .header-title {
+    margin: 0 auto;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+}
+
+.more-option-popover {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 8px;
+  border-radius: 10px;
+
+  .option {
+    cursor: pointer;
+    padding: 8px;
+
+    &:hover {
+      background-color: #edf1f7;
+      border-radius: 10px;
+    }
+  }
+
+  .icon {
+    font-size: 16px;
+    color: #ff3d71;
+  }
+
+  .text {
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 4px;
+    color: #ff3d71;
+  }
 }
 
 .conference-item {
+  cursor: pointer;
   padding-bottom: 16px;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
 }
+
+.conference-action {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  justify-content: center;
+
+  .icon {
+    font-size: 40px;
+    cursor: pointer;
+    color: #222b45;
+    opacity: 0.4;
+
+    &:hover {
+      color: #8779AE;
+    }
+  }
+}
+
+.footer {
+  background-color: #ffffff;
+
+  .footer-container {
+    display: flex;
+    align-items: center;
+
+    .save {
+      margin-right: 8px;
+    }
+  }
+}
+
+
+

@@ -5,7 +5,7 @@ import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
-import { isSameDay } from 'date-fns';
+import { isAfter, subDays } from 'date-fns';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -27,7 +27,7 @@ export class DashboardContentComponent implements OnInit {
     ngOnInit() {
         this.scheduleService.getConferences()
             .pipe(
-                map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isSameDay(conf.startDate, new Date()))),
+                map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isAfter(conf.startDate, subDays(new Date(), 1)))),
                 map(conferenceDtoToConferenceList)
             )
             .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
@@ -58,7 +58,6 @@ export class DashboardContentComponent implements OnInit {
             .pipe(
                 filter((data: any | null) => data)
             ).subscribe((payload: ConferenceDto) => {
-            console.log('payload', payload);
             if (type === 'create') {
                 this.createSchedule(payload);
             } else if (type === 'update') {
@@ -86,13 +85,11 @@ export class DashboardContentComponent implements OnInit {
             ...conference,
             id
         }).subscribe((newConference: ConferenceDto) => {
-            console.log('newConference', newConference);
         });
     }
 
     delete(id: string): void {
         this.scheduleService.deleteConference(id).subscribe(() => {
-            console.log('deleteConference');
         });
     }
 }

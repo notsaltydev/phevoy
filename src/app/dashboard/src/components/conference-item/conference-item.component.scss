@@ -1,5 +1,15 @@
 :host {
   display: flex;
+
+  &.with-hover {
+
+    .conference-content {
+      &:hover {
+        background-color: #edf1f7;
+      }
+    }
+
+  }
 }
 
 .conference-content {

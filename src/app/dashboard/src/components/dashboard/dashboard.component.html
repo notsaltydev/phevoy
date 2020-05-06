@@ -33,9 +33,11 @@
                 <div class="popover-footer">
                     <button
                             class="logout-btn"
-                            (click)="logout()"
-                            nbButton status="primary">
-                        <nb-icon icon="log-out-outline"></nb-icon>
+                            nbButton
+                            shape="semi-round"
+                            status="primary"
+                            (click)="logout()">
+                        <nb-icon icon="log-out-outline" [options]="{ animation: { type: 'flip' } }"></nb-icon>
                         Logout
                     </button>
                 </div>

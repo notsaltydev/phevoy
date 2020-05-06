@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { Subject } from 'rxjs';
-import { addDays, addHours, endOfDay, endOfMonth, isSameDay, isSameMonth, startOfDay, subDays } from 'date-fns';
+import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
 import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { NbDialogService } from '@nebular/theme';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
+import { ScheduleDialogMode, ScheduleDialogView } from '../../models';
 
 const colors: any = {
     red: {
@@ -122,7 +123,7 @@ export class SchedulerComponent implements OnInit {
                         title: conference.name,
                         color: colors.purple,
                         actions: this.actions,
-                        allDay: true,
+                        // allDay: true,
                         resizable: {
                             beforeStart: true,
                             afterEnd: true,
@@ -132,50 +133,29 @@ export class SchedulerComponent implements OnInit {
                     }))
                 ];
 
-                console.log('events', this.events);
-
                 this.changeDetector.markForCheck();
             });
     }
 
-    openDialog({date, events}: { date: Date; events: any }) {
+    openDialog(date: Date, events: CalendarEvent<CalendarMetaData>[], view: ScheduleDialogView, mode: ScheduleDialogMode): void {
         this.dialogService.open(ScheduleDialogComponent, {
             context: {
                 title: 'ScheduleDialogComponent',
                 date,
-                events
+                events,
+                view,
+                mode
             }
         });
     }
 
     dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
-        console.log('dayClicked', {date, events});
-
-        this.openDialog({date, events});
-        if (isSameMonth(date, this.viewDate)) {
-            if (
-                (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-                events.length === 0
-            ) {
-                this.activeDayIsOpen = false;
-            } else {
-                // this.activeDayIsOpen = true;
-                this.activeDayIsOpen = false;
-            }
-            this.viewDate = date;
-        }
+        this.openDialog(date, events, ScheduleDialogView.LIST, ScheduleDialogMode.UPDATE);
     }
 
     eventTimesChanged({
-                          event,
-                          newStart,
-                          newEnd,
+                          event, newStart, newEnd
                       }: CalendarEventTimesChangedEvent): void {
-        console.log('eventTimesChanged', {
-            event,
-            newStart,
-            newEnd,
-        });
 
         this.events = this.events.map((iEvent) => {
             if (iEvent === event) {
@@ -187,51 +167,26 @@ export class SchedulerComponent implements OnInit {
             }
             return iEvent;
         });
+
         this.handleEvent('Dropped or resized', event);
     }
 
     handleEvent(action: string, event: CalendarEvent): void {
-        console.log('handleEvent', {event, action});
-        this.modalData = {event, action};
-        // this.modal.open(this.modalContent, {size: 'lg'});
+        if (action === 'Clicked') {
+            this.openDialog(event.start, [event], ScheduleDialogView.FORM, ScheduleDialogMode.UPDATE);
+        }
     }
 
-    addEvent(): void {
-        this.events = [
-            ...this.events,
-            {
-                title: 'New event',
-                start: startOfDay(new Date()),
-                end: endOfDay(new Date()),
-                color: colors.red,
-                draggable: true,
-                resizable: {
-                    beforeStart: true,
-                    afterEnd: true,
-                },
-            },
-        ];
-    }
-
-    deleteEvent(eventToDelete: CalendarEvent) {
-        this.events = this.events.filter((event) => event !== eventToDelete);
-    }
-
-    setView(view: CalendarView) {
+    setView(view: CalendarView): void {
         this.view = view;
+        this.changeDetector.markForCheck();
     }
 
-    closeOpenMonthViewDay() {
+    closeOpenMonthViewDay(): void {
         this.activeDayIsOpen = false;
     }
 
-    hourSegmentClicked(date: Date, sourceEvent?: MouseEvent) {
-        console.log('hourSegmentClicked', {date, sourceEvent: sourceEvent || null});
-    }
-
-    private mapCalendarMetaData(conference: ConferenceDto, conferences: ConferenceDto[]): CalendarMetaData[] {
-        return conferences.filter(
-            (conf: ConferenceDto) => isSameDay(conf.startDate, conference.startDate)
-        );
+    hourSegmentClicked(date: Date, sourceEvent?: MouseEvent): void {
+        this.openDialog(date, [], ScheduleDialogView.FORM, ScheduleDialogMode.CREATE);
     }
 }
