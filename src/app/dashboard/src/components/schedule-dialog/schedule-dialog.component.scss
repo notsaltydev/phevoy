@@ -84,6 +84,24 @@
   }
 }
 
+.conference-action {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  justify-content: center;
+
+  .icon {
+    font-size: 40px;
+    cursor: pointer;
+    color: #222b45;
+    opacity: 0.4;
+
+    &:hover {
+      color: #8779AE;
+    }
+  }
+}
+
 .footer {
   background-color: #ffffff;
 

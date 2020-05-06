@@ -3,6 +3,11 @@ export enum ScheduleDialogView {
     LIST = 'list',
 }
 
+export enum ScheduleDialogMode {
+    UPDATE = 'update',
+    CREATE = 'create',
+}
+
 export interface Conference {
     startDate: Date;
     endDate: Date;

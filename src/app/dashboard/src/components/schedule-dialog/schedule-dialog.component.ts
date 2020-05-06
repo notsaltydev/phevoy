@@ -3,8 +3,7 @@ import { NbDialogRef } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { CalendarEvent } from 'angular-calendar';
 import { CalendarMetaData } from '../scheduler/scheduler.component';
-import { ConferenceDto } from '../../../../schedule/src/models';
-import { Conference, ScheduleDialogView } from '../../models';
+import { Conference, ScheduleDialogMode, ScheduleDialogView } from '../../models';
 
 @Component({
     selector: 'app-schedule-dialog',
@@ -16,9 +15,11 @@ export class ScheduleDialogComponent implements OnInit {
     @Input() title: string;
     @Input() date: Date;
     @Input() events: CalendarEvent<CalendarMetaData>[];
-    view: ScheduleDialogView = ScheduleDialogView.LIST;
+    @Input() view: ScheduleDialogView = ScheduleDialogView.LIST;
+    @Input() mode: ScheduleDialogMode = ScheduleDialogMode.CREATE;
     ScheduleDialogView = ScheduleDialogView;
-    selectedConference: ConferenceDto;
+    ScheduleDialogMode = ScheduleDialogMode;
+    selectedConference: Conference;
 
     constructor(
         protected ref: NbDialogRef<ConferenceDialogComponent>,
@@ -27,6 +28,24 @@ export class ScheduleDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if (
+            this.view === ScheduleDialogView.FORM &&
+            this.mode === ScheduleDialogMode.CREATE
+        ) {
+            this.selectedConference = {
+                name: '',
+                startDate: this.date,
+                endDate: null,
+                description: ''
+            };
+        } else if (
+            this.view === ScheduleDialogView.FORM &&
+            this.mode === ScheduleDialogMode.UPDATE
+        ) {
+            this.selectedConference = this.events[0].meta;
+        }
+
+        this.changeDetector.markForCheck();
     }
 
     dismiss(): void {
@@ -34,11 +53,24 @@ export class ScheduleDialogComponent implements OnInit {
     }
 
     save(): void {
-        console.log('save');
+        console.log('save', this.selectedConference);
     }
 
-    edit(conference: ConferenceDto): void {
+    create(): void {
         this.view = ScheduleDialogView.FORM;
+        this.mode = ScheduleDialogMode.CREATE;
+        this.selectedConference = {
+            name: '',
+            startDate: this.date,
+            endDate: null,
+            description: ''
+        };
+        this.changeDetector.markForCheck();
+    }
+
+    edit(conference: Conference): void {
+        this.view = ScheduleDialogView.FORM;
+        this.mode = ScheduleDialogMode.UPDATE;
         this.selectedConference = conference;
         this.changeDetector.markForCheck();
     }
@@ -54,15 +86,9 @@ export class ScheduleDialogComponent implements OnInit {
             ...this.selectedConference,
             ...conference
         };
-
-        console.log('conferenceFormChanged', this.selectedConference);
     }
 
-    createConference(): void {
-        console.log('createConference: ');
-    }
-
-    delete(id: string): void {
+    delete(id: Conference): void {
         console.log('Delete: ', id);
     }
 }

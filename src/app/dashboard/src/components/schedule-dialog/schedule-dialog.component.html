@@ -10,14 +10,14 @@
             <span class="header-title">{{title}}</span>
             <nb-icon
                     class="icon"
-                    *ngIf="view === ScheduleDialogView.FORM"
+                    *ngIf="view === ScheduleDialogView.FORM && mode === ScheduleDialogMode.UPDATE"
                     [nbPopover]="moreOptionPopover"
                     nbPopoverPlacement="bottom"
                     icon="more-vertical-outline">
             </nb-icon>
             <ng-template #moreOptionPopover>
                 <div class="more-option-popover">
-                    <span class="option" (click)="delete(selectedConference.id)">
+                    <span class="option" (click)="delete(selectedConference)">
                         <nb-icon
                                 class="icon"
                                 icon="trash-outline">
@@ -38,10 +38,17 @@
                             [conference]="event.meta"
                             (click)="edit(event.meta)">
                     </app-conference-item>
+                    <div class="conference-action">
+                        <nb-icon
+                                class="icon"
+                                icon="plus-circle-outline"
+                                (click)="create()">
+                        </nb-icon>
+                    </div>
                 </ng-container>
                 <app-empty-state-conference
                         *ngIf="events.length === 0"
-                        (iconClicked)="createConference()">
+                        (iconClicked)="create()">
                 </app-empty-state-conference>
             </div>
             <div class="conference-container" *ngSwitchCase="ScheduleDialogView.FORM">

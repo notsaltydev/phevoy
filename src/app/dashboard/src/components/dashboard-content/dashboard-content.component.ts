@@ -58,7 +58,6 @@ export class DashboardContentComponent implements OnInit {
             .pipe(
                 filter((data: any | null) => data)
             ).subscribe((payload: ConferenceDto) => {
-            console.log('payload', payload);
             if (type === 'create') {
                 this.createSchedule(payload);
             } else if (type === 'update') {
@@ -86,13 +85,11 @@ export class DashboardContentComponent implements OnInit {
             ...conference,
             id
         }).subscribe((newConference: ConferenceDto) => {
-            console.log('newConference', newConference);
         });
     }
 
     delete(id: string): void {
         this.scheduleService.deleteConference(id).subscribe(() => {
-            console.log('deleteConference');
         });
     }
 }

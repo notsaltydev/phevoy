@@ -27,9 +27,33 @@
                         class="conference-item"
                         *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'"
                         [conference]="conference"
-                        [showActionsButton]="true"
-                        (editConference)="open('update', $event)"
-                        (deleteConference)="delete($event)">
+                        [showActionsButton]="true">
+                    <div class="action-body">
+                        <nb-icon
+                                class="icon action-toggle"
+                                [nbPopover]="moreOptionPopover"
+                                nbPopoverPlacement="bottom"
+                                icon="more-vertical-outline">
+                        </nb-icon>
+                        <ng-template #moreOptionPopover>
+                            <div class="more-option-popover">
+                                <span class="option" (click)="open('update', conference)">
+                                    <nb-icon
+                                            class="icon edit"
+                                            icon="edit-2-outline">
+                                    </nb-icon>
+                                <span class="text">Edit</span>
+                                </span>
+                                <span class="option" (click)="delete(conference.id)">
+                                    <nb-icon
+                                            class="icon remove"
+                                            icon="trash-outline">
+                                    </nb-icon>
+                                <span class="text">Delete</span>
+                                </span>
+                            </div>
+                        </ng-template>
+                    </div>
                 </app-conference-item>
             </div>
         </div>
