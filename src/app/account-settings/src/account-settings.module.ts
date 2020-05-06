@@ -9,12 +9,19 @@ import {
     ProfileSettingsComponent
 } from './components';
 import { AccountSettingsRoutingModule } from './account-settings-routing.module';
+import { NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
     imports: [
         CommonModule,
-        AccountSettingsRoutingModule
+        AccountSettingsRoutingModule,
+        NbThemeModule,
+        NbLayoutModule,
+        NbSidebarModule,
+        NbMenuModule,
+        NbEvaIconsModule
     ],
     declarations: [
         AccountSettingsComponent,

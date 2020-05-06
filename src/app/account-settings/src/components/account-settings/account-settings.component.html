@@ -1,2 +1,9 @@
-<p>account-settings works!</p>
-<router-outlet></router-outlet>
+<nb-layout>
+    <nb-sidebar tag="left">
+        <nb-menu [items]="menu"></nb-menu>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+</nb-layout>
