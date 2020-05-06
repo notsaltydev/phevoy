@@ -31,23 +31,26 @@
                     <div class="action-body">
                         <nb-icon
                                 class="icon action-toggle"
+                                icon="more-vertical-outline"
+                                [options]="{ animation: { type: 'flip' } }"
                                 [nbPopover]="moreOptionPopover"
-                                nbPopoverPlacement="bottom"
-                                icon="more-vertical-outline">
+                                nbPopoverPlacement="bottom">
                         </nb-icon>
                         <ng-template #moreOptionPopover>
                             <div class="more-option-popover">
                                 <span class="option" (click)="open('update', conference)">
                                     <nb-icon
                                             class="icon edit"
-                                            icon="edit-2-outline">
+                                            icon="edit-2-outline"
+                                            [options]="{ animation: { type: 'flip' } }">
                                     </nb-icon>
                                 <span class="text">Edit</span>
                                 </span>
                                 <span class="option" (click)="delete(conference.id)">
                                     <nb-icon
                                             class="icon remove"
-                                            icon="trash-outline">
+                                            icon="trash-outline"
+                                            [options]="{ animation: { type: 'flip' } }">
                                     </nb-icon>
                                 <span class="text">Delete</span>
                                 </span>

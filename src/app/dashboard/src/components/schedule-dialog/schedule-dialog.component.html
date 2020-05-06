@@ -5,7 +5,8 @@
                     class="icon"
                     *ngIf="view === ScheduleDialogView.FORM"
                     (click)="back()"
-                    icon="arrow-ios-back-outline">
+                    icon="arrow-ios-back-outline"
+                    [options]="{ animation: { type: 'flip' } }">
             </nb-icon>
             <span class="header-title">{{title}}</span>
             <nb-icon
@@ -13,14 +14,16 @@
                     *ngIf="view === ScheduleDialogView.FORM && mode === ScheduleDialogMode.UPDATE"
                     [nbPopover]="moreOptionPopover"
                     nbPopoverPlacement="bottom"
-                    icon="more-vertical-outline">
+                    icon="more-vertical-outline"
+                    [options]="{ animation: { type: 'flip' } }">
             </nb-icon>
             <ng-template #moreOptionPopover>
                 <div class="more-option-popover">
                     <span class="option" (click)="delete(selectedConference)">
                         <nb-icon
                                 class="icon"
-                                icon="trash-outline">
+                                icon="trash-outline"
+                                [options]="{ animation: { type: 'flip' } }">
                         </nb-icon>
                         <span class="text">Delete</span>
                     </span>
@@ -42,6 +45,7 @@
                         <nb-icon
                                 class="icon"
                                 icon="plus-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }"
                                 (click)="create()">
                         </nb-icon>
                     </div>
