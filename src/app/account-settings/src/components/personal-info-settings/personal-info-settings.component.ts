@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-personal-info-settings',
     templateUrl: './personal-info-settings.component.html',
-    styleUrls: ['./personal-info-settings.component.scss']
+    styleUrls: ['./personal-info-settings.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonalInfoSettingsComponent implements OnInit {
-    tabs = [
+    tabs: any[] = [
         {
             title: 'Profile',
             route: '/account/profile',

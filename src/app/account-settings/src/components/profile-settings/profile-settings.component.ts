@@ -13,4 +13,8 @@ export class ProfileSettingsComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    getAvatarUr(): string {
+        return 'url("https://via.placeholder.com/150")';
+    }
+
 }
