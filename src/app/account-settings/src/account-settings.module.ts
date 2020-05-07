@@ -12,7 +12,7 @@ import { AccountSettingsRoutingModule } from './account-settings-routing.module'
 import {
     NbButtonModule,
     NbCardModule,
-    NbCheckboxModule,
+    NbCheckboxModule, NbIconModule,
     NbInputModule,
     NbLayoutModule,
     NbMenuModule,
@@ -36,7 +36,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         NbCardModule,
         NbInputModule,
         NbButtonModule,
-        NbCheckboxModule
+        NbCheckboxModule,
+        NbIconModule
     ],
     declarations: [
         AccountSettingsComponent,
