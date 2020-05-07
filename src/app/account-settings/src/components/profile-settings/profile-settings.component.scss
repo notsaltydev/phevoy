@@ -3,13 +3,14 @@
 }
 
 .form-header {
+  font-size: 21px;
+  font-weight: 500;
   margin: 40px 0;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   .profile-settings-form {
     display: flex;
@@ -25,7 +26,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .profile-avatar-container {
