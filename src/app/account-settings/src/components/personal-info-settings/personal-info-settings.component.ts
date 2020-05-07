@@ -6,6 +6,23 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./personal-info-settings.component.scss']
 })
 export class PersonalInfoSettingsComponent implements OnInit {
+    tabs = [
+        {
+            title: 'Profile',
+            route: '/account/profile',
+            responsive: true
+        },
+        {
+            title: 'Password & Email',
+            route: '/account/authentication',
+            responsive: true
+        },
+        {
+            title: 'Time & Language',
+            route: '/account/internationalization',
+            responsive: true
+        }
+    ];
 
     constructor() {
     }

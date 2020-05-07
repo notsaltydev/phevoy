@@ -9,7 +9,7 @@ import {
     ProfileSettingsComponent
 } from './components';
 import { AccountSettingsRoutingModule } from './account-settings-routing.module';
-import { NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbCardModule, NbLayoutModule, NbMenuModule, NbRouteTabsetModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
@@ -21,7 +21,9 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         NbLayoutModule,
         NbSidebarModule,
         NbMenuModule,
-        NbEvaIconsModule
+        NbEvaIconsModule,
+        NbRouteTabsetModule,
+        NbCardModule
     ],
     declarations: [
         AccountSettingsComponent,
