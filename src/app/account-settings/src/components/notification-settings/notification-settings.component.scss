@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  padding: 24px 0 16px;
+  margin-bottom: 32px;
+}
+
+.form-header {
+  padding-bottom: 16px;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.notification-body {
+  margin: 40px 0;
+}
