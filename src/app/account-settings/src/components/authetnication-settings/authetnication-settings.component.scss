@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  font-size: 21px;
+  font-weight: 500;
+  margin: 40px 0;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  .save-btn {
+    margin-bottom: 40px;
+  }
+}
+
+hr {
+  border: 1px solid #edf1f7;
+  margin: 40px 0;
+}
