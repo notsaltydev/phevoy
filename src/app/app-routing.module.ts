@@ -23,6 +23,11 @@ const routes: Routes = [
         loadChildren: () => import('./account-settings/src/account-settings.module').then(m => m.AccountSettingsModule),
         canActivate: [AuthGuard]
     },
+    {
+        path: 'meet',
+        loadChildren: () => import('./meet/src/meet.module').then(m => m.MeetModule),
+        canActivate: [AuthGuard]
+    },
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'password-recovery', component: PasswordRecoveryComponent},

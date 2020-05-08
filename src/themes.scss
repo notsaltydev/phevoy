@@ -14,5 +14,6 @@ $nb-themes: nb-register-theme((
   // color-primary-900: #091c7a,
         select-min-width: 6rem,
         input-medium-max-width: 100%,
-        popover-border-radius: 10px
+        popover-border-radius: 10px,
+        overlay-backdrop-background-color: rgba(233, 234, 236, 0.35)
 ), corporate, corporate);
