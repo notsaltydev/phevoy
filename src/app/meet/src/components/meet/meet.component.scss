@@ -1,9 +1,31 @@
 :host {
+  position: relative;
   display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
 }
 
 .meet {
-  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  &.hide {
+    display: none;
+  }
+}
+
+.column-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

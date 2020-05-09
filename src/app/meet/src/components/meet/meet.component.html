@@ -1,1 +1,11 @@
-<div #meet class="meet"></div>
+<div #meet class="meet" [ngClass]="{'hide': isShowingPostMeetingActions}"></div>
+
+<nb-layout *ngIf="isShowingPostMeetingActions">
+    <nb-layout-column class="column-container">
+        <div class="action-container">
+            <button nbButton status="primary" shape="semi-round" (click)="startMeet(null, null)">Join Again</button>
+            <span>or</span>
+            <button nbButton status="primary" shape="semi-round" (click)="createAccount()">Create Free Account</button>
+        </div>
+    </nb-layout-column>
+</nb-layout>

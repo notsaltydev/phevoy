@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    HostListener,
+    OnDestroy,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { fromEventPattern, Observable, Subscription } from 'rxjs';
 import { EventEmitter } from 'events';
+import { environment } from '../../../../../environments/environment';
 
 declare const JitsiMeetExternalAPI;
 
@@ -13,10 +23,15 @@ declare const JitsiMeetExternalAPI;
 })
 export class MeetComponent implements OnInit, OnDestroy {
     @ViewChild('meet', {static: true}) private meetRef: ElementRef;
+    isShowingPostMeetingActions: boolean;
+
     private jitsiMeetExternalAPI: any;
     private subscription: Subscription = new Subscription();
 
-    constructor(private route: ActivatedRoute) {
+    constructor(
+        private route: ActivatedRoute,
+        private changeDetector: ChangeDetectorRef
+    ) {
     }
 
     ngOnInit(): void {
@@ -30,7 +45,12 @@ export class MeetComponent implements OnInit, OnDestroy {
                 parentNode: this.meetRef.nativeElement
             };
 
-            this.jitsiMeetExternalAPI = new JitsiMeetExternalAPI(domain, options);
+            if (!this.isDevEnv) {
+                this.startMeet(domain, options);
+            } else {
+                this.isShowingPostMeetingActions = true;
+                this.changeDetector.markForCheck();
+            }
 
             if (this.jitsiMeetExternalAPI) {
                 this.bindEvents();
@@ -40,14 +60,23 @@ export class MeetComponent implements OnInit, OnDestroy {
     }
 
     @HostListener('window:beforeunload', ['$event'])
-    onBeforeUnload() {
+    onBeforeUnload(): void {
         this.disposeConference();
     }
 
-    private bindEvents() {
+    createAccount(): void {
+    }
+
+    startMeet(domain, options): void {
+        this.jitsiMeetExternalAPI = new JitsiMeetExternalAPI(domain, options);
+    }
+
+    private bindEvents(): void {
         this.subscription.add(this.handleJitsiEvent('readyToClose').subscribe(
             () => {
-                this.jitsiMeetExternalAPI.dispose();
+                this.disposeConference();
+                this.isShowingPostMeetingActions = true;
+                this.changeDetector.markForCheck();
             }
         ));
     }
@@ -64,6 +93,10 @@ export class MeetComponent implements OnInit, OnDestroy {
         if (!!this.jitsiMeetExternalAPI) {
             this.jitsiMeetExternalAPI.dispose();
         }
+    }
+
+    private isDevEnv(): boolean {
+        return !environment.production;
     }
 
     ngOnDestroy(): void {

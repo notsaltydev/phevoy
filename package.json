@@ -12,7 +12,7 @@
     "serve:ssr": "node dist/phevoy/server/main.js",
     "build:ssr": "ng build --prod && ng run phevoy:server:production",
     "prerender": "ng run phevoy:prerender",
-    "postinstall": "ngcc"
+    "postinstall": "ngcc --properties es2015 es5 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "dependencies": {
