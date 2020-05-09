@@ -9,7 +9,6 @@ export class MeetIdResolver implements Resolve<string> {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<string> | Promise<string> | string {
-        // return route.params.id;
-        return '5b7ee283-8ddd-4ec8-a2f1-77b827b8dd1b';
+        return route.params.id;
     }
 }

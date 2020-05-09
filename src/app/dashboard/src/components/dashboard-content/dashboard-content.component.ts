@@ -6,6 +6,7 @@ import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
 import { isAfter, subDays } from 'date-fns';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -20,11 +21,12 @@ export class DashboardContentComponent implements OnInit {
     constructor(
         private scheduleService: ScheduleService,
         private changeDetectorRef: ChangeDetectorRef,
-        private dialogService: NbDialogService
+        private dialogService: NbDialogService,
+        private router: Router
     ) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.scheduleService.getConferences()
             .pipe(
                 map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isAfter(conf.startDate, subDays(new Date(), 1)))),
@@ -37,7 +39,7 @@ export class DashboardContentComponent implements OnInit {
             });
     }
 
-    open(type: 'create' | 'update', conference?: ConferenceDto) {
+    open(type: 'create' | 'update', conference?: ConferenceDto): void {
         let editedConference: any;
 
         if (type === 'update' && conference) {
@@ -66,6 +68,15 @@ export class DashboardContentComponent implements OnInit {
         });
     }
 
+    delete(id: string): void {
+        this.scheduleService.deleteConference(id).subscribe(() => {
+        });
+    }
+
+    join(id: number): void {
+        this.router.navigate(['/meet', id]);
+    }
+
     private createSchedule(conference: ConferenceDto): void {
         this.scheduleService.createConference({
             ...conference
@@ -80,7 +91,7 @@ export class DashboardContentComponent implements OnInit {
         });
     }
 
-    private updateSchedule(id: string, conference: ConferenceDto) {
+    private updateSchedule(id: string, conference: ConferenceDto): void {
         this.scheduleService.updateConference(id, {
             ...conference,
             id
@@ -88,8 +99,4 @@ export class DashboardContentComponent implements OnInit {
         });
     }
 
-    delete(id: string): void {
-        this.scheduleService.deleteConference(id).subscribe(() => {
-        });
-    }
 }

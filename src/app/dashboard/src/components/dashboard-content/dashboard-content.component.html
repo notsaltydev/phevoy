@@ -29,6 +29,7 @@
                         [conference]="conference"
                         [showActionsButton]="true">
                     <div class="action-body">
+                        <button class="join" nbButton outline status="primary" size="small" (click)="join(conference.id)">Join</button>
                         <nb-icon
                                 class="icon action-toggle"
                                 icon="more-vertical-outline"

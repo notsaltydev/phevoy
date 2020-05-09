@@ -8,10 +8,9 @@ import {
     OnInit,
     ViewChild
 } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { fromEventPattern, Observable, Subscription } from 'rxjs';
 import { EventEmitter } from 'events';
-import { environment } from '../../../../../environments/environment';
 
 declare const JitsiMeetExternalAPI;
 
@@ -24,33 +23,37 @@ declare const JitsiMeetExternalAPI;
 export class MeetComponent implements OnInit, OnDestroy {
     @ViewChild('meet', {static: true}) private meetRef: ElementRef;
     isShowingPostMeetingActions: boolean;
+    isLoggedIn: boolean;
+    options = {
+        roomName: null,
+        width: '100%',
+        height: '100%',
+        parentNode: null
+    };
+    domain = 'meet.jit.si';
 
     private jitsiMeetExternalAPI: any;
-    private subscription: Subscription = new Subscription();
+    private subscription: Subscription;
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private changeDetector: ChangeDetectorRef
     ) {
     }
 
     ngOnInit(): void {
+        this.isLoggedIn = !!localStorage.getItem('accessToken');
         this.route.data.subscribe((data: Data) => {
             const roomName = `phev-${data.meetId}`;
-            const domain = 'meet.jit.si';
-            const options = {
+            const parentNode = this.meetRef.nativeElement;
+            this.options = {
+                ...this.options,
                 roomName,
-                width: '100%',
-                height: '100%',
-                parentNode: this.meetRef.nativeElement
+                parentNode
             };
 
-            if (!this.isDevEnv) {
-                this.startMeet(domain, options);
-            } else {
-                this.isShowingPostMeetingActions = true;
-                this.changeDetector.markForCheck();
-            }
+            this.startMeet(this.domain, this.options);
 
             if (this.jitsiMeetExternalAPI) {
                 this.bindEvents();
@@ -68,14 +71,23 @@ export class MeetComponent implements OnInit, OnDestroy {
     }
 
     startMeet(domain, options): void {
+        this.isShowingPostMeetingActions = false;
         this.jitsiMeetExternalAPI = new JitsiMeetExternalAPI(domain, options);
+        this.bindEvents();
+        this.changeDetector.markForCheck();
+    }
+
+    backToDashboard(): void {
+        this.router.navigate(['/app']);
     }
 
     private bindEvents(): void {
+        this.subscription = new Subscription();
         this.subscription.add(this.handleJitsiEvent('readyToClose').subscribe(
             () => {
                 this.disposeConference();
                 this.isShowingPostMeetingActions = true;
+                this.subscription.unsubscribe();
                 this.changeDetector.markForCheck();
             }
         ));
@@ -95,13 +107,9 @@ export class MeetComponent implements OnInit, OnDestroy {
         }
     }
 
-    private isDevEnv(): boolean {
-        return !environment.production;
-    }
-
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
-        this.jitsiMeetExternalAPI.dispose();
+        this.disposeConference();
     }
 
 }
