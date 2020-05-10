@@ -1,7 +1,62 @@
 <nb-card>
     <nb-card-header>{{title}}</nb-card-header>
-    <nb-card-body></nb-card-body>
-    <nb-card-footer>
-        <button nbButton (click)="close()">Close</button>
-    </nb-card-footer>
+    <nb-card-body>
+        <nb-tabset>
+            <nb-tab class="tab" tabTitle="FAQ">
+                <div class="faq-container">
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="question-mark-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a class="link" routerLink="/app">How to invite person to conference?</a>
+                    </span>
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="question-mark-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a class="link" routerLink="/app">How to assign person to conference?</a>
+                    </span>
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="question-mark-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a class="link" routerLink="/app">How to create a conference?</a>
+                    </span>
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="question-mark-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a class="link" routerLink="/app">How to change a profile picture?</a>
+                    </span>
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="question-mark-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a class="link" routerLink="/app">How to change a profile picture?</a>
+                    </span>
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="question-mark-circle-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a class="link" routerLink="/app">How to set due dates and times?</a>
+                    </span>
+                </div>
+            </nb-tab>
+            <nb-tab class="tab" tabTitle="Shortcuts">
+                <p>Shortcuts content</p>
+            </nb-tab>
+        </nb-tabset>
+    </nb-card-body>
 </nb-card>
