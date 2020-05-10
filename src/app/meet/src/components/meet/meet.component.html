@@ -1,0 +1,26 @@
+<div id="wave" [ngClass]="{'hide': isShowingPostMeetingActions}">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+</div>
+
+<div #meet class="meet" [ngClass]="{'hide': isShowingPostMeetingActions}"></div>
+
+<nb-layout *ngIf="isShowingPostMeetingActions">
+    <nb-layout-column class="column-container">
+        <h2 class="header-title">Thank you for using ...</h2>
+        <div class="action-container">
+            <button *ngIf="isLoggedIn" nbButton status="primary" shape="semi-round" (click)="backToDashboard()">
+                Go To App
+            </button>
+            <button *ngIf="!isLoggedIn" nbButton status="primary" shape="semi-round" (click)="createAccount()">
+                Create Free Account
+            </button>
+            <span class="line-separator">or</span>
+            <button nbButton status="basic" shape="semi-round" (click)="startMeet(domain, options)">
+                Join Again
+            </button>
+        </div>
+    </nb-layout-column>
+    <nb-layout-footer>Company name</nb-layout-footer>
+</nb-layout>
