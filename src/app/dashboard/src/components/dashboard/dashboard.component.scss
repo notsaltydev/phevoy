@@ -18,7 +18,7 @@
 .settings-popover {
   display: flex;
   flex-direction: column;
-
+  width: 240px;
 
   .popover-header {
     display: flex;
@@ -39,21 +39,32 @@
     .user-name {
       font-size: 18px;
       margin-top: 16px;
+      font-weight: 600;
+    }
+
+    .settings-link {
+      font-size: 16px;
     }
   }
 
   .menu-list {
-    padding: 0 16px;
 
     .menu-item {
       display: flex;
       align-items: center;
-      margin: 8px 0;
+      padding: 8px;
+      margin: 0 8px 8px;
       cursor: pointer;
+
+      &:hover {
+        background-color: #edf1f7;
+        border-radius: 8px;
+      }
 
       .icon {
         font-size: 24px;
         margin-right: 8px;
+        color: #8779AE;
       }
 
       .text {
