@@ -25,8 +25,7 @@ const routes: Routes = [
     },
     {
         path: 'meet',
-        loadChildren: () => import('./meet/src/meet.module').then(m => m.MeetModule),
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./meet/src/meet.module').then(m => m.MeetModule)
     },
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},

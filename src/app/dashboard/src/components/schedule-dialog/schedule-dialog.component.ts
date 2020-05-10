@@ -91,4 +91,15 @@ export class ScheduleDialogComponent implements OnInit {
     delete(id: Conference): void {
         console.log('Delete: ', id);
     }
+
+    join(event: MouseEvent, id: string) {
+        event.stopPropagation();
+
+        this.ref.close({
+            action: 'Join',
+            payload: {
+                id
+            }
+        });
+    }
 }

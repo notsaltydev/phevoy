@@ -7,6 +7,8 @@ import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { NbDialogService } from '@nebular/theme';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { ScheduleDialogMode, ScheduleDialogView } from '../../models';
+import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const colors: any = {
     red: {
@@ -109,7 +111,8 @@ export class SchedulerComponent implements OnInit {
     constructor(
         private scheduleService: ScheduleService,
         private changeDetector: ChangeDetectorRef,
-        private dialogService: NbDialogService
+        private dialogService: NbDialogService,
+        private router: Router
     ) {
     }
 
@@ -146,7 +149,15 @@ export class SchedulerComponent implements OnInit {
                 view,
                 mode
             }
-        });
+        }).onClose
+            .pipe(
+                filter((data: any | null) => data)
+            )
+            .subscribe((dialogPayload: any) => {
+                if (dialogPayload.action === 'Join') {
+                    this.router.navigate(['meet', dialogPayload.payload.id]);
+                }
+            });
     }
 
     dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {

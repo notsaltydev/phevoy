@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MeetComponent } from './components/meet';
 import { MeetRoutingModule } from './meet-routing.module';
 import { MeetIdResolver } from './resolvers/meet-id';
-import { NbButtonModule, NbLayoutModule, NbSpinnerModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbIconModule, NbLayoutModule, NbSpinnerModule, NbThemeModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { NbButtonModule, NbLayoutModule, NbSpinnerModule, NbThemeModule } from '
         NbThemeModule,
         NbLayoutModule,
         NbButtonModule,
-        NbSpinnerModule
+        NbSpinnerModule,
+        NbIconModule
     ],
     declarations: [
         MeetComponent

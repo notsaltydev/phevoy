@@ -39,7 +39,11 @@
                             class="conference-item with-hover"
                             *ngFor="let event of events | orderBy: 'startDate'"
                             [conference]="event.meta"
+                            [showActionsButton]="true"
                             (click)="edit(event.meta)">
+                        <div class="action-body">
+                            <button class="join" nbButton outline status="primary" size="small" (click)="join($event, event.meta.id)">Join</button>
+                        </div>
                     </app-conference-item>
                     <div class="conference-action">
                         <nb-icon
