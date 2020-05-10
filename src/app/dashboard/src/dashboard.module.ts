@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     NbButtonModule,
     NbCardModule,
+    NbCheckboxModule,
     NbDatepickerModule,
     NbDialogModule,
     NbIconModule,
@@ -18,6 +19,7 @@ import {
     NbPopoverModule,
     NbSelectModule,
     NbSidebarModule,
+    NbTabsetModule,
     NbThemeModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -56,7 +58,9 @@ import { HelpDialogComponent } from './components/help-dialog/help-dialog.compon
         CalendarModule,
         NbMenuModule,
         NbPopoverModule,
-        NbIconModule
+        NbIconModule,
+        NbTabsetModule,
+        NbCheckboxModule
     ],
     declarations: [
         DashboardComponent,
