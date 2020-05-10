@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
     selector: 'app-feedback-dialog',
@@ -9,10 +10,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class FeedbackDialogComponent {
     @Input() title: string;
 
-    constructor() {
+    constructor(protected dialogRef: NbDialogRef<FeedbackDialogComponent>) {
     }
 
     close(): void {
-
+        this.dialogRef.close();
     }
 }
