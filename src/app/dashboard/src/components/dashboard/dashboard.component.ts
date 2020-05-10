@@ -2,7 +2,10 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Router } from '@angular/router';
 import { AuthenticationService, UserService } from '../../../../_services';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { NbMenuItem, NbSidebarService } from '@nebular/theme';
+import { NbDialogService, NbMenuItem, NbSidebarService } from '@nebular/theme';
+import { PreferencesDialogComponent } from '../preferences-dialog/preferences-dialog.component';
+import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
+import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
 
 export const MENU_ITEMS: NbMenuItem[] = [
     {
@@ -42,7 +45,8 @@ export class DashboardComponent implements OnInit {
         private authenticationService: AuthenticationService,
         // FIXME remove Router.
         private router: Router,
-        private sidebarService: NbSidebarService
+        private sidebarService: NbSidebarService,
+        private dialogService: NbDialogService
     ) {
     }
 
@@ -66,5 +70,29 @@ export class DashboardComponent implements OnInit {
     logout(): void {
         this.authenticationService.logout();
         this.router.navigate(['/']);
+    }
+
+    showPreferences(): void {
+        this.dialogService.open(PreferencesDialogComponent, {
+            context: {
+                title: 'Preferences'
+            }
+        });
+    }
+
+    showFeedback(): void {
+        this.dialogService.open(FeedbackDialogComponent, {
+            context: {
+                title: 'Leave Feedback'
+            }
+        });
+    }
+
+    showHelp(): void {
+        this.dialogService.open(HelpDialogComponent, {
+            context: {
+                title: 'Help'
+            }
+        });
     }
 }

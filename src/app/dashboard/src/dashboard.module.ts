@@ -30,6 +30,9 @@ import { RecentContentComponent } from './components/recent-content/recent-conte
 import { ConferenceItemComponent } from './components/conference-item/conference-item.component';
 import { EmptyStateConferenceComponent } from './components/empty-state-conference/empty-state-conference.component';
 import { ConferenceFormComponent } from './components/conference-form/conference-form.component';
+import { PreferencesDialogComponent } from './components/preferences-dialog/preferences-dialog.component';
+import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
+import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 
 
 @NgModule({
@@ -65,7 +68,10 @@ import { ConferenceFormComponent } from './components/conference-form/conference
         RecentContentComponent,
         ConferenceItemComponent,
         EmptyStateConferenceComponent,
-        ConferenceFormComponent
+        ConferenceFormComponent,
+        PreferencesDialogComponent,
+        FeedbackDialogComponent,
+        HelpDialogComponent
     ]
 })
 export class DashboardModule {
