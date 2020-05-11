@@ -7,7 +7,7 @@
 
   nb-card-header {
     font-size: 21px;
-    padding: 32px;
+    padding: 32px 32px 16px;
     border: none;
     box-shadow: none;
   }
@@ -25,4 +25,38 @@
     border-bottom-right-radius: 10px;
   }
 
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+
+  .close-dialog {
+    cursor: pointer;
+    margin: 0 0 0 auto;
+  }
+}
+
+.text {
+  display: flex;
+  font-size: 16px;
+  max-width: 400px;
+  margin-bottom: 24px;
+}
+
+.feedback-form {
+
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.feedback-footer {
+
+  .send-btn {
+    margin-right: 8px;
+  }
 }

@@ -16,4 +16,8 @@ export class FeedbackDialogComponent {
     close(): void {
         this.dialogRef.close();
     }
+
+    send(): void {
+        this.dialogRef.close();
+    }
 }

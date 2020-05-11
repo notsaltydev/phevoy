@@ -1,5 +1,15 @@
 <nb-card>
-    <nb-card-header>{{title}}</nb-card-header>
+    <nb-card-header>
+        <div class="header-wrapper">
+            <span>{{title}}</span>
+            <nb-icon
+                    class="close-dialog"
+                    icon="close-outline"
+                    [options]="{ animation: { type: 'flip' } }"
+                    (click)="close()">
+            </nb-icon>
+        </div>
+    </nb-card-header>
     <nb-card-body>
         <nb-tabset>
             <nb-tab class="tab" tabTitle="FAQ">

@@ -1,7 +1,46 @@
 <nb-card>
-    <nb-card-header>{{title}}</nb-card-header>
-    <nb-card-body></nb-card-body>
-    <nb-card-footer>
-        <button nbButton (click)="close()">Close</button>
+    <nb-card-header>
+        <div class="header-wrapper">
+            <span>{{title}}</span>
+            <nb-icon
+                    class="close-dialog"
+                    icon="close-outline"
+                    [options]="{ animation: { type: 'flip' } }"
+                    (click)="close()">
+            </nb-icon>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <span class="text">
+            We are looking forward to hearing back from you, please do drop us a line if you feel like it.
+        </span>
+        <form class="feedback-form">
+            <div class="form-group">
+                <label class="label" for="subject">Subject</label>
+                <input class="form-control"
+                       id="subject"
+                       type="text"
+                       placeholder="Please type a subject..."
+                       nbInput
+                       shape="semi-round"
+                       status="basic">
+            </div>
+            <div class="form-group">
+                <label class="label" for="message">Message</label>
+                <textarea class="form-control"
+                          id="message"
+                          type="text"
+                          placeholder="Please type a message..."
+                          nbInput
+                          shape="semi-round"
+                          status="basic">
+                </textarea>
+            </div>
+        </form>
+    </nb-card-body>
+    <nb-card-footer class="feedback-footer">
+        <button type="button" class="send-btn" nbButton status="success" shape="semi-round" (click)="send()">Send
+        </button>
+        <button type="button" nbButton status="basic" shape="semi-round" (click)="close()">Close</button>
     </nb-card-footer>
 </nb-card>
