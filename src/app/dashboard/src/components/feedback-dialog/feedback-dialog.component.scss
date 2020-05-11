@@ -14,7 +14,6 @@
 
   nb-card-body {
     max-height: 650px;
-    min-height: 320px;
     min-width: 650px;
     overflow: auto;
   }
@@ -38,12 +37,26 @@
   }
 }
 
-.footer {
+.text {
   display: flex;
-  align-items: center;
-  background-color: #ffffff;
+  font-size: 16px;
+  max-width: 400px;
+  margin-bottom: 24px;
 }
 
-.save {
-  margin-right: 8px;
+.feedback-form {
+
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.feedback-footer {
+
+  .send-btn {
+    margin-right: 8px;
+  }
 }

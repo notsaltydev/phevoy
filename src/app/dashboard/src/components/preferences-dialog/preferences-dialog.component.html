@@ -1,0 +1,56 @@
+<nb-card>
+    <nb-card-header>
+        <div class="header-wrapper">
+            <span>{{title}}</span>
+            <nb-icon
+                    class="close-dialog"
+                    icon="close-outline"
+                    [options]="{ animation: { type: 'flip' } }"
+                    (click)="close()">
+            </nb-icon>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-tabset>
+            <nb-tab class="tab" tabTitle="Notifications">
+                <div class="notification-settings">
+                    <nb-checkbox status="basic">Enable desktop notifications</nb-checkbox>
+                </div>
+                <div class="more-options">
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="bell-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a routerLink="/account/notifications">Notification Settings</a>
+                    </span>
+                    <span class="option">
+                        <nb-icon
+                                class="icon"
+                                icon="globe-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <a routerLink="/account/internationalization">Time & Language</a>
+                    </span>
+                </div>
+            </nb-tab>
+            <nb-tab class="tab" tabTitle="Appearance">
+                <div class="appearance-settings">
+                    <span class="setting-name">
+                        <nb-icon
+                                class="icon"
+                                icon="color-palette-outline"
+                                [options]="{ animation: { type: 'flip' } }">
+                        </nb-icon>
+                        <span>Theme:</span>
+                    </span>
+                    <nb-select class="theme-selector" placeholder="Choose a theme..." status="primary">
+                        <nb-option value="1">Light</nb-option>
+                        <nb-option value="2">Dark</nb-option>
+                    </nb-select>
+                </div>
+            </nb-tab>
+        </nb-tabset>
+    </nb-card-body>
+</nb-card>

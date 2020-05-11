@@ -1,0 +1,83 @@
+@import '~@nebular/theme/styles/component';
+
+@include nb-install-component() {
+  nb-card {
+    border-radius: 10px;
+  }
+
+  nb-card-header {
+    font-size: 21px;
+    padding: 32px 32px 16px;
+    border: none;
+    box-shadow: none;
+  }
+
+  nb-card-body {
+    max-height: 650px;
+    min-height: 320px;
+    min-width: 650px;
+    overflow: auto;
+  }
+
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+
+  .close-dialog {
+    cursor: pointer;
+    margin: 0 0 0 auto;
+  }
+}
+
+.tab {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 8px;
+
+  .link {
+    font-size: 16px;
+  }
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 8px;
+  color: #8779AE;
+}
+
+.shortcuts-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+
+  .sub-header {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+.code {
+  background: #edf1f7;
+  border: 1px dashed black;
+  border-radius: 10px;
+  color: #222b45;
+  padding: 6px;
+}
+
+.description {
+  margin-left: 8px;
+}

@@ -19,13 +19,6 @@
     overflow: auto;
   }
 
-  nb-card-footer {
-    min-height: 72px;
-    border: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-
 }
 
 .header-wrapper {
@@ -38,12 +31,45 @@
   }
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
+.tab {
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
-.save {
+.notification-settings {
+  padding-top: 16px;
+}
+
+.more-options {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+
+  .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+}
+
+.icon {
+  font-size: 24px;
   margin-right: 8px;
+  color: #8779AE;
+}
+
+.appearance-settings {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+}
+
+.setting-name {
+  display: flex;
+  align-items: center;
+}
+
+.theme-selector {
+  margin-left: 16px;
 }
