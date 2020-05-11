@@ -48,3 +48,26 @@
   margin-right: 8px;
   color: #8779AE;
 }
+
+.shortcuts-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+
+  .sub-header {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+.code {
+  background: #edf1f7;
+  border: 1px dashed black;
+  border-radius: 10px;
+  color: #222b45;
+  padding: 6px;
+}
+
+.description {
+  margin-left: 8px;
+}
