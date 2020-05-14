@@ -31,7 +31,7 @@ deploy_staging:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.phevoy.pl"
     # stop container, remove image.
     - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
     - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
@@ -61,7 +61,7 @@ stop_staging:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.phevoy.pl"
     # stop container, remove image.
     - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
     - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
@@ -87,7 +87,7 @@ deploy_prod:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.phevoy.pl"
     # stop container, remove image.
     - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
     - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
@@ -115,7 +115,7 @@ stop_prod:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.phevoy.pl"
     # stop container, remove image.
     - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
     - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
