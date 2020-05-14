@@ -31,16 +31,16 @@ deploy_staging:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@skybuzz.xyz "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.skybuzz.xyz"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
     # stop container, remove image.
-    - ssh deployer@skybuzz.xyz "docker stop skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rm skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
+    - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
     # start new container
-    - ssh deployer@skybuzz.xyz "docker run --label traefik.frontend.rule=Host:${CI_ENVIRONMENT_SLUG}.skybuzz.xyz --name skybuzz.xyz_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
+    - ssh deployer@phevoy.pl "docker run --label traefik.frontend.rule=Host:${CI_ENVIRONMENT_SLUG}.phevoy.pl --name phevoy.pl_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: http://${CI_ENVIRONMENT_SLUG}.skybuzz.xyz
+    url: http://${CI_ENVIRONMENT_SLUG}.phevoy.pl
     on_stop: stop_staging
   only:
     - branches
@@ -61,11 +61,11 @@ stop_staging:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@skybuzz.xyz "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.skybuzz.xyz"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
     # stop container, remove image.
-    - ssh deployer@skybuzz.xyz "docker stop skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rm skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
+    - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
   when: manual
   environment:
     name: review/$CI_COMMIT_REF_NAME
@@ -87,16 +87,16 @@ deploy_prod:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@skybuzz.xyz "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.skybuzz.xyz"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
     # stop container, remove image.
-    - ssh deployer@skybuzz.xyz "docker stop skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rm skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
+    - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
     # start new container
-    - ssh deployer@skybuzz.xyz "docker run --label traefik.frontend.rule=Host:skybuzz.xyz --name skybuzz.xyz_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
+    - ssh deployer@phevoy.pl "docker run --label traefik.frontend.rule=Host:phevoy.pl --name phevoy.pl_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
   environment:
     name: production
-    url: http://skybuzz.xyz
+    url: http://phevoy.pl
     on_stop: stop_prod
   only:
     - master
@@ -115,11 +115,11 @@ stop_prod:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     # log into Docker registry
-    - ssh deployer@skybuzz.xyz "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.skybuzz.xyz"
+    - ssh deployer@phevoy.pl "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab-ce.phevoy.pl"
     # stop container, remove image.
-    - ssh deployer@skybuzz.xyz "docker stop skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rm skybuzz.xyz_${CI_COMMIT_REF_SLUG}" || true
-    - ssh deployer@skybuzz.xyz "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
+    - ssh deployer@phevoy.pl "docker stop phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
+    - ssh deployer@phevoy.pl "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
   when: manual
   environment:
     name: production

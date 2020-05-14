@@ -27,4 +27,4 @@ RUN npm run build:ssr
 # pm2 start npm --name "phevoy" -- run serve:ssr
 CMD ["pm2-runtime", "start", "npm", "--name", "phevoy", "--", "run", "serve:ssr"]
 
-LABEL traefik.backend=${CI_ENVIRONMENT_SLUG:-master} traefik.frontend.rule=Host:${CI_ENVIRONMENT_SLUG:-www}.skybuzz.xyz traefik.docker.network=traefik_net traefik.enable=true traefik.port=4000 traefik.default.protocol=http
+LABEL traefik.backend=${CI_ENVIRONMENT_SLUG:-master} traefik.frontend.rule=Host:${CI_ENVIRONMENT_SLUG:-www}.phevoy.pl traefik.docker.network=traefik_net traefik.enable=true traefik.port=4000 traefik.default.protocol=http
