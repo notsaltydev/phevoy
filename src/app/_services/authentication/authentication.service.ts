@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string): any {
-        return this.http.post<any>(`http://localhost:3000/auth/login`, {username, password})
+        return this.http.post<any>(`${environment.BASE_URL}/auth/login`, {username, password})
             .pipe(tap(payload => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 this.setToken(payload.accessToken);
