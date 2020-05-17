@@ -19,6 +19,7 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
     @Input() endDate: Date;
     @Input() description: string;
     @Output() valueChanged: EventEmitter<Conference> = new EventEmitter<Conference>();
+    @Output() isValid: EventEmitter<boolean> = new EventEmitter<boolean>();
     form: FormGroup;
     times: string[] = times;
     availableEndTimes: string[];
@@ -55,6 +56,7 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
 
         this.subscription.add(this.form.valueChanges.subscribe((changes: Conference) => {
             this.valueChanged.emit(changes);
+            this.isValid.emit(this.form.valid);
         }));
     }
 

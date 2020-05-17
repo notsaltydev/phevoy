@@ -16,7 +16,8 @@
                 [endDate]="endDate"
                 [name]="name"
                 [startDate]="startDate"
-                (valueChanged)="conferenceFormChanged($event)">
+                (valueChanged)="conferenceFormChanged($event)"
+                (isValid)="validConferenceFormChanged($event)">
         </app-conference-form>
     </nb-card-body>
     <nb-card-footer class="footer">
