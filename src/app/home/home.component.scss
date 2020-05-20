@@ -1,5 +1,11 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
 $blue-grey: #444F60;
 $basaltic-grey: #878787;
+$fade-grey: #ededed;
+$secondary: #8c8cf9;
+$muted-grey: #999;
 
 .featured-image {
   width: 100%;
@@ -19,4 +25,66 @@ $basaltic-grey: #878787;
   margin: 0 auto;
   color: $basaltic-grey;
   font-size: 18px;
+}
+
+.boxed-features {
+  padding: 40px 0;
+
+  .flex-card {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &.light-bordered {
+      border: 1px solid #e5e5e5;
+    }
+
+    .flex-cell {
+      width: 25%;
+      border-right: 1px solid darken($fade-grey, 3%);
+      text-align: center;
+      padding: 24px 16px;
+
+      &.is-bordered {
+        border-bottom: 1px solid darken($fade-grey, 3%);
+      }
+
+      &.no-border-edge {
+        border-right: none;
+      }
+
+      i {
+        font-size: 2.2rem;
+        color: $secondary;
+      }
+
+      h3 {
+        font-weight: 500;
+        color: $blue-grey;
+      }
+
+      p {
+        font-size: .95rem;
+        color: $muted-grey;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .boxed-features {
+    .flex-card {
+      .flex-cell {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid darken($fade-grey, 3%);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }
