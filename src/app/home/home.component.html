@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="./index.html">
-            <img src="assets/img/brand.png" class="navbar-brand-img" alt="...">
+            <img alt="..." class="navbar-brand-img" src="assets/img/brand.png">
         </a>
 
         <div class="ml-auto">
-            <a routerLink="/signup" class="navbar-btn btn btn-primary semi-rounded">Try free</a>
-            <a routerLink="/login" class="navbar-btn btn btn-outline-primary semi-rounded ml-3">Login</a>
+            <a class="navbar-btn btn btn-primary semi-rounded" routerLink="/signup">Try free</a>
+            <a class="navbar-btn btn btn-outline-primary semi-rounded ml-3" routerLink="/login">Login</a>
         </div>
     </div>
 </nav>
@@ -14,8 +14,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 col-md-5 col-lg-6 order-md-2">
-                <img src="assets/img/illustrations/drawings/landing8-2.svg"
-                     class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="...">
+                <img alt="..."
+                     class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" src="assets/img/illustrations/drawings/why-3.svg">
             </div>
             <div class="col-12 col-md-7 col-lg-6 order-md-1">
                 <h1 class="header text-center text-md-left">
@@ -26,15 +26,15 @@
                     they're.
                 </p>
                 <div class="pt-5 pt-md-5 text-center text-md-left">
-                    <a routerLink="/" class="btn btn-primary btn-lg semi-rounded">Get Started</a>
-                    <a routerLink="/" class="btn btn-primary-transparent btn-lg ml-2 semi-rounded">Join a meeting</a>
+                    <a class="btn btn-primary btn-lg semi-rounded" routerLink="/">Get Started</a>
+                    <a class="btn btn-primary-transparent btn-lg ml-2 semi-rounded" routerLink="/">Join a meeting</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="section">
+<section class="section">
     <div class="container">
 
         <div class="section-title text-center">
@@ -94,21 +94,21 @@
             </div>
             <div class="head-action">
                 <div class="buttons">
-                    <button type="button" class="btn btn-primary btn-lg semi-rounded">Try it free</button>
-                    <button type="button" class="btn btn-primary-transparent ml-2 btn-lg semi-rounded">Chat with us
+                    <button class="btn btn-primary btn-lg semi-rounded" type="button">Try it free</button>
+                    <button class="btn btn-primary-transparent ml-2 btn-lg semi-rounded" type="button">Chat with us
                     </button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="section pt-12 pt-md-16">
+<section class="section pt-12 pt-md-16">
     <div class="container-lg">
 
         <div class="row align-items-center justify-content-between">
             <div class="col-md-7">
-                <img class="featured-image" src="assets/img/illustrations/UI/feature-4.png" alt="">
+                <img alt="" class="featured-image" src="assets/img/illustrations/UI/why-2.svg">
             </div>
             <div class="col-md-5 text-center text-md-left">
                 <h2 class="feature-title display-4 mb-4">Build your profile</h2>
@@ -121,7 +121,7 @@
 
         <div class="row align-items-center justify-content-between">
             <div class="col-md-7 order-md-1">
-                <img class="featured-image" src="assets/img/illustrations/drawings/landing8-1.svg" alt="">
+                <img alt="" class="featured-image" src="assets/img/illustrations/drawings/landing8-1.svg">
             </div>
             <div class="col-md-5 order-md-0 text-center text-md-right">
                 <h2 class="feature-title display-4 mb-4">Get top ranked</h2>
@@ -134,7 +134,7 @@
 
         <div class="row align-items-center justify-content-between">
             <div class="col-md-7">
-                <img class="featured-image" src="assets/img/illustrations/UI/feature-5.png" alt="">
+                <img alt="" class="featured-image" src="assets/img/illustrations/UI/why-1.svg">
             </div>
             <div class="col-md-5 text-center text-md-left">
                 <h2 class="feature-title display-4 mb-4">Work on top tier projects</h2>
@@ -145,5 +145,48 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="title is-2">Frequently Asked Questions</h2>
+            <h4>Everything you need to know to get started.</h4>
+        </div>
+        <div class="faq-wrapper">
+            <div class="row justify-content-center">
+                <div class="col-md-5 offset-md-1">
+                    <div *ngFor="let faqItem of faqItems.slice(0,4)" class="faq-block">
+                        <div (click)="faqItem.isCollapsed = !faqItem.isCollapsed"
+                             [ngClass]="{'is-active': faqItem.isCollapsed}"
+                             class="block-header">
+                            <div class="header-icon">
+                                <i class="im im-icon-Add"></i>
+                            </div>
+                            <h3>{{faqItem.header}}</h3>
+                        </div>
+                        <div [ngClass]="{'is-active': faqItem.isCollapsed}" class="block-body">
+                            <p>{{faqItem.body}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div *ngFor="let faqItem of faqItems.slice(4,8)" class="faq-block">
+                        <div (click)="faqItem.isCollapsed = !faqItem.isCollapsed"
+                             [ngClass]="{'is-active': faqItem.isCollapsed}"
+                             class="block-header">
+                            <div class="header-icon">
+                                <i class="im im-icon-Add"></i>
+                            </div>
+                            <h3>{{faqItem.header}}</h3>
+                        </div>
+                        <div [ngClass]="{'is-active': faqItem.isCollapsed}" class="block-body">
+                            <p>{{faqItem.body}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <app-footer></app-footer>
