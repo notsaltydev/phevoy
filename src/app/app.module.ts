@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FooterComponent } from './footer';
 
 @NgModule({
     imports: [
@@ -48,7 +49,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
         PasswordRecoveryComponent,
         FeaturesComponent,
         PricingComponent,
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

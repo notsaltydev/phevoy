@@ -1,6 +1,5 @@
-//@import "assets/v1/scss/core_kit1.scss";
-//@import "assets/v1-error/scss/core_error1.scss";
-@import '~bulma';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+@import "assets/scss/icons";
 
 @import 'themes';
 
@@ -10,16 +9,13 @@
   @include nb-theme-global();
 }
 
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "./angular-calendar";
-
-.columns, .column {
-  margin: 0;
-}
-
-.columns:last-child {
-  margin-bottom: 0;
-}
 
 .wavy {
   &:before {
