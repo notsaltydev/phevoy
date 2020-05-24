@@ -1,0 +1,37 @@
+import { Inject, Injectable, Injector } from '@angular/core';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+import { AuthService } from '../auth.service';
+import { AUTH_INTERCEPTOR_HEADER } from '../../auth.options';
+import { AuthJWTToken } from '../token';
+
+@Injectable()
+export class AuthSimpleInterceptor implements HttpInterceptor {
+
+    constructor(private injector: Injector,
+                @Inject(AUTH_INTERCEPTOR_HEADER) protected headerName: string = 'Authorization') {
+    }
+
+    protected get authService(): AuthService {
+        return this.injector.get(AuthService);
+    }
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        return this.authService.getToken()
+            .pipe(
+                switchMap((token: AuthJWTToken) => {
+                    if (token && token.getValue()) {
+                        req = req.clone({
+                            setHeaders: {
+                                [this.headerName]: token.getValue(),
+                            },
+                        });
+                    }
+                    return next.handle(req);
+                }),
+            );
+    }
+}
