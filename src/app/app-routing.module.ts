@@ -27,6 +27,10 @@ const routes: Routes = [
         path: 'meet',
         loadChildren: () => import('./meet/src/meet.module').then(m => m.MeetModule)
     },
+    {
+        path: 'auth',
+        loadChildren: () => import('./auth/src/auth.module').then(m => m.AuthModule)
+    },
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'password-recovery', component: PasswordRecoveryComponent},
