@@ -1,14 +1,14 @@
-<h1 class="title" id="title">Login</h1>
-<p class="sub-title">Hello! Log in with your email.</p>
+<h1 class="text-center mb-4" id="title">Login</h1>
+<p class="sub-title text-center mb-5">Hello! Log in with your email.</p>
 
-<div *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+<div class="alert alert-danger" role="alert" *ngIf="showMessages.error && errors?.length && !submitted">
     <p class="alert-title"><b>Oh snap!</b></p>
     <ul class="alert-message-list">
         <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
     </ul>
 </div>
 
-<div *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+<div class="alert alert-success" role="alert" *ngIf="showMessages.success && messages?.length && !submitted">
     <p class="alert-title"><b>Hooray!</b></p>
     <ul class="alert-message-list">
         <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
@@ -17,32 +17,32 @@
 
 <form #form="ngForm" (ngSubmit)="login()" aria-labelledby="title">
 
-    <div class="form-control-group">
+    <div class="form-group">
         <label class="label" for="input-email">Email address:</label>
         <input #email="ngModel"
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
                [required]="getConfigValue('forms.validation.email.required')"
+               class="form-control"
                autofocus
-               fieldSize="large"
                id="input-email"
                name="email"
                pattern=".+@.+\..+"
                placeholder="Email address">
         <ng-container *ngIf="email.invalid && email.touched">
-            <p *ngIf="email.errors?.required" class="caption status-danger">
+            <p *ngIf="email.errors?.required" class="invalid-feedback">
                 Email is required!
             </p>
-            <p *ngIf="email.errors?.pattern" class="caption status-danger">
+            <p *ngIf="email.errors?.pattern" class="invalid-feedback">
                 Email should be the real one!
             </p>
         </ng-container>
     </div>
 
-    <div class="form-control-group">
+    <div class="form-group">
     <span class="label-with-link">
       <label class="label" for="input-password">Password:</label>
-      <a class="forgot-password caption-2" routerLink="../request-password">Forgot Password?</a>
+      <a class="forgot-password" routerLink="../reset-password">Forgot Password?</a>
     </span>
         <input #password="ngModel"
                [(ngModel)]="user.password"
@@ -50,16 +50,16 @@
                [maxlength]="getConfigValue('forms.validation.password.maxLength')"
                [minlength]="getConfigValue('forms.validation.password.minLength')"
                [required]="getConfigValue('forms.validation.password.required')"
-               fieldSize="large"
+               class="form-control"
                id="input-password"
                name="password"
                placeholder="Password"
                type="password">
         <ng-container *ngIf="password.invalid && password.touched ">
-            <p *ngIf="password.errors?.required" class="caption status-danger">
+            <p *ngIf="password.errors?.required" class="invalid-feedback">
                 Password is required!
             </p>
-            <p *ngIf="password.errors?.minlength || password.errors?.maxlength" class="caption status-danger">
+            <p *ngIf="password.errors?.minlength || password.errors?.maxlength" class="invalid-feedback">
                 Password should contain
                 from {{ getConfigValue('forms.validation.password.minLength') }}
                 to {{ getConfigValue('forms.validation.password.maxLength') }}
@@ -68,14 +68,21 @@
         </ng-container>
     </div>
 
-    <div class="form-control-group accept-group">
-        <checkbox *ngIf="rememberMe" [(ngModel)]="user.rememberMe" name="rememberMe">Remember me</checkbox>
+    <div class="form-group accept-group">
+        <div class="custom-control custom-checkbox" *ngIf="rememberMe">
+            <input type="checkbox"
+                   class="custom-control-input"
+                   id="login-remember"
+                   [(ngModel)]="user.rememberMe"
+                   name="rememberMe">
+            <label class="custom-control-label text-small text-muted" for="login-remember">Remember me</label>
+        </div>
     </div>
 
     <button [class.btn-pulse]="submitted"
             [disabled]="submitted || !form.valid"
-            size="large"
-            status="primary">
+            class="btn-block btn btn-primary"
+            type="submit">
         Log In
     </button>
 </form>

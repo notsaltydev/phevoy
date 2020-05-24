@@ -1,0 +1,44 @@
+.label {
+  display: block;
+  color: #1e2022;
+  font-size: .875rem;
+}
+
+.label-with-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forgot-password {
+  text-decoration: none;
+  font-size: .75rem;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.links {
+  text-align: center;
+  margin-top: 1.75rem;
+
+  .socials {
+    margin-top: 1.5rem;
+  }
+
+  .socials a {
+    margin: 0 1rem;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &.with-icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+.another-action {
+  margin-top: 2rem;
+  text-align: center;
+}
