@@ -1,4 +1,4 @@
-<h1 class="text-center mb-4" id="title">Login</h1>
+<h1 class="text-center mb-1" id="title">Login</h1>
 <p class="sub-title text-center mb-5">Hello! Log in with your email.</p>
 
 <div class="alert alert-danger" role="alert" *ngIf="showMessages.error && errors?.length && !submitted">
@@ -81,7 +81,7 @@
 
     <button [class.btn-pulse]="submitted"
             [disabled]="submitted || !form.valid"
-            class="btn-block btn btn-primary"
+            class="btn-block btn btn-primary btn-lg"
             type="submit">
         Log In
     </button>
