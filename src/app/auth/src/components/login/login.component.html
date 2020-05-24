@@ -23,7 +23,7 @@
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
                [required]="getConfigValue('forms.validation.email.required')"
-               class="form-control"
+               class="form-control form-control-lg"
                autofocus
                id="input-email"
                name="email"
@@ -50,7 +50,7 @@
                [maxlength]="getConfigValue('forms.validation.password.maxLength')"
                [minlength]="getConfigValue('forms.validation.password.minLength')"
                [required]="getConfigValue('forms.validation.password.required')"
-               class="form-control"
+               class="form-control form-control-lg"
                id="input-password"
                name="password"
                placeholder="Password"
