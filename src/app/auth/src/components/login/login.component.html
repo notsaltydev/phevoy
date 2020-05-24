@@ -18,7 +18,7 @@
 <form #form="ngForm" (ngSubmit)="login()" aria-labelledby="title">
 
     <div class="form-group">
-        <label class="label" for="input-email">Email address:</label>
+        <label class="label text-muted" for="input-email">Email address:</label>
         <input #email="ngModel"
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
@@ -41,7 +41,7 @@
 
     <div class="form-group">
     <span class="label-with-link">
-      <label class="label" for="input-password">Password:</label>
+      <label class="label text-muted" for="input-password">Password:</label>
       <a class="forgot-password" routerLink="../reset-password">Forgot Password?</a>
     </span>
         <input #password="ngModel"
@@ -96,7 +96,7 @@
                [attr.target]="socialLink.target"
                [class.with-icon]="socialLink.icon"
                [routerLink]="socialLink.link">
-                <!--                <i *ngIf="socialLink.icon; else title" [icon]="socialLink.icon"></i>-->
+                <i *ngIf="socialLink.icon; else title" class="im" [ngClass]="'im-icon-'+ socialLink.icon"></i>
                 <ng-template #title>{{ socialLink.title }}</ng-template>
             </a>
             <a *ngIf="socialLink.url"
@@ -104,7 +104,7 @@
                [attr.href]="socialLink.url"
                [attr.target]="socialLink.target"
                [class.with-icon]="socialLink.icon">
-                <!--                <i *ngIf="socialLink.icon; else title" [icon]="socialLink.icon"></i>-->
+                <i *ngIf="socialLink.icon; else title" class="im" [ngClass]="'im-icon-'+ socialLink.icon"></i>
                 <ng-template #title>{{ socialLink.title }}</ng-template>
             </a>
         </ng-container>

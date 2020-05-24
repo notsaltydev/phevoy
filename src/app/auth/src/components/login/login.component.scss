@@ -1,6 +1,5 @@
 .label {
   display: block;
-  color: #1e2022;
   font-size: .875rem;
 }
 
@@ -33,6 +32,10 @@
     vertical-align: middle;
 
     &.with-icon {
+      font-size: 2rem;
+    }
+
+    .im {
       font-size: 2rem;
     }
   }

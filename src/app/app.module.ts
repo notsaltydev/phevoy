@@ -27,19 +27,14 @@ import { DummyAuthStrategy } from './auth/src/strategies/dummy';
 
 const socialLinks = [
     {
-        url: 'https://github.com/phevoy',
+        url: 'https://www.phevoy.com/',
         target: '_blank',
-        icon: 'github',
+        icon: 'Facebook',
     },
     {
-        url: 'https://www.facebook.com/phevoy/',
+        url: 'https://phevoy.com/',
         target: '_blank',
-        icon: 'facebook',
-    },
-    {
-        url: 'https://twitter.com/phevoy',
-        target: '_blank',
-        icon: 'twitter',
+        icon: 'Google',
     },
 ];
 
