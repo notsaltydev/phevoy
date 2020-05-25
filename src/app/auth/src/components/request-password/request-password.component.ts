@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
 
 @Component({
-    selector: 'app-reset-password',
-    templateUrl: './reset-password.component.html',
-    styleUrls: ['./reset-password.component.scss'],
+    selector: 'app-request-password',
+    templateUrl: './request-password.component.html',
+    styleUrls: ['./request-password.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResetPasswordComponent {
+export class RequestPasswordComponent {
     redirectDelay: number = 0;
     showMessages: any = {};
     strategy: string = '';

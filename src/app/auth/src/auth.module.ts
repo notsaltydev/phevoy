@@ -1,7 +1,7 @@
 import { Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent, LoginComponent, LogoutComponent, RegisterComponent, ResetPasswordComponent } from './components';
+import { AuthComponent, LoginComponent, LogoutComponent, RegisterComponent, RequestPasswordComponent } from './components';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
@@ -74,7 +74,7 @@ export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
         LoginComponent,
         LogoutComponent,
         RegisterComponent,
-        ResetPasswordComponent
+        RequestPasswordComponent
     ],
     providers: [
         {provide: AUTH_OPTIONS, useFactory: authOptionsFactory, deps: [AUTH_USER_OPTIONS]},
