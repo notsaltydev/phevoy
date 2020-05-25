@@ -116,15 +116,17 @@
     </div>
 
     <div *ngIf="getConfigValue('forms.register.terms')" class="form-group accept-group">
-        <div class="custom-control custom-checkbox">
+        <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
             <input [(ngModel)]="user.terms"
                    [required]="getConfigValue('forms.register.terms')"
                    class="custom-control-input"
                    id="register-terms"
                    name="terms"
                    type="checkbox">
-            <label class="custom-control-label text-small text-muted" for="register-terms">
-                Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
+            <label class="custom-control-label" for="register-terms">
+                <small>
+                    I agree to the <a href="#" target="_blank">Terms & Conditions</a>
+                </small>
             </label>
         </div>
     </div>
