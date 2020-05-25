@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { AuthResult, AuthService } from '../../services';
 import { AUTH_OPTIONS } from '../../auth.options';
 import { Router } from '@angular/router';
@@ -7,7 +7,8 @@ import { getDeepFromObject } from '../../helpers';
 @Component({
     selector: 'app-reset-password',
     templateUrl: './reset-password.component.html',
-    styleUrls: ['./reset-password.component.scss']
+    styleUrls: ['./reset-password.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResetPasswordComponent {
     redirectDelay: number = 0;
