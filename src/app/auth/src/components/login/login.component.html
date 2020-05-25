@@ -1,14 +1,14 @@
 <h1 class="text-center mb-1" id="title">Login</h1>
 <p class="sub-title text-center mb-5">Hello! Log in with your email.</p>
 
-<div class="alert alert-danger" role="alert" *ngIf="showMessages.error && errors?.length && !submitted">
+<div *ngIf="showMessages.error && errors?.length && !submitted" class="alert alert-danger" role="alert">
     <p class="alert-title"><b>Oh snap!</b></p>
     <ul class="alert-message-list">
         <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
     </ul>
 </div>
 
-<div class="alert alert-success" role="alert" *ngIf="showMessages.success && messages?.length && !submitted">
+<div *ngIf="showMessages.success && messages?.length && !submitted" class="alert alert-success" role="alert">
     <p class="alert-title"><b>Hooray!</b></p>
     <ul class="alert-message-list">
         <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
@@ -23,8 +23,8 @@
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
                [required]="getConfigValue('forms.validation.email.required')"
-               class="form-control form-control-lg"
                autofocus
+               class="form-control form-control-lg"
                id="input-email"
                name="email"
                pattern=".+@.+\..+"
@@ -68,13 +68,13 @@
         </ng-container>
     </div>
 
-    <div class="form-group accept-group" *ngIf="rememberMe">
+    <div *ngIf="rememberMe" class="form-group accept-group">
         <div class="custom-control custom-checkbox">
-            <input type="checkbox"
+            <input [(ngModel)]="user.rememberMe"
                    class="custom-control-input"
                    id="login-remember"
-                   [(ngModel)]="user.rememberMe"
-                   name="rememberMe">
+                   name="rememberMe"
+                   type="checkbox">
             <label class="custom-control-label text-small text-muted" for="login-remember">Remember me</label>
         </div>
     </div>
@@ -96,7 +96,7 @@
                [attr.target]="socialLink.target"
                [class.with-icon]="socialLink.icon"
                [routerLink]="socialLink.link">
-                <i *ngIf="socialLink.icon; else title" class="im" [ngClass]="'im-icon-'+ socialLink.icon"></i>
+                <i *ngIf="socialLink.icon; else title" [ngClass]="'im-icon-'+ socialLink.icon" class="im"></i>
                 <ng-template #title>{{ socialLink.title }}</ng-template>
             </a>
             <a *ngIf="socialLink.url"
@@ -104,7 +104,7 @@
                [attr.href]="socialLink.url"
                [attr.target]="socialLink.target"
                [class.with-icon]="socialLink.icon">
-                <i *ngIf="socialLink.icon; else title" class="im" [ngClass]="'im-icon-'+ socialLink.icon"></i>
+                <i *ngIf="socialLink.icon; else title" [ngClass]="'im-icon-'+ socialLink.icon" class="im"></i>
                 <ng-template #title>{{ socialLink.title }}</ng-template>
             </a>
         </ng-container>
