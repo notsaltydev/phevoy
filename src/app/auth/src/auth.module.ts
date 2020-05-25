@@ -31,6 +31,7 @@ import { deepExtend } from './helpers';
 import { HttpRequest } from '@angular/common/http';
 import { AuthStrategy, AuthStrategyOptions, OAuth2AuthStrategy, PasswordAuthStrategy } from './strategies';
 import { WindowModule } from '../../window';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
     const strategies = [];
@@ -74,7 +75,8 @@ export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
         LoginComponent,
         LogoutComponent,
         RegisterComponent,
-        RequestPasswordComponent
+        RequestPasswordComponent,
+        ResetPasswordComponent
     ],
     providers: [
         {provide: AUTH_OPTIONS, useFactory: authOptionsFactory, deps: [AUTH_USER_OPTIONS]},
