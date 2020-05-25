@@ -22,6 +22,21 @@ import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbTh
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FooterComponent } from './footer';
+import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
+import { DummyAuthStrategy } from './auth/src/strategies/dummy';
+
+const socialLinks = [
+    {
+        url: 'https://www.phevoy.com/',
+        target: '_blank',
+        icon: 'Facebook',
+    },
+    {
+        url: 'https://phevoy.com/',
+        target: '_blank',
+        icon: 'Google',
+    },
+];
 
 @NgModule({
     imports: [
@@ -55,9 +70,25 @@ import { FooterComponent } from './footer';
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-
-        // provider used to create fake backend
-        // fakeBackendProvider
+        {
+            provide: AUTH_USER_OPTIONS,
+            useValue: {
+                strategies: [
+                    DummyAuthStrategy.setup({
+                        name: 'email',
+                        delay: 1000,
+                    }),
+                ],
+                forms: {
+                    login: {
+                        socialLinks
+                    },
+                    register: {
+                        socialLinks
+                    },
+                },
+            }
+        }
     ],
     bootstrap: [AppComponent]
 })

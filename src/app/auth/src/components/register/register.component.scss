@@ -1,0 +1,47 @@
+.alert-title,
+.alert-message {
+  margin: 0 0 8px;
+}
+
+.alert-message-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.links {
+  text-align: center;
+  margin-top: 28px;
+
+  .socials {
+    margin-top: 24px;
+  }
+
+  .socials a {
+    margin: 0 16px;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &.with-icon {
+      font-size: 32px;
+    }
+
+    .im {
+      font-size: 32px;
+    }
+  }
+}
+
+.another-action {
+  margin-top: 32px;
+  text-align: center;
+}

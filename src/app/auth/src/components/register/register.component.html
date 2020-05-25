@@ -1,0 +1,168 @@
+<h1 class="text-center mb-1" id="title">Register</h1>
+<p class="sub-title text-center mb-5">Fill out the form to get started.</p>
+
+<div *ngIf="showMessages.error && errors?.length && !submitted" class="alert alert-danger" role="alert">
+    <p class="alert-title"><b>Oh snap!</b></p>
+    <ul class="alert-message-list">
+        <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+    </ul>
+</div>
+
+<div *ngIf="showMessages.success && messages?.length && !submitted" class="alert alert-success" role="alert">
+    <p class="alert-title"><b>Hooray!</b></p>
+    <ul class="alert-message-list">
+        <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+    </ul>
+</div>
+
+<form #form="ngForm" (ngSubmit)="register()" aria-labelledby="title">
+
+    <div class="form-group">
+        <label class="label text-muted" for="input-name">Full name:</label>
+        <input #fullName="ngModel"
+               [(ngModel)]="user.fullName"
+               [attr.aria-invalid]="fullName.invalid && fullName.touched ? true : null"
+               [maxlength]="getConfigValue('forms.validation.fullName.maxLength')"
+               [minlength]="getConfigValue('forms.validation.fullName.minLength')"
+               [ngClass]="fullName.dirty ? (fullName.invalid  ? 'is-invalid' : 'is-valid') : ''"
+               [required]="getConfigValue('forms.validation.fullName.required')"
+               autofocus
+               class="form-control form-control-lg"
+               id="input-name"
+               name="fullName"
+               placeholder="Full name">
+        <ng-container *ngIf="fullName.invalid && fullName.touched">
+            <p *ngIf="fullName.errors?.required" class="invalid-feedback">
+                Full name is required!
+            </p>
+            <p *ngIf="fullName.errors?.minlength || fullName.errors?.maxlength" class="invalid-feedback">
+                Full name should contains
+                from {{getConfigValue('forms.validation.fullName.minLength')}}
+                to {{getConfigValue('forms.validation.fullName.maxLength')}}
+                characters
+            </p>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <label class="label text-muted" for="input-email">Email address:</label>
+        <input #email="ngModel"
+               [(ngModel)]="user.email"
+               [attr.aria-invalid]="email.invalid && email.touched ? true : null"
+               [ngClass]="email.dirty ? (email.invalid  ? 'is-invalid' : 'is-valid') : ''"
+               [required]="getConfigValue('forms.validation.email.required')"
+               class="form-control form-control-lg"
+               id="input-email"
+               name="email"
+               pattern=".+@.+..+"
+               placeholder="Email address">
+        <ng-container *ngIf="email.invalid && email.touched">
+            <p *ngIf="email.errors?.required" class="invalid-feedback">
+                Email is required!
+            </p>
+            <p *ngIf="email.errors?.pattern" class="invalid-feedback">
+                Email should be the real one!
+            </p>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <label class="label text-muted" for="input-password">Password:</label>
+        <input #password="ngModel"
+               [(ngModel)]="user.password"
+               [attr.aria-invalid]="password.invalid && password.touched ? true : null"
+               [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+               [minlength]="getConfigValue('forms.validation.password.minLength')"
+               [ngClass]="password.dirty ? (password.invalid  ? 'is-invalid' : 'is-valid') : ''"
+               [required]="getConfigValue('forms.validation.password.required')"
+               class="form-control form-control-lg"
+               id="input-password"
+               name="password"
+               placeholder="Password"
+               type="password">
+        <ng-container *ngIf="password.invalid && password.touched">
+            <p *ngIf="password.errors?.required" class="invalid-feedback">
+                Password is required!
+            </p>
+            <p *ngIf="password.errors?.minlength || password.errors?.maxlength" class="invalid-feedback">
+                Password should contain
+                from {{ getConfigValue('forms.validation.password.minLength') }}
+                to {{ getConfigValue('forms.validation.password.maxLength') }}
+                characters
+            </p>
+        </ng-container>
+    </div>
+
+    <div class="form-group">
+        <label class="label text-muted" for="input-re-password">Repeat password:</label>
+        <input #rePass="ngModel"
+               [(ngModel)]="user.confirmPassword"
+               [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null"
+               [ngClass]="rePass.dirty ? (rePass.invalid || password.value != rePass.value  ? 'is-invalid' : 'is-valid') : ''"
+               [required]="getConfigValue('forms.validation.password.required')"
+               class="form-control form-control-lg"
+               id="input-re-password"
+               name="rePass"
+               placeholder="Confirm Password"
+               type="password">
+        <ng-container *ngIf="rePass.invalid && rePass.touched">
+            <p *ngIf="rePass.errors?.required" class="invalid-feedback">
+                Password confirmation is required!
+            </p>
+            <p *ngIf="password.value != rePass.value && !rePass.errors?.required" class="invalid-feedback">
+                Password does not match the confirm password.
+            </p>
+        </ng-container>
+    </div>
+
+    <div *ngIf="getConfigValue('forms.register.terms')" class="form-group accept-group">
+        <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+            <input [(ngModel)]="user.terms"
+                   [required]="getConfigValue('forms.register.terms')"
+                   class="custom-control-input"
+                   id="register-terms"
+                   name="terms"
+                   type="checkbox">
+            <label class="custom-control-label" for="register-terms">
+                <small>
+                    I agree to the <a href="#" target="_blank">Terms & Conditions</a>
+                </small>
+            </label>
+        </div>
+    </div>
+
+    <button [class.btn-pulse]="submitted"
+            [disabled]="submitted || !form.valid"
+            class="btn-block btn btn-primary btn-lg"
+            type="submit">
+        Register
+    </button>
+</form>
+
+<section *ngIf="socialLinks && socialLinks.length > 0" aria-label="Social sign in" class="links">
+    or enter with:
+    <div class="socials">
+        <ng-container *ngFor="let socialLink of socialLinks">
+            <a *ngIf="socialLink.link"
+               [attr.class]="socialLink.icon"
+               [attr.target]="socialLink.target"
+               [class.with-icon]="socialLink.icon"
+               [routerLink]="socialLink.link">
+                <i *ngIf="socialLink.icon; else title" [ngClass]="'im-icon-'+ socialLink.icon" class="im"></i>
+                <ng-template #title>{{ socialLink.title }}</ng-template>
+            </a>
+            <a *ngIf="socialLink.url"
+               [attr.class]="socialLink.icon"
+               [attr.href]="socialLink.url"
+               [attr.target]="socialLink.target"
+               [class.with-icon]="socialLink.icon">
+                <i *ngIf="socialLink.icon; else title" [ngClass]="'im-icon-'+ socialLink.icon" class="im"></i>
+                <ng-template #title>{{ socialLink.title }}</ng-template>
+            </a>
+        </ng-container>
+    </div>
+</section>
+
+<section aria-label="Sign in" class="another-action">
+    Already have an account? <a class="text-link" routerLink="../login">Log in</a>
+</section>
