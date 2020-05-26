@@ -32,6 +32,8 @@
 }
 
 .btn-block {
+  max-width: 120px;
+
   &.btn-pulse {
     @include pulse();
   }

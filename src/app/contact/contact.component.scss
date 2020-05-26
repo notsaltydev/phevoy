@@ -1,3 +1,40 @@
-#main-hero {
-  padding: 10rem 1.5rem;
+@import './src/mixins';
+
+.semi-rounded {
+  border-radius: 0.75rem;
+}
+
+.navbar {
+  .navbar-brand-img {
+    max-height: 3rem;
+    width: auto;
+  }
+}
+
+.alert-title,
+.alert-message {
+  margin: 0 0 8px;
+}
+
+.alert-message-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.btn-block {
+  max-width: 120px;
+
+  &.btn-pulse {
+    @include pulse();
+  }
 }
