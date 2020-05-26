@@ -1,50 +1,12 @@
-<nav [ngClass]="{
-     'navbar-faded': navIsFixed,
-     'is-transparent': !navIsFixed,
-     type: !navIsFixed
-     }"
-     class="navbar navbar-wrapper navbar-fade">
-    <div class="container">
-        <!-- Brand -->
-        <div class="navbar-brand">
-            <a class="navbar-item" routerLink="/">
-                <strong>Phevoy</strong>
-            </a>
-        </div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+            <img alt="..." class="navbar-brand-img" src="assets/img/brand.png">
+        </a>
 
-        <!-- Navbar menu -->
-        <div class="navbar-menu">
-            <!-- Navbar Start -->
-            <div class="navbar-start">
-                <!-- Navbar item -->
-                <a class="navbar-item is-slide" routerLink="/features">
-                    Features
-                </a>
-                <!-- Navbar item -->
-                <a class="navbar-item is-slide" routerLink="/pricing">
-                    Pricing
-                </a>
-                <!-- Navbar item -->
-                <a class="navbar-item is-slide" routerLink="/contact">
-                    Contact Us
-                </a>
-                <!-- Navbar item -->
-                <a class="navbar-item is-slide" routerLink="/login">
-                    Login
-                </a>
-            </div>
-
-            <!-- Navbar end -->
-            <div class="navbar-end">
-                <!-- Signup button -->
-                <div class="navbar-item">
-                    <a class="button button-signup btn-outlined is-bold btn-align light-btn rounded raised"
-                       id="#signup-btn"
-                       routerLink="/signup">
-                        Sign up
-                    </a>
-                </div>
-            </div>
+        <div class="ml-auto">
+            <a class="navbar-btn btn btn-primary semi-rounded" routerLink="/signup">Try free</a>
+            <a class="navbar-btn btn btn-outline-primary semi-rounded ml-3" routerLink="/login">Login</a>
         </div>
     </div>
 </nav>
