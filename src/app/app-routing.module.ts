@@ -9,6 +9,7 @@ import { SignupComponent } from './signup';
 import { PasswordRecoveryComponent } from './password-recovery';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
+import { FeedbackComponent } from './feedback';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     {path: 'features', component: FeaturesComponent},
     {path: 'pricing', component: PricingComponent},
     {path: 'contact', component: ContactComponent},
+    {path: 'leave-feedback', component: FeedbackComponent},
 
     // otherwise redirect to home
     {path: '**', component: PageNotFoundComponent}
