@@ -14,8 +14,10 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
     @Input() fixed: boolean = false;
+    @Input() showAuthButton: boolean = true;
+    @Input() showMenuItems: boolean = true;
     expanded$: Subject<boolean> = new BehaviorSubject<boolean>(false);
-    navIsFixed: boolean = false;
+    isFixed: boolean = false;
     isExpanded: boolean = false;
     faBars = faBars;
 
@@ -49,6 +51,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private setNavFixed(): void {
         const height: number = this.windowRef.nativeWindow.pageYOffset;
 
-        this.navIsFixed = height > 65;
+        this.isFixed = height > 56;
     }
 }

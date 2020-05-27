@@ -1,9 +1,9 @@
-<nav class="nav">
+<nav [ngClass]="{'is-fixed': isFixed, 'show': isExpanded}" class="nav">
     <div class="menu">
         <a class="nav-brand" routerLink="/">
             <img alt="..." class="nav-brand-img" src="assets/img/brand.png">
         </a>
-        <ul class="menu-items p-0" routerLinkActive="active">
+        <ul *ngIf="showMenuItems" class="menu-items p-0" routerLinkActive="active">
             <li class="menu-item">
                 <a class="link" routerLink="/">Features</a>
             </li>
@@ -13,15 +13,18 @@
         </ul>
 
         <div class="btn-auth-group justify-content-center">
-            <a class="-btn btn btn-primary btn-lg semi-rounded" routerLink="/auth/register">Try free</a>
-            <a class="-btn btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login">Login</a>
+            <a class="-btn btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                Sign Up
+            </a>
+            <a class="-btn btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+               routerLinkActive="active">Log In</a>
         </div>
 
         <fa-icon (click)="toggle()" [icon]="faBars" class="nav-toggler"></fa-icon>
     </div>
 
-    <div [ngClass]="{ 'show': isExpanded}" class="menu-list">
-        <ul class="menu-items p-0">
+    <div class="menu-list">
+        <ul *ngIf="showMenuItems" class="menu-items p-0">
 
             <li class="menu-item" routerLinkActive="active">
                 <a class="link" routerLink="/">Features</a>
@@ -31,8 +34,13 @@
             </li>
         </ul>
         <div class="btn-auth-group justify-content-center">
-            <a class="-btn btn btn-primary btn-lg semi-rounded" routerLink="/auth/register">Try free</a>
-            <a class="-btn btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login">Login</a>
+            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                Sign Up
+            </a>
+            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+               routerLinkActive="active">
+                Log In
+            </a>
         </div>
     </div>
 </nav>
