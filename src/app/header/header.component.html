@@ -1,12 +1,38 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">
-            <img alt="..." class="navbar-brand-img" src="assets/img/brand.png">
+<nav class="nav">
+    <div class="menu">
+        <a class="nav-brand" routerLink="/">
+            <img alt="..." class="nav-brand-img" src="assets/img/brand.png">
         </a>
+        <ul class="menu-items p-0" routerLinkActive="active">
+            <li class="menu-item">
+                <a class="link" routerLink="/">Features</a>
+            </li>
+            <li class="menu-item" routerLinkActive="active">
+                <a class="link" routerLink="/contact">Contact Us</a>
+            </li>
+        </ul>
 
-        <div class="ml-auto">
-            <a class="navbar-btn btn btn-primary btn-lg semi-rounded" routerLink="/signup">Try free</a>
-            <a class="navbar-btn btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/login">Login</a>
+        <div class="btn-auth-group justify-content-center">
+            <a class="-btn btn btn-primary btn-lg semi-rounded" routerLink="/auth/register">Try free</a>
+            <a class="-btn btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login">Login</a>
+        </div>
+
+        <fa-icon (click)="toggle()" [icon]="faBars" class="nav-toggler"></fa-icon>
+    </div>
+
+    <div [ngClass]="{ 'show': isExpanded}" class="menu-list">
+        <ul class="menu-items p-0">
+
+            <li class="menu-item" routerLinkActive="active">
+                <a class="link" routerLink="/">Features</a>
+            </li>
+            <li class="menu-item" routerLinkActive="active">
+                <a class="link" routerLink="/contact">Contact Us</a>
+            </li>
+        </ul>
+        <div class="btn-auth-group justify-content-center">
+            <a class="-btn btn btn-primary btn-lg semi-rounded" routerLink="/auth/register">Try free</a>
+            <a class="-btn btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login">Login</a>
         </div>
     </div>
 </nav>

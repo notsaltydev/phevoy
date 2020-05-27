@@ -25,6 +25,7 @@ import { FooterComponent } from './footer';
 import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
 import { DummyAuthStrategy } from './auth/src/strategies/dummy';
 import { FeedbackComponent } from './feedback';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const socialLinks = [
     {
@@ -55,7 +56,8 @@ const socialLinks = [
         NbDialogModule.forRoot(),
         NbDatepickerModule.forRoot(),
         CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
-        NbMenuModule.forRoot()
+        NbMenuModule.forRoot(),
+        FontAwesomeModule
     ],
     declarations: [
         AppComponent,

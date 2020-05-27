@@ -1,10 +1,108 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+:host {
+  display: flex;
+  padding-bottom: 72px;
+  min-height: 72px;
+
+  &.fixed {
+
+    .nav {
+      position: fixed;
+    }
+  }
+}
+
 .semi-rounded {
   border-radius: 0.75rem;
 }
 
-.navbar {
-  .navbar-brand-img {
-    max-height: 3rem;
+.nav {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  min-height: 72px;
+  background-color: #f2f2f2;
+  padding: 20px 30px;
+
+  .nav-brand-img {
+    max-height: 2rem;
     width: auto;
+  }
+
+  .nav-toggler {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+
+    .menu-items {
+      display: flex;
+      list-style: none;
+      margin: 0;
+
+      .menu-item {
+        margin: 0 16px;
+        font-weight: bold;
+        font-size: 16px;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  .menu-list {
+    display: none;
+    flex-direction: column;
+
+    .menu-items {
+      margin: 20px 0;
+      list-style: none;
+    }
+
+    .menu-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #DCE2E6;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+    }
+  }
+
+  .btn-auth-group {
+    display: flex;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .nav {
+    flex-direction: column;
+
+    .nav-toggler {
+      display: flex;
+      padding: 8px 0;
+      cursor: pointer;
+      font-size: 32px;
+    }
+
+    .menu {
+
+      .menu-items, .btn-auth-group {
+        display: none;
+      }
+    }
+
+    .menu-list {
+
+      &.show {
+        display: flex;
+      }
+    }
   }
 }
