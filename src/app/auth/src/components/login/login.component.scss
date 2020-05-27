@@ -1,3 +1,5 @@
+@import './src/mixins';
+
 .alert-title,
 .alert-message {
   margin: 0 0 8px;
@@ -27,6 +29,12 @@
 
 .invalid-feedback {
   display: block;
+}
+
+.btn-block {
+  &.btn-pulse {
+    @include pulse();
+  }
 }
 
 .links {

@@ -1,44 +1,96 @@
-<!-- Hero and nav -->
-<div class="hero is-relative">
-    <!--  {{> navbar-fade-dark}}-->
-    <app-header type="navbar-dark"></app-header>
-    <!-- Hero -->
-    <div class="hero-body" id="main-hero">
-        <div class="container has-text-centered">
-            <div class="columns is-vcentered">
-                <div class="column is-4 is-offset-4">
-                    <div class="has-text-centered pb-20">
-                        <h3 class="title is-4 is-styled">Contact Us</h3>
+<app-header></app-header>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center pt-6">
+            <div class="col-xl-4 col-lg-5 col-md-6">
+                <h1 class="text-center mb-4" id="title">Contact us</h1>
+                <p class="sub-title text-center mb-5">
+                    We'd love to talk about how we can help you.
+                </p>
+
+                <form [formGroup]="contactForm" aria-labelledby="title">
+                    <div class="form-group">
+                        <label class="label text-muted" for="input-name">Name</label>
+                        <input [attr.aria-invalid]="contactForm.get('name').invalid && contactForm.get('name').touched ? true : null"
+                               [ngClass]="contactForm.get('name').dirty ? (contactForm.get('name').invalid  ? 'is-invalid' : 'is-valid') : ''"
+                               autofocus
+                               class="form-control form-control-lg"
+                               formControlName="name"
+                               id="input-name"
+                               name="name"
+                               placeholder="e.g Adam Smith"
+                               type="text">
+                        <ng-container
+                                *ngIf="contactForm.get('name').invalid && contactForm.get('name').touched">
+                            <p *ngIf="contactForm.get('name').errors?.required" class="invalid-feedback">
+                                Name is required!
+                            </p>
+                        </ng-container>
                     </div>
-                    <form [formGroup]="form" class="padding-20">
-                        <div class="field">
-                            <label class="form-label">Full name</label>
-                            <div class="control">
-                                <input class="input is-medium" formControlName="username" type="text">
-                            </div>
-                        </div>
-                        <div class="field mt-20">
-                            <label class="form-label">Email</label>
-                            <div class="control">
-                                <input class="input is-medium" formControlName="email" type="email">
-                            </div>
-                        </div>
-                        <div class="field mt-20">
-                            <label class="form-label">Message</label>
-                            <div class="control">
-                <textarea class="textarea" formControlName="message" placeholder="Type your message ..."
-                          rows="5"></textarea>
-                            </div>
-                        </div>
-                        <div class="mt-20 has-text-right">
-                            <button class="button btn-align button-cta no-lh is-bold secondary-btn raised"
-                                    type="submit">Send
-                                Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label class="label text-muted" for="input-email">Enter your email address:</label>
+                        <input [attr.aria-invalid]="contactForm.get('email').invalid && contactForm.get('email').touched ? true : null"
+                               [ngClass]="contactForm.get('email').dirty ? (contactForm.get('email').invalid  ? 'is-invalid' : 'is-valid') : ''"
+                               class="form-control form-control-lg"
+                               formControlName="email"
+                               id="input-email"
+                               name="email"
+                               placeholder="Email address">
+                        <ng-container *ngIf="contactForm.get('email').invalid && contactForm.get('email').touched">
+                            <p *ngIf="contactForm.get('email').errors?.required" class="invalid-feedback">
+                                Email is required!
+                            </p>
+                            <p *ngIf="contactForm.get('email').errors?.pattern" class="invalid-feedback">
+                                Email should be the real one!
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="form-group">
+                        <label class="label text-muted" for="input-subject">Subject</label>
+                        <input [attr.aria-invalid]="contactForm.get('subject').invalid && contactForm.get('subject').touched ? true : null"
+                               [ngClass]="contactForm.get('subject').dirty ? (contactForm.get('subject').invalid  ? 'is-invalid' : 'is-valid') : ''"
+                               class="form-control form-control-lg"
+                               formControlName="subject"
+                               id="input-subject"
+                               name="subject"
+                               placeholder="Summary of your message..."
+                               type="text">
+                        <ng-container
+                                *ngIf="contactForm.get('subject').invalid && contactForm.get('subject').touched">
+                            <p *ngIf="contactForm.get('subject').errors?.required" class="invalid-feedback">
+                                Subject is required!
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="form-group">
+                        <label class="label text-muted" for="input-message">How can we help you?</label>
+                        <textarea
+                                [attr.aria-invalid]="contactForm.get('message').invalid && contactForm.get('message').touched ? true : null"
+                                [ngClass]="contactForm.get('message').dirty ? (contactForm.get('message').invalid  ? 'is-invalid' : 'is-valid') : ''"
+                                class="form-control form-control-lg"
+                                formControlName="message"
+                                id="input-message"
+                                name="message"
+                                placeholder="Hi there, I would like to ..."
+                                rows="3"></textarea>
+                        <ng-container
+                                *ngIf="contactForm.get('message').invalid && contactForm.get('message').touched">
+                            <p *ngIf="contactForm.get('message').errors?.required" class="invalid-feedback">
+                                Message is required!
+                            </p>
+                        </ng-container>
+                    </div>
+
+                    <button (click)="sendContactMessage()"
+                            [class.btn-pulse]="submitted"
+                            [disabled]="submitted || (contactForm.get('message').dirty && contactForm.get('message').invalid)"
+                            class="btn-block btn btn-primary btn-lg"
+                            type="button">
+                        Submit
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-</div>
+</section>

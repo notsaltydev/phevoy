@@ -2,41 +2,40 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'app-contact',
-    templateUrl: './contact.component.html',
-    styleUrls: ['./contact.component.scss'],
+    selector: 'app-feedback',
+    templateUrl: './feedback.component.html',
+    styleUrls: ['./feedback.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactComponent {
-    contactForm: FormGroup = new FormGroup({
-        name: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.pattern('.+@.+\\..+')]),
-        subject: new FormControl('', Validators.required),
+export class FeedbackComponent {
+    feedbackForm: FormGroup = new FormGroup({
+        name: new FormControl(''),
+        subject: new FormControl(''),
         message: new FormControl('', Validators.required)
     });
 
     submitted = false;
     errors: string[] = [];
     messages: string[] = [];
+    feedback: any = {};
 
     constructor(private cd: ChangeDetectorRef) {
     }
 
-    sendContactMessage(): void {
+    sendFeedback(): void {
         this.submitted = true;
         this.errors = this.messages = [];
-        this.validateAllFormFields(this.contactForm);
+        this.validateAllFormFields(this.feedbackForm);
 
-        if (this.contactForm.valid) {
+        if (this.feedbackForm.valid) {
             this.errors = this.messages = [];
             this.submitted = true;
 
             setTimeout(() => {
                 this.submitted = false;
 
-                console.log('Thanks for your message', this.contactForm.value);
+                console.log('Thanks for your feedback', this.feedbackForm.value);
 
-                this.contactForm.reset();
                 this.cd.markForCheck();
             }, 2000);
         } else {
@@ -45,11 +44,11 @@ export class ContactComponent {
             console.log('Error!');
         }
 
-        this.contactForm.updateValueAndValidity();
+        this.feedbackForm.updateValueAndValidity();
         this.cd.markForCheck();
     }
 
-    private validateAllFormFields(formGroup: FormGroup): void {
+    validateAllFormFields(formGroup: FormGroup) {
         Object.keys(formGroup.controls).forEach(field => {
             const control: AbstractControl = formGroup.get(field);
 

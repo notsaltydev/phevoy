@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FooterComponent } from './footer';
 import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
 import { DummyAuthStrategy } from './auth/src/strategies/dummy';
+import { FeedbackComponent } from './feedback';
 
 const socialLinks = [
     {
@@ -44,6 +45,8 @@ const socialLinks = [
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
         WindowModule,
         ScheduleModule,
         BrowserAnimationsModule,
@@ -65,7 +68,8 @@ const socialLinks = [
         FeaturesComponent,
         PricingComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        FeedbackComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

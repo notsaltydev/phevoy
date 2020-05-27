@@ -23,3 +23,29 @@
     @warn "Breakpoint mixin supports: xsmall, small, medium, large, xlarge";
   }
 }
+
+@mixin pulse() {
+  animation: shadow-pulse 1s infinite;
+}
+
+@mixin pulse-big() {
+  animation: shadow-pulse-big 1s infinite;
+}
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes shadow-pulse-big {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(0, 0, 0, 0);
+  }
+}

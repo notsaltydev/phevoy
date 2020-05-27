@@ -1,8 +1,10 @@
-:host {
-  display: flex;
-  height: 5.2rem;
+.semi-rounded {
+  border-radius: 0.75rem;
 }
 
-.navbar-wrapper {
-  height: 5.2rem;
+.navbar {
+  .navbar-brand-img {
+    max-height: 3rem;
+    width: auto;
+  }
 }
