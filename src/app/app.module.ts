@@ -14,7 +14,6 @@ import { SignupComponent } from './signup';
 import { PasswordRecoveryComponent } from './password-recovery';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
-import { HeaderComponent } from './header';
 import { WindowModule } from './window';
 import { ScheduleModule } from './schedule';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +24,7 @@ import { FooterComponent } from './footer';
 import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
 import { DummyAuthStrategy } from './auth/src/strategies/dummy';
 import { FeedbackComponent } from './feedback';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CoreModule } from './core';
 
 const socialLinks = [
     {
@@ -57,7 +56,7 @@ const socialLinks = [
         NbDatepickerModule.forRoot(),
         CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
         NbMenuModule.forRoot(),
-        FontAwesomeModule
+        CoreModule
     ],
     declarations: [
         AppComponent,
@@ -69,7 +68,6 @@ const socialLinks = [
         PasswordRecoveryComponent,
         FeaturesComponent,
         PricingComponent,
-        HeaderComponent,
         FooterComponent,
         FeedbackComponent
     ],

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
-import { WindowRef } from '../window/src/services';
+import { WindowRef } from '../../../../window/src/services';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
