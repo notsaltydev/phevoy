@@ -17,6 +17,10 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "./angular-calendar";
 
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 .wavy {
   &:before {
     content: "";

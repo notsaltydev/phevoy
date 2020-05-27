@@ -14,7 +14,6 @@
                         <label class="label text-muted" for="input-name">Name</label>
                         <input [attr.aria-invalid]="contactForm.get('name').invalid && contactForm.get('name').touched ? true : null"
                                [ngClass]="contactForm.get('name').dirty ? (contactForm.get('name').invalid  ? 'is-invalid' : 'is-valid') : ''"
-                               autofocus
                                class="form-control form-control-lg"
                                formControlName="name"
                                id="input-name"

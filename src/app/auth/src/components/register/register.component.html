@@ -26,7 +26,6 @@
                [minlength]="getConfigValue('forms.validation.fullName.minLength')"
                [ngClass]="fullName.dirty ? (fullName.invalid  ? 'is-invalid' : 'is-valid') : ''"
                [required]="getConfigValue('forms.validation.fullName.required')"
-               autofocus
                class="form-control form-control-lg"
                id="input-name"
                name="fullName"
