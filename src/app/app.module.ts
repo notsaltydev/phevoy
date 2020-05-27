@@ -14,7 +14,6 @@ import { SignupComponent } from './signup';
 import { PasswordRecoveryComponent } from './password-recovery';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
-import { HeaderComponent } from './header';
 import { WindowModule } from './window';
 import { ScheduleModule } from './schedule';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +24,7 @@ import { FooterComponent } from './footer';
 import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
 import { DummyAuthStrategy } from './auth/src/strategies/dummy';
 import { FeedbackComponent } from './feedback';
+import { CoreModule } from './core';
 
 const socialLinks = [
     {
@@ -50,6 +50,7 @@ const socialLinks = [
         WindowModule,
         ScheduleModule,
         BrowserAnimationsModule,
+        CoreModule,
         NbThemeModule.forRoot({name: 'corporate'}),
         NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
         NbDialogModule.forRoot(),
@@ -67,7 +68,6 @@ const socialLinks = [
         PasswordRecoveryComponent,
         FeaturesComponent,
         PricingComponent,
-        HeaderComponent,
         FooterComponent,
         FeedbackComponent
     ],

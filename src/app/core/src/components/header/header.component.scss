@@ -1,0 +1,133 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+:host {
+  display: flex;
+  padding-bottom: 80px;
+
+  &.fixed {
+
+    .nav {
+      position: fixed;
+
+
+      &.is-fixed {
+        box-shadow: 0 5px 50px rgba(10, 10, 71, 0.1);
+
+        &.v1 {
+          box-shadow: 0 5px 50px rgba(10, 10, 71, 0.1), 0 5px 30px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        &.v2 {
+          box-shadow: 0 8px 20px 0 rgba(218, 224, 235, .6);
+        }
+
+        &.v3 {
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05), 0 5px 30px 0 rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+  }
+}
+
+.semi-rounded {
+  border-radius: 0.75rem;
+}
+
+.nav {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  background-color: #FFFFFF;
+  padding: 16px 24px;
+
+  .nav-brand-img {
+    max-height: 32px;
+    width: auto;
+  }
+
+  .nav-toggler {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+
+    .menu-items {
+      display: flex;
+      list-style: none;
+      margin: 0;
+
+      .menu-item {
+        margin: 0 16px;
+        font-weight: bold;
+        font-size: 16px;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  .menu-list {
+    display: none;
+    flex-direction: column;
+
+    .menu-items {
+      margin-top: 20px;
+      list-style: none;
+    }
+
+    .menu-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #DCE2E6;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: none;
+    }
+  }
+
+  .btn-auth-group {
+    display: flex;
+
+    .active {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .nav {
+    flex-direction: column;
+
+
+    &.show {
+      box-shadow: 0 5px 50px rgba(10, 10, 71, 0.1);
+
+      .menu-list {
+        display: flex;
+      }
+    }
+
+    .nav-toggler {
+      display: flex;
+      padding: 8px 0;
+      cursor: pointer;
+      font-size: 32px;
+    }
+
+    .menu {
+
+      .menu-items, .btn-auth-group {
+        display: none;
+      }
+    }
+
+    .btn-auth-group {
+      margin-top: 20px;
+    }
+  }
+}
