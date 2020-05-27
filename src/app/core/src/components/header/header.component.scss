@@ -3,8 +3,7 @@
 
 :host {
   display: flex;
-  padding-bottom: 72px;
-  min-height: 72px;
+  padding-bottom: 80px;
 
   &.fixed {
 
@@ -23,12 +22,11 @@
   display: flex;
   width: 100%;
   z-index: 1;
-  min-height: 72px;
   background-color: #f2f2f2;
-  padding: 20px 30px;
+  padding: 16px 24px;
 
   .nav-brand-img {
-    max-height: 2rem;
+    max-height: 32px;
     width: auto;
   }
 

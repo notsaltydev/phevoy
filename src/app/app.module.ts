@@ -50,13 +50,13 @@ const socialLinks = [
         WindowModule,
         ScheduleModule,
         BrowserAnimationsModule,
+        CoreModule,
         NbThemeModule.forRoot({name: 'corporate'}),
         NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
         NbDialogModule.forRoot(),
         NbDatepickerModule.forRoot(),
         CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
-        NbMenuModule.forRoot(),
-        CoreModule
+        NbMenuModule.forRoot()
     ],
     declarations: [
         AppComponent,
