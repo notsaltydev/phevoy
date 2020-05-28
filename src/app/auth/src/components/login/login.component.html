@@ -23,7 +23,6 @@
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
                [required]="getConfigValue('forms.validation.email.required')"
-               autofocus
                class="form-control form-control-lg"
                id="input-email"
                name="email"

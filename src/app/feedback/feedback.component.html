@@ -16,7 +16,6 @@
                         </label>
                         <input [attr.aria-invalid]="feedbackForm.get('name').invalid && feedbackForm.get('name').touched ? true : null"
                                [ngClass]="feedbackForm.get('name').dirty ? (feedbackForm.get('name').invalid  ? 'is-invalid' : 'is-valid') : ''"
-                               autofocus
                                class="form-control form-control-lg"
                                formControlName="name"
                                id="input-name"
