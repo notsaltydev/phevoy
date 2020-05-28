@@ -1,22 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="211" height="58" viewBox="0 0 211 58">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #7124f6;
-      }
-
-      .cls-2 {
-        fill: #442d81;
-        font-size: 48px;
-        font-family: Barlow-Medium, Barlow;
-        font-weight: 500;
-      }
-    </style>
-  </defs>
-  <g id="Group_8" data-name="Group 8" transform="translate(-701 -554)">
-    <g id="Group_3" data-name="Group 3" transform="translate(0 240)">
-      <path id="blob-2" class="cls-1" d="M-16.38-56.565c5.659,7.294,10.563,15.049,9.222,21.546-1.3,6.539-8.8,11.821-16.851,15.468-8.006,3.6-16.558,5.491-22.887,2.557S-57.376-27.683-59.178-35.9c-1.761-8.216-1.174-16.851,3.27-23.893,4.4-7,12.7-12.408,20.079-11.7C-28.452-70.733-22.039-63.858-16.38-56.565Z" transform="translate(761.1 386.551)"/>
-      <text id="phevoy" class="cls-2" transform="translate(763 362)"><tspan x="0" y="0">phevoy</tspan></text>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="211" height="58">
+    <defs>
+        <style>@font-face {
+            font-family: "Barlow-Medium";
+            src: url(data:application/font-woff;charset=utf-8;base64,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) format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }</style>
+    </defs>
+    <path d="M43.72 15.986c5.66 7.294 10.563 15.05 9.222 21.546-1.3 6.54-8.8 11.82-16.85 15.468-8.006 3.6-16.558 5.49-22.887 2.557S2.724 44.868.922 36.65C-.84 28.435-.252 19.8 4.192 12.758c4.4-7 12.7-12.408 20.08-11.7 7.377.76 13.8 7.635 19.45 14.928z"
+          fill="#7124f6"/>
+    <text fill="#442d81" font-size="48" font-family="Barlow-Medium,Barlow" font-weight="500">
+        <tspan x="62" y="48">phevoy</tspan>
+    </text>
 </svg>
