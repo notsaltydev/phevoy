@@ -1,34 +1,29 @@
+@import "./src/colors";
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
 
-$primary: #8c8cf9;
-$light-white: #fafafa;
-$fade-grey: #ededed;
-$blue-grey: #444F60;
-$muted-grey: #999;
-$title-grey: #A9ABAC;
 
 .footer {
   padding-bottom: 0;
   padding-top: 4rem;
-  background: $light-white;
+  background: $color-6;
 
   .footer-head {
     padding-bottom: 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid darken($fade-grey, 4%);
+    border-bottom: 1px solid $color-7;
 
     .head-text {
       h3 {
         font-size: 1.8rem;
-        color: $blue-grey;
+        color: $color-1;
       }
 
       p {
         font-size: 1.1rem;
-        color: $muted-grey;
+        color: $color-5;
       }
     }
 
@@ -52,7 +47,7 @@ $title-grey: #A9ABAC;
 
       .column-header {
         text-transform: uppercase;
-        color: $blue-grey;
+        color: $color-1;
         font-size: 18px;
         font-weight: 700;
         margin: 10px 0;
@@ -63,10 +58,10 @@ $title-grey: #A9ABAC;
 
         a {
           font-size: 16px;
-          color: $title-grey;
+          color: $color-5;
 
           &:hover {
-            color: $primary;
+            color: $color-2;
           }
         }
       }
@@ -78,21 +73,22 @@ $title-grey: #A9ABAC;
       align-items: center;
 
       a {
-        color: $title-grey;
+        color: $color-5;
         margin: 0 5px;
 
         &:hover {
-          color: $primary;
+          color: $color-2;
         }
       }
     }
 
     .footer-description {
-      color: $title-grey;
+      color: $color-5;
+      padding-top: 16px;
     }
 
     .moto {
-      color: $muted-grey;
+      color: $color-5;
     }
 
     .small-footer-logo {
@@ -104,7 +100,7 @@ $title-grey: #A9ABAC;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $muted-grey;
+    color: $color-5;
     padding: 2rem 0;
 
     .footer-row {
@@ -116,24 +112,24 @@ $title-grey: #A9ABAC;
     }
 
     a {
-      color: $muted-grey;
+      color: $color-5;
 
       &:hover {
-        color: $primary;
+        color: $color-2;
       }
     }
   }
 
   .footer-copyright {
-    color: $muted-grey;
+    color: $color-5;
     padding: 2rem 0;
-    border-top: 1px solid darken($fade-grey, 4%);
+    border-top: 1px solid $color-7, 4%;
 
     a {
-      color: $muted-grey;
+      color: $color-5;
 
       &:hover {
-        color: $primary;
+        color: $color-2;
       }
     }
   }
