@@ -20,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { FooterComponent } from './footer';
 import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
 import { DummyAuthStrategy } from './auth/src/strategies/dummy';
 import { FeedbackComponent } from './feedback';
@@ -68,7 +67,6 @@ const socialLinks = [
         PasswordRecoveryComponent,
         FeaturesComponent,
         PricingComponent,
-        FooterComponent,
         FeedbackComponent
     ],
     providers: [
