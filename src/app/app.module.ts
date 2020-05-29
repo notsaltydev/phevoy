@@ -24,15 +24,17 @@ import { CoreModule } from './core';
 
 const socialLinks = [
     {
-        url: 'https://www.phevoy.com/',
-        target: '_blank',
-        icon: 'Facebook',
+        link: '.',
+        icon: 'google-icon',
     },
     {
-        url: 'https://phevoy.com/',
-        target: '_blank',
-        icon: 'Google',
+        link: '.',
+        icon: 'facebook-icon',
     },
+    {
+        link: '.',
+        icon: 'apple-icon',
+    }
 ];
 
 @NgModule({
