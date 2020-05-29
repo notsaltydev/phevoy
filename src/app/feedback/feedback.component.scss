@@ -1,14 +1,16 @@
+@import './src/colors';
 @import './src/mixins';
 
-.semi-rounded {
-  border-radius: 0.75rem;
+.title {
+  color: $color-1-darker;
 }
 
-.navbar {
-  .navbar-brand-img {
-    max-height: 3rem;
-    width: auto;
-  }
+.subtitle {
+  color: $color-8;
+}
+
+.sub-label {
+  color: $color-8;
 }
 
 .alert-title,
@@ -25,6 +27,7 @@
 .label {
   display: block;
   font-size: 14px;
+  color: $color-1-darker;
 }
 
 .invalid-feedback {

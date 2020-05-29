@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { WindowModule } from '../../window';
-import { HeaderComponent } from './components/header';
+import { FooterComponent, HeaderComponent } from './components';
 
 
 @NgModule({
@@ -14,9 +14,11 @@ import { HeaderComponent } from './components/header';
         WindowModule
     ],
     declarations: [
+        FooterComponent,
         HeaderComponent
     ],
     exports: [
+        FooterComponent,
         HeaderComponent
     ]
 })

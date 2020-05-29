@@ -1,17 +1,18 @@
-<app-header></app-header>
+<app-header [fixed]=""></app-header>
 
 <section class="py-5">
     <div class="container">
         <div class="row justify-content-center pt-6">
             <div class="col-xl-4 col-lg-5 col-md-6">
-                <h1 class="text-center mb-4" id="title">Feel free to drop us a line and give us your feedback.</h1>
-                <p class="sub-title text-center mb-5">
+                <h1 class="title text-center mb-4" id="title">Feel free to drop us a line and give us your
+                    feedback.</h1>
+                <p class="subtitle text-center mb-5">
                     We are looking forward to hearing back from you, please do drop us a line if you feel like it.
                 </p>
 
                 <form [formGroup]="feedbackForm" aria-labelledby="title">
                     <div class="form-group">
-                        <label class="label text-muted" for="input-name">
+                        <label class="label" for="input-name">
                             Name <small class="sub-label">(Optional)</small>
                         </label>
                         <input [attr.aria-invalid]="feedbackForm.get('name').invalid && feedbackForm.get('name').touched ? true : null"
@@ -25,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="label text-muted" for="input-subject">
+                        <label class="label" for="input-subject">
                             Subject <small class="sub-label">(Optional)</small>
                         </label>
                         <input [attr.aria-invalid]="feedbackForm.get('subject').invalid && feedbackForm.get('subject').touched ? true : null"
@@ -38,7 +39,7 @@
                                type="text">
                     </div>
                     <div class="form-group">
-                        <label class="label text-muted" for="input-message">Message</label>
+                        <label class="label" for="input-message">Message</label>
                         <textarea
                                 [attr.aria-invalid]="feedbackForm.get('message').invalid && feedbackForm.get('message').touched ? true : null"
                                 [ngClass]="feedbackForm.get('message').dirty ? (feedbackForm.get('message').invalid  ? 'is-invalid' : 'is-valid') : ''"

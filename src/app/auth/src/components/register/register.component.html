@@ -147,7 +147,9 @@
                [attr.target]="socialLink.target"
                [class.with-icon]="socialLink.icon"
                [routerLink]="socialLink.link">
-                <i *ngIf="socialLink.icon; else title" [ngClass]="'im-icon-'+ socialLink.icon" class="im"></i>
+                <img *ngIf="socialLink.icon; else title" [ngClass]="'icon-'+ socialLink.icon"
+                     [src]="'assets/img/social/' + socialLink.icon + '.svg'"
+                     class="icon">
                 <ng-template #title>{{ socialLink.title }}</ng-template>
             </a>
             <a *ngIf="socialLink.url"
@@ -155,7 +157,9 @@
                [attr.href]="socialLink.url"
                [attr.target]="socialLink.target"
                [class.with-icon]="socialLink.icon">
-                <i *ngIf="socialLink.icon; else title" [ngClass]="'im-icon-'+ socialLink.icon" class="im"></i>
+                <img *ngIf="socialLink.icon; else title" [ngClass]="'icon-'+ socialLink.icon"
+                     [src]="'assets/img/social/' + socialLink.icon + '.svg'"
+                     class="icon">
                 <ng-template #title>{{ socialLink.title }}</ng-template>
             </a>
         </ng-container>
