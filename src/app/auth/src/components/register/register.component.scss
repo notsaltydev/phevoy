@@ -1,4 +1,13 @@
+@import './src/colors';
 @import './src/mixins';
+
+.title {
+  color: $color-1-darker;
+}
+
+.subtitle {
+  color: $color-8;
+}
 
 .alert-title,
 .alert-message {
@@ -14,6 +23,15 @@
 .label {
   display: block;
   font-size: 14px;
+  color: $color-1-darker;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: $color-8;
+}
+
+.custom-control-label {
+  color: $color-8;
 }
 
 .invalid-feedback {
@@ -29,6 +47,7 @@
 .links {
   text-align: center;
   margin-top: 28px;
+  color: $color-1-darker;
 
   .socials {
     margin-top: 24px;
@@ -52,4 +71,5 @@
 .another-action {
   margin-top: 32px;
   text-align: center;
+  color: $color-1-darker;
 }

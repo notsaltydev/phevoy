@@ -1,5 +1,5 @@
-<h1 class="text-center mb-1" id="title">Login</h1>
-<p class="sub-title text-center mb-5">Hello! Log in with your email.</p>
+<h1 class="title text-center mb-1">Login</h1>
+<p class="subtitle text-center mb-5">Hello! Log in with your email.</p>
 
 <div *ngIf="showMessages.error && errors?.length && !submitted" class="alert alert-danger" role="alert">
     <p class="alert-title"><b>Oh snap!</b></p>
@@ -18,7 +18,7 @@
 <form #form="ngForm" (ngSubmit)="login()" aria-labelledby="title">
 
     <div class="form-group">
-        <label class="label text-muted" for="input-email">Email address:</label>
+        <label class="label" for="input-email">Email address:</label>
         <input #email="ngModel"
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
@@ -40,7 +40,7 @@
 
     <div class="form-group">
     <span class="label-with-link">
-      <label class="label text-muted" for="input-password">Password:</label>
+      <label class="label" for="input-password">Password:</label>
       <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>
     </span>
         <input #password="ngModel"
@@ -74,7 +74,7 @@
                    id="login-remember"
                    name="rememberMe"
                    type="checkbox">
-            <label class="custom-control-label text-small text-muted" for="login-remember">Remember me</label>
+            <label class="custom-control-label text-small" for="login-remember">Remember me</label>
         </div>
     </div>
 

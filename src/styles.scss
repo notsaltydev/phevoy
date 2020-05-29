@@ -12,6 +12,8 @@
   @include nb-theme-global();
 }
 
+@import "./phevoy_theme.scss";
+@import "~bootstrap/scss/bootstrap";
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
@@ -20,8 +22,13 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "./angular-calendar";
 
-* {
+body {
   font-family: "Open Sans", sans-serif;
+
+  &.test-a {
+    font-family: "Roboto", sans-serif;
+  }
+
 }
 
 .wavy {

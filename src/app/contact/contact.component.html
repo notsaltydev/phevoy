@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row justify-content-center pt-6">
             <div class="col-xl-4 col-lg-5 col-md-6">
-                <h1 class="text-center mb-4" id="title">Contact us</h1>
-                <p class="sub-title text-center mb-5">
+                <h1 class="title text-center mb-4" id="title">Contact us</h1>
+                <p class="subtitle text-center mb-5">
                     We'd love to talk about how we can help you.
                 </p>
 
                 <form [formGroup]="contactForm" aria-labelledby="title">
                     <div class="form-group">
-                        <label class="label text-muted" for="input-name">Name</label>
+                        <label class="label" for="input-name">Name</label>
                         <input [attr.aria-invalid]="contactForm.get('name').invalid && contactForm.get('name').touched ? true : null"
                                [ngClass]="contactForm.get('name').dirty ? (contactForm.get('name').invalid  ? 'is-invalid' : 'is-valid') : ''"
                                class="form-control form-control-lg"
@@ -28,7 +28,7 @@
                         </ng-container>
                     </div>
                     <div class="form-group">
-                        <label class="label text-muted" for="input-email">Enter your email address:</label>
+                        <label class="label" for="input-email">Enter your email address:</label>
                         <input [attr.aria-invalid]="contactForm.get('email').invalid && contactForm.get('email').touched ? true : null"
                                [ngClass]="contactForm.get('email').dirty ? (contactForm.get('email').invalid  ? 'is-invalid' : 'is-valid') : ''"
                                class="form-control form-control-lg"
@@ -46,7 +46,7 @@
                         </ng-container>
                     </div>
                     <div class="form-group">
-                        <label class="label text-muted" for="input-subject">Subject</label>
+                        <label class="label" for="input-subject">Subject</label>
                         <input [attr.aria-invalid]="contactForm.get('subject').invalid && contactForm.get('subject').touched ? true : null"
                                [ngClass]="contactForm.get('subject').dirty ? (contactForm.get('subject').invalid  ? 'is-invalid' : 'is-valid') : ''"
                                class="form-control form-control-lg"
@@ -63,7 +63,7 @@
                         </ng-container>
                     </div>
                     <div class="form-group">
-                        <label class="label text-muted" for="input-message">How can we help you?</label>
+                        <label class="label" for="input-message">How can we help you?</label>
                         <textarea
                                 [attr.aria-invalid]="contactForm.get('message').invalid && contactForm.get('message').touched ? true : null"
                                 [ngClass]="contactForm.get('message').dirty ? (contactForm.get('message').invalid  ? 'is-invalid' : 'is-valid') : ''"

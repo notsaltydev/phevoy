@@ -5,13 +5,14 @@
         <div class="row align-items-center">
             <div class="col-12 col-md-5 col-lg-6 order-md-2">
                 <img alt="..."
-                     class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" src="assets/img/illustrations/drawings/why-3.svg">
+                     class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0"
+                     src="assets/img/illustrations/drawings/why-3.svg">
             </div>
             <div class="col-12 col-md-7 col-lg-6 order-md-1">
                 <h1 class="header text-center text-md-left">
                     Online meeting software & web conferencing tool for you.
                 </h1>
-                <p class="subheader lead text-center text-md-left text-muted mb-6 mb-lg-8">
+                <p class="subheader lead text-center text-md-left mb-6 mb-lg-8">
                     Scalable solution for efficient collaboration with teams, customers or clients, no matter where
                     they're.
                 </p>
@@ -141,7 +142,7 @@
     <div class="container">
         <div class="section-title text-center">
             <h2 class="title is-2">Frequently Asked Questions</h2>
-            <h4>Everything you need to know to get started.</h4>
+            <h4 class="subtitle">Everything you need to know to get started.</h4>
         </div>
         <div class="faq-wrapper">
             <div class="row justify-content-center">
@@ -153,10 +154,10 @@
                             <div class="header-icon">
                                 <i class="im im-icon-Add"></i>
                             </div>
-                            <h3>{{faqItem.header}}</h3>
+                            <h3 class="faq-title">{{faqItem.header}}</h3>
                         </div>
                         <div [ngClass]="{'is-active': faqItem.isCollapsed}" class="block-body">
-                            <p>{{faqItem.body}}</p>
+                            <p class="section-faq-description">{{faqItem.body}}</p>
                         </div>
                     </div>
                 </div>
@@ -168,10 +169,10 @@
                             <div class="header-icon">
                                 <i class="im im-icon-Add"></i>
                             </div>
-                            <h3>{{faqItem.header}}</h3>
+                            <h3 class="faq-title">{{faqItem.header}}</h3>
                         </div>
                         <div [ngClass]="{'is-active': faqItem.isCollapsed}" class="block-body">
-                            <p>{{faqItem.body}}</p>
+                            <p class="section-faq-description">{{faqItem.body}}</p>
                         </div>
                     </div>
                 </div>
