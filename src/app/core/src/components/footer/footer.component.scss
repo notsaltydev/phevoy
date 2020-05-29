@@ -48,14 +48,13 @@
 
     .footer-column {
       list-style: none;
-      padding-top: 20px;
 
       .column-header {
         text-transform: uppercase;
         color: $color-1;
         font-size: 18px;
         font-weight: 700;
-        margin: 10px 0;
+        margin-bottom: 10px;
       }
 
       .column-item {
@@ -152,7 +151,11 @@
     }
 
     .footer-body {
-      padding-top: 3rem;
+      padding-top: 32px;
+
+      .menu-items {
+        padding-top: 24px;
+      }
 
       .footer-column {
         padding-left: 0;
