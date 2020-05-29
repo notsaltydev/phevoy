@@ -28,6 +28,11 @@
     }
 
     .head-action {
+
+      .btn-primary-transparent {
+        color: $color-1-darker;
+      }
+
       .buttons {
         .btn {
           &.semi-rounded {
