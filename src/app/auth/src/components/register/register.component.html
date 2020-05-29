@@ -1,5 +1,5 @@
-<h1 class="text-center mb-1" id="title">Register</h1>
-<p class="sub-title text-center mb-5">Fill out the form to get started.</p>
+<h1 class="title text-center mb-1" id="title">Register</h1>
+<p class="subtitle text-center mb-5">Fill out the form to get started.</p>
 
 <div *ngIf="showMessages.error && errors?.length && !submitted" class="alert alert-danger" role="alert">
     <p class="alert-title"><b>Oh snap!</b></p>
@@ -18,7 +18,7 @@
 <form #form="ngForm" (ngSubmit)="register()" aria-labelledby="title">
 
     <div class="form-group">
-        <label class="label text-muted" for="input-name">Full name:</label>
+        <label class="label" for="input-name">Full name:</label>
         <input #fullName="ngModel"
                [(ngModel)]="user.fullName"
                [attr.aria-invalid]="fullName.invalid && fullName.touched ? true : null"
@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-        <label class="label text-muted" for="input-email">Email address:</label>
+        <label class="label" for="input-email">Email address:</label>
         <input #email="ngModel"
                [(ngModel)]="user.email"
                [attr.aria-invalid]="email.invalid && email.touched ? true : null"
@@ -66,7 +66,7 @@
     </div>
 
     <div class="form-group">
-        <label class="label text-muted" for="input-password">Password:</label>
+        <label class="label" for="input-password">Password:</label>
         <input #password="ngModel"
                [(ngModel)]="user.password"
                [attr.aria-invalid]="password.invalid && password.touched ? true : null"
@@ -93,7 +93,7 @@
     </div>
 
     <div class="form-group">
-        <label class="label text-muted" for="input-re-password">Repeat password:</label>
+        <label class="label" for="input-re-password">Repeat password:</label>
         <input #rePass="ngModel"
                [(ngModel)]="user.confirmPassword"
                [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null"
@@ -115,7 +115,7 @@
     </div>
 
     <div *ngIf="getConfigValue('forms.register.terms')" class="form-group accept-group">
-        <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+        <div class="custom-control custom-checkbox d-flex align-items-center">
             <input [(ngModel)]="user.terms"
                    [required]="getConfigValue('forms.register.terms')"
                    class="custom-control-input"
