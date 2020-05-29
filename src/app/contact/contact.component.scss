@@ -1,4 +1,13 @@
+@import './src/colors';
 @import './src/mixins';
+
+.title {
+  color: $color-1-darker;
+}
+
+.subtitle {
+  color: $color-8;
+}
 
 .semi-rounded {
   border-radius: 0.75rem;
@@ -24,7 +33,11 @@
 
 .label {
   display: block;
-  font-size: 14px;
+  color: $color-1-darker;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: $color-8;
 }
 
 .invalid-feedback {
