@@ -1,4 +1,13 @@
+@import './src/colors';
 @import './src/mixins';
+
+.title {
+  color: $color-1-darker;
+}
+
+.subtitle {
+  color: $color-8;
+}
 
 .alert-title,
 .alert-message {
@@ -14,12 +23,17 @@
 .label {
   display: block;
   font-size: 14px;
+  color: $color-1-darker;
 }
 
 .label-with-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.custom-control-label {
+  color: $color-8;
 }
 
 .forgot-password {
@@ -40,6 +54,7 @@
 .links {
   text-align: center;
   margin-top: 28px;
+  color: $color-1-darker;
 
   .socials {
     margin-top: 24px;
@@ -63,4 +78,5 @@
 .another-action {
   margin-top: 32px;
   text-align: center;
+  color: $color-1-darker;
 }
