@@ -26,6 +26,10 @@
   color: $color-1-darker;
 }
 
+.form-control::-webkit-input-placeholder {
+  color: $color-8;
+}
+
 .label-with-link {
   display: flex;
   align-items: center;
