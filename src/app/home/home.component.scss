@@ -1,13 +1,7 @@
+@import "./src/colors";
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
 
-$primary: #8c8cf9;
-$secondary: #8c8cf9;
-$blue-grey: #444F60;
-$basaltic-grey: #878787;
-$fade-grey: #ededed;
-$muted-grey: #999;
-$smoke-white: #fcfcfc;
 
 // Globals
 .section {
@@ -25,6 +19,15 @@ $smoke-white: #fcfcfc;
     font-size: 40px;
     font-weight: 400;
     line-height: 1.2;
+    color: $color-1-darker;
+  }
+
+  .subheader {
+    color: $color-8;
+  }
+
+  .btn-primary-transparent {
+    color: $color-1-darker;
   }
 }
 
@@ -37,14 +40,14 @@ $smoke-white: #fcfcfc;
   margin-left: auto;
   margin-right: auto;
   font-weight: 600;
-  color: $blue-grey;
+  color: $color-1-darker;
   font-size: 32px;
 }
 
 .section-feature-description {
   max-width: 460px;
   margin: 0 auto;
-  color: $basaltic-grey;
+  color: $color-8;
   font-size: 18px;
 }
 
@@ -52,13 +55,13 @@ $smoke-white: #fcfcfc;
 
   .title {
     font-size: 40px;
-    color: $blue-grey;
+    color: $color-1-darker;
     margin-bottom: 8px;
   }
 
   .subtitle {
     font-size: 24px;
-    color: $muted-grey;
+    color: $color-8;
     font-weight: 400;
   }
 }
@@ -78,12 +81,12 @@ $smoke-white: #fcfcfc;
 
     .flex-cell {
       width: 25%;
-      border-right: 1px solid darken($fade-grey, 3%);
+      border-right: 1px solid $color-7;
       text-align: center;
       padding: 24px 16px;
 
       &.is-bordered {
-        border-bottom: 1px solid darken($fade-grey, 3%);
+        border-bottom: 1px solid $color-7;
       }
 
       &.no-border-edge {
@@ -92,17 +95,17 @@ $smoke-white: #fcfcfc;
 
       i {
         font-size: 2.2rem;
-        color: $secondary;
+        color: $color-2;
       }
 
       h3 {
         font-weight: 500;
-        color: $blue-grey;
+        color: $color-1-darker;
       }
 
       p {
         font-size: .95rem;
-        color: $muted-grey;
+        color: $color-8;
         max-width: 200px;
         margin: 0 auto;
       }
@@ -115,17 +118,17 @@ $smoke-white: #fcfcfc;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-bottom: 1px solid darken($fade-grey, 4%);
+  border-bottom: 1px solid $color-7;
 
   .head-text {
     h3 {
       font-size: 1.8rem;
-      color: $blue-grey;
+      color: $color-1-darker;
     }
 
     p {
       font-size: 1.1rem;
-      color: $muted-grey;
+      color: $color-8;
     }
   }
 
@@ -165,7 +168,7 @@ $smoke-white: #fcfcfc;
         height: 24px;
         width: 24px;
         min-width: 24px;
-        background: $primary;
+        background: $color-1-darker;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -179,10 +182,10 @@ $smoke-white: #fcfcfc;
         }
       }
 
-      h3 {
+      .faq-title {
         font-size: 18px;
         font-weight: 500;
-        color: $blue-grey;
+        color: $color-1-darker;
         margin-left: 12px;
       }
     }
@@ -195,8 +198,8 @@ $smoke-white: #fcfcfc;
         display: block;
       }
 
-      p {
-        color: lighten($blue-grey, 15%);
+      .section-faq-description {
+        color: $color-8;
       }
     }
   }
@@ -223,7 +226,7 @@ $smoke-white: #fcfcfc;
       .flex-cell {
         width: 100%;
         border-right: none;
-        border-bottom: 1px solid darken($fade-grey, 3%);
+        border-bottom: 1px solid $color-7;
 
         &:last-child {
           border-bottom: none;
