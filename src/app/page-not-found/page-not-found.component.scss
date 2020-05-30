@@ -1,0 +1,48 @@
+@import "./src/colors";
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+
+.semi-rounded {
+  border-radius: 0.75rem;
+}
+
+.title {
+  color: $color-1-darker;
+}
+
+.subtitle {
+  color: $color-8;
+}
+
+.error-wrap {
+  position: relative;
+}
+
+.text-background {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-size: 24rem;
+  font-weight: 700;
+  color: rgba(132, 132, 163, 0.15);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+@include media-breakpoint-down(md) {
+  .text-background {
+    top: 24%;
+    font-size: 17rem;
+  }
+}
+
+@include media-breakpoint-down(is) {
+  .text-background {
+    top: 24%;
+    font-size: 10rem;
+  }
+}
