@@ -1,25 +1,25 @@
-<div class="hero is-relative is-fullheight">
-  <!-- Navbar -->
-<!--  {{> navbar-static-dark}}-->
-  <app-header></app-header>
-  <div class="hero-body">
+<app-header></app-header>
+
+<section class="py-5">
     <div class="container">
-      <div class="columns is-gapless is-vcentered">
-        <!-- Error Wrapper -->
-        <div class="column error-wrap error-centered has-text-centered">
-          <div class="bg-404">404</div>
-          <img src="assets/v1-error/img/illustrations/errors/1.svg" alt="">
-          <div class="error-caption">
-            <h2>Oops, We couldn't find that page.</h2>
-            <p>Please try again or contact the website administrator to get some help.</p>
-            <div class="button-wrap">
-              <a class="button button-cta btn-outlined is-bold btn-align secondary-btn rounded raised" routerLink="/">
-                Back to Homepage
-              </a>
+        <div class="row align-items-center justify-content-center pt-6">
+            <div class="col-md-8 error-wrap text-center">
+                <div class="text-background">404</div>
+                <img alt="..." src="assets/img/illustrations/UI/page-not-found.svg">
+                <div class="error-caption">
+                    <h2 class="title text-center pt-2 mb-md-2 mb-sm-2">
+                        Oops, We couldn't find that page.
+                    </h2>
+                    <p class="subtitle text-center mb-md-4 mb-sm-4">
+                        Please try again or contact the website administrator to get some help.
+                    </p>
+                    <div class="button-wrap">
+                        <a class="btn btn-primary btn-lg semi-rounded" href="/" routerLink="/">
+                            Back to Homepage
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
