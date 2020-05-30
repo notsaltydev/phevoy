@@ -2,6 +2,7 @@ import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
+import * as compression from 'compression';
 import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
@@ -25,6 +26,8 @@ export function app() {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/phevoy/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+
+  server.use(compression());
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
