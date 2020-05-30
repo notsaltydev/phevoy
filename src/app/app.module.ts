@@ -18,9 +18,9 @@ import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbTh
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { AUTH_USER_OPTIONS } from './auth/src/auth.options';
-import { DummyAuthStrategy } from './auth/src/strategies/dummy';
 import { FeedbackComponent } from './feedback';
 import { CoreModule } from './core';
+import { PasswordAuthStrategy } from './auth/src/strategies/password';
 
 const socialLinks = [
     {
@@ -72,19 +72,95 @@ const socialLinks = [
             provide: AUTH_USER_OPTIONS,
             useValue: {
                 strategies: [
-                    DummyAuthStrategy.setup({
+                    PasswordAuthStrategy.setup({
                         name: 'email',
-                        delay: 1000,
-                    }),
+                        baseEndpoint: 'http://localhost:3000',
+                        login: {
+                            endpoint: '/auth/login',
+                            method: 'post',
+                            redirect: {
+                                success: '/app/dashboard/',
+                                failure: null, // stay on the same page
+                            },
+                        },
+                        register: {
+                            endpoint: '/auth/register',
+                            method: 'post'
+                        },
+                        logout: {
+                            endpoint: '/auth/sign-out',
+                        },
+                        requestPass: {
+                            endpoint: '/auth/request-password',
+                            method: 'post'
+                        },
+                        resetPass: {
+                            endpoint: '/auth/reset-password',
+                            method: 'post'
+                        }
+                    })
                 ],
                 forms: {
-                    login: {
-                        socialLinks
-                    },
-                    register: {
-                        socialLinks
-                    },
-                },
+                    forms: {
+                        login: {
+                            redirectDelay: 500, // delay before redirect after a successful login, while success message is shown to the user
+                            strategy: 'email',  // strategy id key.
+                            rememberMe: true,   // whether to show or not the `rememberMe` checkbox
+                            showMessages: {     // show/not show success/error messages
+                                success: true,
+                                error: true,
+                            },
+                            socialLinks: socialLinks, // social links at the bottom of a page
+                        },
+                        register: {
+                            redirectDelay: 500,
+                            strategy: 'email',
+                            showMessages: {
+                                success: true,
+                                error: true,
+                            },
+                            terms: true,
+                            socialLinks: socialLinks,
+                        },
+                        requestPassword: {
+                            redirectDelay: 500,
+                            strategy: 'email',
+                            showMessages: {
+                                success: true,
+                                error: true,
+                            },
+                            socialLinks: socialLinks,
+                        },
+                        resetPassword: {
+                            redirectDelay: 500,
+                            strategy: 'email',
+                            showMessages: {
+                                success: true,
+                                error: true,
+                            },
+                            socialLinks: socialLinks,
+                        },
+                        logout: {
+                            redirectDelay: 500,
+                            strategy: 'email',
+                        },
+                        validation: {
+                            password: {
+                                required: true,
+                                minLength: 4,
+                                maxLength: 50,
+                            },
+                            email: {
+                                required: true,
+                            },
+                            fullName: {
+                                required: false,
+                                minLength: 4,
+                                maxLength: 50,
+                            }
+                        }
+                    }
+                }
             }
         }
     ],
