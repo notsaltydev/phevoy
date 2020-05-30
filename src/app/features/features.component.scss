@@ -1,0 +1,13 @@
+@import './src/colors';
+
+.title {
+  color: $color-1-darker;
+}
+
+.subtitle {
+  color: $color-8;
+}
+
+.semi-rounded {
+  border-radius: 0.75rem;
+}
