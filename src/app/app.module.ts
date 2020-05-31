@@ -181,7 +181,7 @@ const socialLinks = [
         FeedbackComponent
     ],
     providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor}
+        {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor, multi: true}
     ],
     bootstrap: [AppComponent]
 })
