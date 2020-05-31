@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent, LoginComponent, LogoutComponent, RegisterComponent, RequestPasswordComponent } from './components';
@@ -33,6 +33,7 @@ import { AuthStrategy, AuthStrategyOptions, OAuth2AuthStrategy, PasswordAuthStra
 import { WindowModule } from '../../window';
 import { ResetPasswordComponent } from './components/reset-password';
 import { CoreModule } from '../../core';
+import { AuthGuard } from '../../_helpers/guards';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
     const strategies = [];
@@ -60,7 +61,7 @@ export function authOptionsFactory(options) {
 }
 
 export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
-    return true;
+    return false;
 }
 
 @NgModule({
@@ -79,22 +80,29 @@ export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
         RegisterComponent,
         RequestPasswordComponent,
         ResetPasswordComponent
-    ],
-    providers: [
-        {provide: AUTH_OPTIONS, useFactory: authOptionsFactory, deps: [AUTH_USER_OPTIONS]},
-        {provide: AUTH_STRATEGIES, useFactory: strategiesFactory, deps: [AUTH_OPTIONS, Injector]},
-        {provide: AUTH_TOKENS, useFactory: authTokensFactory, deps: [AUTH_STRATEGIES]},
-        {provide: AUTH_FALLBACK_TOKEN, useValue: AuthSimpleToken},
-        {provide: AUTH_INTERCEPTOR_HEADER, useValue: 'Authorization'},
-        {provide: AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: noOpInterceptorFilter},
-        {provide: TokenStorage, useClass: TokenLocalStorage},
-        AuthTokenParceler,
-        AuthService,
-        TokenService,
-        DummyAuthStrategy,
-        PasswordAuthStrategy,
-        OAuth2AuthStrategy,
     ]
 })
 export class AuthModule {
+    static forRoot(authOptions?: AuthOptions): ModuleWithProviders<AuthModule> {
+        return {
+            ngModule: AuthModule,
+            providers: [
+                {provide: AUTH_USER_OPTIONS, useValue: authOptions},
+                {provide: AUTH_OPTIONS, useFactory: authOptionsFactory, deps: [AUTH_USER_OPTIONS]},
+                {provide: AUTH_STRATEGIES, useFactory: strategiesFactory, deps: [AUTH_OPTIONS, Injector]},
+                {provide: AUTH_TOKENS, useFactory: authTokensFactory, deps: [AUTH_STRATEGIES]},
+                {provide: AUTH_FALLBACK_TOKEN, useValue: AuthSimpleToken},
+                {provide: AUTH_INTERCEPTOR_HEADER, useValue: 'Authorization'},
+                {provide: AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: noOpInterceptorFilter},
+                {provide: TokenStorage, useClass: TokenLocalStorage},
+                AuthTokenParceler,
+                AuthService,
+                TokenService,
+                DummyAuthStrategy,
+                PasswordAuthStrategy,
+                OAuth2AuthStrategy,
+                AuthGuard
+            ],
+        };
+    }
 }

@@ -19,25 +19,25 @@
 
     <div class="form-group">
         <label class="label" for="input-name">Full name:</label>
-        <input #fullName="ngModel"
-               [(ngModel)]="user.fullName"
-               [attr.aria-invalid]="fullName.invalid && fullName.touched ? true : null"
-               [maxlength]="getConfigValue('forms.validation.fullName.maxLength')"
-               [minlength]="getConfigValue('forms.validation.fullName.minLength')"
-               [ngClass]="fullName.dirty ? (fullName.invalid  ? 'is-invalid' : 'is-valid') : ''"
-               [required]="getConfigValue('forms.validation.fullName.required')"
+        <input #username="ngModel"
+               [(ngModel)]="user.username"
+               [attr.aria-invalid]="username.invalid && username.touched ? true : null"
+               [maxlength]="getConfigValue('forms.validation.username.maxLength')"
+               [minlength]="getConfigValue('forms.validation.username.minLength')"
+               [ngClass]="username.dirty ? (username.invalid  ? 'is-invalid' : 'is-valid') : ''"
+               [required]="getConfigValue('forms.validation.username.required')"
                class="form-control form-control-lg"
                id="input-name"
-               name="fullName"
+               name="username"
                placeholder="Full name">
-        <ng-container *ngIf="fullName.invalid && fullName.touched">
-            <p *ngIf="fullName.errors?.required" class="invalid-feedback">
+        <ng-container *ngIf="username.invalid && username.touched">
+            <p *ngIf="username.errors?.required" class="invalid-feedback">
                 Full name is required!
             </p>
-            <p *ngIf="fullName.errors?.minlength || fullName.errors?.maxlength" class="invalid-feedback">
+            <p *ngIf="username.errors?.minlength || username.errors?.maxlength" class="invalid-feedback">
                 Full name should contains
-                from {{getConfigValue('forms.validation.fullName.minLength')}}
-                to {{getConfigValue('forms.validation.fullName.maxLength')}}
+                from {{getConfigValue('forms.validation.username.minLength')}}
+                to {{getConfigValue('forms.validation.username.maxLength')}}
                 characters
             </p>
         </ng-container>
