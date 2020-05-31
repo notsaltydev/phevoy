@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { CoreModule } from './core';
 import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthModule } from './auth';
+import { AuthJWTInterceptor } from './auth/src/services/interceptors';
 
 const socialLinks = [
     {
@@ -69,25 +70,41 @@ const socialLinks = [
                         endpoint: '/auth/login',
                         method: 'post',
                         redirect: {
-
                             success: '/app/dashboard',
                             failure: null, // stay on the same page
-                        },
+                        }
                     },
                     register: {
                         endpoint: '/auth/register',
-                        method: 'post'
+                        method: 'post',
+                        redirect: {
+                            success: '/app/dashboard',
+                            failure: null
+                        }
                     },
                     logout: {
                         endpoint: '/auth/sign-out',
+                        method: 'post',
+                        redirect: {
+                            success: '/auth/logout',
+                            failure: null
+                        }
                     },
                     requestPass: {
                         endpoint: '/auth/request-password',
-                        method: 'post'
+                        method: 'post',
+                        redirect: {
+                            success: '/auth/login',
+                            failure: null
+                        }
                     },
                     resetPass: {
                         endpoint: '/auth/reset-password',
-                        method: 'post'
+                        method: 'post',
+                        redirect: {
+                            success: '/auth/login',
+                            failure: null
+                        }
                     }
                 })
             ],
@@ -163,7 +180,9 @@ const socialLinks = [
         PricingComponent,
         FeedbackComponent
     ],
-    providers: [],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

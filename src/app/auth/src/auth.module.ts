@@ -61,7 +61,7 @@ export function authOptionsFactory(options) {
 }
 
 export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
-    return true;
+    return false;
 }
 
 @NgModule({
@@ -87,7 +87,7 @@ export class AuthModule {
         return {
             ngModule: AuthModule,
             providers: [
-                {provide: AUTH_USER_OPTIONS, useValue:authOptions},
+                {provide: AUTH_USER_OPTIONS, useValue: authOptions},
                 {provide: AUTH_OPTIONS, useFactory: authOptionsFactory, deps: [AUTH_USER_OPTIONS]},
                 {provide: AUTH_STRATEGIES, useFactory: strategiesFactory, deps: [AUTH_OPTIONS, Injector]},
                 {provide: AUTH_TOKENS, useFactory: authTokensFactory, deps: [AUTH_STRATEGIES]},
