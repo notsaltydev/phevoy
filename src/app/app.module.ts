@@ -22,6 +22,7 @@ import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthModule } from './auth';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
+import { environment } from '../environments/environment';
 
 const socialLinks = [
     {
@@ -60,7 +61,7 @@ const socialLinks = [
             strategies: [
                 PasswordAuthStrategy.setup({
                     name: 'email',
-                    baseEndpoint: 'http://localhost:3000',
+                    baseEndpoint: environment.BASE_URL,
                     token: {
                         class: AuthJWTToken,
 
