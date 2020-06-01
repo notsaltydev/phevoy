@@ -1,11 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService, UserService } from '../../../../_services';
-import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { NbDialogService, NbMenuItem, NbSidebarService } from '@nebular/theme';
-import { PreferencesDialogComponent } from '../preferences-dialog/preferences-dialog.component';
-import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
-import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
     {
@@ -32,67 +26,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     styleUrls: ['./dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent implements OnInit {
-    loading = false;
-    user: any;
+export class DashboardComponent {
     menu: NbMenuItem[] = MENU_ITEMS;
 
-    constructor(
-        private userService: UserService,
-        private scheduleService: ScheduleService,
-        private changeDetectorRef: ChangeDetectorRef,
-        // FIXME remove Auth Service.
-        private authenticationService: AuthenticationService,
-        // FIXME remove Router.
-        private router: Router,
-        private sidebarService: NbSidebarService,
-        private dialogService: NbDialogService
-    ) {
+    constructor() {
     }
 
-    toggle(): void {
-        this.sidebarService.toggle(false, 'left');
-    }
-
-    ngOnInit() {
-        this.loading = true;
-        this.userService.getUserMe().subscribe(user => {
-            this.loading = false;
-            this.user = user;
-            this.changeDetectorRef.markForCheck();
-        });
-    }
-
-    getAvatarUr(): string {
-        return 'url("https://via.placeholder.com/150")';
-    }
-
-    logout(): void {
-        this.authenticationService.logout();
-        this.router.navigate(['/']);
-    }
-
-    showPreferences(): void {
-        this.dialogService.open(PreferencesDialogComponent, {
-            context: {
-                title: 'Preferences'
-            }
-        });
-    }
-
-    showFeedback(): void {
-        this.dialogService.open(FeedbackDialogComponent, {
-            context: {
-                title: 'Leave Feedback'
-            }
-        });
-    }
-
-    showHelp(): void {
-        this.dialogService.open(HelpDialogComponent, {
-            context: {
-                title: 'Help'
-            }
-        });
-    }
 }

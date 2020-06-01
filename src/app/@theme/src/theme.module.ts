@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header';
 import { OneColumnLayoutComponent } from './layouts/one-column/one-column.layout';
-import { NbActionsModule, NbIconModule, NbLayoutModule, NbSearchModule, NbSidebarModule } from '@nebular/theme';
+import { NbActionsModule, NbIconModule, NbLayoutModule, NbPopoverModule, NbSearchModule, NbSidebarModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { RouterModule } from '@angular/router';
 
 const NB_MODULES = [
     NbLayoutModule,
@@ -12,6 +13,7 @@ const NB_MODULES = [
     NbSidebarModule,
     NbIconModule,
     NbEvaIconsModule,
+    NbPopoverModule
 ];
 
 const COMPONENTS = [
@@ -22,6 +24,7 @@ const COMPONENTS = [
 @NgModule({
     imports: [
         CommonModule,
+        RouterModule,
         ...NB_MODULES
     ],
     declarations: [
