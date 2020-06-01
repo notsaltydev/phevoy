@@ -35,15 +35,17 @@ import { ConferenceFormComponent } from './components/conference-form/conference
 import { PreferencesDialogComponent } from './components/preferences-dialog/preferences-dialog.component';
 import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
+import { ThemeModule } from '../../@theme';
 
 
 @NgModule({
     imports: [
         CommonModule,
+        DashboardRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        DashboardRoutingModule,
         FontAwesomeModule,
+        ThemeModule,
         DialogModule,
         NbThemeModule,
         NbLayoutModule,
