@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { WindowRef } from '../../../../window/src/services';
 import { OAuth2AuthStrategy } from './oauth2-strategy';
 import { OAuth2ClientAuthMethod, OAuth2GrantType, OAuth2ResponseType } from './oauth2-strategy.options';
-import { AuthResult } from '../../services';
-import { authCreateToken, AuthOAuth2Token } from '../../services/token';
+import { AuthResult } from '../../services/auth-result';
+import { authCreateToken, AuthOAuth2Token } from '../../services/token/token';
 
 function createURL(params: any) {
     return Object.keys(params).map((k) => {

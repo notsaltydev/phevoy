@@ -1,4 +1,4 @@
-import { AuthOAuth2Token, AuthTokenClass } from '../../services/token';
+import { AuthOAuth2Token, AuthTokenClass } from '../../services/token/token';
 import { AuthStrategyOptions } from '../auth-strategy-options';
 
 export enum OAuth2ResponseType {

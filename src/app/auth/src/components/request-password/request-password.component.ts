@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { AuthResult, AuthService } from '../../services';
-import { AUTH_OPTIONS } from '../../auth.options';
 import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
+import { AuthResult, AuthService } from '../../services';
+import { AUTH_OPTIONS } from '../../auth.options';
 
 @Component({
     selector: 'app-request-password',

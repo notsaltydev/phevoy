@@ -2,7 +2,7 @@ import { Inject, Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AuthToken } from '../token';
+import { AuthToken } from '../token/token';
 import { AuthService } from '../auth.service';
 import { AUTH_TOKEN_INTERCEPTOR_FILTER } from '../../auth.options';
 

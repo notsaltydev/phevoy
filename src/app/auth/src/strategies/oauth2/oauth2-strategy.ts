@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of as observableOf } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthStrategy } from '../auth-strategy';
-import { AuthIllegalTokenError, AuthRefreshableToken, AuthToken } from '../../services/token';
-import { AuthResult } from '../../services';
+import { AuthIllegalTokenError, AuthRefreshableToken, AuthToken } from '../../services/token/token';
+import { AuthResult } from '../../services/auth-result';
 import {
     auth2StrategyOptions,
     OAuth2AuthStrategyOptions,
@@ -97,7 +97,7 @@ export class OAuth2AuthStrategy extends AuthStrategy {
 
     constructor(protected http: HttpClient,
                 protected route: ActivatedRoute,
-                protected window: WindowRef) {
+                protected windowRef: WindowRef) {
         super();
     }
 
@@ -204,7 +204,7 @@ export class OAuth2AuthStrategy extends AuthStrategy {
     }
 
     protected authorizeRedirect() {
-        this.window.nativeWindow.location.href = this.buildRedirectUrl();
+        this.windowRef.nativeWindow.location.href = this.buildRedirectUrl();
     }
 
     protected isRedirectResult(): Observable<boolean> {
