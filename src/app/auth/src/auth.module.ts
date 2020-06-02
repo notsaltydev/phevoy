@@ -1,9 +1,19 @@
 import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent, LoginComponent, LogoutComponent, RegisterComponent, RequestPasswordComponent } from './components';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpRequest } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
+import { AuthSimpleToken, AuthTokenClass } from './services/token/token';
+import { TokenLocalStorage, TokenStorage } from './services/token/token-storage';
+import { TokenService } from './services/token/token.service';
+import { AUTH_FALLBACK_TOKEN, AuthTokenParceler } from './services/token/token-parceler';
+import { AuthStrategy } from './strategies/auth-strategy';
+import { AuthStrategyOptions } from './strategies/auth-strategy-options';
+import { DummyAuthStrategy } from './strategies/dummy/dummy-strategy';
+import { OAuth2AuthStrategy } from './strategies/oauth2/oauth2-strategy';
+import { PasswordAuthStrategy } from './strategies/password/password-strategy';
+
 import {
     AUTH_INTERCEPTOR_HEADER,
     AUTH_OPTIONS,
@@ -13,27 +23,21 @@ import {
     AUTH_USER_OPTIONS,
     AuthOptions,
     AuthStrategyClass,
-    defaultAuthOptions
+    defaultAuthOptions,
 } from './auth.options';
-import {
-    AUTH_FALLBACK_TOKEN,
-    AuthSimpleToken,
-    AuthTokenClass,
-    AuthTokenParceler,
-    TokenLocalStorage,
-    TokenService,
-    TokenStorage
-} from './services/token';
-import { AuthService } from './services';
-import { DummyAuthStrategy } from './strategies/dummy';
+
 
 import { deepExtend } from './helpers';
-import { HttpRequest } from '@angular/common/http';
-import { AuthStrategy, AuthStrategyOptions, OAuth2AuthStrategy, PasswordAuthStrategy } from './strategies';
-import { WindowModule } from '../../window';
+import { AuthComponent } from './components/auth';
+import { LoginComponent } from './components/login';
+import { RegisterComponent } from './components/register';
+import { RequestPasswordComponent } from './components/request-password';
 import { ResetPasswordComponent } from './components/reset-password';
+import { LogoutComponent } from './components/logout';
 import { CoreModule } from '../../core';
+import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from '../../_helpers/guards';
+import { WindowModule } from '../../window';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
     const strategies = [];

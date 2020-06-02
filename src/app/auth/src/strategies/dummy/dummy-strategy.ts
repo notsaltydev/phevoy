@@ -4,7 +4,7 @@ import { Observable, of as observableOf } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { AuthStrategy } from '../auth-strategy';
-import { AuthResult } from '../../services';
+import { AuthResult } from '../../services/auth-result';
 import { DummyAuthStrategyOptions, dummyStrategyOptions } from './dummy-strategy-options';
 import { AuthStrategyClass } from '../../auth.options';
 

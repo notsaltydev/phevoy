@@ -2,9 +2,8 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { take } from 'rxjs/operators';
 
 import { TokenLocalStorage, TokenStorage } from './token-storage';
-import { authCreateToken, AuthSimpleToken, AuthToken } from './token';
+import { authCreateToken, AuthJWTToken, AuthSimpleToken, AuthToken } from './token';
 import { TokenService } from './token.service';
-import { AuthJWTToken } from './token';
 import { AUTH_FALLBACK_TOKEN, AuthTokenParceler } from './token-parceler';
 import { AUTH_TOKENS } from '../../auth.options';
 

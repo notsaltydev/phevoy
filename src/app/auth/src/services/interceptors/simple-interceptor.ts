@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { AuthService } from '../auth.service';
 import { AUTH_INTERCEPTOR_HEADER } from '../../auth.options';
-import { AuthJWTToken } from '../token';
+import { AuthJWTToken } from '../token/token';
 
 @Injectable()
 export class AuthSimpleInterceptor implements HttpInterceptor {

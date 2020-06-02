@@ -1,0 +1,57 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <app-phev-header>
+            <div class="phev-user">
+                        <span [nbPopover]="settingsPopover"
+                              [ngStyle]="{'background-image': getAvatarUr()}"
+                              class="user-avatar">
+                        </span>
+            </div>
+            <ng-template #settingsPopover>
+                <div class="settings-popover">
+                    <div class="popover-header">
+                        <div [ngStyle]="{'background-image': getAvatarUr()}" class="avatar"></div>
+                        <div class="user-name">{{ user.username }}</div>
+                        <a class="settings-link" routerLink="/account">Account Settings</a>
+                    </div>
+
+                    <ul class="menu-list">
+                        <li (click)="showPreferences()" class="menu-item">
+                            <nb-icon class="icon" icon="settings-2-outline"></nb-icon>
+                            <span class="text">Preferences</span>
+                        </li>
+                        <li (click)="showFeedback()" class="menu-item">
+                            <nb-icon class="icon" icon="message-circle-outline"></nb-icon>
+                            <span class="text">Leave feedback</span>
+                        </li>
+                        <li (click)="showHelp()" class="menu-item">
+                            <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                            <span class="text">Help</span>
+                        </li>
+                    </ul>
+
+                    <div class="popover-footer">
+                        <button
+                                (click)="logout()"
+                                class="logout-btn"
+                                nbButton
+                                shape="semi-round"
+                                status="primary">
+                            <nb-icon [options]="{ animation: { type: 'flip' } }" icon="log-out-outline"></nb-icon>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
+        </app-phev-header>
+
+    </nb-layout-header>
+
+    <nb-sidebar class="menu-sidebar" responsive start tag="menu-sidebar">
+        <ng-content select="nb-menu"></ng-content>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <ng-content select="router-outlet"></ng-content>
+    </nb-layout-column>
+</nb-layout>

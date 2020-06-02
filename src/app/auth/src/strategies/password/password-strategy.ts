@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of as observableOf } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
-import { AuthResult } from '../../services';
+import { AuthResult } from '../../services/auth-result';
 import { AuthStrategy } from '../auth-strategy';
 import { AuthStrategyClass } from '../../auth.options';
 import { PasswordAuthStrategyOptions, passwordStrategyOptions } from './password-strategy-options';
-import { AuthIllegalTokenError } from '../../services/token';
+import { AuthIllegalTokenError } from '../../services/token/token';
 
 @Injectable()
 export class PasswordAuthStrategy extends AuthStrategy {

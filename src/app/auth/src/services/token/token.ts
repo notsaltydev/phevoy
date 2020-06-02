@@ -104,7 +104,7 @@ export function decodeJwtPayload(payload: string): any {
  */
 export class AuthSimpleToken extends AuthToken {
 
-    static NAME = 'phevoy:auth:simple:token';
+    static NAME = 'phev:auth:simple:token';
 
     constructor(protected readonly token: any,
                 protected readonly ownerStrategyName: string,
@@ -155,7 +155,7 @@ export class AuthSimpleToken extends AuthToken {
  */
 export class AuthJWTToken extends AuthSimpleToken {
 
-    static NAME = 'phevoy:auth:jwt:token';
+    static NAME = 'phev:auth:jwt:token';
 
     getTokenExpDate(): Date {
         const decoded = this.getPayload();
@@ -199,7 +199,7 @@ const prepareOAuth2Token = (data) => {
  */
 export class AuthOAuth2Token extends AuthSimpleToken {
 
-    static NAME = 'phevoy:auth:oauth2:token';
+    static NAME = 'phev:auth:oauth2:token';
 
     constructor(data: { [key: string]: string | number } | string = {},
                 ownerStrategyName: string,
@@ -257,7 +257,7 @@ export class AuthOAuth2Token extends AuthSimpleToken {
  */
 export class AuthOAuth2JWTToken extends AuthOAuth2Token {
 
-    static NAME = 'phevoy:auth:oauth2:jwt:token';
+    static NAME = 'phev:auth:oauth2:jwt:token';
 
     protected accessTokenPayload: any;
 

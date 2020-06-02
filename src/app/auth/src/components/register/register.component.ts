@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
-import { AuthResult, AuthService } from '../../services';
-import { AUTH_OPTIONS, AuthSocialLink } from '../../auth.options';
 import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
+import { AUTH_OPTIONS, AuthSocialLink } from '../../auth.options';
+import { AuthResult, AuthService } from '../../services';
 
 @Component({
     selector: 'app-register',

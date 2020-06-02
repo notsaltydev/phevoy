@@ -1,11 +1,11 @@
 import { async, inject, TestBed } from '@angular/core/testing';
 import { PasswordAuthStrategy } from './password-strategy';
-import { AuthResult } from '../../services';
+import { AuthResult } from '../../services/auth-result';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { authCreateToken, AuthSimpleToken } from '../../services/token';
+import { authCreateToken, AuthSimpleToken } from '../../services/token/token';
 
 const ownerStrategyName = 'strategy';
 

@@ -18,11 +18,11 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FeedbackComponent } from './feedback';
 import { CoreModule } from './core';
+import { AuthModule } from './auth';
+import { environment } from '../environments/environment';
 import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
-import { AuthModule } from './auth';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
-import { environment } from '../environments/environment';
 
 const socialLinks = [
     {

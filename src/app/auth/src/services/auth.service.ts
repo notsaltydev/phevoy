@@ -3,10 +3,11 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, of as observableOf } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { AuthStrategy } from '../strategies';
+import { AuthStrategy } from '../strategies/auth-strategy';
 import { AUTH_STRATEGIES } from '../auth.options';
 import { AuthResult } from './auth-result';
-import { AuthToken, TokenService } from './token';
+import { TokenService } from './token/token.service';
+import { AuthToken } from './token/token';
 
 /**
  * Common authentication service.

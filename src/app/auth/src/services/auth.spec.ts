@@ -5,19 +5,13 @@ import { of as observableOf } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
 import { AUTH_OPTIONS, AUTH_STRATEGIES, AUTH_TOKENS, AUTH_USER_OPTIONS } from '../auth.options';
 import { AuthService } from './auth.service';
-import { DummyAuthStrategy } from '../strategies/dummy';
+import { DummyAuthStrategy } from '../strategies/dummy/dummy-strategy';
 import { authOptionsFactory, strategiesFactory } from '../auth.module';
 import { AuthResult } from './auth-result';
-import {
-    AUTH_FALLBACK_TOKEN,
-    authCreateToken,
-    AuthJWTToken,
-    AuthSimpleToken,
-    AuthTokenParceler,
-    TokenLocalStorage,
-    TokenService,
-    TokenStorage
-} from './token';
+import { TokenService } from './token/token.service';
+import { authCreateToken, AuthJWTToken, AuthSimpleToken } from './token/token';
+import { TokenLocalStorage, TokenStorage } from './token/token-storage';
+import { AUTH_FALLBACK_TOKEN, AuthTokenParceler } from './token/token-parceler';
 
 describe('auth-service', () => {
     let authService: AuthService;

@@ -4,10 +4,6 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of as observableOf } from 'rxjs';
-
-import { AUTH_OPTIONS, AUTH_STRATEGIES, AUTH_TOKEN_INTERCEPTOR_FILTER, AUTH_TOKENS, AUTH_USER_OPTIONS, } from '../../auth.options';
-import { AuthJWTInterceptor } from './jwt-interceptor';
-import { AuthService } from '../auth.service';
 import {
     AUTH_FALLBACK_TOKEN,
     AuthJWTToken,
@@ -17,7 +13,10 @@ import {
     TokenService,
     TokenStorage
 } from '../token';
+import { AuthService } from '../auth.service';
 import { DummyAuthStrategy } from '../../strategies/dummy';
+import { AUTH_OPTIONS, AUTH_STRATEGIES, AUTH_TOKEN_INTERCEPTOR_FILTER, AUTH_TOKENS, AUTH_USER_OPTIONS } from '../../auth.options';
+import { AuthJWTInterceptor } from './jwt-interceptor';
 import { authOptionsFactory, strategiesFactory } from '../../auth.module';
 
 
