@@ -70,6 +70,7 @@ const socialLinks = [
                     login: {
                         endpoint: '/auth/login',
                         method: 'post',
+                        alwaysFail: !environment.enableLogin,
                         redirect: {
                             success: '/app/dashboard',
                             failure: null, // stay on the same page
@@ -78,6 +79,7 @@ const socialLinks = [
                     register: {
                         endpoint: '/auth/register',
                         method: 'post',
+                        alwaysFail: !environment.enableSignUp,
                         redirect: {
                             success: '/app/dashboard',
                             failure: null
@@ -86,6 +88,7 @@ const socialLinks = [
                     logout: {
                         endpoint: '/auth/sign-out',
                         method: 'post',
+                        alwaysFail: !environment.enableLogout,
                         redirect: {
                             success: '/auth/logout',
                             failure: null
@@ -94,6 +97,7 @@ const socialLinks = [
                     requestPass: {
                         endpoint: '/auth/request-password',
                         method: 'post',
+                        alwaysFail: !environment.enableRequestPassword,
                         redirect: {
                             success: '/auth/login',
                             failure: null
@@ -102,6 +106,7 @@ const socialLinks = [
                     resetPass: {
                         endpoint: '/auth/reset-password',
                         method: 'post',
+                        alwaysFail: !environment.enableResetPassword,
                         redirect: {
                             success: '/auth/login',
                             failure: null
