@@ -1,7 +1,7 @@
 .cal-days {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 126px);
+  min-height: calc(100vh - 76px - 30px - 72px);
 
   > div {
     display: flex;
@@ -13,4 +13,9 @@
 .cal-cell-row {
   display: flex;
   flex-grow: 1;
+
+  &.cal-header {
+    border: 1px solid #e1e1e1;
+    border-bottom: none;
+  }
 }

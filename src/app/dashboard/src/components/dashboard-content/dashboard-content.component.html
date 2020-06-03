@@ -24,34 +24,36 @@
             <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
                 <app-conference-item
-                        class="conference-item"
                         *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'"
                         [conference]="conference"
-                        [showActionsButton]="true">
+                        [showActionsButton]="true"
+                        class="conference-item">
                     <div class="action-body">
-                        <button class="join" nbButton outline status="primary" size="small" (click)="join(conference.id)">Join</button>
+                        <button (click)="join(conference.id)" class="join" nbButton outline size="small"
+                                status="primary">Join
+                        </button>
                         <nb-icon
+                                [nbPopover]="moreOptionPopover"
+                                [options]="{ animation: { type: 'flip' } }"
                                 class="icon action-toggle"
                                 icon="more-vertical-outline"
-                                [options]="{ animation: { type: 'flip' } }"
-                                [nbPopover]="moreOptionPopover"
                                 nbPopoverPlacement="bottom">
                         </nb-icon>
                         <ng-template #moreOptionPopover>
                             <div class="more-option-popover">
-                                <span class="option" (click)="open('update', conference)">
+                                <span (click)="open('update', conference)" class="option">
                                     <nb-icon
+                                            [options]="{ animation: { type: 'flip' } }"
                                             class="icon edit"
-                                            icon="edit-2-outline"
-                                            [options]="{ animation: { type: 'flip' } }">
+                                            icon="edit-2-outline">
                                     </nb-icon>
                                 <span class="text">Edit</span>
                                 </span>
-                                <span class="option" (click)="delete(conference.id)">
+                                <span (click)="delete(conference.id)" class="option">
                                     <nb-icon
+                                            [options]="{ animation: { type: 'flip' } }"
                                             class="icon remove"
-                                            icon="trash-outline"
-                                            [options]="{ animation: { type: 'flip' } }">
+                                            icon="trash-outline">
                                     </nb-icon>
                                 <span class="text">Delete</span>
                                 </span>
@@ -61,7 +63,7 @@
                 </app-conference-item>
             </div>
         </div>
-        <div class="schedule" *ngIf="dates && dates.length === 0">
+        <div *ngIf="dates && dates.length === 0" class="schedule">
             <div class="schedule-header">{{ today | date:'fullDate' }}</div>
             <app-empty-state-conference
                     (iconClicked)="open('create')">

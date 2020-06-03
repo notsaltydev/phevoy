@@ -4,9 +4,9 @@
             <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
                 <app-conference-item
-                        class="conference-item"
                         *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'"
-                        [conference]="conference">
+                        [conference]="conference"
+                        class="conference-item">
                 </app-conference-item>
             </div>
         </div>

@@ -37,7 +37,7 @@ deploy_staging:
     - ssh deployer@phevoy.pl "docker rm phevoy.pl_${CI_COMMIT_REF_SLUG}" || true
     - ssh deployer@phevoy.pl "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
     # start new container
-    - ssh deployer@phevoy.pl "docker run --label traefik.frontend.rule=Host:${CI_ENVIRONMENT_SLUG}.phevoy.pl --name phevoy.pl_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
+    - ssh deployer@phevoy.pl "docker run --label traefik.frontend.rule=Host:${CI_ENVIRONMENT_SLUG}.phevoy.pl,www.${CI_ENVIRONMENT_SLUG}.phevoy.pl --name phevoy.pl_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://${CI_ENVIRONMENT_SLUG}.phevoy.pl

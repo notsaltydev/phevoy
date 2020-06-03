@@ -1,16 +1,18 @@
 @import "src/mixins";
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
 
 :host {
   display: flex;
   flex-direction: column;
-  //margin: -1rem -1rem 0;
+  padding: 2.25rem 2.25rem 0.75rem;
 
-  @include breakpoint(medium) {
-    //margin: -1.5rem -1.5rem -0.5rem;
+  @include media-breakpoint-down(md) {
+    padding: 1.5rem 1.5rem 0.5rem;
   }
 
-  @include breakpoint(large) {
-    //margin: -2.25rem -2.25rem -0.75rem;
+  @include media-breakpoint-down(sm) {
+    padding: 1rem 1rem 0;
   }
 
 }
