@@ -1,10 +1,23 @@
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
 @import '~@nebular/theme/styles/component';
 
 @include nb-install-component() {
   nb-sidebar.menu-sidebar {
     top: 0 !important;
+  }
+
+  ::ng-deep router-outlet + * {
+    display: block;
+    animation: fade 0.4s;
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   }
 }
 
