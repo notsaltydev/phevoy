@@ -1,48 +1,78 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { PreferencesDialogComponent } from '../../../../dashboard/src/components/preferences-dialog/preferences-dialog.component';
 import { FeedbackDialogComponent } from '../../../../dashboard/src/components/feedback-dialog/feedback-dialog.component';
 import { HelpDialogComponent } from '../../../../dashboard/src/components/help-dialog/help-dialog.component';
-import { NbDialogService } from '@nebular/theme';
-import { Router } from '@angular/router';
+import { NbDialogService, NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NavigationEnd, Router } from '@angular/router';
 import { UserService } from '../../../../_services';
 import { Layout } from '../../models';
+import { filter, map, switchMap, take, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+const defaultLayout: Layout = {
+    paddings: {
+        paddingTop: 0,
+        paddingRight: 0,
+        paddingBottom: 0,
+        paddingLeft: 0,
+        paddingTopUnit: 'px',
+        paddingRightUnit: 'px',
+        paddingBottomUnit: 'px',
+        paddingLeftUnit: 'px'
+    },
+    header: true,
+    sidebar: true
+};
 
 @Component({
     selector: 'app-phev-one-column-layout',
     styleUrls: ['./one-column.layout.scss'],
     templateUrl: './one-column.layout.html',
 })
-export class OneColumnLayoutComponent implements OnInit {
+export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     user: any;
-    defaultLayout: Layout = {
-        paddings: {
-            paddingTop: 0,
-            paddingRight: 0,
-            paddingBottom: 0,
-            paddingLeft: 0,
-            paddingTopUnit: 'px',
-            paddingRightUnit: 'px',
-            paddingBottomUnit: 'px',
-            paddingLeftUnit: 'px'
-        },
-        header: true,
-        sidebar: true
-    };
-    padding: string = this.getPaddingCssValue(this.defaultLayout.paddings);
+    padding: string = this.getPaddingCssValue(defaultLayout.paddings);
+    private destroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private dialogService: NbDialogService,
         private router: Router,
         private changeDetectorRef: ChangeDetectorRef,
         private userService: UserService,
+        private sidebarService: NbSidebarService,
+        private menuService: NbMenuService,
+        private themeService: NbThemeService,
+        private breakpointService: NbMediaBreakpointsService
     ) {
     }
 
     ngOnInit() {
+        const {sm, xl} = this.breakpointService.getBreakpointsMap();
+
         this.userService.getUserMe().subscribe(user => {
             this.user = user;
             this.changeDetectorRef.detectChanges();
         });
+
+        this.router.events
+            .pipe(
+                takeUntil(this.destroy$),
+                filter(event => event instanceof NavigationEnd),
+                switchMap(() => this.themeService.onMediaQueryChange()
+                    .pipe(
+                        take(1),
+                        map(([, currentBreakpoint]) => currentBreakpoint.width)
+                    ))
+            )
+            .subscribe((currentBreakpointWidth: number) => {
+                if (currentBreakpointWidth < xl) {
+                    this.sidebarService.compact('menu-sidebar');
+                }
+
+                if (currentBreakpointWidth < sm) {
+                    this.sidebarService.collapse('menu-sidebar');
+                }
+            });
     }
 
     getAvatarUr(): string {
@@ -76,6 +106,22 @@ export class OneColumnLayoutComponent implements OnInit {
                 title: 'Help'
             }
         });
+    }
+
+    toggleSidebar(): boolean {
+        this.sidebarService.toggle(true, 'menu-sidebar');
+
+        return false;
+    }
+
+    navigateHome(): boolean {
+        this.menuService.navigateHome();
+        return false;
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     private getPaddingCssValue(paddings): string {

@@ -1,9 +1,9 @@
 <div class="header-container">
     <div class="logo-container">
-        <a (click)="toggleSidebar()" class="sidebar-toggle" href="#">
+        <a (click)="toggleSidebar.emit()" class="sidebar-toggle">
             <nb-icon icon="menu-2-outline"></nb-icon>
         </a>
-        <img (click)="navigateHome()" alt="..." class="logo" src="assets/img/vectors/phevoy-logo.svg">
+        <img (click)="navigateHome.emit()" alt="..." class="logo" src="assets/img/vectors/phevoy-logo.svg">
     </div>
 </div>
 
