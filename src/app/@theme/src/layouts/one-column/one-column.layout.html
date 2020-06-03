@@ -1,6 +1,8 @@
 <nb-layout>
     <nb-layout-header fixed>
-        <app-phev-header>
+        <app-phev-header
+                (navigateHome)="navigateHome()"
+                (toggleSidebar)="toggleSidebar()">
             <div class="phev-user">
                         <span [nbPopover]="settingsPopover"
                               [ngStyle]="{'background-image': getAvatarUr()}"

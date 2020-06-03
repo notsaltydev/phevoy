@@ -1,27 +1,12 @@
-import { Component } from '@angular/core';
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'app-phev-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-
-    constructor(
-        private sidebarService: NbSidebarService,
-        private menuService: NbMenuService,
-    ) {
-    }
-
-    toggleSidebar(): boolean {
-        this.sidebarService.toggle(true, 'menu-sidebar');
-
-        return false;
-    }
-
-    navigateHome(): boolean {
-        this.menuService.navigateHome();
-        return false;
-    }
+    @Output() toggleSidebar: EventEmitter<void> = new EventEmitter<void>();
+    @Output() navigateHome: EventEmitter<void> = new EventEmitter<void>();
 }

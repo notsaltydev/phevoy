@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PreferencesDialogComponent } from '../../../../dashboard/src/components/preferences-dialog/preferences-dialog.component';
 import { FeedbackDialogComponent } from '../../../../dashboard/src/components/feedback-dialog/feedback-dialog.component';
 import { HelpDialogComponent } from '../../../../dashboard/src/components/help-dialog/help-dialog.component';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { UserService } from '../../../../_services';
 import { Layout } from '../../models';
@@ -35,6 +35,8 @@ export class OneColumnLayoutComponent implements OnInit {
         private router: Router,
         private changeDetectorRef: ChangeDetectorRef,
         private userService: UserService,
+        private sidebarService: NbSidebarService,
+        private menuService: NbMenuService
     ) {
     }
 
@@ -76,6 +78,17 @@ export class OneColumnLayoutComponent implements OnInit {
                 title: 'Help'
             }
         });
+    }
+
+    toggleSidebar(): boolean {
+        this.sidebarService.toggle(true, 'menu-sidebar');
+
+        return false;
+    }
+
+    navigateHome(): boolean {
+        this.menuService.navigateHome();
+        return false;
     }
 
     private getPaddingCssValue(paddings): string {
