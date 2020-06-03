@@ -30,25 +30,9 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
         header: true,
         sidebar: true
     };
-
+    layout$: Observable<Layout>;
+    padding$: Observable<string>;
     private destroy$: Subject<void> = new Subject<void>();
-    layout$: Observable<Layout> = this.router.events
-        .pipe(
-            takeUntil(this.destroy$),
-            filter(event => event instanceof NavigationEnd),
-            map(() => {
-                let route = this.router.routerState.root;
-                while (route.firstChild) {
-                    route = route.firstChild;
-                }
-                return route.snapshot.data['layout'] || this.defaultLayout;
-            }),
-            shareReplay(),
-        );
-    padding$: Observable<string> = this.layout$
-        .pipe(
-            map((layout: Layout) => this.getPaddingCssValue(layout.paddings)),
-        );
 
     constructor(
         private dialogService: NbDialogService,
@@ -63,6 +47,26 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
             this.user = user;
             this.changeDetectorRef.detectChanges();
         });
+
+        this.layout$ = this.router.events
+            .pipe(
+                takeUntil(this.destroy$),
+                filter(event => event instanceof NavigationEnd),
+                map(() => {
+                    let route = this.router.routerState.root;
+                    while (route.firstChild) {
+                        route = route.firstChild;
+                    }
+                    console.log(route);
+                    return route.snapshot.data['layout'] || this.defaultLayout;
+                }),
+                shareReplay(),
+            );
+
+        this.padding$ = this.layout$
+            .pipe(
+                map((layout: Layout) => this.getPaddingCssValue(layout.paddings)),
+            );
     }
 
     getAvatarUr(): string {

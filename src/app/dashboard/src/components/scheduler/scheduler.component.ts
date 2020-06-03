@@ -48,6 +48,7 @@ export class SchedulerComponent implements OnInit {
         event: CalendarEvent;
     };
     refresh: Subject<any> = new Subject();
+    events: CalendarEvent<CalendarMetaData>[];
     actions: CalendarEventAction[] = [
         {
             label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -65,7 +66,22 @@ export class SchedulerComponent implements OnInit {
             },
         },
     ];
-    events: CalendarEvent<CalendarMetaData>[];
+    activeDayIsOpen: boolean = false;
+    calendarViews: { value: CalendarView, name: string }[] = [
+        {
+            value: CalendarView.Day,
+            name: 'Day',
+        },
+        {
+            value: CalendarView.Week,
+            name: 'Week',
+        },
+        {
+            value: CalendarView.Month,
+            name: 'Month',
+        }
+    ];
+    currentCalendarView: CalendarView = CalendarView.Month;
     private mockEvents: CalendarEvent[] = [
         {
             start: subDays(startOfDay(new Date()), 1),
@@ -106,7 +122,6 @@ export class SchedulerComponent implements OnInit {
             draggable: true,
         },
     ];
-    activeDayIsOpen: boolean = false;
 
     constructor(
         private scheduleService: ScheduleService,
@@ -199,5 +214,9 @@ export class SchedulerComponent implements OnInit {
 
     hourSegmentClicked(date: Date, sourceEvent?: MouseEvent): void {
         this.openDialog(date, [], ScheduleDialogView.FORM, ScheduleDialogMode.CREATE);
+    }
+
+    changeCalendarView(view: CalendarView): void {
+        this.setView(view);
     }
 }
