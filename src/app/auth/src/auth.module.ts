@@ -65,7 +65,7 @@ export function authOptionsFactory(options) {
 }
 
 export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
-    return false;
+    return req.url.includes('auth');
 }
 
 @NgModule({
