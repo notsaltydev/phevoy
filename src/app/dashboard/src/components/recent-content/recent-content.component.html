@@ -10,5 +10,9 @@
                 </app-conference-item>
             </div>
         </div>
+        <div *ngIf="dates && dates.length === 0" class="schedule empty-state">
+            <span class="text-header">No recent conferences</span>
+            <span class="text">You don't have any recent conferences</span>
+        </div>
     </div>
 </div>
