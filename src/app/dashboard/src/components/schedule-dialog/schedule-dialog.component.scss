@@ -1,6 +1,8 @@
 @import '~@nebular/theme/styles/component';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
 
-@include nb-install-component() {
+:host {
   nb-card {
     border-radius: 10px;
   }
@@ -23,11 +25,25 @@
     border-bottom-right-radius: 10px;
   }
 
+  @include media-breakpoint-down(sm) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    nb-card {
+      border-radius: 0;
+      min-height: 100vh;
+    }
+
+    nb-card-body {
+      min-width: auto;
+    }
+  }
 }
 
 .card-header {
   display: flex;
-  flex-grow: 1;
 
   .header-content {
     display: flex;
