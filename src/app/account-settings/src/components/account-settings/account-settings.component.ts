@@ -3,31 +3,23 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const ACCOUNT_SETTINGS_MENU_ITEMS: NbMenuItem[] = [
     {
-        title: 'Personal Info',
-        icon: 'person-outline',
-        link: '/account',
-        expanded: true,
-        children: [
-            {
-                title: 'Profile',
-                icon: 'smiling-face-outline',
-                link: '/account/profile',
-                pathMatch: 'prefix'
-            },
-            {
-                title: 'Password & Email',
-                icon: 'lock-outline',
-                link: '/account/authentication',
-                pathMatch: 'prefix'
-            },
-            {
-                title: 'Time & Language',
-                icon: 'globe-outline',
-                link: '/account/internationalization',
-                pathMatch: 'prefix'
-            }
-        ],
+        title: 'Profile',
+        icon: 'smiling-face-outline',
+        link: '/account/profile',
+        pathMatch: 'prefix',
         home: true
+    },
+    {
+        title: 'Password & Email',
+        icon: 'lock-outline',
+        link: '/account/authentication',
+        pathMatch: 'prefix'
+    },
+    {
+        title: 'Time & Language',
+        icon: 'globe-outline',
+        link: '/account/internationalization',
+        pathMatch: 'prefix'
     },
     {
         title: 'Notifications',

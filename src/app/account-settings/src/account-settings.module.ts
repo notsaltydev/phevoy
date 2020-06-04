@@ -12,7 +12,8 @@ import { AccountSettingsRoutingModule } from './account-settings-routing.module'
 import {
     NbButtonModule,
     NbCardModule,
-    NbCheckboxModule, NbIconModule,
+    NbCheckboxModule,
+    NbIconModule,
     NbInputModule,
     NbLayoutModule,
     NbMenuModule,
