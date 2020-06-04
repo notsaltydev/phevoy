@@ -2,14 +2,14 @@
     <nb-layout-header fixed>
         <app-phev-header
                 (navigateHome)="navigateHome()"
-                (toggleSidebar)="toggleSidebar()">
+                (toggleSidebar)="toggleSidebar()"
+                class="phev-header">
             <div class="phev-user">
-                        <span #popoverParent
-                              (click)="togglePopover()"
+                        <span (click)="togglePopover()"
                               [ngStyle]="{'background-image': getAvatarUr()}"
                               class="user-avatar">
                         </span>
-                <app-popover (clickedOutside)="togglePopover()" *ngIf="showPopover" [parent]="popoverParent">
+                <app-popover (clickedOutside)="togglePopover()" *ngIf="showPopover">
                     <div class="settings-popover">
                         <div class="phev-popover-header">
                             <div [ngStyle]="{'background-image': getAvatarUr()}" class="avatar"></div>

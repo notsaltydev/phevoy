@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Component({
     selector: 'app-popover',
@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListe
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverComponent {
-    @Input() parent: HTMLElement;
     @Output() clickedOutside: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private elementRef: ElementRef) {
@@ -15,7 +14,7 @@ export class PopoverComponent {
 
     @HostListener('document:click', ['$event'])
     clickOutside(event): void {
-        if (!this.elementRef.nativeElement.contains(event.target) && !this.parent.contains(event.target)) {
+        if (!this.elementRef.nativeElement.contains(event.target) && !this.elementRef.nativeElement.parentNode.contains(event.target)) {
             this.clickedOutside.emit();
         }
     }
