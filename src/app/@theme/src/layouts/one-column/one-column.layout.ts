@@ -32,6 +32,7 @@ const defaultLayout: Layout = {
 export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     user: any;
     padding: string = this.getPaddingCssValue(defaultLayout.paddings);
+    showPopover: boolean;
     private destroy$: Subject<void> = new Subject<void>();
 
     constructor(
@@ -85,6 +86,7 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     }
 
     showPreferences(): void {
+        this.showPopover = false;
         this.dialogService.open(PreferencesDialogComponent, {
             context: {
                 title: 'Preferences'
@@ -93,6 +95,7 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     }
 
     showFeedback(): void {
+        this.showPopover = false;
         this.dialogService.open(FeedbackDialogComponent, {
             context: {
                 title: 'Leave Feedback'
@@ -101,6 +104,7 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     }
 
     showHelp(): void {
+        this.showPopover = false;
         this.dialogService.open(HelpDialogComponent, {
             context: {
                 title: 'Help'
@@ -122,6 +126,10 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
+    }
+
+    togglePopover(): void {
+        this.showPopover = !this.showPopover;
     }
 
     private getPaddingCssValue(paddings): string {

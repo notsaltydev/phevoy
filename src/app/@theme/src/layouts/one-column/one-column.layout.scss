@@ -22,7 +22,8 @@
     flex-direction: column;
     width: 240px;
 
-    .popover-header {
+
+    .phev-popover-header {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -46,10 +47,14 @@
 
       .settings-link {
         font-size: 16px;
+        font-weight: 500;
+        margin-top: 8px;
       }
     }
 
     .menu-list {
+      margin: 0;
+      padding: 0;
 
       .menu-item {
         display: flex;
@@ -75,12 +80,18 @@
       }
     }
 
-    .popover-footer {
+    .phev-popover-footer {
       border-top: 1px solid #e4e9f2;
       padding: 16px;
 
       .logout-btn {
+        border-radius: 25px;
         width: 100%;
+        color: #FFFFFF;
+      }
+
+      .icon {
+        color: #FFFFFF;
       }
     }
   }
