@@ -47,6 +47,12 @@
   flex-direction: column;
 }
 
+.logo {
+  max-height: 32px;
+  width: auto;
+  margin: 4px 0;
+}
+
 div#wave {
   position: relative;
   margin-top: 50vh;

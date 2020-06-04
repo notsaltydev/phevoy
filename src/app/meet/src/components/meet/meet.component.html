@@ -8,7 +8,7 @@
 
 <nb-layout *ngIf="isShowingPostMeetingActions">
     <nb-layout-column class="column-container">
-        <h2 class="header-title">Thank you for using ...</h2>
+        <h2 class="header-title text-center">Thank you for using our app.</h2>
         <div class="action-container">
             <button *ngIf="isLoggedIn" nbButton status="primary" shape="semi-round" (click)="backToDashboard()">
                 Go To App
@@ -22,5 +22,7 @@
             </button>
         </div>
     </nb-layout-column>
-    <nb-layout-footer>Company name</nb-layout-footer>
+    <nb-layout-footer>
+        <img alt="..." class="logo" src="assets/img/vectors/phevoy-logo.svg">
+    </nb-layout-footer>
 </nb-layout>
