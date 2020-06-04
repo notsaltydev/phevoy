@@ -28,9 +28,9 @@
 
 .action-menu {
   padding: 16px 0;
-  background-color: #edf1f7;
+  background-color: nb-theme(layout-background-color);
   width: 100%;
-  border-bottom: 1px solid #edf1f7;
+  border-bottom: 1px solid nb-theme(layout-background-color);
   overflow-y: auto;
   position: fixed;
   top: 4.75rem;
