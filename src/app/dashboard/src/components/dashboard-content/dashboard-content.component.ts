@@ -53,7 +53,7 @@ export class DashboardContentComponent implements OnInit {
 
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
-                title: `${type} Schedule conference`,
+                title: `${type} conference`,
                 ...editedConference
             },
         }).onClose
