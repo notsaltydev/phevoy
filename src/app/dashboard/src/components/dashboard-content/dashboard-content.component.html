@@ -1,22 +1,22 @@
 <div class="action-menu">
     <div class="action-content">
-        <button nbButton outline status="primary" (click)="open('create')" class="action-btn">
+        <button (click)="open('create')" class="action-btn" nbButton outline status="primary">
             <nb-icon icon="plus-square-outline"></nb-icon>
             <span>Create</span>
         </button>
-        <button nbButton outline status="primary" class="action-btn">
+        <button class="action-btn" nbButton outline status="primary">
             <nb-icon icon="log-in-outline"></nb-icon>
             <span>Join</span>
         </button>
-        <button nbButton outline status="primary" class="action-btn">
+        <button class="action-btn" nbButton outline status="primary">
             <nb-icon icon="share-outline"></nb-icon>
             <span>Share</span>
         </button>
     </div>
 </div>
 <div class="content">
-    <div class="main-content">
-        <div *ngFor="let date of dates" class="schedule">
+    <div class="row main-content">
+        <div *ngFor="let date of dates" class="col-lg-8 col-md-8 col-sm-12 schedule">
             <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
                 <app-conference-item

@@ -5,11 +5,11 @@
 :host {
   display: flex;
   flex-direction: column;
-  padding: 2.25rem 2.25rem 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .action-menu {
-  padding: 16px 0;
+  padding: 16px 2.25rem;
   background-color: #f8f9fa;
   width: 100%;
   border-bottom: 1px solid nb-theme(layout-background-color);
@@ -30,38 +30,35 @@
       margin-right: 0;
     }
   }
-
-  .text {
-
-  }
-
-  .icon {
-
-  }
 }
 
 .content {
-  padding-top: calc(72px - 2.25rem);
+  padding: 72px 2.25rem 0;
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin: 0;
 }
 
 .schedule {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .schedule-header {
   position: sticky;
   position: -webkit-sticky;
   top: calc(4.75rem + 72px);
-  background-color: #8779AE;
-  border-bottom: 1px solid #746895;
-  border-radius: 10px;
-  color: #FFFFFF;
+  background-color: #edf0f4;
+  border-bottom: 1px solid #edf1f7;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 30px -10px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+  color: #8484a3;
   font-size: 18px;
   font-weight: 500;
   padding: 16px;
@@ -140,21 +137,21 @@
 
 @include media-breakpoint-down(md) {
   :host {
-    padding: 1.5rem 1.5rem 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .content {
-    padding-top: calc(72px - 1.5rem);
+    padding: 72px 1.5rem 0;
   }
 }
 
 @include media-breakpoint-down(sm) {
   :host {
-    padding: 1rem 1rem 0;
+    padding-bottom: 0;
   }
 
   .content {
-    padding-top: calc(72px - 1rem);
+    padding: 72px 1rem 0;
   }
 }
 
