@@ -6,29 +6,11 @@
   display: flex;
   flex-direction: column;
   padding: 2.25rem 2.25rem 0.75rem;
-
-  @include media-breakpoint-down(md) {
-    padding: 1.5rem 1.5rem 0.5rem;
-  }
-
-  @include media-breakpoint-down(sm) {
-    padding: 1rem 1rem 0;
-  }
-
-
-  @include breakpoint(medium) {
-    //margin: -1.5rem -1.5rem -0.5rem;
-  }
-
-  @include breakpoint(large) {
-    //margin: -2.25rem -2.25rem -0.75rem;
-  }
-
 }
 
 .action-menu {
   padding: 16px 0;
-  background-color: nb-theme(layout-background-color);
+  background-color: #f8f9fa;
   width: 100%;
   border-bottom: 1px solid nb-theme(layout-background-color);
   overflow-y: auto;
@@ -59,7 +41,7 @@
 }
 
 .content {
-  padding-top: calc(133px - 2.25rem);
+  padding-top: calc(72px - 2.25rem);
 }
 
 .main-content {
@@ -75,7 +57,7 @@
 .schedule-header {
   position: sticky;
   position: -webkit-sticky;
-  top: calc(4.75rem + 133px);
+  top: calc(4.75rem + 72px);
   background-color: #8779AE;
   border-bottom: 1px solid #746895;
   border-radius: 10px;
@@ -156,4 +138,23 @@
   }
 }
 
+@include media-breakpoint-down(md) {
+  :host {
+    padding: 1.5rem 1.5rem 0.5rem;
+  }
+
+  .content {
+    padding-top: calc(72px - 1.5rem);
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  :host {
+    padding: 1rem 1rem 0;
+  }
+
+  .content {
+    padding-top: calc(72px - 1rem);
+  }
+}
 
