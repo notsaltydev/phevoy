@@ -24,22 +24,6 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
-
-  @include media-breakpoint-down(md) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    nb-card {
-      border-radius: 0;
-      min-height: 100vh;
-    }
-
-    nb-card-body {
-      min-width: auto;
-    }
-  }
 }
 
 .header-wrapper {
@@ -73,4 +57,23 @@
 
 .save {
   margin-right: 8px;
+}
+
+@include media-breakpoint-down(md) {
+
+  :host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    nb-card {
+      border-radius: 0;
+      min-height: 100vh;
+    }
+
+    nb-card-body {
+      min-width: auto;
+    }
+  }
 }
