@@ -28,14 +28,19 @@
   .date-wrapper {
     display: flex;
     flex-direction: column;
-    padding-right: 16px;
+    padding-right: 4px;
+    margin-right: 16px;
+    border-right: 1px solid #edf1f7;
+    min-width: 80px;
 
     .start-date {
+      color: #281F42;
       font-size: 16px;
     }
 
     .end-date {
-      font-size: 14px;
+      color: #869ab8;
+      font-size: 12px;
     }
   }
 
@@ -43,6 +48,7 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 21px;
+    color: #281F42;
   }
 
   .icon-edit {
@@ -63,7 +69,7 @@
       opacity: 0.8;
 
       &.edit {
-        color: #8779AE;
+        color: #281F42;
       }
 
       &.remove {
