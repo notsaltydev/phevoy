@@ -1,8 +1,6 @@
 @import '~@nebular/theme/styles/component';
-
-@include nb-install-component() {
-
-}
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
 
 .field {
   margin-bottom: 16px;
@@ -10,22 +8,44 @@
 
 .date {
   display: flex;
+  width: 100%;
 }
 
 .datepicker {
-  flex-grow: 1;
-  max-width: 100%;
+  width: 100%;
 }
 
 .time {
+  display: flex;
+  align-items: center;
+  width: 100%;
   padding-left: 8px;
+}
+
+.time-picker {
+  width: 100%;
 }
 
 .time-label {
   padding: 0 8px;
-  font-weight: bold;
+  font-weight: 500;
+  margin: 0;
 }
 
 .description {
   resize: vertical;
+}
+
+@include media-breakpoint-down(sm) {
+  .date {
+    flex-direction: column;
+  }
+
+  .datepicker {
+    margin-bottom: 16px;
+  }
+
+  .time {
+    padding-left: 0;
+  }
 }

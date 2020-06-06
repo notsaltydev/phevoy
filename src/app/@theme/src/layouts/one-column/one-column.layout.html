@@ -2,49 +2,44 @@
     <nb-layout-header fixed>
         <app-phev-header
                 (navigateHome)="navigateHome()"
-                (toggleSidebar)="toggleSidebar()">
+                (toggleSidebar)="toggleSidebar()"
+                class="phev-header">
             <div class="phev-user">
-                        <span [nbPopover]="settingsPopover"
+                        <span (click)="togglePopover()"
                               [ngStyle]="{'background-image': getAvatarUr()}"
                               class="user-avatar">
                         </span>
+                <app-popover (clickedOutside)="togglePopover()" *ngIf="showPopover">
+                    <div class="settings-popover">
+                        <div class="phev-popover-header">
+                            <div [ngStyle]="{'background-image': getAvatarUr()}" class="avatar"></div>
+                            <div class="user-name">{{ user.username }}</div>
+                            <a class="settings-link" routerLink="/account">Account Settings</a>
+                        </div>
+
+                        <ul class="menu-list">
+                            <li (click)="showPreferences()" class="menu-item">
+                                <nb-icon class="icon" icon="settings-2-outline"></nb-icon>
+                                <span class="text">Preferences</span>
+                            </li>
+                            <li (click)="showFeedback()" class="menu-item">
+                                <nb-icon class="icon" icon="message-circle-outline"></nb-icon>
+                                <span class="text">Leave feedback</span>
+                            </li>
+                            <li (click)="showHelp()" class="menu-item">
+                                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                                <span class="text">Help</span>
+                            </li>
+                        </ul>
+
+                        <div class="phev-popover-footer">
+                            <button (click)="logout()" class="btn btn-primary btn-lg semi-rounded logout-btn">Logout
+                            </button>
+                        </div>
+                    </div>
+                </app-popover>
             </div>
-            <ng-template #settingsPopover>
-                <div class="settings-popover">
-                    <div class="popover-header">
-                        <div [ngStyle]="{'background-image': getAvatarUr()}" class="avatar"></div>
-                        <div class="user-name">{{ user.username }}</div>
-                        <a class="settings-link" routerLink="/account">Account Settings</a>
-                    </div>
 
-                    <ul class="menu-list">
-                        <li (click)="showPreferences()" class="menu-item">
-                            <nb-icon class="icon" icon="settings-2-outline"></nb-icon>
-                            <span class="text">Preferences</span>
-                        </li>
-                        <li (click)="showFeedback()" class="menu-item">
-                            <nb-icon class="icon" icon="message-circle-outline"></nb-icon>
-                            <span class="text">Leave feedback</span>
-                        </li>
-                        <li (click)="showHelp()" class="menu-item">
-                            <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
-                            <span class="text">Help</span>
-                        </li>
-                    </ul>
-
-                    <div class="popover-footer">
-                        <button
-                                (click)="logout()"
-                                class="logout-btn"
-                                nbButton
-                                shape="semi-round"
-                                status="primary">
-                            <nb-icon [options]="{ animation: { type: 'flip' } }" icon="log-out-outline"></nb-icon>
-                            Logout
-                        </button>
-                    </div>
-                </div>
-            </ng-template>
         </app-phev-header>
 
     </nb-layout-header>
