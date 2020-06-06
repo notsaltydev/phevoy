@@ -20,7 +20,7 @@ $nb-themes: nb-register-theme((
         icon-large-size: 1.5rem,
         icon-giant-size: 2rem,
         popover-border-radius: 8px,
-        overlay-backdrop-background-color: rgba(233, 234, 236, 0.35),
+        //overlay-backdrop-background-color: rgba(233, 234, 236, 0.35),
         card-margin-bottom: 0,
         outline-width: 0,
   //
@@ -66,6 +66,22 @@ $nb-themes: nb-register-theme((
         option-selected-focus-background-color: #442d81,
         option-selected-focus-text-color: #FFFFFF,
   //
+        button-rectangle-border-radius: 8px,
+        button-filled-text-transform: capitallize,
+        button-filled-basic-background-color: #442d81,
+        button-filled-basic-border-color: #442d81,
+        button-filled-basic-text-color: #FFFFFF,
+        button-filled-basic-focus-background-color: #442d81,
+        button-filled-basic-focus-border-color: #442d81,
+        button-filled-basic-hover-background-color: #7124F6,
+        button-filled-basic-hover-border-color: #7124F6,
+        button-filled-basic-active-background-color: #442d81,
+        button-filled-basic-active-border-color: #442d81,
+        button-filled-basic-disabled-background-color: #8f81b3,
+        button-filled-basic-disabled-border-color: #8f81b3,
+        button-filled-basic-disabled-text-color: #FFFFFF,
+  //
+
         menu-item-active-text-color: #442d81,
         menu-item-icon-active-color: #442d81,
         menu-item-hover-text-color: #7124F6,
