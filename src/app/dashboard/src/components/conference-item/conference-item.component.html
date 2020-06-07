@@ -1,10 +1,10 @@
 <span class="conference-content">
     <span class="date-wrapper">
-        <span class="start-date">{{ conference.startDate | date: 'hh:mm'}}</span>
+        <span class="start-date">{{ conference.startDate | date: 'hh:mm a'}}</span>
         <span class="end-date">{{ getFormatDistance(conference.endDate, conference.startDate)}}</span>
     </span>
     <span class="title">{{ conference.name }}</span>
-    <span class="icon-action-container" *ngIf="showActionsButton">
+    <span *ngIf="showActionsButton" class="icon-action-container">
          <ng-content select=".action-body"></ng-content>
     </span>
 </span>

@@ -17,7 +17,7 @@
 <div class="content">
     <div class="row main-content">
         <div *ngFor="let date of dates" class="col-lg-8 col-md-8 col-sm-12 schedule">
-            <div class="schedule-header">{{date | date:'fullDate'}}</div>
+            <div class="schedule-header">{{formatDate(date)}}</div>
             <div class="conference-container">
                 <app-conference-item
                         *ngFor="let conference of conferenceList[date] | orderBy: 'startDate'"

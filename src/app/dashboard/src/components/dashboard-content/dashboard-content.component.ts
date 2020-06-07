@@ -5,8 +5,9 @@ import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
-import { isAfter, subDays } from 'date-fns';
+import { isAfter, isToday, isTomorrow } from 'date-fns';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -22,14 +23,17 @@ export class DashboardContentComponent implements OnInit {
         private scheduleService: ScheduleService,
         private changeDetectorRef: ChangeDetectorRef,
         private dialogService: NbDialogService,
-        private router: Router
+        private router: Router,
+        private datePipe: DatePipe
     ) {
     }
 
     ngOnInit(): void {
         this.scheduleService.getConferences()
             .pipe(
-                map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isAfter(conf.startDate, subDays(new Date(), 1)))),
+                map((confs: ConferenceDto[]) => confs.filter((conference: ConferenceDto) =>
+                    isAfter(conference.startDate, new Date()) || isToday(conference.startDate))
+                ),
                 map(conferenceDtoToConferenceList)
             )
             .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
@@ -75,6 +79,19 @@ export class DashboardContentComponent implements OnInit {
 
     join(id: number): void {
         this.router.navigate(['/meet', id]);
+    }
+
+    formatDate(dateToFormat: string): string {
+        const date: Date = new Date(dateToFormat);
+
+        if (isToday(date)) {
+            return 'Today';
+        }
+        if (isTomorrow(date)) {
+            return 'Tomorrow';
+        }
+
+        return this.datePipe.transform(date, 'fullDate');
     }
 
     private createSchedule(conference: ConferenceDto): void {
