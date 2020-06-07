@@ -1,43 +1,38 @@
 <div class="calendar-header">
     <button
             [(viewDate)]="viewDate"
+            [size]="componentSize"
             class="control"
             mwlCalendarToday
             nbButton
-            outline
-            size="small"
-            status="primary">
+            outline>
         Today
     </button>
     <button
             (viewDateChange)="closeOpenMonthViewDay()"
             [(viewDate)]="viewDate"
+            [size]="componentSize"
             [view]="view"
             class="control"
             mwlCalendarPreviousView
             nbButton
-            outline
-            size="small"
-            status="primary">
+            outline>
         <nb-icon class="icon" icon="arrow-upward-outline"></nb-icon>
     </button>
     <button
             (viewDateChange)="closeOpenMonthViewDay()"
             [(viewDate)]="viewDate"
+            [size]="componentSize"
             [view]="view"
             class="control"
             mwlCalendarNextView
             nbButton
-            outline
-            size="small"
-            status="primary">
+            outline>
         <nb-icon class="icon" icon="arrow-downward-outline"></nb-icon>
     </button>
     <span class="control date">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
     <nb-select (selectedChange)="changeCalendarView($event)" [selected]="currentCalendarView"
-               class="select-calendar-view control"
-               size="small"
-               status="primary">
+               [size]="componentSize" class="select-calendar-view control">
         <nb-option *ngFor="let calendarViews of calendarViews"
                    [value]="calendarViews.value"> {{ calendarViews.name }}</nb-option>
     </nb-select>

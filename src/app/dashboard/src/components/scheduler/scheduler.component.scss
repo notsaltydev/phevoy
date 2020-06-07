@@ -1,42 +1,72 @@
-@import "src/mixins";
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
 
 :host {
   display: flex;
   flex-direction: column;
-  //margin: -1rem -1rem 0;
-
-  @include breakpoint(medium) {
-    //margin: -1.5rem -1.5rem -0.5rem;
-  }
-
-  @include breakpoint(large) {
-    //margin: -2.25rem -2.25rem -0.75rem;
-  }
-
 }
 
 .calendar-header {
   display: flex;
   align-items: center;
-  padding: 8px 0;
+  padding: 16px 0;
 
   .control {
     margin: 0 4px;
+    border-radius: 18px;
 
     &:first-child {
-      margin-left: 8px;
+      margin-left: 2.25rem;
     }
 
     &:last-child {
-      margin-right: 8px;
+      margin-right: 2.25rem;
+    }
+
+    &.select-calendar-view {
+      margin-left: auto;
     }
   }
 
   .date {
     text-align: center;
   }
+}
 
-  .select-calendar-view {
-    margin-left: auto;
+@include media-breakpoint-down(md) {
+  .calendar-header {
+    padding: 16px 0;
+
+    .control {
+      margin: 0 4px;
+      border-radius: 18px;
+
+      &:first-child {
+        margin-left: 1.5rem;
+      }
+
+      &:last-child {
+        margin-right: 1.5rem;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .calendar-header {
+    padding: 16px 0;
+
+    .control {
+      margin: 0 4px;
+      border-radius: 18px;
+
+      &:first-child {
+        margin-left: 0.75rem;
+      }
+
+      &:last-child {
+        margin-right: 0.75rem;
+      }
+    }
   }
 }
