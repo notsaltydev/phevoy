@@ -20,11 +20,11 @@ $nb-themes: nb-register-theme((
         icon-large-size: 1.5rem,
         icon-giant-size: 2rem,
         popover-border-radius: 8px,
-        //overlay-backdrop-background-color: rgba(233, 234, 236, 0.35),
+  //    overlay-backdrop-background-color: rgba(233, 234, 236, 0.35),
         card-margin-bottom: 0,
         outline-width: 0,
   //
-  //layout-background-color: #edf1f7,
+  //    layout-background-color: #edf1f7,
         layout-background-color: #f8f9fa,
   //
         input-rectangle-border-radius: 8px,
@@ -81,7 +81,22 @@ $nb-themes: nb-register-theme((
         button-filled-basic-disabled-border-color: #8f81b3,
         button-filled-basic-disabled-text-color: #FFFFFF,
   //
-
+        button-outline-basic-background-color: rgba(68, 45, 129, 0.08),
+        button-outline-basic-border-color: rgb(68, 45, 129, 0.8),
+        button-outline-basic-text-color: rgb(68, 45, 129, 0.8),
+        button-outline-basic-focus-background-color: rgba(68, 45, 129, 0.24),
+        button-outline-basic-focus-border-color: rgba(68, 45, 129, 0.8),
+        button-outline-basic-focus-text-color: rgba(68, 45, 129, 0.8),
+        button-outline-basic-hover-background-color: rgba(68, 45, 129, 0.16),
+        button-outline-basic-hover-border-color: rgba(68, 45, 129, 0.8),
+        button-outline-basic-hover-text-color: rgba(68, 45, 129, 0.8),
+        button-outline-basic-active-background-color: rgba(68, 45, 129, 0.24),
+        button-outline-basic-active-border-color: rgba(68, 45, 129, 0.8),
+        button-outline-basic-active-text-color: rgba(68, 45, 129, 0.8),
+        button-outline-basic-disabled-background-color: rgba(68, 45, 129, 0.16),
+        button-outline-basic-disabled-border-color: rgba(68, 45, 129, 0.24),
+        button-outline-basic-disabled-text-color: rgba(68, 45, 129, 0.8),
+  //
         menu-item-active-text-color: #442d81,
         menu-item-icon-active-color: #442d81,
         menu-item-hover-text-color: #7124F6,
