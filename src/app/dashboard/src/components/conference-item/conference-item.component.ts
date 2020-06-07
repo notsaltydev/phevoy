@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ConferenceDto } from '../../../../schedule/src/models';
+import { formatDistanceStrict } from 'date-fns';
 
 @Component({
     selector: 'app-conference-item',
@@ -10,4 +11,11 @@ import { ConferenceDto } from '../../../../schedule/src/models';
 export class ConferenceItemComponent {
     @Input() conference: ConferenceDto;
     @Input() showActionsButton: boolean;
+
+    getFormatDistance(date: Date, baseDate: Date): string {
+        return formatDistanceStrict(
+            date,
+            baseDate
+        );
+    }
 }

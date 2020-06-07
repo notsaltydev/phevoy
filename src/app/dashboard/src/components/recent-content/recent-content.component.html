@@ -1,6 +1,22 @@
+<div class="action-menu">
+    <div class="action-content">
+        <button class="action-btn"
+                nbButton
+                outline>
+            <nb-icon class="icon sort" icon="bar-chart-2-outline"></nb-icon>
+            <span>Sort</span>
+        </button>
+        <button class="action-btn"
+                nbButton
+                outline>
+            <nb-icon class="icon" icon="funnel-outline"></nb-icon>
+            <span>Filter</span>
+        </button>
+    </div>
+</div>
 <div class="content">
-    <div class="main-content">
-        <div *ngFor="let date of dates" class="schedule">
+    <div class="row main-content">
+        <div *ngFor="let date of dates" class="col-lg-7 col-md-10 col-sm-12 schedule">
             <div class="schedule-header">{{date | date:'fullDate'}}</div>
             <div class="conference-container">
                 <app-conference-item

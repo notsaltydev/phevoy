@@ -3,7 +3,7 @@ import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
 import { map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
-import { isAfter } from 'date-fns/fp';
+import { isBefore } from 'date-fns/fp';
 
 @Component({
     selector: 'app-recent-content',
@@ -24,7 +24,7 @@ export class RecentContentComponent implements OnInit {
     ngOnInit(): void {
         this.scheduleService.getConferences()
             .pipe(
-                map((confs: ConferenceDto[]) => confs.filter((conf: ConferenceDto) => isAfter(conf.startDate, new Date()))),
+                map((conference: ConferenceDto[]) => conference.filter((conf: ConferenceDto) => !isBefore(conf.startDate, new Date()))),
                 map(conferenceDtoToConferenceList),
             )
             .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {

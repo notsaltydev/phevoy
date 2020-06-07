@@ -1,40 +1,70 @@
-@import "src/mixins";
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
 
 :host {
   display: flex;
   flex-direction: column;
-  padding: 2.25rem 2.25rem 0.75rem;
+  padding-bottom: 0.75rem;
+}
 
-  @include media-breakpoint-down(md) {
-    padding: 1.5rem 1.5rem 0.5rem;
+.action-menu {
+  padding: 16px 2.25rem;
+  background-color: #f8f9fa;
+  width: 100%;
+  //border-bottom: 1px solid nb-theme(layout-background-color);
+  overflow-y: auto;
+  position: fixed;
+  top: 4.75rem;
+  z-index: 1;
+
+  .action-content {
+    display: flex;
   }
 
-  @include media-breakpoint-down(sm) {
-    padding: 1rem 1rem 0;
+  .action-btn {
+    border-radius: 18px;
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
+  .icon.sort {
+    transform: rotate(270deg);
+  }
+}
+
+
+.content {
+  padding: 72px 2.25rem 0;
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin: 0;
 }
 
 .schedule {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .schedule-header {
   position: sticky;
   position: -webkit-sticky;
-  top: calc(4.75rem);
-  background-color: #8779AE;
-  border-bottom: 1px solid #746895;
-  border-radius: 10px;
-  color: #FFFFFF;
+  top: calc(4.75rem + 72px);
+  background-image: linear-gradient(180deg, #f6f7f8 0%, #f8f9fa 66px);
+  border-radius: 8px;
+  //box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 30px -10px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 10px 30px -10px;
+  color: #442d81;
+  //color: #57428e;
+  //color: #69579a;
   font-size: 18px;
   font-weight: 500;
   padding: 16px;
@@ -51,31 +81,31 @@
   padding-bottom: 16px;
 }
 
-.empty-state {
-  align-items: center;
-  justify-content: center;
-  margin-top: 16px;
-  color: #222b45;
-  opacity: 0.4;
-
-
-  .text-header {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 16px;
+@include media-breakpoint-down(md) {
+  :host {
+    padding-bottom: 0.5rem;
   }
 
-  .text {
-    font-size: 16px;
+  .action-menu {
+    padding: 16px 1.5rem;
   }
 
-  .icon {
-    margin-top: 16px;
-    font-size: 40px;
-    cursor: pointer;
-
-    &:hover {
-      color: #8779AE;
-    }
+  .content {
+    padding: 72px 1.5rem 0;
   }
 }
+
+@include media-breakpoint-down(sm) {
+  :host {
+    padding-bottom: 0;
+  }
+
+  .action-menu {
+    padding: 16px 1rem;
+  }
+
+  .content {
+    padding: 72px 1rem 0;
+  }
+}
+

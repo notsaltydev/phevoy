@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
 import { ConferenceDto } from '../../../../schedule/src/models';
 import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { ScheduleDialogMode, ScheduleDialogView } from '../../models';
-import { filter } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 const colors: any = {
@@ -39,7 +39,7 @@ export interface CalendarMetaData extends ConferenceDto {
     styleUrls: ['./scheduler.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SchedulerComponent implements OnInit {
+export class SchedulerComponent implements OnInit, OnDestroy {
     view: CalendarView = CalendarView.Month;
     CalendarView = CalendarView;
     viewDate: Date = new Date();
@@ -82,6 +82,7 @@ export class SchedulerComponent implements OnInit {
         }
     ];
     currentCalendarView: CalendarView = CalendarView.Month;
+    componentSize: 'tiny' | 'small' | 'medium' | 'large' | 'giant' = 'medium';
     private mockEvents: CalendarEvent[] = [
         {
             start: subDays(startOfDay(new Date()), 1),
@@ -122,16 +123,21 @@ export class SchedulerComponent implements OnInit {
             draggable: true,
         },
     ];
+    private destroy$: Subject<void> = new Subject<void>();
 
     constructor(
-        private scheduleService: ScheduleService,
+        private breakpointService: NbMediaBreakpointsService,
         private changeDetector: ChangeDetectorRef,
         private dialogService: NbDialogService,
-        private router: Router
+        private router: Router,
+        private scheduleService: ScheduleService,
+        private themeService: NbThemeService
     ) {
     }
 
     ngOnInit(): void {
+        const {md} = this.breakpointService.getBreakpointsMap();
+
         this.scheduleService.getConferences()
             .subscribe((conferences: ConferenceDto[]) => {
                 this.events = [
@@ -151,6 +157,16 @@ export class SchedulerComponent implements OnInit {
                     }))
                 ];
 
+                this.changeDetector.markForCheck();
+            });
+
+        this.themeService.onMediaQueryChange()
+            .pipe(
+                takeUntil(this.destroy$),
+                map(([, currentBreakpoint]) => currentBreakpoint.width)
+            )
+            .subscribe((currentBreakpointWidth: number) => {
+                this.componentSize = currentBreakpointWidth < md ? 'small' : 'medium';
                 this.changeDetector.markForCheck();
             });
     }
@@ -218,5 +234,10 @@ export class SchedulerComponent implements OnInit {
 
     changeCalendarView(view: CalendarView): void {
         this.setView(view);
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }

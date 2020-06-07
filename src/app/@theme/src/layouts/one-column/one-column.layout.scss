@@ -1,14 +1,7 @@
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
-@import '~@nebular/theme/styles/component';
-
 :host {
   app-popover {
     top: 48px;
   }
-}
-
-@include nb-install-component() {
 
   nb-layout-header {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 30px -10px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
