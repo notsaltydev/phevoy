@@ -12,7 +12,7 @@
   padding: 16px 2.25rem;
   background-color: #f8f9fa;
   width: 100%;
-  border-bottom: 1px solid nb-theme(layout-background-color);
+  //border-bottom: 1px solid nb-theme(layout-background-color);
   overflow-y: auto;
   position: fixed;
   top: 4.75rem;
@@ -142,6 +142,10 @@
     padding-bottom: 0.5rem;
   }
 
+  .action-menu {
+    padding: 16px 1.5rem;
+  }
+
   .content {
     padding: 72px 1.5rem 0;
   }
@@ -150,6 +154,10 @@
 @include media-breakpoint-down(sm) {
   :host {
     padding-bottom: 0;
+  }
+
+  .action-menu {
+    padding: 16px 1rem;
   }
 
   .content {
