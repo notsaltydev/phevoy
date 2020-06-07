@@ -11,21 +11,35 @@
   .logo-container {
     display: flex;
     align-items: center;
-    width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
   }
 
-  nb-action {
+  .user-action {
     height: auto;
     display: flex;
     align-content: center;
-  }
-
-  nb-user {
+    margin: 0 8px;
+    position: relative;
     cursor: pointer;
-  }
 
-  ::ng-deep nb-search button {
-    padding: 0 !important;
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .icon {
+      color: #8484a3
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin: 0 4px;
+    }
+
+    @include media-breakpoint-down(is) {
+      //display: none;
+    }
   }
 
   .header-container {
@@ -70,7 +84,6 @@
 }
 
 .icon-popover {
-  position: relative;
   cursor: pointer;
 }
 
