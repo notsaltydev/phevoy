@@ -94,13 +94,18 @@
       padding: 16px;
 
       .logout-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 25px;
         width: 100%;
         color: #FFFFFF;
-      }
 
-      .icon {
-        color: #FFFFFF;
+        .im {
+          font-size: 16px;
+          font-weight: 900;
+          margin-right: 8px;;
+        }
       }
     }
   }
