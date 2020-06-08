@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
+@import './src/colors';
 
 :host {
   display: flex;
@@ -111,6 +112,7 @@
     cursor: pointer;
     padding: 8px;
     margin-bottom: 4px;
+    color: $color-1-darker;
 
     &:last-child {
       margin-bottom: 0;

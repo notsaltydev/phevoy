@@ -7,17 +7,31 @@
             <nb-icon icon="plus-square-outline"></nb-icon>
             <span>Create</span>
         </button>
-        <button class="action-btn"
+        <button [nbPopover]="joinPopover"
+                class="action-btn"
                 nbButton
+                nbPopoverPlacement="bottom"
                 outline>
             <nb-icon icon="log-in-outline"></nb-icon>
             <span>Join</span>
+            <ng-template #joinPopover>
+                <div class="more-option-popover">
+                    <span class="option">Check back soon!</span>
+                </div>
+            </ng-template>
         </button>
-        <button class="action-btn"
+        <button [nbPopover]="sharePopover"
+                class="action-btn"
                 nbButton
+                nbPopoverPlacement="bottom"
                 outline>
             <nb-icon icon="share-outline"></nb-icon>
             <span>Share</span>
+            <ng-template #sharePopover>
+                <div class="more-option-popover">
+                    <span class="option">Check back soon!</span>
+                </div>
+            </ng-template>
         </button>
     </div>
 </div>
@@ -37,7 +51,6 @@
                         </button>
                         <nb-icon
                                 [nbPopover]="moreOptionPopover"
-                                [options]="{ animation: { type: 'flip' } }"
                                 class="icon action-toggle"
                                 icon="more-vertical-outline"
                                 nbPopoverPlacement="bottom">
