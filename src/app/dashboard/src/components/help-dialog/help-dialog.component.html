@@ -1,78 +1,49 @@
 <nb-card>
     <nb-card-header>
         <div class="header-wrapper">
-            <span>{{title}}</span>
-            <nb-icon
-                    class="close-dialog"
-                    icon="close-outline"
-                    [options]="{ animation: { type: 'flip' } }"
-                    (click)="close()">
-            </nb-icon>
+            <span class="title">{{title}}</span>
+            <span class="close-dialog">
+                <nb-icon (click)="close()" class="icon" icon="close-outline"></nb-icon>
+            </span>
         </div>
     </nb-card-header>
     <nb-card-body>
-        <nb-tabset>
-            <nb-tab class="tab" tabTitle="FAQ">
-                <div class="faq-container">
-                    <span class="option">
-                        <nb-icon
-                                class="icon"
-                                icon="question-mark-circle-outline"
-                                [options]="{ animation: { type: 'flip' } }">
-                        </nb-icon>
-                        <a class="link" routerLink="/app">How to invite person to conference?</a>
-                    </span>
-                    <span class="option">
-                        <nb-icon
-                                class="icon"
-                                icon="question-mark-circle-outline"
-                                [options]="{ animation: { type: 'flip' } }">
-                        </nb-icon>
-                        <a class="link" routerLink="/app">How to assign person to conference?</a>
-                    </span>
-                    <span class="option">
-                        <nb-icon
-                                class="icon"
-                                icon="question-mark-circle-outline"
-                                [options]="{ animation: { type: 'flip' } }">
-                        </nb-icon>
-                        <a class="link" routerLink="/app">How to create a conference?</a>
-                    </span>
-                    <span class="option">
-                        <nb-icon
-                                class="icon"
-                                icon="question-mark-circle-outline"
-                                [options]="{ animation: { type: 'flip' } }">
-                        </nb-icon>
-                        <a class="link" routerLink="/app">How to change a profile picture?</a>
-                    </span>
-                    <span class="option">
-                        <nb-icon
-                                class="icon"
-                                icon="question-mark-circle-outline"
-                                [options]="{ animation: { type: 'flip' } }">
-                        </nb-icon>
-                        <a class="link" routerLink="/app">How to change a profile picture?</a>
-                    </span>
-                    <span class="option">
-                        <nb-icon
-                                class="icon"
-                                icon="question-mark-circle-outline"
-                                [options]="{ animation: { type: 'flip' } }">
-                        </nb-icon>
-                        <a class="link" routerLink="/app">How to set due dates and times?</a>
-                    </span>
-                </div>
-            </nb-tab>
-            <nb-tab class="tab" tabTitle="Shortcuts">
-                <div class="shortcuts-container">
-                    <div class="sub-header">Conference Dialog</div>
-                    <span class="option">
-                        <code class="code">ESC</code>
-                        <span class="description">Clear selection</span>
-                    </span>
-                </div>
-            </nb-tab>
-        </nb-tabset>
+        <div class="faq-container">
+            <span class="option">
+                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                <a class="link" routerLink="/app">How to invite person to conference?</a>
+            </span>
+            <span class="option">
+                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                <a class="link" routerLink="/app">How to assign person to conference?</a>
+            </span>
+            <span class="option">
+                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                <a class="link" routerLink="/app">How to create a conference?</a>
+            </span>
+            <span class="option">
+                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                <a class="link" routerLink="/app">How to change a profile picture?</a>
+            </span>
+            <span class="option">
+                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                <a class="link" routerLink="/app">How to change a profile picture?</a>
+            </span>
+            <span class="option">
+                <nb-icon class="icon" icon="question-mark-circle-outline"></nb-icon>
+                <a class="link" routerLink="/app">How to set due dates and times?</a>
+            </span>
+        </div>
+        <!--        <nb-tabset>-->
+        <!--            <nb-tab class="tab" tabTitle="Shortcuts">-->
+        <!--                <div class="shortcuts-container">-->
+        <!--                    <div class="sub-header">Conference Dialog</div>-->
+        <!--                    <span class="option">-->
+        <!--                        <code class="code">ESC</code>-->
+        <!--                        <span class="description">Clear selection</span>-->
+        <!--                    </span>-->
+        <!--                </div>-->
+        <!--            </nb-tab>-->
+        <!--        </nb-tabset>-->
     </nb-card-body>
 </nb-card>
