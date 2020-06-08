@@ -1,6 +1,6 @@
-@import '~@nebular/theme/styles/component';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
+@import './src/colors';
 
 :host {
   nb-card {
@@ -9,30 +9,13 @@
 
   nb-card-header {
     font-size: 21px;
-    padding: 32px 32px 16px;
+    padding: 1.25rem;
     border: none;
     box-shadow: none;
   }
 
   nb-card-body {
-    min-width: 650px;
-    overflow: auto;
-  }
-
-  @include media-breakpoint-down(md) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    nb-card {
-      border-radius: 0;
-      min-height: 100vh;
-    }
-
-    nb-card-body {
-      min-width: auto;
-    }
+    padding: 0 1.25rem 1.25rem;
   }
 }
 
@@ -40,38 +23,64 @@
   display: flex;
   align-items: center;
 
+  .title {
+    font-size: 21px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
   .close-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 15px;
+    background-color: #edf1f7;
     cursor: pointer;
     margin: 0 0 0 auto;
   }
 }
 
-.tab {
-  padding-right: 8px;
-  padding-left: 8px;
-}
-
 .notification-settings {
-  padding-top: 16px;
+  .checkbox {
+    color: $color-1;
+  }
 }
 
 .more-options {
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
+  padding-top: 24px;
 
   .option {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+    color: $color-1;
+
+    &:hover {
+      color: $color-1-darker;
+    }
   }
 
-}
+  .link {
+    color: $color-1;
 
-.icon {
-  font-size: 24px;
-  margin-right: 8px;
-  color: #8779AE;
+    &:hover {
+      color: $color-1-darker;
+    }
+  }
+
+  .icon {
+    font-size: 24px;
+    margin-right: 8px;
+    color: $color-1;
+
+    &:hover {
+      color: $color-1-darker;
+    }
+  }
 }
 
 .appearance-settings {
@@ -87,4 +96,22 @@
 
 .theme-selector {
   margin-left: 16px;
+}
+
+@include media-breakpoint-down(md) {
+  :host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    nb-card {
+      border-radius: 0;
+      min-height: 100vh;
+    }
+
+    nb-card-body {
+      min-width: auto;
+    }
+  }
 }

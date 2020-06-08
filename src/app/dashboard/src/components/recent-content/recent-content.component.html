@@ -1,16 +1,30 @@
 <div class="action-menu">
     <div class="action-content">
-        <button class="action-btn"
+        <button [nbPopover]="sortPopover"
+                class="action-btn"
                 nbButton
+                nbPopoverPlacement="bottom"
                 outline>
             <nb-icon class="icon sort" icon="bar-chart-2-outline"></nb-icon>
             <span>Sort</span>
+            <ng-template #sortPopover>
+                <div class="more-option-popover">
+                    <span class="option">Check back soon!</span>
+                </div>
+            </ng-template>
         </button>
-        <button class="action-btn"
+        <button [nbPopover]="filterPopover"
+                class="action-btn"
                 nbButton
+                nbPopoverPlacement="bottom"
                 outline>
             <nb-icon class="icon" icon="funnel-outline"></nb-icon>
             <span>Filter</span>
+            <ng-template #filterPopover>
+                <div class="more-option-popover">
+                    <span class="option">Check back soon!</span>
+                </div>
+            </ng-template>
         </button>
     </div>
 </div>

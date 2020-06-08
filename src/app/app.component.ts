@@ -1,33 +1,38 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthenticationService } from './_services';
-import { User } from './_models';
+import { Subject } from 'rxjs';
+import { AuthService } from './auth/src/services';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  currentUser: User;
-  subscription: Subscription = new Subscription();
+    private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-  }
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        @Inject(DOCUMENT) private document: Document
+    ) {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.authService.onAuthenticationChange()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((isAuthenticated: boolean) => {
+                    if (!isAuthenticated) {
+                        this.document.body.classList.remove('nb-theme-corporate');
+                    }
+                }
+            );
+    }
 
-  logout(): void {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
 }

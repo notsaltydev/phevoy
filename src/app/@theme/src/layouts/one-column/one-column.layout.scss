@@ -1,3 +1,5 @@
+@import "./src/colors";
+
 :host {
   app-popover {
     top: 48px;
@@ -44,12 +46,14 @@
       }
 
       .user-name {
+        color: $color-1-darker;
         font-size: 18px;
         margin-top: 16px;
         font-weight: 600;
       }
 
       .settings-link {
+        color: $color-1-darker;
         font-size: 16px;
         font-weight: 500;
         margin-top: 8px;
@@ -68,34 +72,40 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #edf1f7;
+          background-color: rgba(68, 45, 129, 0.08);
           border-radius: 8px;
         }
 
         .icon {
           font-size: 24px;
           margin-right: 8px;
-          color: #8779AE;
+          color: $color-1;
         }
 
         .text {
+          color: $color-1-darker;
           font-size: 16px;
         }
       }
     }
 
     .phev-popover-footer {
-      border-top: 1px solid #e4e9f2;
+      border-top: 1px solid #edf1f7;
       padding: 16px;
 
       .logout-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 25px;
         width: 100%;
         color: #FFFFFF;
-      }
 
-      .icon {
-        color: #FFFFFF;
+        .im {
+          font-size: 16px;
+          font-weight: 900;
+          margin-right: 8px;;
+        }
       }
     }
   }

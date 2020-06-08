@@ -1,13 +1,10 @@
 <nb-card>
     <nb-card-header>
         <div class="header-wrapper">
-            <span>{{title}}</span>
-            <nb-icon
-                    class="close-dialog"
-                    icon="close-outline"
-                    [options]="{ animation: { type: 'flip' } }"
-                    (click)="close()">
-            </nb-icon>
+            <span class="title">{{title}}</span>
+            <span class="close-dialog">
+                <nb-icon (click)="close()" class="icon" icon="close-outline"></nb-icon>
+            </span>
         </div>
     </nb-card-header>
     <nb-card-body>
@@ -19,28 +16,27 @@
                 <label class="label" for="subject">Subject</label>
                 <input class="form-control"
                        id="subject"
-                       type="text"
-                       placeholder="Please type a subject..."
                        nbInput
+                       placeholder="Please type a subject..."
                        shape="semi-round"
-                       status="basic">
+                       status="basic"
+                       type="text">
             </div>
             <div class="form-group">
                 <label class="label" for="message">Message</label>
                 <textarea class="form-control"
                           id="message"
-                          type="text"
-                          placeholder="Please type a message..."
                           nbInput
+                          placeholder="Please type a message..."
+                          rows="4"
                           shape="semi-round"
-                          status="basic">
+                          status="basic"
+                          type="text">
                 </textarea>
             </div>
         </form>
     </nb-card-body>
     <nb-card-footer class="feedback-footer">
-        <button type="button" class="send-btn" nbButton status="success" shape="semi-round" (click)="send()">Send
-        </button>
-        <button type="button" nbButton status="basic" shape="semi-round" (click)="close()">Close</button>
+        <button (click)="send()" class="send-btn" nbButton type="submit">Save</button>
     </nb-card-footer>
 </nb-card>

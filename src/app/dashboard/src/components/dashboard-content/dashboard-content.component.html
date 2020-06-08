@@ -7,17 +7,31 @@
             <nb-icon icon="plus-square-outline"></nb-icon>
             <span>Create</span>
         </button>
-        <button class="action-btn"
+        <button [nbPopover]="joinPopover"
+                class="action-btn"
                 nbButton
+                nbPopoverPlacement="bottom"
                 outline>
             <nb-icon icon="log-in-outline"></nb-icon>
             <span>Join</span>
+            <ng-template #joinPopover>
+                <div class="more-option-popover">
+                    <span class="option">Check back soon!</span>
+                </div>
+            </ng-template>
         </button>
-        <button class="action-btn"
+        <button [nbPopover]="sharePopover"
+                class="action-btn"
                 nbButton
+                nbPopoverPlacement="bottom"
                 outline>
             <nb-icon icon="share-outline"></nb-icon>
             <span>Share</span>
+            <ng-template #sharePopover>
+                <div class="more-option-popover">
+                    <span class="option">Check back soon!</span>
+                </div>
+            </ng-template>
         </button>
     </div>
 </div>
@@ -37,28 +51,23 @@
                         </button>
                         <nb-icon
                                 [nbPopover]="moreOptionPopover"
-                                [options]="{ animation: { type: 'flip' } }"
                                 class="icon action-toggle"
                                 icon="more-vertical-outline"
                                 nbPopoverPlacement="bottom">
                         </nb-icon>
                         <ng-template #moreOptionPopover>
                             <div class="more-option-popover">
+                                <span (click)="join(conference.id)" class="option option-join">
+                                    <nb-icon class="icon join" icon="log-in-outline"></nb-icon>
+                                    <span class="text">Join</span>
+                                </span>
                                 <span (click)="open('update', conference)" class="option">
-                                    <nb-icon
-                                            [options]="{ animation: { type: 'flip' } }"
-                                            class="icon edit"
-                                            icon="edit-2-outline">
-                                    </nb-icon>
-                                <span class="text">Edit</span>
+                                    <nb-icon class="icon edit" icon="edit-2-outline"></nb-icon>
+                                    <span class="text">Edit</span>
                                 </span>
                                 <span (click)="delete(conference.id)" class="option">
-                                    <nb-icon
-                                            [options]="{ animation: { type: 'flip' } }"
-                                            class="icon remove"
-                                            icon="trash-outline">
-                                    </nb-icon>
-                                <span class="text">Delete</span>
+                                    <nb-icon class="icon remove" icon="trash-outline"></nb-icon>
+                                    <span class="text">Delete</span>
                                 </span>
                             </div>
                         </ng-template>

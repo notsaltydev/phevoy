@@ -8,33 +8,31 @@
 </div>
 
 <div class="header-container">
-    <nb-actions size="small">
-        <nb-action class="user-action">
-            <div (click)="toggleMessagePopover()" class="icon-popover">
-                <nb-icon class="icon" icon="email-outline"></nb-icon>
-                <app-popover (clickedOutside)="toggleMessagePopover()" *ngIf="showMessagePopover">
-                    <div class="message-popover">
-                        <div class="phev-popover-header">
-                            Check back soon!
-                        </div>
+    <div class="user-action">
+        <div (click)="toggleMessagePopover()" class="icon-popover">
+            <nb-icon class="icon" icon="email-outline"></nb-icon>
+            <app-popover (clickedOutside)="toggleMessagePopover()" *ngIf="showMessagePopover">
+                <div class="message-popover">
+                    <div class="phev-popover-header">
+                        Check back soon!
                     </div>
-                </app-popover>
-            </div>
-        </nb-action>
-        <nb-action class="user-action">
-            <div (click)="toggleNotificationPopover()" class="icon-popover">
-                <nb-icon icon="bell-outline"></nb-icon>
-                <app-popover (clickedOutside)="toggleNotificationPopover()" *ngIf="showNotificationPopover">
-                    <div class="message-popover">
-                        <div class="phev-popover-header">
-                            Check back soon!
-                        </div>
+                </div>
+            </app-popover>
+        </div>
+    </div>
+    <div class="user-action">
+        <div (click)="toggleNotificationPopover()" class="icon-popover">
+            <nb-icon class="icon" icon="bell-outline"></nb-icon>
+            <app-popover (clickedOutside)="toggleNotificationPopover()" *ngIf="showNotificationPopover">
+                <div class="message-popover">
+                    <div class="phev-popover-header">
+                        Check back soon!
                     </div>
-                </app-popover>
-            </div>
-        </nb-action>
-        <nb-action class="user-action">
-            <ng-content select=".phev-user"></ng-content>
-        </nb-action>
-    </nb-actions>
+                </div>
+            </app-popover>
+        </div>
+    </div>
+    <div class="user-action">
+        <ng-content select=".phev-user"></ng-content>
+    </div>
 </div>
