@@ -8,6 +8,7 @@ import { UserService } from '../../../../_services';
 import { Layout } from '../../models';
 import { filter, map, switchMap, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { TokenService } from '../../../../auth/src/services/token';
 
 const defaultLayout: Layout = {
     paddings: {
@@ -43,7 +44,8 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
         private sidebarService: NbSidebarService,
         private menuService: NbMenuService,
         private themeService: NbThemeService,
-        private breakpointService: NbMediaBreakpointsService
+        private breakpointService: NbMediaBreakpointsService,
+        private tokenService: TokenService
     ) {
     }
 
@@ -81,8 +83,8 @@ export class OneColumnLayoutComponent implements OnInit, OnDestroy {
     }
 
     logout(): void {
-        // this.authenticationService.logout();
-        // this.router.navigate(['/']);
+        this.tokenService.clear();
+        this.router.navigate(['/auth/logout']);
     }
 
     showPreferences(): void {
