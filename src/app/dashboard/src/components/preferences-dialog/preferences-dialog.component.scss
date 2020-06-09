@@ -3,6 +3,11 @@
 @import './src/colors';
 
 :host {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+
   nb-card {
     border-radius: 10px;
   }
@@ -43,6 +48,8 @@
 }
 
 .notification-settings {
+  padding-right: 16px;
+
   .checkbox {
     color: $color-1;
   }
@@ -104,6 +111,7 @@
     top: 0;
     left: 0;
     right: 0;
+    transform: none;
 
     nb-card {
       border-radius: 0;
