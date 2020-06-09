@@ -161,6 +161,10 @@
   }
 }
 
+.empty-state {
+  margin-top: 32px;
+}
+
 @include media-breakpoint-down(md) {
   :host {
     padding-bottom: 0.5rem;

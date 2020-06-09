@@ -12,7 +12,6 @@ import { Conference, ScheduleDialogMode, ScheduleDialogView } from '../../models
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScheduleDialogComponent implements OnInit {
-    @Input() title: string;
     @Input() date: Date;
     @Input() events: CalendarEvent<CalendarMetaData>[];
     @Input() view: ScheduleDialogView = ScheduleDialogView.LIST;
@@ -90,6 +89,7 @@ export class ScheduleDialogComponent implements OnInit {
 
     delete(id: Conference): void {
         console.log('Delete: ', id);
+        this.dismiss();
     }
 
     join(event: MouseEvent, id: string) {

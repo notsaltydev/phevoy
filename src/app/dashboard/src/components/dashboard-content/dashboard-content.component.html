@@ -75,10 +75,11 @@
                 </app-conference-item>
             </div>
         </div>
-        <div *ngIf="dates && dates.length === 0" class="schedule">
+        <div *ngIf="dates && dates.length === 0" class="col-lg-7 col-md-10 col-sm-12 schedule">
             <div class="schedule-header">{{ today | date:'fullDate' }}</div>
             <app-empty-state-conference
-                    (iconClicked)="open('create')">
+                    (iconClicked)="open('create')"
+                    class="empty-state">
             </app-empty-state-conference>
         </div>
     </div>

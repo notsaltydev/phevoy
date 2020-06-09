@@ -1,8 +1,13 @@
-@import '~@nebular/theme/styles/component';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
+@import './src/colors';
 
 :host {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+
   nb-card {
     border-radius: 10px;
   }
@@ -24,25 +29,9 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
-
-  @include media-breakpoint-down(md) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    nb-card {
-      border-radius: 0;
-      min-height: 100vh;
-    }
-
-    nb-card-body {
-      min-width: auto;
-    }
-  }
 }
 
-.card-header {
+.phev-card-header {
   display: flex;
 
   .header-content {
@@ -54,6 +43,9 @@
   }
 
   .header-title {
+    font-size: 21px;
+    font-weight: 500;
+    text-transform: capitalize;
     margin: 0 auto;
   }
 
@@ -107,13 +99,13 @@
   justify-content: center;
 
   .icon {
-    font-size: 40px;
+    padding: 24px 16px 16px;
+    font-size: 32px;
     cursor: pointer;
-    color: #222b45;
-    opacity: 0.4;
+    color: $color-5;
 
     &:hover {
-      color: #8779AE;
+      color: $color-1;
     }
   }
 }
@@ -131,5 +123,25 @@
   }
 }
 
+.empty-state {
+  margin-top: 16px;
+}
 
+@include media-breakpoint-down(md) {
+  :host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
 
+    nb-card {
+      border-radius: 0;
+      min-height: 100vh;
+    }
+
+    nb-card-body {
+      min-width: auto;
+    }
+  }
+}
