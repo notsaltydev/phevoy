@@ -59,6 +59,7 @@
   font-size: 16px;
   max-width: 400px;
   margin-bottom: 24px;
+  color: $color-8;
 }
 
 .form-group {
@@ -67,6 +68,7 @@
   margin-bottom: 16px;
 
   .label {
+    font-weight: 500;
     color: $color-8;
   }
 }
