@@ -174,7 +174,6 @@ export class SchedulerComponent implements OnInit, OnDestroy {
     openDialog(date: Date, events: CalendarEvent<CalendarMetaData>[], view: ScheduleDialogView, mode: ScheduleDialogMode): void {
         this.dialogService.open(ScheduleDialogComponent, {
             context: {
-                title: 'ScheduleDialogComponent',
                 date,
                 events,
                 view,

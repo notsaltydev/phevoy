@@ -78,7 +78,8 @@
         <div *ngIf="dates && dates.length === 0" class="schedule">
             <div class="schedule-header">{{ today | date:'fullDate' }}</div>
             <app-empty-state-conference
-                    (iconClicked)="open('create')">
+                    (iconClicked)="open('create')"
+                    class="empty-state">
             </app-empty-state-conference>
         </div>
     </div>

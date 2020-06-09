@@ -1,10 +1,7 @@
 <span class="text-header">No scheduled conferences</span>
 <span class="text">You don't have any scheduled conferences</span>
 <span class="text">Please add new conference by clicking icon below</span>
-<nb-icon
-        class="icon"
-        icon="plus-circle-outline"
-        [options]="{ animation: { type: 'flip' } }"
-        (click)="iconClicked.emit()">
-</nb-icon>
+<!--<nb-icon class="icon" icon="plus-circle-outline" (click)="iconClicked.emit()"></nb-icon>-->
+<!--<i class="im im-icon-Add" (click)="iconClicked.emit()"></i>-->
+<i (click)="iconClicked.emit()" class="icon im im-icon-Add-File"></i>
 

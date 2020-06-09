@@ -1,6 +1,6 @@
-@import '~@nebular/theme/styles/component';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
+@import './src/colors';
 
 :host {
   position: absolute;
@@ -31,7 +31,7 @@
   }
 }
 
-.card-header {
+.phev-card-header {
   display: flex;
 
   .header-content {
@@ -43,6 +43,9 @@
   }
 
   .header-title {
+    font-size: 21px;
+    font-weight: 500;
+    text-transform: capitalize;
     margin: 0 auto;
   }
 
@@ -96,13 +99,13 @@
   justify-content: center;
 
   .icon {
-    font-size: 40px;
+    padding: 24px 16px 16px;
+    font-size: 32px;
     cursor: pointer;
-    color: #222b45;
-    opacity: 0.4;
+    color: $color-5;
 
     &:hover {
-      color: #8779AE;
+      color: $color-1;
     }
   }
 }
@@ -118,6 +121,10 @@
       margin-right: 8px;
     }
   }
+}
+
+.empty-state {
+  margin-top: 16px;
 }
 
 @include media-breakpoint-down(md) {
