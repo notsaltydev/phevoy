@@ -19,8 +19,22 @@
 }
 
 .card {
+  background-color: #FFFFFF;
   border-width: 0;
   box-shadow: 0 1.5rem 4rem rgba(22, 28, 45, .05);
+
+  .card-header {
+    padding: 1.5rem 2rem;
+    background-color: transparent;
+    border-bottom: 1px solid #f1f4f8;
+    border-radius: calc(.375rem - 0px) calc(.375rem - 0px) 0 0;
+
+    .title {
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+  }
 
   .card-body {
     padding: 2rem;
@@ -74,6 +88,27 @@
       }
     }
   }
+
+  .list-group {
+
+    .list-group-item {
+      border-color: #f1f4f8;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+
+      .avatar-img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.ph-card {
+  margin-bottom: 2rem;
 }
 
 @include media-breakpoint-down(xxxl) {

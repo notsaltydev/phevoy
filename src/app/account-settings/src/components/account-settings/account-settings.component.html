@@ -57,17 +57,11 @@
             <div class="col-12 col-md-9">
 
                 <!-- Card -->
-                <div class="card card-bleed shadow-light-lg mb-6">
+                <div class="card ph-card">
                     <div class="card-header">
-
-                        <!-- Heading -->
-                        <h4 class="mb-0">
-                            Basic Information
-                        </h4>
-
+                        <h4 class="title">Basic Information</h4>
                     </div>
                     <div class="card-body">
-
                         <!-- Form -->
                         <form>
                             <div class="row">
@@ -164,86 +158,47 @@
 
                                 </div>
                                 <div class="col-12 col-md-auto">
-
-                                    <!-- Button -->
                                     <button class="btn btn-block btn-primary" type="submit">
                                         Save changes
                                     </button>
-
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
 
                 <!-- Card -->
-                <div class="card card-bleed shadow-light-lg mb-6">
+                <div class="card ph-card">
                     <div class="card-header">
-
-                        <!-- Heading -->
                         <h4 class="mb-0">
                             Your media
                         </h4>
-
                     </div>
                     <div class="card-body">
-
-                        <!-- List group -->
                         <div class="list-group list-group-flush">
                             <div class="list-group-item">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar avatar-xl">
-                                            <img class="avatar-img rounded-circle" src="assets/img/avatars/avatar-1.jpg"
+                                        <div class="avatar">
+                                            <img class="avatar-img rounded-circle" src="https://via.placeholder.com/150"
                                                  alt="...">
                                         </div>
-
                                     </div>
-                                    <div class="col ml-n5">
-
-                                        <!-- Heading -->
-                                        <p class="mb-0">
-                                            Your avatar
-                                        </p>
-
-                                        <!-- Text -->
-                                        <small class="text-gray-700">
-                                            PNG or JPG no larger than 1000px
-                                        </small>
-
-
+                                    <div class="col ml-n3">
+                                        <p class="mb-0">Your avatar</p>
+                                        <small class="text-gray-700">PNG or JPG no larger than 1000px</small>
                                     </div>
                                     <div class="col-12 col-md-auto">
-
-                                        <!-- Button -->
-                                        <button class="btn btn-xs btn-block btn-primary mt-5 mt-md-0">
-                                            Upload
-                                        </button>
-
+                                        <button class="btn btn-xs btn-block btn-primary mt-5 mt-md-0">Upload</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="list-group-item">
+                                <p class="mb-0">Profile cover</p>
+                                <p class="small text-gray-700">PNG or JPG at 16:9 ratio no larger than 2MB</p>
 
-                                <!-- Heading -->
-                                <p class="mb-0">
-                                    Profile cover
-                                </p>
-
-                                <!-- Text -->
-                                <p class="small text-gray-700">
-                                    PNG or JPG at 16:9 ratio no larger than 2MB
-                                </p>
-
-                                <!-- Dropzone -->
                                 <div class="dropzone dropzone-single dz-clickable"
                                      data-dropzone="{&quot;url&quot;: &quot;https://&quot;, &quot;maxFiles&quot;: 1, &quot;acceptedFiles&quot;: &quot;image/*&quot;}">
-
-                                    <!-- Fallback -->
-
 
                                     <!-- Preview -->
                                     <div class="dz-preview dz-preview-single"></div>
@@ -252,51 +207,35 @@
                                         <button class="dz-button" type="button">Drop files here to upload</button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <!-- Card -->
-                <div class="card card-bleed shadow-light-lg mb-8">
+                <div class="card ph-card">
                     <div class="card-header">
-
-                        <!-- Title -->
-                        <h4 class="mb-0">
-                            Privacy
-                        </h4>
-
+                        <h4 class="mb-0">Privacy</h4>
                     </div>
                     <div class="card-body">
 
-                        <!-- List group -->
                         <div class="list-group list-group-flush">
                             <div class="list-group-item">
                                 <div class="row align-items-center">
                                     <div class="col">
 
-                                        <!-- Heading -->
-                                        <p class="mb-0">
-                                            Public Profile
-                                        </p>
-
-                                        <!-- Text -->
+                                        <p class="mb-0">Public Profile</p>
                                         <small class="text-gray-700">
                                             Making your profile public means anyone can see your information.
                                         </small>
-
                                     </div>
                                     <div class="col-auto">
 
-                                        <!-- Switch -->
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="switchOne"
                                                    checked="">
                                             <label class="custom-control-label" for="switchOne"></label>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -304,41 +243,30 @@
                                 <div class="row align-items-center">
                                     <div class="col">
 
-                                        <!-- Heading -->
-                                        <p class="mb-0">
-                                            Expose your email
-                                        </p>
-
-                                        <!-- Text -->
+                                        <p class="mb-0">Expose your email</p>
                                         <small class="text-gray-700">
                                             This lets users find you by your email address.
                                         </small>
-
                                     </div>
                                     <div class="col-auto">
 
-                                        <!-- Switch -->
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input" id="switchTwo"
                                                    checked="">
                                             <label class="custom-control-label" for="switchTwo"></label>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
-                <!-- Text -->
                 <p class="text-center mb-0">
-                    <small class="text-muted">If you no longer want to use Landkit, you can <a class="text-danger"
-                                                                                               href="#!">delete your
-                        account</a>.</small>
+                    <small class="text-muted">If you no longer want to use Landkit, you can
+                        <a class="text-danger" href="#!">delete your account</a>.
+                    </small>
                 </p>
-
             </div>
         </div>
     </div>
