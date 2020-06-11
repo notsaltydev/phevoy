@@ -5,6 +5,7 @@ import {
     AuthetnicationSettingsComponent,
     InternationalizationSettingsComponent,
     NotificationSettingsComponent,
+    PlansAndPaymentComponent,
     ProfileSettingsComponent
 } from './components';
 
@@ -29,6 +30,10 @@ const routes: Routes = [
             {
                 path: 'notifications',
                 component: NotificationSettingsComponent
+            },
+            {
+                path: 'plans-and-payment',
+                component: PlansAndPaymentComponent
             }
         ]
     }

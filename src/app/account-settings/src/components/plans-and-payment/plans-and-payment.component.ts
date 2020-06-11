@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 @Component({
     selector: 'app-plans-and-payment',
@@ -7,5 +9,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlansAndPaymentComponent {
-
+    faCheck: IconDefinition = faCheck;
 }

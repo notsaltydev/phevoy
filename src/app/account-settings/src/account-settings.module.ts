@@ -10,6 +10,7 @@ import {
 } from './components';
 import { AccountSettingsRoutingModule } from './account-settings-routing.module';
 import { CoreModule } from '../../core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const COMPONENTS = [
     AccountSettingsComponent,
@@ -24,7 +25,8 @@ const COMPONENTS = [
     imports: [
         CommonModule,
         AccountSettingsRoutingModule,
-        CoreModule
+        CoreModule,
+        FontAwesomeModule
     ],
     declarations: [
         ...COMPONENTS
