@@ -5,6 +5,7 @@ import {
     AuthetnicationSettingsComponent,
     InternationalizationSettingsComponent,
     NotificationSettingsComponent,
+    PlansAndPaymentComponent,
     ProfileSettingsComponent
 } from './components';
 import { AccountSettingsRoutingModule } from './account-settings-routing.module';
@@ -15,7 +16,8 @@ const COMPONENTS = [
     ProfileSettingsComponent,
     AuthetnicationSettingsComponent,
     InternationalizationSettingsComponent,
-    NotificationSettingsComponent
+    NotificationSettingsComponent,
+    PlansAndPaymentComponent
 ];
 
 @NgModule({
