@@ -28,7 +28,15 @@
                     <!-- Bio -->
                     <div class="form-group">
                         <label>Bio</label>
-                        <quill-editor></quill-editor>
+                        <quill-editor
+                                (onEditorCreated)="onEditorCreated($event)"
+                                (onSelectionChanged)="onSelectionChanged($event)"
+                                (onEditorChanged)="onEditorChanged($event)"
+                                (onFocus)="onFocus($event)"
+                                (onBlur)="onBlur($event)"
+                        >
+                        </quill-editor>
+                        <textarea *ngIf="!isQuillEditorEnabled" class="form-control fake-form-control"></textarea>
                     </div>
 
                 </div>
