@@ -78,8 +78,16 @@ $border-radius-default: .375rem;
   .list-group {
 
     .list-group-item {
-      padding: 0 0 1.5rem;
+      padding: 1.5rem 0;
       border-color: #f1f4f8;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+      }
     }
 
     .avatar {
