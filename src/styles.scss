@@ -19,6 +19,9 @@
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/grid';
 
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "./angular-calendar";
 

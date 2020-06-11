@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QuillModule } from 'ngx-quill';
 import {
     AccountSettingsComponent,
     AuthetnicationSettingsComponent,
@@ -10,7 +12,6 @@ import {
 } from './components';
 import { AccountSettingsRoutingModule } from './account-settings-routing.module';
 import { CoreModule } from '../../core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const COMPONENTS = [
     AccountSettingsComponent,
@@ -26,7 +27,8 @@ const COMPONENTS = [
         CommonModule,
         AccountSettingsRoutingModule,
         CoreModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        QuillModule
     ],
     declarations: [
         ...COMPONENTS
