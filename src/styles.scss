@@ -22,6 +22,44 @@
 @import "~quill/dist/quill.core.css";
 @import "~quill/dist/quill.snow.css";
 
+.ql-toolbar {
+  position: relative;
+  padding: .8125rem 1.25rem;
+  background-color: #fff;
+  border-radius: .375rem .375rem 0 0;
+
+  &.ql-snow {
+    border: 1px solid #ced4da;
+    color: #212529;
+  }
+}
+
+.ql-toolbar + .ql-container {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.ql-container {
+  min-height: 6.8rem;
+  display: block;
+  width: 100%;
+  //padding: .8125rem 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .375rem;
+  box-shadow: none;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  &.ql-snow {
+    border: 1px solid #ced4da;
+    color: #212529;
+  }
+}
+
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "./angular-calendar";
 
