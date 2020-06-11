@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 @Component({
@@ -10,4 +10,5 @@ import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 })
 export class PlansAndPaymentComponent {
     faCheck: IconDefinition = faCheck;
+    faEllipsisV: IconDefinition = faEllipsisV;
 }

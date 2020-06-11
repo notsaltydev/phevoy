@@ -16,7 +16,7 @@
                 <small class="text">Next payment on 03/03/2020</small>
             </div>
             <div class="col-auto">
-                <a class="btn btn-xs btn-primary">Change plan</a>
+                <button class="btn btn-xs btn-primary" disabled>Change plan</button>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
                 <h4 class="title">Payment Methods</h4>
             </div>
             <div class="col-auto">
-                <button class="btn btn-xs btn-primary">Add new</button>
+                <button class="btn btn-xs btn-primary" disabled>Add new</button>
             </div>
         </div>
     </div>
@@ -62,28 +62,11 @@
                         <p class="mb-0">Visa ending in 1234</p>
                         <small class="text">Expires 03/2024</small>
                     </div>
-                    <div class="col-auto mr-n5">
-
-                        <!-- Badge -->
-                        <span class="badge badge-pill badge-secondary-soft">
-                          <span class="h6 text-uppercase font-weight-bold">Default</span>
-                        </span>
-
+                    <div class="col-auto mr-n3">
+                        <span class="badge basic-soft">Default</span>
                     </div>
                     <div class="col-auto">
-
-                        <!-- Dropdown -->
-                        <div class="dropdown">
-                            <a class="text-gray-400 text-decoration-none" data-toggle="dropdown" href="#">
-                                <i class="fe fe-more-vertical"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-
+                        <fa-icon [icon]="faEllipsisV" class="icon-basic"></fa-icon>
                     </div>
                 </div>
             </div>
@@ -110,142 +93,64 @@
 
                     </div>
                     <div class="col-auto">
-
-                        <!-- Dropdown -->
-                        <div class="dropdown">
-                            <a class="text-gray-400 text-decoration-none" data-toggle="dropdown" href="#">
-                                <i class="fe fe-more-vertical"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-
+                        <fa-icon [icon]="faEllipsisV" class="icon-basic"></fa-icon>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
-<!-- Card -->
 <div class="card card-bleed shadow-light-lg">
     <div class="card-header">
-
-        <!-- Heading -->
-        <h4 class="title">
-            Invoice History
-        </h4>
-
+        <h4 class="title">Invoice History</h4>
     </div>
     <div class="card-body">
-
-        <!-- List group -->
         <div class="list-group list-group-flush">
             <div class="list-group-item">
                 <div class="row align-items-center">
                     <div class="col">
-
-                        <!-- Heading -->
-                        <p class="mb-0">
-                            <a href="#!">Invoice #91240</a>
-                        </p>
-
-                        <!-- Text -->
-                        <small class="text">
-                            Billed Apr, 24, 2020
-                        </small>
-
+                        <p class="title mb-0"><a>Invoice #91240</a></p>
+                        <small class="text">Billed Apr, 24, 2020</small>
                     </div>
                     <div class="col-auto">
-
-                        <!-- Button -->
-                        <button class="btn btn-xs btn-outline-white">
-                            Pay now
-                        </button>
-
+                        <button class="btn btn-xs btn-outline-white" disabled>Pay now</button>
                     </div>
                 </div>
             </div>
             <div class="list-group-item">
                 <div class="row align-items-center">
                     <div class="col">
-
-                        <!-- Heading -->
-                        <p class="mb-0">
-                            <a href="#!">Invoice #89283</a>
-                        </p>
-
-                        <!-- Text -->
-                        <small class="text">
-                            Billed Apr, 24, 2020
-                        </small>
-
+                        <p class="title mb-0"><a>Invoice #89283</a></p>
+                        <small class="text">Billed Apr, 24, 2020</small>
                     </div>
                     <div class="col-auto">
-
-                        <!-- Badge -->
-                        <span class="badge badge-pill badge-success-soft">
-                          <span class="h6 text-uppercase font-weight-bold">Paid</span>
-                        </span>
-
+                        <span class="badge success-soft">Paid</span>
                     </div>
                 </div>
             </div>
             <div class="list-group-item">
                 <div class="row align-items-center">
                     <div class="col">
-
-                        <!-- Heading -->
-                        <p class="mb-0">
-                            <a href="#!">Invoice #89283</a>
-                        </p>
-
-                        <!-- Text -->
-                        <small class="text">
-                            Billed Apr, 24, 2020
-                        </small>
-
+                        <p class="title mb-0"><a>Invoice #89283</a></p>
+                        <small class="text">Billed Apr, 24, 2020</small>
                     </div>
                     <div class="col-auto">
-
-                        <!-- Badge -->
-                        <span class="badge badge-pill badge-success-soft">
-                          <span class="h6 text-uppercase font-weight-bold">Paid</span>
-                        </span>
-
+                        <span class="badge success-soft">Paid</span>
                     </div>
                 </div>
             </div>
             <div class="list-group-item">
                 <div class="row align-items-center">
                     <div class="col">
-
-                        <!-- Heading -->
-                        <p class="mb-0">
-                            <a href="#!">Invoice #89283</a>
-                        </p>
-
-                        <!-- Text -->
-                        <small class="text">
-                            Billed Apr, 24, 2020
-                        </small>
-
+                        <p class="title mb-0"><a>Invoice #89283</a></p>
+                        <small class="text">Billed Apr, 24, 2020</small>
                     </div>
                     <div class="col-auto">
-
-                        <!-- Badge -->
-                        <span class="badge badge-pill badge-success-soft">
-                          <span class="h6 text-uppercase font-weight-bold">Paid</span>
-                        </span>
-
+                        <span class="badge success-soft">Paid</span>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
