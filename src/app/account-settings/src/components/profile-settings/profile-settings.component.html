@@ -3,42 +3,33 @@
         <h4 class="title">Basic Information</h4>
     </div>
     <div class="card-body">
-        <!-- Form -->
         <form>
             <div class="row">
                 <div class="col-12 col-md-6">
-
-                    <!-- Name -->
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input class="form-control" id="name" placeholder="Full name" type="text">
                     </div>
-
                 </div>
-                <div class="col-12 col-md-6">
-
-                    <!-- Email -->
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input class="form-control" id="email" placeholder="name@address.com" type="email">
-                    </div>
-                </div>
+<!--                <div class="col-12 col-md-6">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="email">Email</label>-->
+<!--                        <input class="form-control" id="email" placeholder="name@address.com" type="email">-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="col-12">
-
-                    <!-- Bio -->
                     <div class="form-group">
                         <label>Bio</label>
                         <quill-editor
+                                [styles]="{height: '160px'}"
                                 (onEditorCreated)="onEditorCreated($event)"
                                 (onSelectionChanged)="onSelectionChanged($event)"
                                 (onEditorChanged)="onEditorChanged($event)"
                                 (onFocus)="onFocus($event)"
-                                (onBlur)="onBlur($event)"
-                        >
+                                (onBlur)="onBlur($event)">
                         </quill-editor>
                         <textarea *ngIf="!isQuillEditorEnabled" class="form-control fake-form-control"></textarea>
                     </div>
-
                 </div>
                 <div class="col-12 col-md-auto">
                     <button class="btn btn-lg btn-lg-custom btn-block btn-primary" type="submit">

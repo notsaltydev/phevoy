@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-
+import { EditorChangeContent, EditorChangeSelection, SelectionChange } from 'ngx-quill';
+import Quill from 'quill'
 @Component({
     selector: 'app-profile-settings',
     templateUrl: './profile-settings.component.html',
@@ -16,18 +17,18 @@ export class ProfileSettingsComponent {
         return 'url("https://via.placeholder.com/150")';
     }
 
-    onEditorCreated($event: any): void {
+    onEditorCreated(event: Quill): void {
         this.isQuillEditorEnabled = true;
         this.changeDetector.markForCheck();
-        console.log('onEditorCreated', $event);
+        console.log('onEditorCreated', event);
     }
 
-    onSelectionChanged($event: any): void {
-        console.log('onSelectionChanged', $event);
+    onSelectionChanged(event: SelectionChange): void {
+        console.log('onSelectionChanged', event);
     }
 
-    onEditorChanged($event: any) {
-        console.log('onEditorChanged', $event);
+    onEditorChanged(event: EditorChangeContent | EditorChangeSelection) {
+        console.log('onEditorChanged', event);
     }
 
     onFocus($event: any): void {
