@@ -21,6 +21,23 @@ $border-radius-default: .375rem;
   }
 }
 
+.nav-breadcrumb {
+  display: none;
+  background-color: $color-1-darker;
+
+
+  .breadcrumb {
+    background-color: transparent;
+    margin-bottom: 0;
+  }
+
+  .nav-toggler {
+    cursor: pointer;
+    font-size: 24px;
+    color: #FFFFFF;
+  }
+}
+
 .hero {
   padding: 4rem 0 6rem;
   background-color: $color-1-darker;
@@ -146,5 +163,49 @@ $border-radius-default: .375rem;
 @include media-breakpoint-down(xxxl) {
   .container-md {
     max-width: 1040px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+
+  .nav-breadcrumb {
+    display: block;
+  }
+
+  .hero {
+    display: none;
+  }
+
+  .main {
+    margin-top: 0;
+  }
+
+  .card {
+
+    &.border-bottom-card {
+      border-bottom: 1px solid #f1f4f8;
+    }
+
+    .card-body {
+      padding: 2rem 1rem;
+
+      .card-list {
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .list-link {
+
+          &:before {
+            left: -1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .col-12 {
+    padding: 0;
   }
 }

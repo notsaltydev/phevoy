@@ -1,32 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NbMenuItem } from '@nebular/theme';
-
-export const ACCOUNT_SETTINGS_MENU_ITEMS: NbMenuItem[] = [
-    {
-        title: 'Profile',
-        icon: 'smiling-face-outline',
-        link: '/account/profile',
-        pathMatch: 'prefix',
-        home: true
-    },
-    {
-        title: 'Password & Email',
-        icon: 'lock-outline',
-        link: '/account/authentication',
-        pathMatch: 'prefix'
-    },
-    {
-        title: 'Time & Language',
-        icon: 'globe-outline',
-        link: '/account/internationalization',
-        pathMatch: 'prefix'
-    },
-    {
-        title: 'Notifications',
-        icon: 'bell-outline',
-        link: '/account/notifications',
-    }
-];
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 @Component({
     selector: 'app-account-settings',
@@ -34,12 +8,17 @@ export const ACCOUNT_SETTINGS_MENU_ITEMS: NbMenuItem[] = [
     styleUrls: ['./account-settings.component.scss']
 })
 export class AccountSettingsComponent implements OnInit {
-    menu: NbMenuItem[] = ACCOUNT_SETTINGS_MENU_ITEMS;
+    faBars: IconDefinition = faBars;
+    isExpanded: boolean;
 
     constructor() {
     }
 
     ngOnInit(): void {
+    }
+
+    toggle(): void {
+        this.isExpanded = !this.isExpanded;
     }
 
 }
