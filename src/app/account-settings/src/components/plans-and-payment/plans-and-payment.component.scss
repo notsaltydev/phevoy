@@ -152,3 +152,21 @@ $border-radius-default: .375rem;
 .ph-card {
   margin-bottom: 2rem;
 }
+
+@include media-breakpoint-down(sm) {
+  .card {
+
+    .card-header {
+      padding: 1.5rem 1rem;
+
+      .title {
+        font-size: 16px;
+      }
+    }
+
+    .card-body {
+      padding: 2rem 1rem;
+    }
+  }
+}
+
