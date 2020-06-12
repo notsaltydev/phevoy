@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { EditorChangeContent, EditorChangeSelection, SelectionChange } from 'ngx-quill';
-import Quill from 'quill'
+import Quill from 'quill';
+
 @Component({
     selector: 'app-profile-settings',
     templateUrl: './profile-settings.component.html',
@@ -8,9 +9,20 @@ import Quill from 'quill'
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileSettingsComponent {
+    files: File[] = [];
     isQuillEditorEnabled = false;
 
     constructor(private changeDetector: ChangeDetectorRef) {
+    }
+
+    onSelect(event) {
+        console.log(event);
+        this.files.push(...event.addedFiles);
+    }
+
+    onRemove(event) {
+        console.log(event);
+        this.files.splice(this.files.indexOf(event), 1);
     }
 
     getAvatarUr(): string {
@@ -27,7 +39,7 @@ export class ProfileSettingsComponent {
         console.log('onSelectionChanged', event);
     }
 
-    onEditorChanged(event: EditorChangeContent | EditorChangeSelection) {
+    onEditorChanged(event: EditorChangeContent | EditorChangeSelection) {
         console.log('onEditorChanged', event);
     }
 

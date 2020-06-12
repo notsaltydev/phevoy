@@ -12,6 +12,7 @@ import {
 } from './components';
 import { AccountSettingsRoutingModule } from './account-settings-routing.module';
 import { CoreModule } from '../../core';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const COMPONENTS = [
     AccountSettingsComponent,
@@ -28,7 +29,8 @@ const COMPONENTS = [
         AccountSettingsRoutingModule,
         CoreModule,
         FontAwesomeModule,
-        QuillModule
+        QuillModule,
+        NgxDropzoneModule
     ],
     declarations: [
         ...COMPONENTS

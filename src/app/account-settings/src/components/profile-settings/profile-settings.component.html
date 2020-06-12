@@ -11,22 +11,22 @@
                         <input class="form-control" id="name" placeholder="Full name" type="text">
                     </div>
                 </div>
-<!--                <div class="col-12 col-md-6">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="email">Email</label>-->
-<!--                        <input class="form-control" id="email" placeholder="name@address.com" type="email">-->
-<!--                    </div>-->
-<!--                </div>-->
+                <!--                <div class="col-12 col-md-6">-->
+                <!--                    <div class="form-group">-->
+                <!--                        <label for="email">Email</label>-->
+                <!--                        <input class="form-control" id="email" placeholder="name@address.com" type="email">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <div class="col-12">
                     <div class="form-group">
                         <label>Bio</label>
                         <quill-editor
-                                [styles]="{height: '160px'}"
-                                (onEditorCreated)="onEditorCreated($event)"
-                                (onSelectionChanged)="onSelectionChanged($event)"
+                                (onBlur)="onBlur($event)"
                                 (onEditorChanged)="onEditorChanged($event)"
+                                (onEditorCreated)="onEditorCreated($event)"
                                 (onFocus)="onFocus($event)"
-                                (onBlur)="onBlur($event)">
+                                (onSelectionChanged)="onSelectionChanged($event)"
+                                [styles]="{height: '160px'}">
                         </quill-editor>
                         <textarea *ngIf="!isQuillEditorEnabled" class="form-control fake-form-control"></textarea>
                     </div>
@@ -70,16 +70,12 @@
                 <p class="mb-0">Profile cover</p>
                 <p class="small text">PNG or JPG at 16:9 ratio no larger than 2MB</p>
 
-                <div class="dropzone dropzone-single dz-clickable"
-                     data-dropzone="{&quot;url&quot;: &quot;https://&quot;, &quot;maxFiles&quot;: 1, &quot;acceptedFiles&quot;: &quot;image/*&quot;}">
-
-                    <!-- Preview -->
-                    <div class="dz-preview dz-preview-single"></div>
-
-                    <div class="dz-default dz-message">
-                        <button class="dz-button" type="button">Drop files here to upload</button>
-                    </div>
-                </div>
+                <ngx-dropzone (change)="onSelect($event)" class="dropzone">
+                    <ngx-dropzone-label>Drop files here to upload</ngx-dropzone-label>
+                    <ngx-dropzone-preview (removed)="onRemove(f)" *ngFor="let f of files" [removable]="true">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
             </div>
         </div>
     </div>
