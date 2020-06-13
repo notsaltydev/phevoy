@@ -1,4 +1,44 @@
-<app-header [fixed]="true"></app-header>
+<app-header [fixed]="true" [isExpanded]="isExpanded">
+    <div class="menu-items">
+        <ul class="list-menu-item p-0" routerLinkActive="active">
+            <li class="menu-item">
+                <a class="link" routerLink="/features">Features</a>
+            </li>
+            <li class="menu-item" routerLinkActive="active">
+                <a class="link" routerLink="/contact">Contact Us</a>
+            </li>
+        </ul>
+
+        <div class="btn-auth-group justify-content-center">
+            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                Sign Up
+            </a>
+            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+               routerLinkActive="active">Log In</a>
+        </div>
+
+        <fa-icon (click)="toggle()" [icon]="faBars" class="nav-toggler"></fa-icon>
+    </div>
+    <div class="menu-items-collapse">
+        <ul class="list-menu-item">
+            <li class="menu-item" routerLinkActive="active">
+                <a class="link" routerLink="/">Features</a>
+            </li>
+            <li class="menu-item" routerLinkActive="active">
+                <a class="link" routerLink="/contact">Contact Us</a>
+            </li>
+        </ul>
+        <div class="btn-auth-group justify-content-center">
+            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                Sign Up
+            </a>
+            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+               routerLinkActive="active">
+                Log In
+            </a>
+        </div>
+    </div>
+</app-header>
 
 <section class="hero pt-4 pt-md-11">
     <div class="container">

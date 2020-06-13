@@ -4,8 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { QuillModule } from 'ngx-quill';
+import { QuillConfig } from 'ngx-quill/lib/quill-editor.interfaces';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +27,7 @@ import { environment } from '../environments/environment';
 import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
-import { QuillConfig } from 'ngx-quill/lib/quill-editor.interfaces';
+
 
 const socialLinks = [
     {
@@ -209,7 +211,8 @@ const quillConfig: QuillConfig = {
         }),
         QuillModule.forRoot({
             ...quillConfig
-        })
+        }),
+        FontAwesomeModule
     ],
     declarations: [
         AppComponent,

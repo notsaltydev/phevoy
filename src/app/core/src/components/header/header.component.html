@@ -1,46 +1,11 @@
 <nav [ngClass]="{'is-fixed': isFixed, 'show': isExpanded}" class="nav">
     <div class="menu">
         <a class="nav-brand" routerLink="/">
-            <img alt="..." class="nav-brand-img" src="assets/img/vectors/phevoy-logo.svg">
+            <img alt="phevoy_logo" class="nav-brand-img" src="assets/img/vectors/phevoy-logo.svg">
         </a>
-        <ul *ngIf="showMenuItems" class="menu-items p-0" routerLinkActive="active">
-            <li class="menu-item">
-                <a class="link" routerLink="/features">Features</a>
-            </li>
-            <li class="menu-item" routerLinkActive="active">
-                <a class="link" routerLink="/contact">Contact Us</a>
-            </li>
-        </ul>
-
-        <div class="btn-auth-group justify-content-center">
-            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
-                Sign Up
-            </a>
-            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
-               routerLinkActive="active">Log In</a>
-        </div>
-
-        <fa-icon (click)="toggle()" [icon]="faBars" class="nav-toggler"></fa-icon>
+        <ng-content select=".menu-items"></ng-content>
     </div>
-
-    <div class="menu-list">
-        <ul *ngIf="showMenuItems" class="menu-items p-0">
-
-            <li class="menu-item" routerLinkActive="active">
-                <a class="link" routerLink="/">Features</a>
-            </li>
-            <li class="menu-item" routerLinkActive="active">
-                <a class="link" routerLink="/contact">Contact Us</a>
-            </li>
-        </ul>
-        <div class="btn-auth-group justify-content-center">
-            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
-                Sign Up
-            </a>
-            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
-               routerLinkActive="active">
-                Log In
-            </a>
-        </div>
+    <div *ngIf="isExpanded" class="menu-collapse">
+        <ng-content select=".menu-items-collapse"></ng-content>
     </div>
 </nav>

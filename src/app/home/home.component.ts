@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FaqItem, FAQItems } from './faq-items-data';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
@@ -9,4 +10,10 @@ import { FaqItem, FAQItems } from './faq-items-data';
 })
 export class HomeComponent {
     faqItems: FaqItem[] = FAQItems;
+    faBars = faBars;
+    isExpanded: boolean;
+
+    toggle(): void {
+        this.isExpanded = !this.isExpanded;
+    }
 }
