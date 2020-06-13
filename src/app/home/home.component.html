@@ -10,11 +10,21 @@
         </ul>
 
         <div class="btn-auth-group justify-content-center">
-            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
-                Sign Up
-            </a>
-            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
-               routerLinkActive="active">Log In</a>
+            <ng-container *ngIf="isAuthenticated; else authentication">
+                <a class="btn btn-outline-primary btn-lg semi-rounded" routerLink="/app/dashboard"
+                   routerLinkActive="active">
+                    Back to app
+                </a>
+            </ng-container>
+            <ng-template #authentication>
+                <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                    Sign Up
+                </a>
+                <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+                   routerLinkActive="active">
+                    Log In
+                </a>
+            </ng-template>
         </div>
 
         <fa-icon (click)="toggle()" [icon]="faBars" class="nav-toggler"></fa-icon>
@@ -29,13 +39,21 @@
             </li>
         </ul>
         <div class="btn-auth-group justify-content-center">
-            <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
-                Sign Up
-            </a>
-            <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
-               routerLinkActive="active">
-                Log In
-            </a>
+            <ng-container *ngIf="isAuthenticated; else authentication">
+                <a class="btn btn-outline-primary btn-lg semi-rounded" routerLink="/app/dashboard"
+                   routerLinkActive="active">
+                    Back to app
+                </a>
+            </ng-container>
+            <ng-template #authentication>
+                <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                    Sign Up
+                </a>
+                <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+                   routerLinkActive="active">
+                    Log In
+                </a>
+            </ng-template>
         </div>
     </div>
 </app-header>
