@@ -5,7 +5,7 @@ import {
     AuthetnicationSettingsComponent,
     InternationalizationSettingsComponent,
     NotificationSettingsComponent,
-    PersonalInfoSettingsComponent,
+    PlansAndPaymentComponent,
     ProfileSettingsComponent
 } from './components';
 
@@ -16,26 +16,24 @@ const routes: Routes = [
         component: AccountSettingsComponent,
         children: [
             {
-                path: '',
-                component: PersonalInfoSettingsComponent,
-                children: [
-                    {
-                        path: 'profile',
-                        component: ProfileSettingsComponent,
-                    },
-                    {
-                        path: 'authentication',
-                        component: AuthetnicationSettingsComponent,
-                    },
-                    {
-                        path: 'internationalization',
-                        component: InternationalizationSettingsComponent,
-                    }
-                ]
+                path: 'profile',
+                component: ProfileSettingsComponent,
+            },
+            {
+                path: 'authentication',
+                component: AuthetnicationSettingsComponent,
+            },
+            {
+                path: 'internationalization',
+                component: InternationalizationSettingsComponent,
             },
             {
                 path: 'notifications',
                 component: NotificationSettingsComponent
+            },
+            {
+                path: 'plans-and-payment',
+                component: PlansAndPaymentComponent
             }
         ]
     }

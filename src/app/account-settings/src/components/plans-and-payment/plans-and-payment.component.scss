@@ -14,12 +14,6 @@ $border-radius-default: .375rem;
     background-color: transparent;
     border-bottom: 1px solid #f1f4f8;
     border-radius: calc(.375rem - 0px) calc(.375rem - 0px) 0 0;
-
-    .title {
-      font-size: 19px;
-      font-weight: 400;
-      margin-bottom: 0;
-    }
   }
 
   .card-body {
@@ -77,6 +71,14 @@ $border-radius-default: .375rem;
         }
       }
     }
+
+    .icon-success {
+      color: #00d68f;
+    }
+
+    .icon-basic {
+      color: $color-8;
+    }
   }
 
   .list-group {
@@ -92,6 +94,11 @@ $border-radius-default: .375rem;
       &:last-child {
         padding-bottom: 0;
       }
+
+      .title {
+        font-size: 16px;
+        color: $color-1;
+      }
     }
 
     .avatar {
@@ -105,6 +112,12 @@ $border-radius-default: .375rem;
     }
   }
 
+  .title {
+    font-size: 19px;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
   .text {
     color: #8484a3;
   }
@@ -112,24 +125,32 @@ $border-radius-default: .375rem;
   .btn {
     border-radius: $border-radius-default;
   }
+
+  .badge {
+    color: #FFFFFF;
+    background-color: $color-1;
+    line-height: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.5rem 12px;
+    border-radius: 18px;
+
+    &.success-soft {
+      color: #00d68f;
+      background-color: rgba(0, 214, 143, 0.16);
+      font-size: 12px;
+    }
+
+    &.basic-soft {
+      color: rgba(68, 45, 129, 0.8);
+      background-color: rgba(68, 45, 129, 0.08);
+      font-size: 12px;
+    }
+  }
 }
 
 .ph-card {
   margin-bottom: 2rem;
-}
-
-.btn-lg-custom {
-  padding: 13px 20px;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.fake-form-control {
-  min-height: 160px;
-}
-
-.dropzone {
-  border: 1px dashed $color-8;
 }
 
 @include media-breakpoint-down(sm) {
@@ -148,3 +169,4 @@ $border-radius-default: .375rem;
     }
   }
 }
+

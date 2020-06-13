@@ -1,38 +1,199 @@
-<div class="form-container">
-    <h4 class="form-header">Password</h4>
-    <form class="password-form">
-        <div class="form-group">
-            <label class="label" for="current-password">Current Password</label>
-            <input class="form-control" id="current-password" nbInput shape="semi-round"
-                   status="basic" type="password">
+<div class="card ph-card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h4 class="title">Two Factor</h4>
+            </div>
+            <div class="col-auto mr-n3">
+                <small class="text">Requred?</small>
+            </div>
+            <div class="col-auto">
+                <div class="custom-control custom-switch">
+                    <input checked="" class="custom-control-input" id="twoFactorSwitch" type="checkbox">
+                    <label class="custom-control-label" for="twoFactorSwitch"></label>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="label" for="new-password">New Password</label>
-            <input class="form-control" id="new-password" nbInput shape="semi-round"
-                   status="basic" type="password">
+    </div>
+    <div class="card-body">
+
+        <!-- List group -->
+        <div class="list-group list-group-flush">
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                            Authenticator App
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text">
+                            Google auth or 1Password
+                        </small>
+
+                    </div>
+                    <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                            Setup
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                            SMS Recovery <i class="fe fe-info text-gray-500"
+                                            data-original-title="We use the the phone number you provide in General"
+                                            data-toggle="tooltip"
+                                            title=""></i>
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text">
+                            Standard messaging rates apply
+                        </small>
+
+                    </div>
+                    <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-danger">
+                            Disable
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                            Recovery Codes <i class="fe fe-info text-gray-500"
+                                              data-original-title="We use the the phone number you provide in General"
+                                              data-toggle="tooltip"
+                                              title=""></i>
+                        </p>
+
+                        <!-- Text -->
+                        <small class="text">
+                            One time use safety codes
+                        </small>
+
+                    </div>
+                    <div class="col-auto">
+
+                        <!-- Button -->
+                        <button class="btn btn-xs btn-outline-white">
+                            Reveal
+                        </button>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="label" for="confirm-password">Confirm Password</label>
-            <input class="form-control" id="confirm-password" nbInput shape="semi-round"
-                   status="basic" type="password">
-        </div>
-        <button class="save-btn" nbButton shape="semi-round" status="primary" type="button">Save Changes</button>
-    </form>
+
+    </div>
 </div>
-<hr>
-<div class="form-container">
-    <h4 class="form-header">Email</h4>
-    <form class="email-form">
-        <div class="form-group">
-            <label class="label" for="email">Email Address</label>
-            <input class="form-control" id="email" nbInput shape="semi-round"
-                   status="basic" type="email">
+
+<!-- Card -->
+<div class="card ph-card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col">
+
+                <!-- Heading -->
+                <h4 class="title">
+                    Password
+                </h4>
+
+            </div>
+            <div class="col-auto">
+
+                <!-- Link -->
+                <a class="small text" href="#!">
+                    Forgot your password?
+                </a>
+
+            </div>
         </div>
+    </div>
+    <div class="card-body">
+
+        <!-- Current password -->
         <div class="form-group">
-            <label class="label" for="current-password-email">Current Password</label>
-            <input class="form-control" id="current-password-email" nbInput shape="semi-round"
-                   status="basic" type="password">
+            <label for="currentPassword">Current Password</label>
+            <input class="form-control" id="currentPassword" type="password">
         </div>
-        <button class="save-btn" nbButton shape="semi-round" status="primary" type="button">Save Changes</button>
-    </form>
+
+        <!-- New password -->
+        <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input class="form-control" id="newPassword" type="password">
+        </div>
+
+        <!-- Confirm password -->
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input class="form-control" id="confirmPassword" type="password">
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 col-md-auto">
+                <!-- Button -->
+                <button class="btn btn-lg btn-lg-custom btn-block btn-primary" type="submit">
+                    Update Password
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card -->
+<div class="card ph-card">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h4 class="title">Email</h4>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+
+        <!-- Current password -->
+        <div class="form-group">
+            <label for="currentEmail">Current Email</label>
+            <input class="form-control" id="currentEmail" type="email">
+        </div>
+
+        <!-- New password -->
+        <div class="form-group">
+            <label for="newEmail">New Email</label>
+            <input class="form-control" id="newEmail" type="email">
+        </div>
+
+        <!-- Confirm password -->
+        <div class="form-group">
+            <label for="confirmEmailPassword">Confirm Password</label>
+            <input class="form-control" id="confirmEmailPassword" type="password">
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-auto">
+                <button class="btn btn-lg btn-lg-custom btn-block btn-primary" type="submit">
+                    Update Email
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, Input, OnInit } from '@angular/core';
 import { WindowRef } from '../../../../window/src/services';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
     selector: 'app-header',
@@ -12,40 +11,21 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
     },
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-    @Input() fixed: boolean = false;
-    @Input() showAuthButton: boolean = true;
-    @Input() showMenuItems: boolean = true;
-    expanded$: Subject<boolean> = new BehaviorSubject<boolean>(false);
-    isFixed: boolean = false;
-    isExpanded: boolean = false;
-    faBars = faBars;
+export class HeaderComponent implements OnInit {
+    @Input() fixed: boolean;
+    @Input() isExpanded: boolean;
+    @Input() logoRouterLink = '/';
+    isFixed: boolean;
 
-    constructor(
-        private windowRef: WindowRef,
-        private changeDetector: ChangeDetectorRef
-    ) {
+    constructor(private windowRef: WindowRef) {
     }
 
     ngOnInit(): void {
         this.setNavFixed();
-        this.expanded$
-            .subscribe((isExpanded: boolean) => {
-                this.isExpanded = isExpanded;
-                this.changeDetector.markForCheck();
-            });
-    }
-
-    toggle(): void {
-        this.expanded$.next(!this.isExpanded);
     }
 
     @HostListener('window:scroll', ['$event']) onWindowScroll(): void {
         this.setNavFixed();
-    }
-
-    ngOnDestroy(): void {
-        this.expanded$.unsubscribe();
     }
 
     private setNavFixed(): void {

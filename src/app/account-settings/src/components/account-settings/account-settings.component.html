@@ -1,15 +1,92 @@
-<nb-layout>
-    <nb-sidebar [collapsedBreakpoints]="[]" class="menu-sidebar" responsive start tag="menu-account-sidebar">
-        <nb-menu [items]="menu"></nb-menu>
-    </nb-sidebar>
-
-    <nb-layout-column>
-        <nav class="content-nav">
-            <a routerLink="/app">
-                <nb-icon class="icon" icon="browser-outline"></nb-icon>
+<app-header [isExpanded]="isHeaderMenuExpanded" logoRouterLink="/app">
+    <div class="menu-items">
+        <div class="btn-auth-group justify-content-center">
+            <a class="btn btn-outline-primary btn-lg semi-rounded" routerLink="/app/dashboard"
+               routerLinkActive="active">
                 Back to app
             </a>
-        </nav>
-        <router-outlet></router-outlet>
-    </nb-layout-column>
-</nb-layout>
+        </div>
+        <fa-icon (click)="toggleHeaderMenu()" [icon]="faBars" class="nav-toggler"></fa-icon>
+    </div>
+    <div class="menu-items-collapse">
+        <div class="btn-auth-group justify-content-center">
+            <a class="btn btn-outline-primary btn-lg semi-rounded" routerLink="/app/dashboard"
+               routerLinkActive="active">
+                Back to app
+            </a>
+        </div>
+    </div>
+</app-header>
+<nav class="nav-breadcrumb">
+    <div class="container-md">
+        <div class="row align-items-center">
+            <div class="col">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <span class="text-white">Account</span>
+                    </li>
+                    <li aria-current="page" class="breadcrumb-item active">
+                        <span class="text-white">{{currentRoute}}</span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-auto">
+                <fa-icon (click)="toggleAccountMenu()"
+                         [attr.aria-expanded]="isAccountMenuExpanded"
+                         [icon]="faBars"
+                         aria-controls="sidenavCollapse"
+                         aria-label="Toggle navigation"
+                         class="nav-toggler"
+                         data-target="#sidenavCollapse"
+                         data-toggle="collapse">
+                </fa-icon>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="hero">
+    <div class="container-md">
+        <div class="row align-items-center">
+            <div class="col">
+                <h1 class="header">Account Settings</h1>
+                <p class="sub-header mb-0">Settings for <a class="text-reset" href="mailto:example@phevoy.com">example@phevoy.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<main class="main pb-8 pb-md-11">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card border-bottom-card">
+                    <div [ngClass]="{'show': isAccountMenuExpanded}" class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-body">
+                            <h6 class="header">Account</h6>
+                            <ul class="card-list list">
+                                <li class="list-item" routerLink="/account/profile" routerLinkActive="active">
+                                    <a class="list-link text-reset">General</a>
+                                </li>
+                                <li class="list-item" routerLink="/account/authentication" routerLinkActive="active">
+                                    <a class="list-link text-reset">Security</a>
+                                </li>
+                                <li class="list-item" routerLink="/account/notifications" routerLinkActive="active">
+                                    <a class="list-link text-reset">Notifications</a>
+                                </li>
+                            </ul>
+                            <h6 class="header">Billing</h6>
+                            <ul class="card-list list">
+                                <li class="list-item" routerLink="plans-and-payment" routerLinkActive="active">
+                                    <a class="list-link text-reset">Plans &amp; Payment</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</main>

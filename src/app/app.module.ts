@@ -2,6 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { QuillModule } from 'ngx-quill';
+import { QuillConfig } from 'ngx-quill/lib/quill-editor.interfaces';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +18,6 @@ import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { WindowModule } from './window';
 import { ScheduleModule } from './schedule';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FeedbackComponent } from './feedback';
@@ -23,6 +27,7 @@ import { environment } from '../environments/environment';
 import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
+
 
 const socialLinks = [
     {
@@ -38,6 +43,34 @@ const socialLinks = [
         icon: 'apple-icon',
     }
 ];
+
+const quillConfig: QuillConfig = {
+    placeholder: '',
+    modules: {
+        toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            //  [{'header': 1}, {'header': 2}],               // custom button values
+            [{'list': 'ordered'}, {'list': 'bullet'}],
+            //    [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+            //   [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
+            //   [{'direction': 'rtl'}],                         // text direction
+
+            //   [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
+            //   [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+            //   [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+            //   [{'font': []}],
+            //   [{'align': []}],
+
+            //   ['clean'],                                         // remove formatting button
+
+            // ['link', 'image', 'video']                         // link and image, video
+        ]
+    },
+    suppressGlobalRegisterWarning: true
+};
 
 @NgModule({
     imports: [
@@ -175,7 +208,11 @@ const socialLinks = [
                     }
                 }
             }
-        })
+        }),
+        QuillModule.forRoot({
+            ...quillConfig
+        }),
+        FontAwesomeModule
     ],
     declarations: [
         AppComponent,

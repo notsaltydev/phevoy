@@ -1,23 +1,137 @@
-<div class="form-container">
-    <h4 class="form-header">Profile Details</h4>
-    <form class="profile-settings-form">
-        <div class="form-group">
-            <label class="label" for="name">Name</label>
-            <input class="form-control" id="name" nbInput placeholder="Please enter your name..." shape="semi-round"
-                   status="basic" type="text">
-        </div>
-        <div class="form-group">
-            <label class="label" for="description">Description</label>
-            <input class="form-control" id="description" nbInput
-                   placeholder="Please write something about yourself..." shape="semi-round" status="basic" type="text">
-        </div>
-        <button class="save-btn" nbButton shape="semi-round" status="primary" type="button">Save Changes</button>
-    </form>
-</div>
-
-<div class="profile-avatar-container">
-    <div class="avatar-container">
-        <div [ngStyle]="{'background-image': getAvatarUr()}" class="avatar"></div>
-        <button nbButton shape="semi-round" size="large">Upload image</button>
+<div class="card ph-card">
+    <div class="card-header">
+        <h4 class="title">Basic Information</h4>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" id="name" placeholder="Full name" type="text">
+                    </div>
+                </div>
+                <!--                <div class="col-12 col-md-6">-->
+                <!--                    <div class="form-group">-->
+                <!--                        <label for="email">Email</label>-->
+                <!--                        <input class="form-control" id="email" placeholder="name@address.com" type="email">-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <quill-editor
+                                (onBlur)="onBlur($event)"
+                                (onEditorChanged)="onEditorChanged($event)"
+                                (onEditorCreated)="onEditorCreated($event)"
+                                (onFocus)="onFocus($event)"
+                                (onSelectionChanged)="onSelectionChanged($event)"
+                                [styles]="{height: '160px'}">
+                        </quill-editor>
+                        <textarea *ngIf="!isQuillEditorEnabled" class="form-control fake-form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-md-auto">
+                    <button class="btn btn-lg btn-lg-custom btn-block btn-primary" type="submit">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+
+<div class="card ph-card">
+    <div class="card-header">
+        <h4 class="title">
+            Your media
+        </h4>
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <div class="avatar">
+                            <img alt="..." class="avatar-img rounded-circle"
+                                 src="https://via.placeholder.com/150">
+                        </div>
+                    </div>
+                    <div class="col ml-n3">
+                        <p class="mb-0">Your avatar</p>
+                        <small class="text">PNG or JPG no larger than 1000px</small>
+                    </div>
+                    <div class="col-12 col-md-auto">
+                        <button class="btn btn-xs btn-block btn-primary mt-5 mt-md-0">Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <p class="mb-0">Profile cover</p>
+                <p class="small text">PNG or JPG at 16:9 ratio no larger than 2MB</p>
+
+                <ngx-dropzone (change)="onSelect($event)" class="dropzone">
+                    <ngx-dropzone-label>Drop files here to upload</ngx-dropzone-label>
+                    <ngx-dropzone-preview (removed)="onRemove(f)" *ngFor="let f of files" [removable]="true">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card ph-card">
+    <div class="card-header">
+        <h4 class="title">Privacy</h4>
+    </div>
+    <div class="card-body">
+
+        <div class="list-group list-group-flush">
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <p class="mb-0">Public Profile</p>
+                        <small class="text">
+                            Making your profile public means anyone can see your information.
+                        </small>
+                    </div>
+                    <div class="col-auto">
+
+                        <div class="custom-control custom-switch">
+                            <input checked="" class="custom-control-input" id="switchOne"
+                                   type="checkbox">
+                            <label class="custom-control-label" for="switchOne"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <p class="mb-0">Expose your email</p>
+                        <small class="text">
+                            This lets users find you by your email address.
+                        </small>
+                    </div>
+                    <div class="col-auto">
+
+                        <div class="custom-control custom-switch">
+                            <input checked="" class="custom-control-input" id="switchTwo"
+                                   type="checkbox">
+                            <label class="custom-control-label" for="switchTwo"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="text-center mb-0">
+    <small class="text-muted">If you no longer want to use Phevoy, you can
+        <a class="text-danger" href="#!">delete your account</a>.
+    </small>
+</p>
