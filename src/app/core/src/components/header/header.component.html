@@ -1,6 +1,6 @@
 <nav [ngClass]="{'is-fixed': isFixed, 'show': isExpanded}" class="nav">
     <div class="menu">
-        <a class="nav-brand" routerLink="/">
+        <a [routerLink]="logoRouterLink" class="nav-brand">
             <img alt="phevoy_logo" class="nav-brand-img" src="assets/img/vectors/phevoy-logo.svg">
         </a>
         <ng-content select=".menu-items"></ng-content>

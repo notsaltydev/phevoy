@@ -21,6 +21,23 @@ $border-radius-default: .375rem;
   }
 }
 
+.menu-items {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .btn-auth-group {
+    margin-left: auto;
+  }
+
+  .nav-toggler {
+    display: none;
+    cursor: pointer;
+    font-size: 32px;
+    color: #442D81;
+  }
+}
+
 .nav-breadcrumb {
   display: none;
   background-color: $color-1-darker;
@@ -173,6 +190,27 @@ $border-radius-default: .375rem;
 }
 
 @include media-breakpoint-down(sm) {
+  .menu-items {
+    .btn-auth-group {
+      display: none;
+    }
+
+    .nav-toggler {
+      display: block;
+      margin-left: auto;
+    }
+  }
+
+  .menu-items-collapse {
+    display: flex;
+    flex-direction: column;
+
+    .btn-auth-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+  }
 
   .nav-breadcrumb {
     display: block;

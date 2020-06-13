@@ -14,6 +14,7 @@ import { WindowRef } from '../../../../window/src/services';
 export class HeaderComponent implements OnInit {
     @Input() fixed: boolean;
     @Input() isExpanded: boolean;
+    @Input() logoRouterLink = '/';
     isFixed: boolean;
 
     constructor(private windowRef: WindowRef) {

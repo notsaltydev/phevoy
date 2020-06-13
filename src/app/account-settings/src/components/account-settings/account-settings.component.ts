@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
@@ -16,17 +16,20 @@ const accountSettingsRouteMap: Map<string, string> = new Map([
 @Component({
     selector: 'app-account-settings',
     templateUrl: './account-settings.component.html',
-    styleUrls: ['./account-settings.component.scss']
+    styleUrls: ['./account-settings.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccountSettingsComponent implements OnInit, OnDestroy {
     faBars: IconDefinition = faBars;
-    isExpanded: boolean;
+    isAccountMenuExpanded: boolean;
+    isHeaderMenuExpanded: boolean;
     currentRoute = '...';
     private destroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private changeDetector: ChangeDetectorRef,
     ) {
     }
 
@@ -39,6 +42,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
             )
             .subscribe((routerEvent: RouterEvent) => {
                 this.setCurrentRoute();
+                this.changeDetector.markForCheck();
             });
     }
 
@@ -46,8 +50,14 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
         this.currentRoute = accountSettingsRouteMap.get(this.route.snapshot.children[0].url.toString());
     }
 
-    toggle(): void {
-        this.isExpanded = !this.isExpanded;
+    toggleAccountMenu(): void {
+        this.isAccountMenuExpanded = !this.isAccountMenuExpanded;
+        this.changeDetector.markForCheck();
+    }
+
+    toggleHeaderMenu(): void {
+        this.isHeaderMenuExpanded = !this.isHeaderMenuExpanded;
+        this.changeDetector.markForCheck();
     }
 
     ngOnDestroy(): void {
