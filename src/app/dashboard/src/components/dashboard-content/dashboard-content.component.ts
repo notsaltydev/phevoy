@@ -37,8 +37,8 @@ export class DashboardContentComponent implements OnInit {
                 map(conferenceDtoToConferenceList)
             )
             .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
-                this.conferenceList = null; // conferences;
-                this.dates = []; // Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
+                this.conferenceList = conferences;
+                this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
                 this.changeDetectorRef.markForCheck();
             });
     }
