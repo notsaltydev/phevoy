@@ -21,7 +21,6 @@ declare const JitsiMeetExternalAPI;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MeetComponent implements OnInit, OnDestroy {
-    @ViewChild('meet', {static: true}) private meetRef: ElementRef;
     isShowingPostMeetingActions: boolean;
     isLoggedIn: boolean;
     options = {
@@ -31,7 +30,8 @@ export class MeetComponent implements OnInit, OnDestroy {
         parentNode: null
     };
     domain = 'meet.jit.si';
-
+    isLoading: boolean;
+    @ViewChild('meet', {static: true}) private meetRef: ElementRef;
     private jitsiMeetExternalAPI: any;
     private subscription: Subscription;
 
@@ -71,6 +71,7 @@ export class MeetComponent implements OnInit, OnDestroy {
     }
 
     startMeet(domain, options): void {
+        this.isLoading = true;
         this.isShowingPostMeetingActions = false;
         this.jitsiMeetExternalAPI = new JitsiMeetExternalAPI(domain, options);
         this.bindEvents();
@@ -81,6 +82,11 @@ export class MeetComponent implements OnInit, OnDestroy {
         this.router.navigate(['/app']);
     }
 
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+        this.disposeConference();
+    }
+
     private bindEvents(): void {
         this.subscription = new Subscription();
         this.subscription.add(this.handleJitsiEvent('readyToClose').subscribe(
@@ -88,6 +94,12 @@ export class MeetComponent implements OnInit, OnDestroy {
                 this.disposeConference();
                 this.isShowingPostMeetingActions = true;
                 this.subscription.unsubscribe();
+                this.changeDetector.markForCheck();
+            }
+        ));
+        this.subscription.add(this.handleJitsiEvent('videoConferenceJoined').subscribe(
+            () => {
+                this.isLoading = false;
                 this.changeDetector.markForCheck();
             }
         ));
@@ -105,11 +117,6 @@ export class MeetComponent implements OnInit, OnDestroy {
         if (!!this.jitsiMeetExternalAPI) {
             this.jitsiMeetExternalAPI.dispose();
         }
-    }
-
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-        this.disposeConference();
     }
 
 }

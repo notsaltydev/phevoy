@@ -1,9 +1,15 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { combineLatest, Subject } from 'rxjs';
 import { AuthService } from './auth/src/services';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
+
+const FORBIDDEN_ROUTES: string[] = [
+    '/app/dashboard',
+    '/app/calendar',
+    '/app/recent',
+];
 
 @Component({
     selector: 'app-root',
@@ -21,14 +27,18 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.authService.onAuthenticationChange()
+        combineLatest([
+            this.router.events
+                .pipe(filter(event => event instanceof NavigationEnd)),
+            this.authService.onAuthenticationChange()
+        ])
             .pipe(takeUntil(this.destroy$))
-            .subscribe((isAuthenticated: boolean) => {
-                    if (!isAuthenticated) {
-                        this.document.body.classList.remove('nb-theme-corporate');
-                    }
+            .subscribe((payload: [NavigationEnd, boolean]) => {
+                console.log(payload);
+                if (!payload[1] || !FORBIDDEN_ROUTES.includes(payload[0].url)) {
+                    this.document.body.classList.remove('nb-theme-corporate');
                 }
-            );
+            });
     }
 
     ngOnDestroy(): void {

@@ -7,6 +7,9 @@
                      icon="arrow-ios-back-outline">
             </nb-icon>
             <span class="header-title">{{date | date:'fullDate'}}</span>
+            <span *ngIf="view === ScheduleDialogView.LIST || mode === ScheduleDialogMode.CREATE" class="close-dialog">
+                <nb-icon class="icon" icon="close-outline" (click)="dismiss()"></nb-icon>
+            </span>
             <nb-icon *ngIf="view === ScheduleDialogView.FORM && mode === ScheduleDialogMode.UPDATE"
                      [nbPopover]="moreOptionPopover"
                      class="icon"
@@ -16,8 +19,12 @@
             <ng-template #moreOptionPopover>
                 <div class="more-option-popover">
                     <span (click)="delete(selectedConference)" class="option">
-                        <nb-icon class="icon" icon="trash-outline"></nb-icon>
+                        <nb-icon class="icon remove" icon="trash-outline"></nb-icon>
                         <span class="text">Delete</span>
+                    </span>
+                    <span (click)="dismiss()" class="option">
+                        <nb-icon class="icon dismiss" icon="close-outline"></nb-icon>
+                        <span class="text">Close</span>
                     </span>
                 </div>
             </ng-template>
