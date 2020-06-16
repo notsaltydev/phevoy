@@ -36,6 +36,7 @@ import { PreferencesDialogComponent } from './components/preferences-dialog/pref
 import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 import { ThemeModule } from '../../@theme';
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { ThemeModule } from '../../@theme';
         NbThemeModule,
         NbLayoutModule,
         NbEvaIconsModule,
-        NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
+        NbSidebarModule,
         NbButtonModule,
         NbDialogModule.forChild(),
         NbCardModule,
@@ -62,7 +63,8 @@ import { ThemeModule } from '../../@theme';
         NbPopoverModule,
         NbIconModule,
         NbTabsetModule,
-        NbCheckboxModule
+        NbCheckboxModule,
+        QuillModule
     ],
     declarations: [
         DashboardComponent,

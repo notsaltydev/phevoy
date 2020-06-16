@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Conference } from '../../models';
+import { Blur, ContentChange, Focus, SelectionChange } from 'ngx-quill';
 
 const times: string[] = Array(24 * 4).fill(0).map((_, i) => {
     return ('0' + Math.floor(i / 4) + ':0' + 60 * (i / 4 % 1)).replace(/\d(\d\d)/g, '$1');
@@ -124,4 +125,23 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
         return timeGap;
     }
 
+    onBlur($event: Blur): void {
+
+    }
+
+    onEditorChanged($event: (ContentChange & { event: 'text-change' }) | (SelectionChange & { event: 'selection-change' })): void {
+
+    }
+
+    onEditorCreated($event: any): void {
+
+    }
+
+    onFocus($event: Focus): void {
+
+    }
+
+    onSelectionChanged($event: SelectionChange): void {
+
+    }
 }

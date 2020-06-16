@@ -49,7 +49,7 @@ const quillConfig: QuillConfig = {
     modules: {
         toolbar: [
             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
+            // ['blockquote', 'code-block'],
 
             //  [{'header': 1}, {'header': 2}],               // custom button values
             [{'list': 'ordered'}, {'list': 'bullet'}],
@@ -64,9 +64,10 @@ const quillConfig: QuillConfig = {
             //   [{'font': []}],
             //   [{'align': []}],
 
-            //   ['clean'],                                         // remove formatting button
+            ['clean'],                                         // remove formatting button
 
-            // ['link', 'image', 'video']                         // link and image, video
+            // ['link', 'image', 'video']                         // link and image, video - duplicate, see below
+            ['link']                                              // link
         ]
     },
     suppressGlobalRegisterWarning: true
