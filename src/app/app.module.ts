@@ -29,6 +29,7 @@ import { AuthJWTToken } from './auth/src/services/token';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
 import { SupportCenterComponent } from './support-center/support-center.component';
 import { FaqComponent } from './faq/faq.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 const socialLinks = [
@@ -226,7 +227,8 @@ const quillConfig: QuillConfig = {
         PricingComponent,
         FeedbackComponent,
         SupportCenterComponent,
-        FaqComponent
+        FaqComponent,
+        PrivacyPolicyComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor, multi: true}
