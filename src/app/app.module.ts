@@ -28,6 +28,7 @@ import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
 import { SupportCenterComponent } from './support-center/support-center.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 const socialLinks = [
@@ -224,7 +225,8 @@ const quillConfig: QuillConfig = {
         FeaturesComponent,
         PricingComponent,
         FeedbackComponent,
-        SupportCenterComponent
+        SupportCenterComponent,
+        FaqComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor, multi: true}
