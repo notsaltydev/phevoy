@@ -32,6 +32,7 @@ import { FaqComponent } from './faq';
 import { PrivacyPolicyComponent } from './privacy-policy';
 import { GdprGuideComponent } from './gdpr-guide';
 import { ScheduleDemoComponent } from './schedule-demo';
+import { TermsOfServiceComponent } from './terms-of-service';
 
 
 const socialLinks = [
@@ -232,7 +233,8 @@ const quillConfig: QuillConfig = {
         FaqComponent,
         PrivacyPolicyComponent,
         GdprGuideComponent,
-        ScheduleDemoComponent
+        ScheduleDemoComponent,
+        TermsOfServiceComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor, multi: true}
