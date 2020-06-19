@@ -9,6 +9,7 @@ import { PricingComponent } from './pricing';
 import { FeedbackComponent } from './feedback';
 import { SupportCenterComponent } from './support-center';
 import { FaqComponent } from './faq';
+import { GdprGuideComponent } from './gdpr-guide/gdpr-guide.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
     {path: 'leave-feedback', component: FeedbackComponent},
     {path: 'support-center', component: SupportCenterComponent},
     {path: 'faq', component: FaqComponent},
+    {path: 'gdpr-guide', component: GdprGuideComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];
