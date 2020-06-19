@@ -11,6 +11,7 @@ import { SupportCenterComponent } from './support-center';
 import { FaqComponent } from './faq';
 import { GdprGuideComponent } from './gdpr-guide';
 import { ScheduleDemoComponent } from './schedule-demo';
+import { PrivacyPolicyComponent } from './privacy-policy';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
     {path: 'faq', component: FaqComponent},
     {path: 'gdpr-guide', component: GdprGuideComponent},
     {path: 'schedule-demo', component: ScheduleDemoComponent},
+    {path: 'privacy-policy', component: PrivacyPolicyComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];
