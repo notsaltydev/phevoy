@@ -9,7 +9,8 @@ import { PricingComponent } from './pricing';
 import { FeedbackComponent } from './feedback';
 import { SupportCenterComponent } from './support-center';
 import { FaqComponent } from './faq';
-import { GdprGuideComponent } from './gdpr-guide/gdpr-guide.component';
+import { GdprGuideComponent } from './gdpr-guide';
+import { ScheduleDemoComponent } from './schedule-demo';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
     {path: 'support-center', component: SupportCenterComponent},
     {path: 'faq', component: FaqComponent},
     {path: 'gdpr-guide', component: GdprGuideComponent},
+    {path: 'schedule-demo', component: ScheduleDemoComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];

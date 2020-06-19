@@ -27,10 +27,11 @@ import { environment } from '../environments/environment';
 import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
-import { SupportCenterComponent } from './support-center/support-center.component';
-import { FaqComponent } from './faq/faq.component';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { GdprGuideComponent } from './gdpr-guide/gdpr-guide.component';
+import { SupportCenterComponent } from './support-center';
+import { FaqComponent } from './faq';
+import { PrivacyPolicyComponent } from './privacy-policy';
+import { GdprGuideComponent } from './gdpr-guide';
+import { ScheduleDemoComponent } from './schedule-demo';
 
 
 const socialLinks = [
@@ -230,7 +231,8 @@ const quillConfig: QuillConfig = {
         SupportCenterComponent,
         FaqComponent,
         PrivacyPolicyComponent,
-        GdprGuideComponent
+        GdprGuideComponent,
+        ScheduleDemoComponent
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor, multi: true}
