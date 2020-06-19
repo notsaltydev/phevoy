@@ -8,6 +8,7 @@ import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { FeedbackComponent } from './feedback';
 import { SupportCenterComponent } from './support-center';
+import { FaqComponent } from './faq';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'leave-feedback', component: FeedbackComponent},
     {path: 'support-center', component: SupportCenterComponent},
+    {path: 'faq', component: FaqComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];
