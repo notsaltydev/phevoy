@@ -13,6 +13,7 @@ import { GdprGuideComponent } from './gdpr-guide';
 import { ScheduleDemoComponent } from './schedule-demo';
 import { PrivacyPolicyComponent } from './privacy-policy';
 import { TermsOfServiceComponent } from './terms-of-service';
+import { ImprintComponent } from './imprint';
 
 
 const routes: Routes = [
@@ -44,7 +45,8 @@ const routes: Routes = [
     {path: 'gdpr-guide', component: GdprGuideComponent},
     {path: 'schedule-demo', component: ScheduleDemoComponent},
     {path: 'privacy-policy', component: PrivacyPolicyComponent},
-    {path: 'term-of-service', component: TermsOfServiceComponent},
+    {path: 'terms-of-service', component: TermsOfServiceComponent},
+    {path: 'imprint', component: ImprintComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];
