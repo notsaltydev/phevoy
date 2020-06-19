@@ -7,6 +7,7 @@ import { ContactComponent } from './contact';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { FeedbackComponent } from './feedback';
+import { SupportCenterComponent } from './support-center';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     {path: 'pricing', component: PricingComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'leave-feedback', component: FeedbackComponent},
+    {path: 'support-center', component: SupportCenterComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];

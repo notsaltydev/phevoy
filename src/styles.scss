@@ -106,7 +106,7 @@ body {
   }
 }
 
-§@include media-breakpoint-down(xxxl) {
+@include media-breakpoint-down(xxxl) {
   .container {
     max-width: 1140px;
   }

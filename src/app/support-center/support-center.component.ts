@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-support-center',
-  templateUrl: './support-center.component.html',
-  styleUrls: ['./support-center.component.scss']
+    selector: 'app-support-center',
+    templateUrl: './support-center.component.html',
+    styleUrls: ['./support-center.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SupportCenterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class SupportCenterComponent {
 }
