@@ -49,6 +49,14 @@
   display: block;
 }
 
+.btn-lg-custom {
+  padding: 8px 16px;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 500;
+  border-radius: .375rem;
+}
+
 .btn-block {
   &.btn-pulse {
     @include pulse();
