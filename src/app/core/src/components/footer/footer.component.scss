@@ -35,8 +35,12 @@
 
       .buttons {
         .btn {
-          &.semi-rounded {
-            border-radius: 0.75rem;
+          &.btn-lg-custom {
+            padding: 8px 16px;
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 500;
+            border-radius: .375rem;
           }
         }
       }

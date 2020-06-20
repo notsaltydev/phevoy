@@ -11,16 +11,16 @@
 
         <div class="btn-auth-group justify-content-center">
             <ng-container *ngIf="isAuthenticated; else authentication">
-                <a class="btn btn-outline-primary btn-lg semi-rounded" routerLink="/app/dashboard"
+                <a class="btn btn-outline-primary btn-lg btn-lg-custom" routerLink="/app/dashboard"
                    routerLinkActive="active">
                     Back to app
                 </a>
             </ng-container>
             <ng-template #authentication>
-                <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                <a class="btn btn-primary btn-lg btn-lg-custom" routerLink="/auth/register" routerLinkActive="active">
                     Sign Up
                 </a>
-                <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+                <a class="btn btn-outline-primary btn-lg btn-lg-custom ml-3" routerLink="/auth/login"
                    routerLinkActive="active">
                     Log In
                 </a>
@@ -40,16 +40,16 @@
         </ul>
         <div class="btn-auth-group justify-content-center">
             <ng-container *ngIf="isAuthenticated; else authentication">
-                <a class="btn btn-outline-primary btn-lg semi-rounded" routerLink="/app/dashboard"
+                <a class="btn btn-outline-primary btn-lg btn-lg-custom" routerLink="/app/dashboard"
                    routerLinkActive="active">
                     Back to app
                 </a>
             </ng-container>
             <ng-template #authentication>
-                <a class="btn btn-primary btn-lg semi-rounded" routerLink="/auth/register" routerLinkActive="active">
+                <a class="btn btn-primary btn-lg btn-lg-custom" routerLink="/auth/register" routerLinkActive="active">
                     Sign Up
                 </a>
-                <a class="btn btn-outline-primary btn-lg semi-rounded ml-3" routerLink="/auth/login"
+                <a class="btn btn-outline-primary btn-lg btn-lg-custom ml-3" routerLink="/auth/login"
                    routerLinkActive="active">
                     Log In
                 </a>
@@ -75,8 +75,8 @@
                     they're.
                 </p>
                 <div class="pt-5 pt-md-5 text-center text-md-left">
-                    <a class="btn btn-primary btn-lg semi-rounded" routerLink="/">Get Started</a>
-                    <a class="btn btn-primary-transparent btn-lg ml-2 semi-rounded" routerLink="/">Join a meeting</a>
+                    <a class="btn btn-primary btn-lg btn-lg-custom" routerLink="/">Get Started</a>
+                    <a class="btn btn-primary-transparent btn-lg ml-2 btn-lg-custom" routerLink="/">Join a meeting</a>
                 </div>
             </div>
         </div>
@@ -143,8 +143,8 @@
             </div>
             <div class="head-action">
                 <div class="buttons">
-                    <button class="btn btn-primary btn-lg semi-rounded" type="button">Try it free</button>
-                    <button class="btn btn-primary-transparent ml-2 btn-lg semi-rounded" type="button">Chat with us
+                    <button class="btn btn-primary btn-lg btn-lg-custom" type="button">Try it free</button>
+                    <button class="btn btn-primary-transparent ml-2 btn-lg btn-lg-custom" type="button">Chat with us
                     </button>
                 </div>
             </div>
