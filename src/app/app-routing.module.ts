@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { AuthGuard } from './_helpers/guards';
+import { AuthGuard } from './auth/src/guards';
 import { HomeComponent } from './home';
 import { PageNotFoundComponent } from './page-not-found';
 import { ContactComponent } from './contact';
 import { FeaturesComponent } from './features';
 import { PricingComponent } from './pricing';
 import { FeedbackComponent } from './feedback';
-import { AuthGuard } from './auth/src/guards';
+import { SupportCenterComponent } from './support-center';
+import { FaqComponent } from './faq';
+import { GdprGuideComponent } from './gdpr-guide';
+import { ScheduleDemoComponent } from './schedule-demo';
+import { PrivacyPolicyComponent } from './privacy-policy';
+import { TermsOfServiceComponent } from './terms-of-service';
+import { ImprintComponent } from './imprint';
 
 
 const routes: Routes = [
@@ -34,6 +40,13 @@ const routes: Routes = [
     {path: 'pricing', component: PricingComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'leave-feedback', component: FeedbackComponent},
+    {path: 'support-center', component: SupportCenterComponent},
+    {path: 'faq', component: FaqComponent},
+    {path: 'gdpr-guide', component: GdprGuideComponent},
+    {path: 'schedule-demo', component: ScheduleDemoComponent},
+    {path: 'privacy-policy', component: PrivacyPolicyComponent},
+    {path: 'terms-of-service', component: TermsOfServiceComponent},
+    {path: 'imprint', component: ImprintComponent},
 
     {path: '**', component: PageNotFoundComponent}
 ];

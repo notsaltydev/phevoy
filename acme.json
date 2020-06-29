@@ -1,0 +1,28 @@
+{
+  "Account": {
+    "Email": "contact@adamnieslony.com",
+    "Registration": {
+      "body": {
+        "status": "valid",
+        "contact": [
+          "mailto:contact@adamnieslony.com"
+        ]
+      },
+      "uri": "https://acme-v02.api.letsencrypt.org/acme/acct/88826624"
+    },
+    "PrivateKey": "MIIJJwIBAAKCAgEAv3QPH39w99JhUBcAVqnYqmRCV1qllrhn6F2tLdh0AS5Cd8IoAnHucAosAET7fHj+KSIreFou3GaJyU5t8rhM88DIB02wJ382zyAHOlnihcHiVl1mX7hP3kA7dwC/RmnonRuGNeteotPO6s+Ob20jwy+rstw4cfDj4PnVJa+kgjgNt4YZ+ymw8qxpJ/4TqNgwlXPUOhQFQOJJ8EKwDdGKxKlFUYMQyCjzt5WMdHV9ReioO3nwgvwGEzy6bV346Vng6l3I2eJH/TUivCYiZTpgUNjDa9$
+    "KeyType": "4096"
+  },
+  "Certificates": [
+    {
+      "Domain": {
+        "Main": "monitor.s1.adamnieslony.com",
+        "SANs": null
+      },
+      "Certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUdiekNDQlZlZ0F3SUJBZ0lTQk90ZVFxWFQyNWpSVGRhdUx0NjU2WkpXTUEwR0NTcUdTSWIzRFFFQkN3VUEKTUVveEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1TTXdJUVlEVlFRRApFeHBNWlhRbmN5QkZibU55ZVhCMElFRjFkR2h2Y21sMGVTQllNekFlRncweU1EQTJNVFF5TVRBNE16QmFGdzB$
+      "Key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS1FJQkFBS0NBZ0VBbzQzWGhlOVptVEJ1a2NrUHZhdE9JcnRCSFFaajVYVkliNWhNL0NpSDRnZjVhUi8zCjBWYXRzcXZKb25FYzNZbmVBQ1AvUS9kRUpYenlJL2pRQnF2SmxoeTFxSWdZNCtRU3BBQlNIUVpyZ1gvRjFHcUQKRDY1SStHeHFSd1R6NnliMUN6Y1llYWdnRVg0WXlDWlNZUWlEeC9CdmNyWjZ1NW1qNGFCa2lZSHFBM09TVVlrdwo$
+    }
+  ],
+  "HTTPChallenges": {},
+  "TLSChallenges": null
+}
