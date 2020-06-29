@@ -36,7 +36,7 @@ import { ResetPasswordComponent } from './components/reset-password';
 import { LogoutComponent } from './components/logout';
 import { CoreModule } from '../../core';
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthGuard } from '../../_helpers/guards';
+import { AuthGuard } from './guards';
 import { WindowModule } from '../../window';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
