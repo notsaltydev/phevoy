@@ -34,7 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
         ])
             .pipe(takeUntil(this.destroy$))
             .subscribe((payload: [NavigationEnd, boolean]) => {
-                console.log(payload);
                 if (!payload[1] || !FORBIDDEN_ROUTES.includes(payload[0].url)) {
                     this.document.body.classList.remove('nb-theme-corporate');
                 }
