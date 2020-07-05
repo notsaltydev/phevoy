@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
-import { ConferenceDto } from '../../../../schedule/src/models';
-import { ScheduleService } from '../../../../schedule/src/services/schedule';
+import { ConferenceDto } from '../../models/conference.dto';
+import { ConferenceService } from '../../services/conference';
 import { NbDialogService, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { ScheduleDialogMode, ScheduleDialogView } from '../../models';
@@ -130,7 +130,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
         private changeDetector: ChangeDetectorRef,
         private dialogService: NbDialogService,
         private router: Router,
-        private scheduleService: ScheduleService,
+        private scheduleService: ConferenceService,
         private themeService: NbThemeService
     ) {
     }

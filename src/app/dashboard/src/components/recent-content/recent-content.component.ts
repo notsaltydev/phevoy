@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ConferenceDto } from '../../../../schedule/src/models';
-import { ScheduleService } from '../../../../schedule/src/services/schedule';
+import { ConferenceDto } from '../../models/conference.dto';
+import { ConferenceService } from '../../services/conference';
 import { map } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
 import { isBefore } from 'date-fns/fp';
+
 
 @Component({
     selector: 'app-recent-content',
@@ -16,7 +17,7 @@ export class RecentContentComponent implements OnInit {
     dates: string[];
 
     constructor(
-        private scheduleService: ScheduleService,
+        private scheduleService: ConferenceService,
         private changeDetectorRef: ChangeDetectorRef
     ) {
     }

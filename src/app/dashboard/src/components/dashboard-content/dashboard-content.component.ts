@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ConferenceDto } from '../../../../schedule/src/models';
-import { ScheduleService } from '../../../../schedule/src/services/schedule';
+import { ConferenceDto } from '../../models/conference.dto';
+import { ConferenceService } from '../../services/conference';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class DashboardContentComponent implements OnInit {
     today: Date = new Date();
 
     constructor(
-        private scheduleService: ScheduleService,
+        private scheduleService: ConferenceService,
         private changeDetectorRef: ChangeDetectorRef,
         private dialogService: NbDialogService,
         private router: Router,

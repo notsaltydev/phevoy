@@ -1,4 +1,4 @@
-import { ConferenceDto } from '../../../schedule/src/models';
+import { ConferenceDto } from '../models/conference.dto';
 
 export function conferenceDtoToConferenceList(conferences: ConferenceDto[]): { [id: string]: ConferenceDto[] } {
     return conferences.reduce((list, conference: ConferenceDto) => {

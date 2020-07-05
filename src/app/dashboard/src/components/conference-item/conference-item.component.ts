@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ConferenceDto } from '../../../../schedule/src/models';
+import { ConferenceDto } from '../../models/conference.dto';
 import { formatDistanceStrict } from 'date-fns';
 
 @Component({
