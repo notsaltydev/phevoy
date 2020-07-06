@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 import { getAllConferences } from '../../store/selectors/conference.selector';
 import { conferenceActionTypes } from '../../store/actions/conference.action';
 import { Update } from '@ngrx/entity';
-import {v4} from 'uuid';
+import { v4 } from 'uuid';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -81,9 +81,8 @@ export class DashboardContentComponent implements OnInit {
         });
     }
 
-    delete(id: string): void {
-        this.scheduleService.deleteConference(id).subscribe(() => {
-        });
+    delete(conferenceId: string): void {
+        this.store.dispatch(conferenceActionTypes.deleteConference({conferenceId}));
     }
 
     join(id: number): void {
