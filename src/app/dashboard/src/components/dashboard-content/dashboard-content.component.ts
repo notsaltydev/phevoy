@@ -1,14 +1,14 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ConferenceDto } from '../../models/conference.dto';
 import { ConferenceService } from '../../services/conference';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
 import { isAfter, isToday, isTomorrow } from 'date-fns';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AppState } from '../../../../store/reducers';
 import { Store } from '@ngrx/store';
 import { getAllConferences } from '../../store/selectors/conference.selector';
@@ -21,11 +21,13 @@ import { v4 } from 'uuid';
     templateUrl: './dashboard-content.component.html',
     styleUrls: ['./dashboard-content.component.scss']
 })
-export class DashboardContentComponent implements OnInit {
+export class DashboardContentComponent implements OnInit, OnDestroy {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
     today: Date = new Date();
     conferences$: Observable<ConferenceDto[]>;
+
+    private destroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private scheduleService: ConferenceService,
@@ -41,6 +43,7 @@ export class DashboardContentComponent implements OnInit {
         this.conferences$ = this.store.select(getAllConferences);
         this.conferences$
             .pipe(
+                takeUntil(this.destroy$),
                 map((conferences: ConferenceDto[]) => conferences.filter((conference: ConferenceDto) =>
                     isAfter(conference.startDate, new Date()) || isToday(conference.startDate))
                 ),
@@ -71,6 +74,7 @@ export class DashboardContentComponent implements OnInit {
             },
         }).onClose
             .pipe(
+                takeUntil(this.destroy$),
                 filter((data: any | null) => data)
             ).subscribe((payload: ConferenceDto) => {
             if (type === 'create') {
@@ -100,6 +104,10 @@ export class DashboardContentComponent implements OnInit {
         }
 
         return this.datePipe.transform(date, 'fullDate');
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
     }
 
     private createSchedule(submittedConference: ConferenceDto): void {
