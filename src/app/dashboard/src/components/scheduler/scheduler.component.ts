@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { getAllConferences } from '../../store/selectors/conference.selector';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
+import { conferenceActionTypes } from '../../store/actions/conference.action';
 
 const colors: any = {
     red: {
@@ -184,11 +185,21 @@ export class SchedulerComponent implements OnInit, OnDestroy {
             }
         }).onClose
             .pipe(
+                takeUntil(this.destroy$),
                 filter((data: any | null) => data)
             )
-            .subscribe((dialogPayload: any) => {
-                if (dialogPayload.action === 'Join') {
-                    this.router.navigate(['meet', dialogPayload.payload.id]);
+            .subscribe((action: any) => {
+                if (action.action === 'Join') {
+                    this.router.navigate(['meet', action.payload.id]);
+                }
+                if (action.action === 'Create') {
+
+                }
+                if (action.action === 'Update') {
+
+                }
+                if (action.action === 'Delete') {
+                    this.store.dispatch(conferenceActionTypes.deleteConference({conferenceId: action.payload.id}));
                 }
             });
     }

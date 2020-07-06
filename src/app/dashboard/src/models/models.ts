@@ -9,6 +9,7 @@ export enum ScheduleDialogMode {
 }
 
 export interface Conference {
+    id?: string;
     startDate: Date;
     endDate: Date;
     name: string;
