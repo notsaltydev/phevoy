@@ -12,6 +12,7 @@ import { getAllConferences } from '../../store/selectors/conference.selector';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { conferenceActionTypes } from '../../store/actions/conference.action';
+import { Update } from '@ngrx/entity';
 
 const colors: any = {
     red: {
@@ -196,7 +197,14 @@ export class SchedulerComponent implements OnInit, OnDestroy {
 
                 }
                 if (action.action === 'Update') {
+                    const update: Update<ConferenceDto> = {
+                        id: action.payload.conference.id,
+                        changes: {
+                            ...action.payload.conference
+                        }
+                    };
 
+                    this.store.dispatch(conferenceActionTypes.updateConference({update}));
                 }
                 if (action.action === 'Delete') {
                     this.store.dispatch(conferenceActionTypes.deleteConference({conferenceId: action.payload.id}));

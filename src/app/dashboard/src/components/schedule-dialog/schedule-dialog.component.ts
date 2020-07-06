@@ -52,7 +52,23 @@ export class ScheduleDialogComponent implements OnInit {
     }
 
     save(): void {
-        console.log('save', this.selectedConference);
+        if (this.mode === ScheduleDialogMode.CREATE) {
+            this.ref.close({
+                action: 'Create',
+                payload: {
+                    conference: this.selectedConference
+                }
+            });
+        }
+
+        if (this.mode === ScheduleDialogMode.UPDATE) {
+            this.ref.close({
+                action: 'Update',
+                payload: {
+                    conference: this.selectedConference
+                }
+            });
+        }
     }
 
     create(): void {
