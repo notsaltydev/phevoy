@@ -30,7 +30,6 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
 
     constructor(
-        private scheduleService: ConferenceService,
         private changeDetectorRef: ChangeDetectorRef,
         private dialogService: NbDialogService,
         private router: Router,
@@ -108,6 +107,7 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.destroy$.next();
+        this.destroy$.complete();
     }
 
     private createSchedule(submittedConference: ConferenceDto): void {
