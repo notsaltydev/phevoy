@@ -38,6 +38,10 @@ import { HelpDialogComponent } from './components/help-dialog/help-dialog.compon
 import { ThemeModule } from '../../@theme';
 import { QuillModule } from 'ngx-quill';
 import { ConferenceService } from './services/conference';
+import { StoreModule } from '@ngrx/store';
+import { conferenceReducer } from './store/reducers/conference.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ConferenceEffect } from './store/effects/conference.effect';
 
 
 @NgModule({
@@ -65,7 +69,9 @@ import { ConferenceService } from './services/conference';
         NbIconModule,
         NbTabsetModule,
         NbCheckboxModule,
-        QuillModule
+        QuillModule,
+        StoreModule.forFeature('conferences', conferenceReducer),
+        EffectsModule.forFeature([ConferenceEffect])
     ],
     declarations: [
         DashboardComponent,

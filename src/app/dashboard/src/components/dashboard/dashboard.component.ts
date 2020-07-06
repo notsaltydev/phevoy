@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NbMenuItem } from '@nebular/theme';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers';
+import { loadConferences } from '../../store/actions/conference.action';
 
 export const MENU_ITEMS: NbMenuItem[] = [
     {
@@ -26,10 +29,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     styleUrls: ['./dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
     menu: NbMenuItem[] = MENU_ITEMS;
 
-    constructor() {
+    constructor(private store: Store<AppState>) {
+    }
+
+    ngOnInit(): void {
+        this.store.dispatch(loadConferences());
     }
 
 }

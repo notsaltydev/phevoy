@@ -37,6 +37,7 @@ import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 
 const socialLinks = [
@@ -231,6 +232,7 @@ const quillConfig: QuillConfig = {
                 strictActionImmutability: true,
             }
         }),
+        EffectsModule.forRoot([]),
         !environment.production ? StoreDevtoolsModule.instrument() : []
     ],
     declarations: [

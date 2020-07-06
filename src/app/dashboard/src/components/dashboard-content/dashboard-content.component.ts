@@ -8,6 +8,13 @@ import { conferenceDtoToConferenceList } from '../../mappers';
 import { isAfter, isToday, isTomorrow } from 'date-fns';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { AppState } from '../../../../store/reducers';
+import { Store } from '@ngrx/store';
+import { getAllConferences } from '../../store/selectors/conference.selector';
+import { conferenceActionTypes } from '../../store/actions/conference.action';
+import { Update } from '@ngrx/entity';
+import {v4} from 'uuid';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -18,29 +25,31 @@ export class DashboardContentComponent implements OnInit {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
     today: Date = new Date();
+    conferences$: Observable<ConferenceDto[]>;
 
     constructor(
         private scheduleService: ConferenceService,
         private changeDetectorRef: ChangeDetectorRef,
         private dialogService: NbDialogService,
         private router: Router,
-        private datePipe: DatePipe
+        private datePipe: DatePipe,
+        private store: Store<AppState>
     ) {
     }
 
     ngOnInit(): void {
-        this.scheduleService.getConferences()
+        this.conferences$ = this.store.select(getAllConferences);
+        this.conferences$
             .pipe(
-                map((confs: ConferenceDto[]) => confs.filter((conference: ConferenceDto) =>
+                map((conferences: ConferenceDto[]) => conferences.filter((conference: ConferenceDto) =>
                     isAfter(conference.startDate, new Date()) || isToday(conference.startDate))
                 ),
                 map(conferenceDtoToConferenceList)
-            )
-            .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
-                this.conferenceList = conferences;
-                this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
-                this.changeDetectorRef.markForCheck();
-            });
+            ).subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
+            this.conferenceList = conferences;
+            this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
+            this.changeDetectorRef.markForCheck();
+        });
     }
 
     open(type: 'create' | 'update', conference?: ConferenceDto): void {
@@ -94,26 +103,24 @@ export class DashboardContentComponent implements OnInit {
         return this.datePipe.transform(date, 'fullDate');
     }
 
-    private createSchedule(conference: ConferenceDto): void {
-        this.scheduleService.createConference({
-            ...conference
-        }).subscribe((newConference: ConferenceDto) => {
-            const date: string = new Date(newConference.startDate).toISOString().split('T')[0];
-
-            if (!this.conferenceList[date]) {
-                this.conferenceList[date] = [];
-            }
-
-            this.conferenceList[date].push(newConference);
-        });
+    private createSchedule(submittedConference: ConferenceDto): void {
+        const conference: ConferenceDto = {
+            ...submittedConference,
+            id: v4()
+        };
+        this.store.dispatch(conferenceActionTypes.createConference({conference}));
     }
 
     private updateSchedule(id: string, conference: ConferenceDto): void {
-        this.scheduleService.updateConference(id, {
-            ...conference,
-            id
-        }).subscribe((newConference: ConferenceDto) => {
-        });
+        const update: Update<ConferenceDto> = {
+            id,
+            changes: {
+                ...conference,
+                id
+            }
+        };
+
+        this.store.dispatch(conferenceActionTypes.updateConference({update}));
     }
 
 }

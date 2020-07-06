@@ -26,9 +26,9 @@ export class ConferenceService {
         }).pipe(map((conference: ConferenceDto) => this.conferenceDtoToConference(conference)));
     }
 
-    updateConference(conferenceId: string, dto: ConferenceDto): Observable<ConferenceDto> {
+    updateConference(conferenceId: string | number, changes: Partial<ConferenceDto>): Observable<ConferenceDto> {
         return this.httpClient.put<ConferenceDto>(`${environment.BASE_URL}/conference/${conferenceId}`, {
-            ...dto
+            ...changes
         }).pipe(map((conference: ConferenceDto) => this.conferenceDtoToConference(conference)));
     }
 
