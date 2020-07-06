@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ConferenceDto } from '../../models/conference.dto';
-import { ConferenceService } from '../../services/conference';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { filter, map, takeUntil } from 'rxjs/operators';
@@ -25,8 +24,8 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
     today: Date = new Date();
-    conferences$: Observable<ConferenceDto[]>;
 
+    private conferences$: Observable<ConferenceDto[]>;
     private destroy$: Subject<void> = new Subject<void>();
 
     constructor(

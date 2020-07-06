@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
 import { ConferenceDto } from '../../models/conference.dto';
-import { ConferenceService } from '../../services/conference';
 import { NbDialogService, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { ScheduleDialogMode, ScheduleDialogView } from '../../models';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { getAllConferences } from '../../store/selectors/conference.selector';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers';
 
 const colors: any = {
     red: {
@@ -124,21 +126,22 @@ export class SchedulerComponent implements OnInit, OnDestroy {
         },
     ];
     private destroy$: Subject<void> = new Subject<void>();
+    private conferences$: Observable<ConferenceDto[]>;
 
     constructor(
         private breakpointService: NbMediaBreakpointsService,
         private changeDetector: ChangeDetectorRef,
         private dialogService: NbDialogService,
         private router: Router,
-        private scheduleService: ConferenceService,
-        private themeService: NbThemeService
+        private themeService: NbThemeService,
+        private store: Store<AppState>
     ) {
     }
 
     ngOnInit(): void {
         const {md} = this.breakpointService.getBreakpointsMap();
-
-        this.scheduleService.getConferences()
+        this.conferences$ = this.store.select(getAllConferences);
+        this.conferences$
             .subscribe((conferences: ConferenceDto[]) => {
                 this.events = [
                     ...conferences.map((conference: ConferenceDto) => ({
