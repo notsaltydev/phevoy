@@ -139,24 +139,4 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
 
         return timeGap;
     }
-
-    onBlur($event: Blur): void {
-
-    }
-
-    onEditorChanged($event: (ContentChange & { event: 'text-change' }) | (SelectionChange & { event: 'selection-change' })): void {
-
-    }
-
-    onEditorCreated($event: any): void {
-
-    }
-
-    onFocus($event: Focus): void {
-
-    }
-
-    onSelectionChanged($event: SelectionChange): void {
-
-    }
 }

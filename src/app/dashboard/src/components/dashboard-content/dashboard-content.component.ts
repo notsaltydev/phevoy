@@ -77,7 +77,7 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
             .pipe(
                 takeUntil(this.destroy$),
                 filter((data: any | null) => data)
-            ).subscribe((payload: ConferenceDto) => {
+            ).subscribe((payload: ConferenceFormValue) => {
             if (type === 'create') {
                 this.createSchedule(payload);
             } else if (type === 'update') {
@@ -112,19 +112,19 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
         this.destroy$.complete();
     }
 
-    private createSchedule(submittedConference: ConferenceDto): void {
+    private createSchedule(conferenceFormValue: ConferenceFormValue): void {
         const conference: ConferenceDto = {
-            ...submittedConference,
+            ...conferenceFormValue,
             id: v4()
         };
         this.store.dispatch(conferenceActionTypes.createConference({conference}));
     }
 
-    private updateSchedule(id: string, conference: ConferenceDto): void {
+    private updateSchedule(id: string, conferenceFormValue: ConferenceFormValue): void {
         const update: Update<ConferenceDto> = {
             id,
             changes: {
-                ...conference,
+                ...conferenceFormValue,
                 id
             }
         };
