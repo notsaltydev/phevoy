@@ -21,7 +21,7 @@ export class ConferenceDialogComponent {
     ) {
     }
 
-    conferenceFormChanged(conferenceFormValue: ConferenceFormValue): void {
+    conferenceFormValueChanged(conferenceFormValue: ConferenceFormValue): void {
         this.conferenceUpdateFormValue = conferenceFormValue;
         this.changeDetector.markForCheck();
     }

@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { Observable, Subject } from 'rxjs';
-import { addDays, addHours, endOfMonth, startOfDay, subDays } from 'date-fns';
 import { ConferenceDto } from '../../models/conference.dto';
 import { NbDialogService, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
-import { ScheduleDialogMode, ScheduleDialogView } from '../../models';
+import { ScheduleDialogClosePayload, ScheduleDialogMode, ScheduleDialogView } from '../../models';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { getAllConferences } from '../../store/selectors/conference.selector';
@@ -13,7 +12,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { conferenceActionTypes } from '../../store/actions/conference.action';
 import { Update } from '@ngrx/entity';
-import { v4 } from 'uuid';
 
 const colors: any = {
     red: {
@@ -34,10 +32,6 @@ const colors: any = {
     },
 };
 
-export interface CalendarMetaData extends ConferenceDto {
-    metaTitle?: string;
-}
-
 @Component({
     selector: 'app-scheduler',
     templateUrl: './scheduler.component.html',
@@ -53,7 +47,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
         event: CalendarEvent;
     };
     refresh: Subject<any> = new Subject();
-    events: CalendarEvent<CalendarMetaData>[];
+    events: CalendarEvent<ConferenceDto>[];
     actions: CalendarEventAction[] = [
         {
             label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -71,7 +65,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
             },
         },
     ];
-    activeDayIsOpen: boolean = false;
+    activeDayIsOpen = false;
     calendarViews: { value: CalendarView, name: string }[] = [
         {
             value: CalendarView.Day,
@@ -88,46 +82,6 @@ export class SchedulerComponent implements OnInit, OnDestroy {
     ];
     currentCalendarView: CalendarView = CalendarView.Month;
     componentSize: 'tiny' | 'small' | 'medium' | 'large' | 'giant' = 'medium';
-    private mockEvents: CalendarEvent[] = [
-        {
-            start: subDays(startOfDay(new Date()), 1),
-            end: addDays(new Date(), 1),
-            title: 'A 3 day event',
-            color: colors.red,
-            actions: this.actions,
-            allDay: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: true,
-        },
-        {
-            start: startOfDay(new Date()),
-            title: 'An event with no end date',
-            color: colors.yellow,
-            actions: this.actions,
-        },
-        {
-            start: subDays(endOfMonth(new Date()), 3),
-            end: addDays(endOfMonth(new Date()), 3),
-            title: 'A long event that spans 2 months',
-            color: colors.blue,
-            allDay: true,
-        },
-        {
-            start: addHours(startOfDay(new Date()), 2),
-            end: addHours(new Date(), 2),
-            title: 'A draggable and resizable event',
-            color: colors.yellow,
-            actions: this.actions,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: true,
-        },
-    ];
     private destroy$: Subject<void> = new Subject<void>();
     private conferences$: Observable<ConferenceDto[]>;
 
@@ -177,38 +131,37 @@ export class SchedulerComponent implements OnInit, OnDestroy {
             });
     }
 
-    openDialog(date: Date, events: CalendarEvent<CalendarMetaData>[], view: ScheduleDialogView, mode: ScheduleDialogMode): void {
-        this.dialogService.open(ScheduleDialogComponent, {context: {date, events, view, mode}}).onClose
-            .pipe(
-                takeUntil(this.destroy$),
-                filter((data: any | null) => data)
-            )
-            .subscribe((action: any) => {
-                if (action.action === 'Join') {
-                    this.router.navigate(['meet', action.payload.id]);
-                }
-                if (action.action === 'Create') {
-                    const conference: ConferenceDto = {
-                        ...action.payload.conference,
-                        id: v4()
-                    };
+    openDialog(date: Date, events: CalendarEvent<ConferenceDto>[], view: ScheduleDialogView, mode: ScheduleDialogMode): void {
+        this.dialogService.open(ScheduleDialogComponent, {context: {date, events, view, mode}})
+            .onClose.pipe(
+            takeUntil(this.destroy$),
+            filter(data => data)
+        ).subscribe((metadata: ScheduleDialogClosePayload) => {
+            const action = metadata.action;
+            const conference: ConferenceDto = metadata.payload;
 
-                    this.store.dispatch(conferenceActionTypes.createConference({conference}));
-                }
-                if (action.action === 'Update') {
-                    const update: Update<ConferenceDto> = {
-                        id: action.payload.conference.id,
-                        changes: {
-                            ...action.payload.conference
-                        }
-                    };
+            if (action === 'Join') {
+                this.router.navigate(['meet', conference.id]);
+            }
 
-                    this.store.dispatch(conferenceActionTypes.updateConference({update}));
-                }
-                if (action.action === 'Delete') {
-                    this.store.dispatch(conferenceActionTypes.deleteConference({conferenceId: action.payload.id}));
-                }
-            });
+            if (action === 'Create') {
+                this.store.dispatch(conferenceActionTypes.createConference({conference}));
+            }
+
+            if (action === 'Update') {
+                const update: Update<ConferenceDto> = {
+                    id: conference.id,
+                    changes: {
+                        ...conference
+                    }
+                };
+
+                this.store.dispatch(conferenceActionTypes.updateConference({update}));
+            }
+            if (metadata.action === 'Delete') {
+                this.store.dispatch(conferenceActionTypes.deleteConference({conferenceId: conference.id}));
+            }
+        });
     }
 
     dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
