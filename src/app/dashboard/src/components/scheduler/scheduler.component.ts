@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { conferenceActionTypes } from '../../store/actions/conference.action';
 import { Update } from '@ngrx/entity';
+import { v4 } from 'uuid';
 
 const colors: any = {
     red: {
@@ -177,14 +178,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
     }
 
     openDialog(date: Date, events: CalendarEvent<CalendarMetaData>[], view: ScheduleDialogView, mode: ScheduleDialogMode): void {
-        this.dialogService.open(ScheduleDialogComponent, {
-            context: {
-                date,
-                events,
-                view,
-                mode
-            }
-        }).onClose
+        this.dialogService.open(ScheduleDialogComponent, {context: {date, events, view, mode}}).onClose
             .pipe(
                 takeUntil(this.destroy$),
                 filter((data: any | null) => data)
@@ -194,7 +188,12 @@ export class SchedulerComponent implements OnInit, OnDestroy {
                     this.router.navigate(['meet', action.payload.id]);
                 }
                 if (action.action === 'Create') {
+                    const conference: ConferenceDto = {
+                        ...action.payload.conference,
+                        id: v4()
+                    };
 
+                    this.store.dispatch(conferenceActionTypes.createConference({conference}));
                 }
                 if (action.action === 'Update') {
                     const update: Update<ConferenceDto> = {
@@ -216,9 +215,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
         this.openDialog(date, events, ScheduleDialogView.LIST, ScheduleDialogMode.UPDATE);
     }
 
-    eventTimesChanged({
-                          event, newStart, newEnd
-                      }: CalendarEventTimesChangedEvent): void {
+    eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
 
         this.events = this.events.map((iEvent) => {
             if (iEvent === event) {

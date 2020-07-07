@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Conference } from '../../models';
+import { ConferenceFormValue } from '../../models';
 import { Blur, ContentChange, Focus, SelectionChange } from 'ngx-quill';
 
 const times: string[] = Array(24 * 4).fill(0).map((_, i) => {
@@ -19,7 +19,7 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
     @Input() startDate: Date;
     @Input() endDate: Date;
     @Input() description: string;
-    @Output() valueChanged: EventEmitter<Conference> = new EventEmitter<Conference>();
+    @Output() valueChanged: EventEmitter<ConferenceFormValue> = new EventEmitter<ConferenceFormValue>();
     @Output() isValid: EventEmitter<boolean> = new EventEmitter<boolean>();
     form: FormGroup;
     times: string[] = times;
@@ -32,7 +32,7 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
     }
 
     ngOnInit(): void {
-        const startDate: Date = this.startDate || new Date();
+        const initialStartDate: Date = this.startDate || new Date();
         const initialStartTime: string = this.startDate ? this.getTimeByDate(this.startDate) : this.getTimeByDate(this.getRoundedDate(15));
         const initialEndTime: string = this.endDate ?
             this.getTimeByDate(this.endDate) :
@@ -42,7 +42,7 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
 
         this.form = this.formBuilder.group({
             name: new FormControl(this.name || '', [Validators.required]),
-            date: new FormControl(startDate, [Validators.required]),
+            date: new FormControl(initialStartDate, [Validators.required]),
             startTime: new FormControl(initialStartTime, [Validators.required]),
             endTime: new FormControl(initialEndTime, [Validators.required]),
             description: new FormControl(this.description || '')
@@ -55,8 +55,10 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
             this.maybeSetEndTime();
         });
 
-        this.subscription.add(this.form.valueChanges.subscribe((changes: Conference) => {
-            this.valueChanged.emit(changes);
+        this.subscription.add(this.form.valueChanges.subscribe((changes: any) => {
+            if (this.form.valid) {
+                this.onValueChanged(changes);
+            }
             this.isValid.emit(this.form.valid);
         }));
     }
@@ -91,6 +93,19 @@ export class ConferenceFormComponent implements OnInit, OnDestroy, ControlValueA
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
+    }
+
+    private onValueChanged(changes): void {
+        const {date, description, endTime, name, startTime} = changes;
+        const startTimeEntries: string[] = startTime.split(':');
+        const endTimeEntries: string[] = endTime.split(':');
+        const startDate: Date = new Date(date);
+        const endDate: Date = new Date(date);
+
+        startDate.setHours(+startTimeEntries[0], +startTimeEntries[1], 0, 0);
+        endDate.setHours(+endTimeEntries[0], +endTimeEntries[1], 0, 0);
+
+        this.valueChanged.emit({name, startDate, endDate, description});
     }
 
     private maybeSetEndTime(): void {

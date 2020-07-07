@@ -14,6 +14,7 @@ import { getAllConferences } from '../../store/selectors/conference.selector';
 import { conferenceActionTypes } from '../../store/actions/conference.action';
 import { Update } from '@ngrx/entity';
 import { v4 } from 'uuid';
+import { ConferenceFormValue } from '../../models';
 
 @Component({
     selector: 'app-dashboard-content',
@@ -54,7 +55,7 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
     }
 
     open(type: 'create' | 'update', conference?: ConferenceDto): void {
-        let editedConference: any;
+        let editedConference: ConferenceFormValue;
 
         if (type === 'update' && conference) {
             editedConference = {
@@ -68,7 +69,9 @@ export class DashboardContentComponent implements OnInit, OnDestroy {
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
                 title: `${type} conference`,
-                ...editedConference
+                conferenceFormValue: {
+                    ...editedConference
+                }
             },
         }).onClose
             .pipe(

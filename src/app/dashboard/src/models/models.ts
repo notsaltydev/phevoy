@@ -8,8 +8,8 @@ export enum ScheduleDialogMode {
     CREATE = 'create',
 }
 
-export interface Conference {
-    id?: string;
+export interface ConferenceFormValue {
+    id?: string; // TODO to remove.
     startDate: Date;
     endDate: Date;
     name: string;

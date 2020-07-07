@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { Conference } from '../../models';
+import { ConferenceFormValue } from '../../models';
 
 @Component({
     selector: 'app-conference-dialog',
@@ -8,14 +8,11 @@ import { Conference } from '../../models';
     styleUrls: ['./conference-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConferenceDialogComponent implements OnInit {
+export class ConferenceDialogComponent {
     @Input() title: string;
-    @Input() name: string;
-    @Input() startDate: Date;
-    @Input() endDate: Date;
-    @Input() description: string;
+    @Input() conferenceFormValue: ConferenceFormValue;
 
-    private conference: any;
+    private conferenceUpdateFormValue: any;
     private isValidConferenceForm: boolean;
 
     constructor(
@@ -24,11 +21,8 @@ export class ConferenceDialogComponent implements OnInit {
     ) {
     }
 
-    ngOnInit(): void {
-    }
-
-    conferenceFormChanged(conference: Conference): void {
-        this.conference = conference;
+    conferenceFormChanged(conferenceFormValue: ConferenceFormValue): void {
+        this.conferenceUpdateFormValue = conferenceFormValue;
         this.changeDetector.markForCheck();
     }
 
@@ -39,20 +33,8 @@ export class ConferenceDialogComponent implements OnInit {
 
     save(): void {
         if (this.isValidConferenceForm) {
-            const {date, description, endTime, name, startTime} = this.conference;
-            const startTimeEntries: string[] = startTime.split(':');
-            const endTimeEntries: string[] = endTime.split(':');
-            const startDate: Date = new Date(date);
-            const endDate: Date = new Date(date);
-
-            startDate.setHours(+startTimeEntries[0], +startTimeEntries[1], 0, 0);
-            endDate.setHours(+endTimeEntries[0], +endTimeEntries[1], 0, 0);
-
             this.ref.close({
-                name,
-                startDate,
-                endDate,
-                description
+                ...this.conferenceUpdateFormValue
             });
         }
     }

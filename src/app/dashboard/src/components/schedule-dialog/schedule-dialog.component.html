@@ -59,7 +59,8 @@
                         [description]="selectedConference.description"
                         [endDate]="selectedConference.endDate"
                         [name]="selectedConference.name"
-                        [startDate]="selectedConference.startDate">
+                        [startDate]="selectedConference.startDate"
+                        (isValid)="validConferenceFormChanged($event)">
                 </app-conference-form>
             </div>
         </div>
