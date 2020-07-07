@@ -164,29 +164,36 @@ export class SchedulerComponent implements OnInit, OnDestroy {
         });
     }
 
-    dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
+    dayClicked({date, events}: { date: Date; events: CalendarEvent<ConferenceDto>[] }): void {
         this.openDialog(date, events, ScheduleDialogView.LIST, ScheduleDialogMode.UPDATE);
     }
 
     eventTimesChanged({event, newStart, newEnd}: CalendarEventTimesChangedEvent): void {
+        const updatedCalendarEvent: CalendarEvent<ConferenceDto> = {
+            ...event,
+            start: newStart,
+            end: newEnd
+        };
 
-        this.events = this.events.map((iEvent) => {
-            if (iEvent === event) {
-                return {
-                    ...event,
-                    start: newStart,
-                    end: newEnd,
-                };
-            }
-            return iEvent;
-        });
-
-        this.handleEvent('Dropped or resized', event);
+        this.handleEvent('Dropped or resized', updatedCalendarEvent);
     }
 
-    handleEvent(action: string, event: CalendarEvent): void {
+    handleEvent(action: string, event: CalendarEvent<ConferenceDto>): void {
         if (action === 'Clicked') {
             this.openDialog(event.start, [event], ScheduleDialogView.FORM, ScheduleDialogMode.UPDATE);
+        }
+
+        if (action === 'Dropped or resized') {
+            const update: Update<ConferenceDto> = {
+                id: event.meta.id,
+                changes: {
+                    ...event.meta,
+                    startDate: event.start,
+                    endDate: event.end
+                }
+            };
+
+            this.store.dispatch(conferenceActionTypes.updateConference({update}));
         }
     }
 
