@@ -37,6 +37,11 @@ import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-d
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 import { ThemeModule } from '../../@theme';
 import { QuillModule } from 'ngx-quill';
+import { ConferenceService } from './services/conference';
+import { StoreModule } from '@ngrx/store';
+import { conferenceReducer } from './store/reducers/conference.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ConferenceEffect } from './store/effects/conference.effect';
 
 
 @NgModule({
@@ -64,7 +69,9 @@ import { QuillModule } from 'ngx-quill';
         NbIconModule,
         NbTabsetModule,
         NbCheckboxModule,
-        QuillModule
+        QuillModule,
+        StoreModule.forFeature('conferences', conferenceReducer),
+        EffectsModule.forFeature([ConferenceEffect])
     ],
     declarations: [
         DashboardComponent,
@@ -80,6 +87,9 @@ import { QuillModule } from 'ngx-quill';
         PreferencesDialogComponent,
         FeedbackDialogComponent,
         HelpDialogComponent
+    ],
+    providers: [
+        ConferenceService
     ]
 })
 export class DashboardModule {

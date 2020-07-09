@@ -1,3 +1,5 @@
+import { ConferenceDto } from './conference.dto';
+
 export enum ScheduleDialogView {
     FORM = 'form',
     LIST = 'list',
@@ -8,7 +10,12 @@ export enum ScheduleDialogMode {
     CREATE = 'create',
 }
 
-export interface Conference {
+export interface ScheduleDialogClosePayload {
+    action: string;
+    payload: ConferenceDto;
+}
+
+export interface ConferenceFormValue {
     startDate: Date;
     endDate: Date;
     name: string;

@@ -41,7 +41,7 @@
                             [showActionsButton]="true"
                             class="conference-item with-hover">
                         <div class="action-body">
-                            <button (click)="join($event, event.meta.id)" class="join" nbButton outline size="small"
+                            <button (click)="join($event, event.meta)" class="join" nbButton outline size="small"
                                     status="primary">Join
                             </button>
                         </div>
@@ -55,11 +55,12 @@
             </div>
             <div *ngSwitchCase="ScheduleDialogView.FORM" class="conference-container">
                 <app-conference-form
-                        (valueChanged)="conferenceFormChanged($event)"
+                        (valueChanged)="conferenceFormValueChanged($event)"
                         [description]="selectedConference.description"
                         [endDate]="selectedConference.endDate"
                         [name]="selectedConference.name"
-                        [startDate]="selectedConference.startDate">
+                        [startDate]="selectedConference.startDate"
+                        (isValid)="validConferenceFormChanged($event)">
                 </app-conference-form>
             </div>
         </div>

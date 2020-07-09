@@ -23,7 +23,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FeedbackComponent } from './feedback';
 import { CoreModule } from './core';
 import { AuthModule } from './auth';
-import { environment } from '../environments/environment';
 import { PasswordAuthStrategy } from './auth/src/strategies/password';
 import { AuthJWTToken } from './auth/src/services/token';
 import { AuthJWTInterceptor } from './auth/src/services/interceptors';
@@ -34,6 +33,11 @@ import { GdprGuideComponent } from './gdpr-guide';
 import { ScheduleDemoComponent } from './schedule-demo';
 import { TermsOfServiceComponent } from './terms-of-service';
 import { ImprintComponent } from './imprint';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 
 const socialLinks = [
@@ -220,7 +224,16 @@ const quillConfig: QuillConfig = {
         QuillModule.forRoot({
             ...quillConfig
         }),
-        FontAwesomeModule
+        FontAwesomeModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+            }
+        }),
+        EffectsModule.forRoot([]),
+        !environment.production ? StoreDevtoolsModule.instrument() : []
     ],
     declarations: [
         AppComponent,

@@ -1,4 +1,4 @@
-import { ConferenceDto } from './conference.dto';
+import { ConferenceDto } from '../../../dashboard/src/models/conference.dto';
 
 export interface ScheduleDto {
     id: string;

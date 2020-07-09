@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { ConferenceDto, ConferenceListDto } from '../../models';
-import { CreateConferenceDto } from '../../models/create-conference.dto';
 import { environment } from '../../../../../environments/environment';
+import { ConferenceDto } from '../../models/conference.dto';
+import { ConferenceListDto } from '../../models/conference-list.dto';
+import { CreateConferenceDto } from '../../models/create-conference.dto';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class ScheduleService {
+@Injectable()
+export class ConferenceService {
 
     constructor(private httpClient: HttpClient) {
     }
@@ -27,9 +26,9 @@ export class ScheduleService {
         }).pipe(map((conference: ConferenceDto) => this.conferenceDtoToConference(conference)));
     }
 
-    updateConference(conferenceId: string, dto: ConferenceDto): Observable<ConferenceDto> {
+    updateConference(conferenceId: string | number, changes: Partial<ConferenceDto>): Observable<ConferenceDto> {
         return this.httpClient.put<ConferenceDto>(`${environment.BASE_URL}/conference/${conferenceId}`, {
-            ...dto
+            ...changes
         }).pipe(map((conference: ConferenceDto) => this.conferenceDtoToConference(conference)));
     }
 

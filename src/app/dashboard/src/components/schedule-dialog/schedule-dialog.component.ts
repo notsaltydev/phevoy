@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
 import { NbDialogRef } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
 import { CalendarEvent } from 'angular-calendar';
-import { CalendarMetaData } from '../scheduler/scheduler.component';
-import { Conference, ScheduleDialogMode, ScheduleDialogView } from '../../models';
+import { ConferenceFormValue, ScheduleDialogMode, ScheduleDialogView } from '../../models';
+import { ConferenceDto } from '../../models/conference.dto';
+import { v4 } from 'uuid';
 
 @Component({
     selector: 'app-schedule-dialog',
@@ -13,12 +14,14 @@ import { Conference, ScheduleDialogMode, ScheduleDialogView } from '../../models
 })
 export class ScheduleDialogComponent implements OnInit {
     @Input() date: Date;
-    @Input() events: CalendarEvent<CalendarMetaData>[];
+    @Input() events: CalendarEvent<ConferenceDto>[];
     @Input() view: ScheduleDialogView = ScheduleDialogView.LIST;
     @Input() mode: ScheduleDialogMode = ScheduleDialogMode.CREATE;
     ScheduleDialogView = ScheduleDialogView;
     ScheduleDialogMode = ScheduleDialogMode;
-    selectedConference: Conference;
+    selectedConference: ConferenceDto;
+
+    private isValidConferenceForm: boolean;
 
     constructor(
         protected ref: NbDialogRef<ConferenceDialogComponent>,
@@ -32,6 +35,7 @@ export class ScheduleDialogComponent implements OnInit {
             this.mode === ScheduleDialogMode.CREATE
         ) {
             this.selectedConference = {
+                id: v4(),
                 name: '',
                 startDate: this.date,
                 endDate: null,
@@ -52,22 +56,29 @@ export class ScheduleDialogComponent implements OnInit {
     }
 
     save(): void {
-        console.log('save', this.selectedConference);
+        if (this.isValidConferenceForm && this.mode === ScheduleDialogMode.CREATE) {
+            this.closeWithPayload('Create', this.selectedConference);
+        }
+
+        if (this.isValidConferenceForm && this.mode === ScheduleDialogMode.UPDATE) {
+            this.closeWithPayload('Update', this.selectedConference);
+        }
     }
 
     create(): void {
         this.view = ScheduleDialogView.FORM;
         this.mode = ScheduleDialogMode.CREATE;
         this.selectedConference = {
+            id: v4(),
             name: '',
             startDate: this.date,
-            endDate: null,
+            endDate: this.date,
             description: ''
         };
         this.changeDetector.markForCheck();
     }
 
-    edit(conference: Conference): void {
+    edit(conference: ConferenceDto): void {
         this.view = ScheduleDialogView.FORM;
         this.mode = ScheduleDialogMode.UPDATE;
         this.selectedConference = conference;
@@ -80,26 +91,29 @@ export class ScheduleDialogComponent implements OnInit {
         this.changeDetector.markForCheck();
     }
 
-    conferenceFormChanged(conference: Conference): void {
+    conferenceFormValueChanged(conferenceFormValue: ConferenceFormValue): void {
         this.selectedConference = {
             ...this.selectedConference,
-            ...conference
+            ...conferenceFormValue
         };
     }
 
-    delete(id: Conference): void {
-        console.log('Delete: ', id);
-        this.dismiss();
+    delete(conference: ConferenceDto): void {
+        this.closeWithPayload('Delete', conference);
     }
 
-    join(event: MouseEvent, id: string) {
+    join(event: MouseEvent, conference: ConferenceDto): void {
         event.stopPropagation();
 
-        this.ref.close({
-            action: 'Join',
-            payload: {
-                id
-            }
-        });
+        this.closeWithPayload('Join', conference);
+    }
+
+    validConferenceFormChanged(isValid: boolean): void {
+        this.isValidConferenceForm = isValid;
+        this.changeDetector.markForCheck();
+    }
+
+    private closeWithPayload(action: string, payload: ConferenceDto): void {
+        this.ref.close({action, payload});
     }
 }

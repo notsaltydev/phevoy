@@ -1,9 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ConferenceDto } from '../../../../schedule/src/models';
-import { ScheduleService } from '../../../../schedule/src/services/schedule';
-import { map } from 'rxjs/operators';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ConferenceDto } from '../../models/conference.dto';
+import { map, takeUntil } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
 import { isBefore } from 'date-fns/fp';
+import { getAllConferences } from '../../store/selectors/conference.selector';
+import { Observable, Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers';
+
 
 @Component({
     selector: 'app-recent-content',
@@ -11,19 +15,24 @@ import { isBefore } from 'date-fns/fp';
     styleUrls: ['./recent-content.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RecentContentComponent implements OnInit {
+export class RecentContentComponent implements OnInit, OnDestroy {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
 
+    private conferences$: Observable<ConferenceDto[]>;
+    private destroy$: Subject<void> = new Subject<void>();
+
     constructor(
-        private scheduleService: ScheduleService,
+        private store: Store<AppState>,
         private changeDetectorRef: ChangeDetectorRef
     ) {
     }
 
     ngOnInit(): void {
-        this.scheduleService.getConferences()
+        this.conferences$ = this.store.select(getAllConferences);
+        this.conferences$
             .pipe(
+                takeUntil(this.destroy$),
                 map((conference: ConferenceDto[]) => conference.filter((conf: ConferenceDto) => isBefore(new Date(), conf.startDate))),
                 map(conferenceDtoToConferenceList),
             )
@@ -32,6 +41,11 @@ export class RecentContentComponent implements OnInit {
                 this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) + Date.parse(b));
                 this.changeDetectorRef.markForCheck();
             });
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
 }

@@ -9,11 +9,11 @@
     </nb-card-header>
     <nb-card-body>
         <app-conference-form
-                [description]="description"
-                [endDate]="endDate"
-                [name]="name"
-                [startDate]="startDate"
-                (valueChanged)="conferenceFormChanged($event)"
+                [description]="conferenceFormValue.description"
+                [endDate]="conferenceFormValue.endDate"
+                [name]="conferenceFormValue.name"
+                [startDate]="conferenceFormValue.startDate"
+                (valueChanged)="conferenceFormValueChanged($event)"
                 (isValid)="validConferenceFormChanged($event)">
         </app-conference-form>
     </nb-card-body>

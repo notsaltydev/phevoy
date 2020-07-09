@@ -1,50 +1,61 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ConferenceDto } from '../../../../schedule/src/models';
-import { ScheduleService } from '../../../../schedule/src/services/schedule';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ConferenceDto } from '../../models/conference.dto';
 import { NbDialogService } from '@nebular/theme';
 import { ConferenceDialogComponent } from '../conference-dialog';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { conferenceDtoToConferenceList } from '../../mappers';
 import { isAfter, isToday, isTomorrow } from 'date-fns';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Observable, Subject } from 'rxjs';
+import { AppState } from '../../../../store/reducers';
+import { Store } from '@ngrx/store';
+import { getAllConferences } from '../../store/selectors/conference.selector';
+import { conferenceActionTypes } from '../../store/actions/conference.action';
+import { Update } from '@ngrx/entity';
+import { v4 } from 'uuid';
+import { ConferenceFormValue } from '../../models';
 
 @Component({
     selector: 'app-dashboard-content',
     templateUrl: './dashboard-content.component.html',
     styleUrls: ['./dashboard-content.component.scss']
 })
-export class DashboardContentComponent implements OnInit {
+export class DashboardContentComponent implements OnInit, OnDestroy {
     conferenceList: { [id: string]: ConferenceDto[] };
     dates: string[];
     today: Date = new Date();
 
+    private conferences$: Observable<ConferenceDto[]>;
+    private destroy$: Subject<void> = new Subject<void>();
+
     constructor(
-        private scheduleService: ScheduleService,
         private changeDetectorRef: ChangeDetectorRef,
         private dialogService: NbDialogService,
         private router: Router,
-        private datePipe: DatePipe
+        private datePipe: DatePipe,
+        private store: Store<AppState>
     ) {
     }
 
     ngOnInit(): void {
-        this.scheduleService.getConferences()
+        this.conferences$ = this.store.select(getAllConferences);
+        this.conferences$
             .pipe(
-                map((confs: ConferenceDto[]) => confs.filter((conference: ConferenceDto) =>
+                takeUntil(this.destroy$),
+                map((conferences: ConferenceDto[]) => conferences.filter((conference: ConferenceDto) =>
                     isAfter(conference.startDate, new Date()) || isToday(conference.startDate))
                 ),
                 map(conferenceDtoToConferenceList)
-            )
-            .subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
-                this.conferenceList = conferences;
-                this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
-                this.changeDetectorRef.markForCheck();
-            });
+            ).subscribe((conferences: { [id: string]: ConferenceDto[] }) => {
+            this.conferenceList = conferences;
+            this.dates = Object.keys(conferences).sort((a: string, b: string) => Date.parse(a) - Date.parse(b));
+            this.changeDetectorRef.markForCheck();
+        });
     }
 
     open(type: 'create' | 'update', conference?: ConferenceDto): void {
-        let editedConference: any;
+        let editedConference: ConferenceFormValue;
 
         if (type === 'update' && conference) {
             editedConference = {
@@ -58,12 +69,15 @@ export class DashboardContentComponent implements OnInit {
         this.dialogService.open(ConferenceDialogComponent, {
             context: {
                 title: `${type} conference`,
-                ...editedConference
+                conferenceFormValue: {
+                    ...editedConference
+                }
             },
         }).onClose
             .pipe(
+                takeUntil(this.destroy$),
                 filter((data: any | null) => data)
-            ).subscribe((payload: ConferenceDto) => {
+            ).subscribe((payload: ConferenceFormValue) => {
             if (type === 'create') {
                 this.createSchedule(payload);
             } else if (type === 'update') {
@@ -72,9 +86,8 @@ export class DashboardContentComponent implements OnInit {
         });
     }
 
-    delete(id: string): void {
-        this.scheduleService.deleteConference(id).subscribe(() => {
-        });
+    delete(conferenceId: string): void {
+        this.store.dispatch(conferenceActionTypes.deleteConference({conferenceId}));
     }
 
     join(id: number): void {
@@ -94,26 +107,29 @@ export class DashboardContentComponent implements OnInit {
         return this.datePipe.transform(date, 'fullDate');
     }
 
-    private createSchedule(conference: ConferenceDto): void {
-        this.scheduleService.createConference({
-            ...conference
-        }).subscribe((newConference: ConferenceDto) => {
-            const date: string = new Date(newConference.startDate).toISOString().split('T')[0];
-
-            if (!this.conferenceList[date]) {
-                this.conferenceList[date] = [];
-            }
-
-            this.conferenceList[date].push(newConference);
-        });
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
-    private updateSchedule(id: string, conference: ConferenceDto): void {
-        this.scheduleService.updateConference(id, {
-            ...conference,
-            id
-        }).subscribe((newConference: ConferenceDto) => {
-        });
+    private createSchedule(conferenceFormValue: ConferenceFormValue): void {
+        const conference: ConferenceDto = {
+            ...conferenceFormValue,
+            id: v4()
+        };
+        this.store.dispatch(conferenceActionTypes.createConference({conference}));
+    }
+
+    private updateSchedule(id: string, conferenceFormValue: ConferenceFormValue): void {
+        const update: Update<ConferenceDto> = {
+            id,
+            changes: {
+                ...conferenceFormValue,
+                id
+            }
+        };
+
+        this.store.dispatch(conferenceActionTypes.updateConference({update}));
     }
 
 }

@@ -6,5 +6,5 @@ export interface ConferenceDto {
     description: string;
     createdOn?: Date;
     updatedOn?: Date;
-    owner: any;
+    owner?: any;
 }
