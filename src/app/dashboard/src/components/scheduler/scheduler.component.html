@@ -1,4 +1,4 @@
-<div class="calendar-header">
+<div class="calendar-header" [ngClass]="{'sticky': isMenuSticky}">
     <button
             [(viewDate)]="viewDate"
             [size]="componentSize"

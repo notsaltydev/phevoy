@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { Observable, Subject } from 'rxjs';
 import { ConferenceDto } from '../../models/conference.dto';
@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { conferenceActionTypes } from '../../store/actions/conference.action';
 import { Update } from '@ngrx/entity';
+import { WindowRef } from '../../../../window/src/services';
 
 const colors: any = {
     red: {
@@ -82,6 +83,7 @@ export class SchedulerComponent implements OnInit, OnDestroy {
     ];
     currentCalendarView: CalendarView = CalendarView.Month;
     componentSize: 'tiny' | 'small' | 'medium' | 'large' | 'giant' = 'medium';
+    isMenuSticky: boolean;
     private destroy$: Subject<void> = new Subject<void>();
     private conferences$: Observable<ConferenceDto[]>;
 
@@ -91,7 +93,8 @@ export class SchedulerComponent implements OnInit, OnDestroy {
         private dialogService: NbDialogService,
         private router: Router,
         private themeService: NbThemeService,
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private windowRef: WindowRef
     ) {
     }
 
@@ -217,5 +220,15 @@ export class SchedulerComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
+    }
+
+    @HostListener('window:scroll', ['$event']) onWindowScroll(): void {
+        this.setMenuFixed();
+    }
+
+    private setMenuFixed(): void {
+        const height: number = this.windowRef.nativeWindow.pageYOffset;
+
+        this.isMenuSticky = height > 0;
     }
 }
