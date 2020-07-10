@@ -17,6 +17,11 @@ export const createConference = createAction(
     props<{ conference: ConferenceDto }>()
 );
 
+export const conferenceCreated = createAction(
+    '[Conference Effect] Conference Created Successfully',
+    props<{ update: Update<ConferenceDto> }>()
+);
+
 export const deleteConference = createAction(
     '[Conferences List Operations] Delete Conference',
     props<{ conferenceId: string }>()
@@ -31,6 +36,7 @@ export const conferenceActionTypes = {
     loadConferences,
     conferencesLoaded,
     createConference,
+    conferenceCreated,
     deleteConference,
     updateConference
 };

@@ -27,6 +27,10 @@ export const conferenceReducer = createReducer(
         return adapter.addOne(action.conference, state);
     }),
 
+    on(conferenceActionTypes.conferenceCreated, (state, action) => {
+        return adapter.updateOne(action.update, state);
+    }),
+
     on(conferenceActionTypes.deleteConference, (state, action) => {
         return adapter.removeOne(action.conferenceId, state);
     }),

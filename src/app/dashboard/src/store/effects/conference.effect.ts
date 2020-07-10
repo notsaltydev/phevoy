@@ -1,9 +1,11 @@
 import { conferenceActionTypes } from '../actions/conference.action';
 import { ConferenceService } from '../../services/conference';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatMap, map } from 'rxjs/operators';
+import { concatMap, map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Update } from '@ngrx/entity';
+import { ConferenceDto } from '../../models/conference.dto';
 
 @Injectable()
 export class ConferenceEffect {
@@ -19,9 +21,20 @@ export class ConferenceEffect {
     createConference$ = createEffect(() =>
             this.actions$.pipe(
                 ofType(conferenceActionTypes.createConference),
-                concatMap((action) => this.conferenceService.createConference(action.conference)),
-            ),
-        {dispatch: false}
+                switchMap((action) => this.conferenceService.createConference(action.conference).pipe(
+                    map((conference: ConferenceDto) => ({conference, temporaryId: action.conference.id}))
+                )),
+                map((payload: {conference: ConferenceDto, temporaryId: string}) => {
+                    const update: Update<ConferenceDto> = {
+                        id: payload.temporaryId,
+                        changes: {
+                            ...payload.conference
+                        }
+                    };
+
+                    return conferenceActionTypes.conferenceCreated({update});
+                })
+            )
     );
 
     deleteConference$ = createEffect(() =>
