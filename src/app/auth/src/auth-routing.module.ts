@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
+    AccountActivationComponent,
     AuthComponent,
     LoginComponent,
     LogoutComponent,
@@ -16,27 +17,31 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: LoginComponent,
+                component: LoginComponent
             },
             {
                 path: 'login',
-                component: LoginComponent,
+                component: LoginComponent
             },
             {
                 path: 'register',
-                component: RegisterComponent,
+                component: RegisterComponent
+            },
+            {
+                path: 'account-activation',
+                component: AccountActivationComponent
             },
             {
                 path: 'logout',
-                component: LogoutComponent,
+                component: LogoutComponent
             },
             {
                 path: 'request-password',
-                component: RequestPasswordComponent,
+                component: RequestPasswordComponent
             },
             {
                 path: 'reset-password',
-                component: ResetPasswordComponent,
+                component: ResetPasswordComponent
             }
         ],
     },

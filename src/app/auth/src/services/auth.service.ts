@@ -170,6 +170,10 @@ export class AuthService {
             );
     }
 
+    resendEmail(): void {
+        // todo: Implement logic.
+    }
+
     /**
      * Get registered strategy by name
      *

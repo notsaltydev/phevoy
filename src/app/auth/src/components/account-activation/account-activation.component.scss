@@ -1,0 +1,28 @@
+@import './src/colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: $color-1-darker;
+}
+
+.greeting {
+  color: #3d3555;
+}
+
+.subtitle {
+  color: $color-8;
+}
+
+.btn-lg-custom {
+  padding: 13px 20px;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 500;
+  border-radius: .375rem;
+  color: #FFFFFF;
+}

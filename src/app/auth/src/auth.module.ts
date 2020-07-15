@@ -38,6 +38,7 @@ import { CoreModule } from '../../core';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './guards';
 import { WindowModule } from '../../window';
+import { AccountActivationComponent } from './components/account-activation/account-activation.component';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
     const strategies = [];
@@ -83,7 +84,8 @@ export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
         LogoutComponent,
         RegisterComponent,
         RequestPasswordComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        AccountActivationComponent
     ]
 })
 export class AuthModule {
