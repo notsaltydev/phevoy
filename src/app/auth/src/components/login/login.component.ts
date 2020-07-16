@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
 import { AUTH_OPTIONS, AuthSocialLink } from '../../auth.options';
 import { AuthResult, AuthService } from '../../services';
+import { AuthVerificationService } from '../../services/auth-verification';
 
 @Component({
     selector: 'app-login',
@@ -23,10 +24,13 @@ export class LoginComponent {
     socialLinks: AuthSocialLink[] = [];
     rememberMe = false;
 
-    constructor(protected service: AuthService,
-                @Inject(AUTH_OPTIONS) protected options = {},
-                protected cd: ChangeDetectorRef,
-                protected router: Router) {
+    constructor(
+        protected service: AuthService,
+        @Inject(AUTH_OPTIONS) protected options = {},
+        protected cd: ChangeDetectorRef,
+        protected router: Router,
+        private authVerificationService: AuthVerificationService
+    ) {
 
         this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
         this.showMessages = this.getConfigValue('forms.login.showMessages');
@@ -45,6 +49,10 @@ export class LoginComponent {
 
             if (result.isSuccess()) {
                 this.messages = result.getMessages();
+
+                if (this.authVerificationService.getTemporaryUserVerification()) {
+                    this.authVerificationService.clearTemporaryUserVerification();
+                }
             } else {
                 this.errors = result.getErrors();
             }

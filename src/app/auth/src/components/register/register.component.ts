@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
 import { AUTH_OPTIONS, AuthSocialLink } from '../../auth.options';
 import { AuthResult, AuthService } from '../../services';
+import { AuthVerificationService } from '../../services/auth-verification';
 
 @Component({
     selector: 'app-register',
@@ -22,10 +23,13 @@ export class RegisterComponent {
     user: any = {};
     socialLinks: AuthSocialLink[] = [];
 
-    constructor(protected service: AuthService,
-                @Inject(AUTH_OPTIONS) protected options = {},
-                protected cd: ChangeDetectorRef,
-                protected router: Router) {
+    constructor(
+        protected service: AuthService,
+        @Inject(AUTH_OPTIONS) protected options = {},
+        protected cd: ChangeDetectorRef,
+        protected router: Router,
+        private authVerificationService: AuthVerificationService
+    ) {
 
         this.redirectDelay = this.getConfigValue('forms.register.redirectDelay');
         this.showMessages = this.getConfigValue('forms.register.showMessages');
@@ -41,6 +45,7 @@ export class RegisterComponent {
             this.submitted = false;
             if (result.isSuccess()) {
                 this.messages = result.getMessages();
+                this.authVerificationService.setTemporaryUserVerification({username: this.user.username, email: this.user.email});
             } else {
                 this.errors = result.getErrors();
             }
