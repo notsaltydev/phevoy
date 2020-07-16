@@ -34,11 +34,12 @@ import { RegisterComponent } from './components/register';
 import { RequestPasswordComponent } from './components/request-password';
 import { ResetPasswordComponent } from './components/reset-password';
 import { LogoutComponent } from './components/logout';
+import { AccountActivationComponent } from './components/account-activation';
+import { AccountVerificationComponent } from './components/account-verification';
 import { CoreModule } from '../../core';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './guards';
 import { WindowModule } from '../../window';
-import { AccountActivationComponent } from './components/account-activation/account-activation.component';
 import { AuthVerificationService } from './services/auth-verification';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
@@ -86,7 +87,8 @@ export function noOpInterceptorFilter(req: HttpRequest<any>): boolean {
         RegisterComponent,
         RequestPasswordComponent,
         ResetPasswordComponent,
-        AccountActivationComponent
+        AccountActivationComponent,
+        AccountVerificationComponent
     ]
 })
 export class AuthModule {

@@ -15,6 +15,11 @@ export class AuthVerificationService {
         return this.httpClient.get<HttpResponseStatus>(`${environment.BASE_URL}/auth/resend-verification/${email}`);
     }
 
+
+    verifyAccount(token: string) {
+        return this.httpClient.get<HttpResponseStatus>(`${environment.BASE_URL}/auth/verify/${token}`);
+    }
+
     setTemporaryUserVerification({email, username}: { username: string; email: string; }): void {
         this.set({email, username});
     }
@@ -25,6 +30,16 @@ export class AuthVerificationService {
 
     clearTemporaryUserVerification(): void {
         return this.clear();
+    }
+
+    protected parseToken(value: string): { username: string; email: string } {
+        try {
+            return JSON.parse(value);
+        } catch (e) {
+
+        }
+
+        return null;
     }
 
     // TODO: Refactor method.
@@ -57,15 +72,5 @@ export class AuthVerificationService {
         }
 
         return token;
-    }
-
-    protected parseToken(value: string): { username: string; email: string } {
-        try {
-            return JSON.parse(value);
-        } catch (e) {
-
-        }
-
-        return null;
     }
 }

@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthVerificationService } from '../../services/auth-verification';
-import { HttpResponseStatus } from '../../models';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-account-activation',
@@ -8,9 +9,10 @@ import { HttpResponseStatus } from '../../models';
     styleUrls: ['./account-activation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountActivationComponent implements OnInit {
+export class AccountActivationComponent implements OnInit, OnDestroy {
     user: { username: string, email: string; };
     submitted: boolean;
+    private destroy$: Subject<void> = new Subject<void>();
 
     constructor(private authVerificationService: AuthVerificationService,
                 private changeDetector: ChangeDetectorRef) {
@@ -23,10 +25,16 @@ export class AccountActivationComponent implements OnInit {
 
     resendEmail(): void {
         this.submitted = true;
-        this.authVerificationService.resendEmailVerification(this.user.email)
-            .subscribe((response: HttpResponseStatus) => {
-                this.submitted = false;
-                this.changeDetector.markForCheck();
-            });
+        this.authVerificationService.resendEmailVerification(this.user.email).pipe(
+            takeUntil(this.destroy$)
+        ).subscribe(() => {
+            this.submitted = false;
+            this.changeDetector.markForCheck();
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }

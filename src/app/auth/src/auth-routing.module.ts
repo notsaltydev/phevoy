@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
     AccountActivationComponent,
+    AccountVerificationComponent,
     AuthComponent,
     LoginComponent,
     LogoutComponent,
@@ -30,6 +31,10 @@ const routes: Routes = [
             {
                 path: 'account-activation',
                 component: AccountActivationComponent
+            },
+            {
+                path: 'account-verification/:token',
+                component: AccountVerificationComponent
             },
             {
                 path: 'logout',
