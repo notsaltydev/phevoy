@@ -23,28 +23,25 @@ export class AuthVerificationService {
         return this.get();
     }
 
-    get(): { username: string; email: string; } {
+    clearTemporaryUserVerification(): void {
+        return this.clear();
+    }
+
+    // TODO: Refactor method.
+    private get(): { username: string; email: string; } {
         const raw = localStorage.getItem(this.key);
         return this.unwrap(raw);
     }
 
-    set(token: { username: string; email: string }): void {
+    // TODO: Refactor method.
+    private set(token: { username: string; email: string }): void {
         const raw = this.wrap(token);
         localStorage.setItem(this.key, raw);
     }
 
-    clear() {
+    // TODO: Refactor method.
+    private clear() {
         localStorage.removeItem(this.key);
-    }
-
-    protected parseToken(value: string): { username: string; email: string } {
-        try {
-            return JSON.parse(value);
-        } catch (e) {
-
-        }
-
-        return null;
     }
 
     private wrap({username, email}): string {
@@ -60,5 +57,15 @@ export class AuthVerificationService {
         }
 
         return token;
+    }
+
+    protected parseToken(value: string): { username: string; email: string } {
+        try {
+            return JSON.parse(value);
+        } catch (e) {
+
+        }
+
+        return null;
     }
 }
