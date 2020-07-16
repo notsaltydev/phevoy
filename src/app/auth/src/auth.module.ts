@@ -39,6 +39,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './guards';
 import { WindowModule } from '../../window';
 import { AccountActivationComponent } from './components/account-activation/account-activation.component';
+import { AuthVerificationService } from './services/auth-verification';
 
 export function strategiesFactory(options: AuthOptions, injector: Injector): AuthStrategy[] {
     const strategies = [];
@@ -104,6 +105,7 @@ export class AuthModule {
                 AuthTokenParceler,
                 AuthService,
                 TokenService,
+                AuthVerificationService,
                 DummyAuthStrategy,
                 PasswordAuthStrategy,
                 OAuth2AuthStrategy,

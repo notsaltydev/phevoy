@@ -3,17 +3,21 @@
      class="img-fluid mw-md-150 mw-lg-150"
      src="assets/img/illustrations/drawings/activation.svg">
 <h2 class="greeting text-center mb-2 mt-5">
-    Close to the end, <span class="strong">{{name}}</span>.
+    Close to the end, <span *ngIf="user" class="strong">{{user.username}}</span>.
 </h2>
 <p class="subtitle text-center mb-5">
     Please activate your account
 </p>
 
 <p class="text-center mb-5">
-    We've sent you an email to <span class="strong">{{email}}</span>.
+    We've sent you an email to <span *ngIf="user" class="strong">{{user.email}}</span>.
     Please check your inbox and click the link to activate your account.
 </p>
 
-<a (click)="resendEmail()" class="btn btn-primary btn-lg btn-lg-custom">
+<button
+        (click)="resendEmail()"
+        [class.btn-pulse]="submitted"
+        [disabled]="submitted"
+        class="btn btn-primary btn-lg btn-lg-custom ">
     Resend email
-</a>
+</button>

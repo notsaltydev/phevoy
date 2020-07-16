@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AuthService } from '../../services';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AuthVerificationService } from '../../services/auth-verification';
+import { HttpResponseStatus } from '../../models';
 
 @Component({
     selector: 'app-account-activation',
@@ -7,14 +8,25 @@ import { AuthService } from '../../services';
     styleUrls: ['./account-activation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountActivationComponent {
-    email = 'example@phevoy.com';
-    name = 'John';
+export class AccountActivationComponent implements OnInit {
+    user: { username: string, email: string; };
+    submitted: boolean;
 
-    constructor(private authService: AuthService) {
+    constructor(private authVerificationService: AuthVerificationService,
+                private changeDetector: ChangeDetectorRef) {
+    }
+
+    ngOnInit(): void {
+        this.user = this.authVerificationService.getTemporaryUserVerification();
+        this.changeDetector.markForCheck();
     }
 
     resendEmail(): void {
-        this.authService.resendEmail();
+        this.submitted = true;
+        this.authVerificationService.resendEmailVerification(this.user.email)
+            .subscribe((response: HttpResponseStatus) => {
+                this.submitted = false;
+                this.changeDetector.markForCheck();
+            });
     }
 }

@@ -124,9 +124,9 @@ const quillConfig: QuillConfig = {
                     register: {
                         endpoint: '/auth/register',
                         method: 'post',
-                        alwaysFail: !environment.enableSignUp,
+                        requireValidToken: false,
                         redirect: {
-                            success: '/app/dashboard',
+                            success: '/auth/account-activation',
                             failure: null
                         }
                     },
