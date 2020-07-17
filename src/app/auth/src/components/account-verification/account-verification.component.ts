@@ -20,6 +20,7 @@ export class AccountVerificationComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        // TODO: Handle not valid token.
         this.route.params.pipe(
             filter((params: Params) => params && params.token),
             takeUntil(this.destroy$),
