@@ -38,6 +38,7 @@ export class ResetPasswordComponent {
         this.service.resetPassword(this.strategy, this.user).subscribe((result: AuthResult) => {
             this.submitted = false;
             if (result.isSuccess()) {
+                // TODO: Fix reset password.
                 this.messages = result.getMessages();
             } else {
                 this.errors = result.getErrors();
