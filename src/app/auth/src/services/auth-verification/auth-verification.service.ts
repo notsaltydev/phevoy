@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { HttpResponseStatus } from '../../models';
 
+export interface ResetPasswordDto {
+    newPassword: string;
+    newPasswordToken: string;
+}
+
 @Injectable()
 export class AuthVerificationService {
     protected key = 'auth_app_temp_user';
@@ -18,6 +23,10 @@ export class AuthVerificationService {
 
     verifyAccount(token: string) {
         return this.httpClient.get<HttpResponseStatus>(`${environment.BASE_URL}/auth/verify/${token}`);
+    }
+
+    resetPassword(config: ResetPasswordDto) {
+        return null;
     }
 
     setTemporaryUserVerification({email, username}: { username: string; email: string; }): void {

@@ -45,7 +45,7 @@ const routes: Routes = [
                 component: RequestPasswordComponent
             },
             {
-                path: 'reset-password',
+                path: 'reset-password/:token',
                 component: ResetPasswordComponent
             }
         ],
