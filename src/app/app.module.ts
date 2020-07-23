@@ -115,7 +115,6 @@ const quillConfig: QuillConfig = {
                     login: {
                         endpoint: '/auth/login',
                         method: 'post',
-                        alwaysFail: !environment.enableLogin,
                         redirect: {
                             success: '/app/dashboard',
                             failure: null, // stay on the same page
@@ -133,16 +132,15 @@ const quillConfig: QuillConfig = {
                     logout: {
                         endpoint: '/auth/sign-out',
                         method: 'post',
-                        alwaysFail: !environment.enableLogout,
                         redirect: {
                             success: '/auth/logout',
                             failure: null
                         }
                     },
                     requestPass: {
-                        endpoint: '/auth/request-password',
+                        endpoint: '/auth/forgot-password',
                         method: 'post',
-                        alwaysFail: !environment.enableRequestPassword,
+                        requireValidToken: false,
                         redirect: {
                             success: '/auth/login',
                             failure: null
@@ -151,7 +149,7 @@ const quillConfig: QuillConfig = {
                     resetPass: {
                         endpoint: '/auth/reset-password',
                         method: 'post',
-                        alwaysFail: !environment.enableResetPassword,
+                        requireValidToken: false,
                         redirect: {
                             success: '/auth/login',
                             failure: null
