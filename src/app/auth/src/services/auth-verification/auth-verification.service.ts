@@ -4,10 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { HttpResponseStatus } from '../../models';
 
-export interface ResetPasswordDto {
-    newPassword: string;
-    newPasswordToken: string;
-}
 
 @Injectable()
 export class AuthVerificationService {
@@ -20,13 +16,8 @@ export class AuthVerificationService {
         return this.httpClient.get<HttpResponseStatus>(`${environment.BASE_URL}/auth/resend-verification/${email}`);
     }
 
-
     verifyAccount(token: string) {
         return this.httpClient.get<HttpResponseStatus>(`${environment.BASE_URL}/auth/verify/${token}`);
-    }
-
-    resetPassword(config: ResetPasswordDto) {
-        return null;
     }
 
     setTemporaryUserVerification({email, username}: { username: string; email: string; }): void {

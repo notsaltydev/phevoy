@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { getDeepFromObject } from '../../helpers';
 import { AuthResult, AuthService } from '../../services';
 import { AUTH_OPTIONS } from '../../auth.options';
+import { RequestPasswordDto } from '../../models/request-password.interface';
 
 @Component({
     selector: 'app-request-password',
@@ -33,8 +34,11 @@ export class RequestPasswordComponent {
     requestPass(): void {
         this.errors = this.messages = [];
         this.submitted = true;
+        const requestPasswordDto: RequestPasswordDto = {
+            email: this.user.email
+        };
 
-        this.service.requestPassword(this.strategy, this.user).subscribe((result: AuthResult) => {
+        this.service.requestPassword(this.strategy, requestPasswordDto).subscribe((result: AuthResult) => {
             this.submitted = false;
             if (result.isSuccess()) {
                 this.messages = result.getMessages();

@@ -5,7 +5,7 @@ import { AuthResult, AuthService } from '../../services';
 import { AUTH_OPTIONS } from '../../auth.options';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { AuthVerificationService, ResetPasswordDto } from '../../services/auth-verification';
+import { ResetPasswordDto } from '../../models/reset-password.interface';
 
 @Component({
     selector: 'app-reset-password',
@@ -31,7 +31,6 @@ export class ResetPasswordComponent implements OnInit {
         @Inject(AUTH_OPTIONS) protected options = {},
         protected cd: ChangeDetectorRef,
         protected router: Router,
-        private authVerificationService: AuthVerificationService,
         private route: ActivatedRoute
     ) {
 
@@ -50,7 +49,7 @@ export class ResetPasswordComponent implements OnInit {
         });
     }
 
-    resetPass(): void {
+    resetPassword(): void {
         this.errors = this.messages = [];
         this.submitted = true;
         const resetPasswordDto: ResetPasswordDto = {
