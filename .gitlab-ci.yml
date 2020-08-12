@@ -93,7 +93,7 @@ deploy_prod:
     - ssh deployer@gitlab.s1.adamnieslony.com "docker rm phevoy.com_${CI_COMMIT_REF_SLUG}" || true
     - ssh deployer@gitlab.s1.adamnieslony.com "docker rmi $IMAGE_PATH:$CI_COMMIT_SHORT_SHA" || true
     # start new container
-    - ssh deployer@gitlab.s1.adamnieslony.com "docker run --label traefik.frontend.rule=Host:phevoy.com,www.phevoy.com --name phevoy.com_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
+    - ssh deployer@gitlab.s1.adamnieslony.com "docker run --label traefik.frontend.rule=Host:phevoy.com,www.phevoy.com,phevoy.pl,www.phevoy.pl --name phevoy.com_${CI_COMMIT_REF_SLUG} --network=traefik_net -d $IMAGE_PATH:$CI_COMMIT_SHORT_SHA"
   environment:
     name: production
     url: http://phevoy.com
