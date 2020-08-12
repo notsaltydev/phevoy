@@ -45,8 +45,14 @@ export function app() {
     maxAge: '1y'
   }));
 
+  server.get('*.*', (req, res) => {
+    console.log('*.*');
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+  });
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
+    console.log('*');
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
