@@ -11,6 +11,7 @@ import {
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { fromEventPattern, Observable, Subscription } from 'rxjs';
 import { EventEmitter } from 'events';
+import { BrowserOnly } from '../../../../platform/src/decorators';
 
 declare const JitsiMeetExternalAPI;
 
@@ -33,7 +34,7 @@ export class MeetComponent implements OnInit, OnDestroy {
     isLoading: boolean;
     @ViewChild('meet', {static: true}) private meetRef: ElementRef;
     private jitsiMeetExternalAPI: any;
-    private subscription: Subscription;
+    private subscription: Subscription = new Subscription();
 
     constructor(
         private route: ActivatedRoute,
@@ -70,6 +71,7 @@ export class MeetComponent implements OnInit, OnDestroy {
     createAccount(): void {
     }
 
+    @BrowserOnly()
     startMeet(domain, options): void {
         this.isLoading = true;
         this.isShowingPostMeetingActions = false;
@@ -88,7 +90,6 @@ export class MeetComponent implements OnInit, OnDestroy {
     }
 
     private bindEvents(): void {
-        this.subscription = new Subscription();
         this.subscription.add(this.handleJitsiEvent('readyToClose').subscribe(
             () => {
                 this.disposeConference();

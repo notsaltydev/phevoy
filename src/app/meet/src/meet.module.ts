@@ -4,13 +4,15 @@ import { MeetComponent } from './components/meet';
 import { MeetRoutingModule } from './meet-routing.module';
 import { MeetIdResolver } from './resolvers/meet-id';
 import { CoreModule } from '../../core';
+import { PlatformModule } from '../../platform';
 
 
 @NgModule({
     imports: [
         CommonModule,
         MeetRoutingModule,
-        CoreModule
+        CoreModule,
+        PlatformModule
     ],
     declarations: [
         MeetComponent
